@@ -1,0 +1,36 @@
+project_name: PytestAutoApi
+env: 测试环境
+tester_name: 自动化测试
+host: "http://47.107.113.31:18090/prod-api"
+app_host:
+real_time_update_test_cases: False
+notification_type: 0
+excel_report: False
+ding_talk:
+  webhook:
+  secret:
+# 数据库配置
+mysql_db:
+  switch: true
+  host: 192.168.100.105
+  port: 3336
+  user: root
+  password: "wohouseplatform"
+  database: lzyiot
+
+mirror_source: sdfsdf
+
+wechat:
+  webhook: ssdfsdf
+
+email:
+  send_user:
+  email_host: smtp.qq.com
+  # 自己到QQ邮箱中配置stamp_key
+  stamp_key:
+  # 收件人改成自己的邮箱
+  send_list:
+
+# 飞书通知
+lark:
+  webhook:

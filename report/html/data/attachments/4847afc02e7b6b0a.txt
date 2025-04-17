@@ -1,0 +1,22 @@
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:conftest.py:36 登录初始化
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:conftest.py:60 验证码: 1
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:conftest.py:61 uuid: a62ba68246c44e16b82180f64ae58856
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:conftest.py:82 缓存中的token:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJzeXNfdXNlcjoxNjU5MzkxNjY2MjU0NzA0NjQyIiwicm5TdHIiOiJHdFo5dUVJNmVnaTBFUlRvb2NYN3lFY05LS1JScnVBNSIsInVzZXJJZCI6MTY1OTM5MTY2NjI1NDcwNDY0Mn0.w650eptT93Uc0_2BhC_C4e7VYHdlTxTJoahPx9OW5Ag
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:test_upload_img.py:29 data: {'url': 'http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '上传图片成功'}}, 'headers': {'Content-Language': 'zh_CN', 'Authorization': '$cache{token}'}, 'requestType': 'FILE', 'is_run': True, 'data': {'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': [{'type': 'response', 'jsonpath': '$.data.url', 'name': 'upload_img_01_url'}], 'sleep': None}
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:dependent_case.py:164 _dependent_type: False
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:dependent_case.py:165 _dependence_case_datas: None
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:request_control.py:150 上传文件：['multipartFile']
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:request_control.py:151 上传文件数据：{'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e', 'multipartFile': ('gifpic.gif', <_io.BufferedReader name='d:\\PytestAutoApi\\Files\\gifpic.gif'>, 'image/gif')}
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:request_control.py:152 上传文件数据类型：<MultipartEncoder: {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e', 'multipartFile': ('gifpic.gif', <_io.BufferedReader name='d:\\PytestAutoApi\\Files\\gifpic.gif'>, 'image/gif')}>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:request_control.py:153 上传文件数据类型：multipart/form-data; boundary=-----------------------------82695412448276319844607692268
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-17.log:log_decorator.py:32 
+======================================================
+用例标题: 正常登录
+请求路径: http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic
+请求方式: POST
+请求头:   {'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Language': 'zh_CN', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJzeXNfdXNlcjoxNjU5MzkxNjY2MjU0NzA0NjQyIiwicm5TdHIiOiJHdFo5dUVJNmVnaTBFUlRvb2NYN3lFY05LS1JScnVBNSIsInVzZXJJZCI6MTY1OTM5MTY2NjI1NDcwNDY0Mn0.w650eptT93Uc0_2BhC_C4e7VYHdlTxTJoahPx9OW5Ag', 'Content-Type': 'multipart/form-data; boundary=-----------------------------82695412448276319844607692268', 'Content-Length': '539624'}
+请求内容: {'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}
+接口响应内容: {"code":200,"msg":"操作成功","data":{"pic":"bannerImage/2025/04/17/gifpic_20250417091603470.gif","url":"https://uspublic.s3.us-west-1.amazonaws.com/bannerImage/2025/04/17/gifpic_20250417091603470.gif","picType":"uspublic"},"paramMsg":null,"errCode":null}
+接口响应时长: 2126.91 ms
+Http状态码: 200
+=====================================================

@@ -1,0 +1,3 @@
+ERROR   2025-04-17 17:05:07,700d:\PytestAutoApi\logs\error-2025-04-17.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-17 17:06:36,207d:\PytestAutoApi\logs\error-2025-04-17.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-17 17:16:05,206d:\PytestAutoApi\logs\error-2025-04-17.log:conftest.py:158 失败用例数: 0

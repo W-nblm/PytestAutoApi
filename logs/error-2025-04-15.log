@@ -1,0 +1,313 @@
+ERROR   2025-04-15 08:54:30,966d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 08:54:30,966d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 08:54:30,990d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 08:54:30,991d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 08:54:30,999d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 08:59:36,754d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 08:59:36,755d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 08:59:36,775d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 08:59:36,775d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 08:59:36,790d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 09:01:44,369d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:01:44,370d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:01:44,385d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:01:44,385d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:01:44,390d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 09:03:43,431d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:03:43,432d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:03:43,468d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:03:43,469d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:03:43,481d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 09:14:30,022d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:14:30,022d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:14:30,045d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:14:30,045d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:14:30,051d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 09:17:04,032d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:17:04,033d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:17:04,057d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:17:04,057d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:17:04,068d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 09:25:02,933d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:25:02,933d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:25:02,957d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:25:02,957d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:25:02,970d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 09:28:49,364d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:28:49,365d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:28:49,386d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:28:49,386d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 09:28:49,393d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 10:14:24,463d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:14:24,463d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:14:24,486d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:14:24,486d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:14:24,493d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 10:42:52,680d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:42:52,681d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:42:52,700d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:42:52,700d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:42:52,706d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 10:48:51,384d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:48:51,384d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:48:51,403d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:48:51,404d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:48:51,417d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 10:51:49,167d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:51:49,168d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:51:49,185d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:51:49,185d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:51:49,192d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 10:53:08,287d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:53:08,288d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:53:08,313d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:53:08,313d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 10:53:08,318d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 11:08:08,101d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:08:08,102d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:08:08,117d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:08:08,117d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:08:08,122d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 11:10:23,797d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:10:23,797d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:10:23,818d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:10:23,818d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:10:23,823d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 11:10:59,105d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:10:59,105d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:10:59,126d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:10:59,126d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-15 11:10:59,131d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 11:14:09,377d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 表达式$.data.code提取不到数据
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 420, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 240, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 198, in is_dependent
+    self.dependent_handler(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 140, in dependent_handler
+    jsonpath_data = self.jsonpath_data(obj=data, expr=_jsonpath)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 41, in jsonpath_data
+    raise ValueNotFoundError(f"表达式{expr}提取不到数据")
+utils.other_tools.exceptions.ValueNotFoundError: 表达式$.data.code提取不到数据
+ERROR   2025-04-15 11:14:09,531d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-15 11:19:26,455d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 表达式$.data.code提取不到数据
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 420, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 242, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 200, in is_dependent
+    self.dependent_handler(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 142, in dependent_handler
+    jsonpath_data = self.jsonpath_data(obj=data, expr=_jsonpath)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 43, in jsonpath_data
+    raise ValueNotFoundError(f"表达式{expr}提取不到数据")
+utils.other_tools.exceptions.ValueNotFoundError: 表达式$.data.code提取不到数据
+ERROR   2025-04-15 11:19:26,576d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-15 11:21:42,830d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 13:44:18,470d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:138 验证码识别失败, Incorrect padding
+ERROR   2025-04-15 13:46:49,908d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:138 验证码识别失败, Incorrect padding
+ERROR   2025-04-15 13:48:30,167d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:138 验证码识别失败, Incorrect padding
+ERROR   2025-04-15 14:41:15,315d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 15:05:18,601d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 16:00:05,781d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:138 验证码识别失败, Incorrect padding
+ERROR   2025-04-15 16:00:05,957d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 16:02:14,884d:\PytestAutoApi\logs\error-2025-04-15.log:regular_control.py:139 验证码识别失败, Incorrect padding
+ERROR   2025-04-15 16:02:15,043d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 16:45:37,751d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-15 17:19:12,884d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-15 17:24:13,973d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-15 17:24:46,866d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-15 17:45:01,774d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 'NoneType' object has no attribute 'res_time'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 14, in wrapper
+    run_time = res.res_time
+               ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'res_time'
+ERROR   2025-04-15 17:45:01,812d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 'NoneType' object has no attribute 'res_time'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 420, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 240, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 187, in is_dependent
+    res = RequestControl(re_data).http_request()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 38, in wrapper
+    raise e
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 14, in wrapper
+    run_time = res.res_time
+               ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'res_time'
+ERROR   2025-04-15 17:45:01,981d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-15 17:53:32,638d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 'NoneType' object has no attribute 'res_time'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 14, in wrapper
+    run_time = res.res_time
+               ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'res_time'
+ERROR   2025-04-15 17:53:43,586d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 'NoneType' object has no attribute 'res_time'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 420, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 240, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 187, in is_dependent
+    res = RequestControl(re_data).http_request()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 38, in wrapper
+    raise e
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 14, in wrapper
+    run_time = res.res_time
+               ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'res_time'
+ERROR   2025-04-15 17:54:48,228d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 'NoneType' object has no attribute 'res_time'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 14, in wrapper
+    run_time = res.res_time
+               ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'res_time'
+ERROR   2025-04-15 17:54:48,229d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 'NoneType' object has no attribute 'res_time'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 420, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 240, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 187, in is_dependent
+    res = RequestControl(re_data).http_request()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 38, in wrapper
+    raise e
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 14, in wrapper
+    run_time = res.res_time
+               ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'res_time'
+ERROR   2025-04-15 17:54:48,335d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-15 17:57:07,731d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 'NoneType' object has no attribute 'res_time'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 14, in wrapper
+    run_time = res.res_time
+               ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'res_time'
+ERROR   2025-04-15 17:57:07,732d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 'NoneType' object has no attribute 'res_time'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 420, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 240, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 187, in is_dependent
+    res = RequestControl(re_data).http_request()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 38, in wrapper
+    raise e
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 14, in wrapper
+    run_time = res.res_time
+               ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'res_time'
+ERROR   2025-04-15 17:57:07,854d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-15 17:57:27,937d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 'NoneType' object has no attribute 'res_time'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 15, in wrapper
+    run_time = res.res_time
+               ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'res_time'
+ERROR   2025-04-15 17:57:27,942d:\PytestAutoApi\logs\error-2025-04-15.log:log_decorator.py:37 'NoneType' object has no attribute 'res_time'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 420, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 240, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 187, in is_dependent
+    res = RequestControl(re_data).http_request()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 38, in wrapper
+    raise e
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 15, in wrapper
+    run_time = res.res_time
+               ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'res_time'
+ERROR   2025-04-15 17:57:28,046d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-15 17:59:52,343d:\PytestAutoApi\logs\error-2025-04-15.log:conftest.py:156 失败用例数: 0

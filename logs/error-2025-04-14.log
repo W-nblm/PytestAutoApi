@@ -1,0 +1,218 @@
+ERROR   2025-04-14 09:20:07,921d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:20:08,091d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:20:08,123d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 09:28:15,318d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:28:15,450d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:28:15,473d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 09:30:09,295d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:30:09,410d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:30:09,433d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 09:31:36,793d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 21, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:31:36,912d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 21, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:31:36,927d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 09:35:29,249d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 21, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:36:52,054d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 21, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:37:01,383d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 09:41:51,405d:\PytestAutoApi\logs\error-2025-04-14.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 21, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-14 09:53:05,681d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 09:59:29,131d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 0
+ERROR   2025-04-14 10:00:22,331d:\PytestAutoApi\logs\error-2025-04-14.log:assert_control.py:152 JsonPath值获取失败 $.data.username 
+ERROR   2025-04-14 10:00:22,443d:\PytestAutoApi\logs\error-2025-04-14.log:assert_control.py:152 JsonPath值获取失败 $.data.username 
+ERROR   2025-04-14 10:00:22,466d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 10:05:00,694d:\PytestAutoApi\logs\error-2025-04-14.log:assert_control.py:152 JsonPath值获取失败 $.data.username 
+ERROR   2025-04-14 10:05:00,800d:\PytestAutoApi\logs\error-2025-04-14.log:assert_control.py:152 JsonPath值获取失败 $.data.username 
+ERROR   2025-04-14 10:05:00,821d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 10:21:14,331d:\PytestAutoApi\logs\error-2025-04-14.log:assert_control.py:152 JsonPath值获取失败 $.data.username 
+ERROR   2025-04-14 10:21:14,354d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 10:25:03,468d:\PytestAutoApi\logs\error-2025-04-14.log:assert_control.py:153 JsonPath值获取失败 $.data.username 
+ERROR   2025-04-14 10:25:03,490d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 10:30:39,044d:\PytestAutoApi\logs\error-2025-04-14.log:assert_control.py:153 JsonPath值获取失败 $.data.username 
+ERROR   2025-04-14 10:30:39,067d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-14 10:31:29,789d:\PytestAutoApi\logs\error-2025-04-14.log:assert_control.py:153 JsonPath值获取失败 $.data.username 
+ERROR   2025-04-14 10:31:29,882d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 1
+ERROR   2025-04-14 10:42:07,204d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 10:42:07,346d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:151 失败用例数: 0
+ERROR   2025-04-14 10:45:40,570d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 10:45:40,708d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:153 失败用例数: 0
+ERROR   2025-04-14 10:47:02,304d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 10:47:02,451d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:153 失败用例数: 0
+ERROR   2025-04-14 10:55:31,869d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 10:55:32,010d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:153 失败用例数: 0
+ERROR   2025-04-14 10:56:12,803d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 10:56:12,936d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:153 失败用例数: 0
+ERROR   2025-04-14 10:58:39,541D:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 10:58:39,699D:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:153 失败用例数: 0
+ERROR   2025-04-14 11:00:01,554D:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 11:00:01,702D:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-14 11:00:04,341d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 11:00:04,481d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-14 11:00:28,023d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 11:00:28,154d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-14 11:04:29,833d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 11:04:29,966d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-14 11:05:27,686d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 11:05:27,825d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-14 11:06:44,743d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 11:06:44,877d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 11:07:42,744d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 11:07:42,878d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 11:12:04,771d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:202 未找到对应的替换的数据, 请检查数据是否正确 [{'url': 'http://47.107.113.31:18090/prod-api/user/login', 'method': 'POST', 'detail': '正常登录', 'assert_data': {'errorCode': {'jsonpath': '$.errorCode', 'type': '==', 'value': 0, 'AssertType': None}, 'username': {'jsonpath': '$.data.username', 'type': '==', 'value': '18800000001', 'AssertType': None}}, 'headers': {'Content-Language': 'zh_CN', 'App-Source': 'WOcam'}, 'requestType': 'JSON', 'is_run': None, 'data': {'username': 'test02', 'password': 'admin@lzy123', 'code': '${{code()}}', 'uuid': '${{uuid()}}'}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}]
+ERROR   2025-04-14 11:12:04,921d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 11:14:24,405d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 11:17:03,010d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 11:18:10,094d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 11:21:41,920d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 11:25:08,101d:\PytestAutoApi\logs\error-2025-04-14.log:assert_control.py:153 JsonPath值获取失败 $.data.username 
+ERROR   2025-04-14 11:25:08,216d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 11:26:21,302d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 11:46:38,713d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 11:54:01,067d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 13:44:28,942d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 14:09:36,495d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 14:17:27,737d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 14:32:12,080d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 2
+ERROR   2025-04-14 14:50:01,185d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 2
+ERROR   2025-04-14 14:50:58,473d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 2
+ERROR   2025-04-14 14:54:35,588d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 2
+ERROR   2025-04-14 14:56:56,267d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 2
+ERROR   2025-04-14 14:58:46,567d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 2
+ERROR   2025-04-14 15:05:35,851d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 15:06:51,710d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 15:12:49,655d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 15:13:57,072d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 15:15:10,861d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 1
+ERROR   2025-04-14 15:19:50,658d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 15:42:59,260d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 16:02:34,484d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:02:34,486d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:02:34,501d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:02:34,502d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:02:34,519d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 16:04:21,700d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:04:21,700d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:04:21,725d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:04:21,725d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:04:21,729d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 16:42:06,504d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:42:06,505d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:42:06,531d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:42:06,531d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:45:55,272d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:45:55,273d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:45:59,480d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:45:59,481d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:46:08,855d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 16:49:52,204d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:49:52,205d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:49:52,232d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:49:52,233d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 16:49:52,251d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 17:06:27,457d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:06:27,458d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:06:37,224d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:06:37,224d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:06:48,984d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 17:08:11,825d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:08:11,825d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:08:11,851d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:08:11,851d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:08:33,023d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 17:09:02,968d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:09:02,969d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:09:02,985d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:09:02,986d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:15:45,431d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:15:45,432d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:15:45,458d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:15:45,459d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:15:45,479d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 17:16:41,786d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:16:41,788d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:16:41,811d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:16:41,812d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:43:47,885d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:43:47,885d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:47:55,446d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:47:55,449d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:47:55,473d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:47:55,473d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:47:59,459d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 17:48:25,063d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:48:25,065d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:48:25,088d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:48:25,088d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:53:22,927d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:53:22,927d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:53:22,947d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:53:22,947d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:53:22,953d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 17:56:22,749d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:56:22,749d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:56:22,763d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:56:22,763d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 17:56:22,768d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 18:08:36,780d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 18:08:36,780d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 18:08:36,797d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 18:08:36,797d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 18:08:36,803d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0
+ERROR   2025-04-14 18:11:08,706d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 18:11:08,706d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 18:11:08,725d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_code的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 18:11:08,725d:\PytestAutoApi\logs\error-2025-04-14.log:regular_control.py:167 缓存中没有code_01_uuid的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-14 18:11:08,730d:\PytestAutoApi\logs\error-2025-04-14.log:conftest.py:154 失败用例数: 0

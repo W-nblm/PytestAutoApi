@@ -1,0 +1,90 @@
+case_common:
+  allureEpic: 开发平台接口
+  allureFeature: banner接口
+  allureStory: 添加banner
+
+banner_add_01:
+  host: ${{host()}}
+  url: /system/bannerConfigInfo
+  method: POST
+  detail: 添加banner
+  headers:
+    Content-Language: "zh_CN"
+    Authorization: $cache{token}
+  #      Content-Type: multipart/form-data;
+  # 请求的数据，是 params 还是 json、或者file、data
+  requestType: json
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  data:
+    createBy: ""
+    createTime: ""
+    updateBy: ""
+    updateTime: ""
+    params:
+      property1: {}
+      property2: {}
+    appBannerConfigInfoId: ""
+    bannerId: ""
+    bannerType: ad
+    bannerName: test
+    appSource: WOpet
+    parentUserId: ""
+    bannerImageUrl: $cache{upload_img_01_url}
+    startTime: 1721232000000
+    endTime: 1723564800000
+    countDownStartTime: 1721232001000
+    countDownEndTime: 1723270303000
+    sort: 4
+    jumpPageType: 2
+    jumpPagePath: "https://www.baidu.com/s?word=%E5%A5%A5%E8%BF%90%E4%BC%9A&rsv_dl=ay24_pd_gkpc"
+    jumpPageShare: 1
+    systemTypeAndroid: 1
+    androidVersionId: 0
+    systemTypeIos: 1
+    iosVersionId: 0
+    bannerScope: 1
+    putOnShelves: ""
+    remark: ""
+    bannerCountryCodeList:
+      - ALL
+    bannerPetConfig:
+      petTypeList: []
+      petWeightMin: ""
+      petWeightMax: ""
+      petQuantityMin: ""
+      petQuantityMax: ""
+    bannerProductConfig:
+      whetherIncludeProduct: ""
+      productIdList: []
+
+    # 是否有依赖业务，为空或者false则表示没有
+  dependence_case:
+    False
+    # 依赖的数据
+  dependence_case_data:
+    - case_id: code_01
+      dependent_data:
+        - dependent_type: response
+          jsonpath: $.data.uuid
+          set_cache: code_01_uuid
+
+        - dependent_type: response
+          jsonpath: $.data.img
+          set_cache: code_01_code
+
+  assert:
+    # 断言接口状态码
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType:
+      message: "登录失败"
+    # 断言接口返回的msg
+    username:
+      jsonpath: $.msg
+      type: "contains"
+      value: "操作成功"
+      AssertType:
+  sql:

@@ -1,0 +1,170 @@
+ERROR   2025-04-11 17:41:23,647d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 'TestCase' object has no attribute 'RequestType'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 422, in http_request
+    res = requests_type_mapping.get(self.__yaml_case.RequestType)(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pydantic\main.py", line 984, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'TestCase' object has no attribute 'RequestType'
+ERROR   2025-04-11 17:41:23,762d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 'TestCase' object has no attribute 'RequestType'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 422, in http_request
+    res = requests_type_mapping.get(self.__yaml_case.RequestType)(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pydantic\main.py", line 984, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'TestCase' object has no attribute 'RequestType'
+ERROR   2025-04-11 17:41:23,806d:\PytestAutoApi\logs\error-2025-04-11.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-11 17:42:39,308d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 1 validation error for ResponseData
+teardown
+  Input should be a valid list [type=list_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/list_type
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 431, in http_request
+    _res_data = self._check_params(res=res, yaml_data=self.__yaml_case)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 370, in _check_params
+    return ResponseData(**_data)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pydantic\main.py", line 243, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ResponseData
+teardown
+  Input should be a valid list [type=list_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/list_type
+ERROR   2025-04-11 17:42:39,457d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 1 validation error for ResponseData
+teardown
+  Input should be a valid list [type=list_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/list_type
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 431, in http_request
+    _res_data = self._check_params(res=res, yaml_data=self.__yaml_case)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 370, in _check_params
+    return ResponseData(**_data)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pydantic\main.py", line 243, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ResponseData
+teardown
+  Input should be a valid list [type=list_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/list_type
+ERROR   2025-04-11 17:42:39,487d:\PytestAutoApi\logs\error-2025-04-11.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-11 17:48:27,940d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 17:48:28,045d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 17:48:28,078d:\PytestAutoApi\logs\error-2025-04-11.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-11 17:52:47,340d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 17:52:47,450d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 17:52:47,469d:\PytestAutoApi\logs\error-2025-04-11.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-11 17:59:49,408d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 21, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 17:59:49,522d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 21, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 17:59:49,547d:\PytestAutoApi\logs\error-2025-04-11.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-11 18:01:45,352d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 21, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 18:01:45,462d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:38 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 21, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 18:01:45,483d:\PytestAutoApi\logs\error-2025-04-11.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-11 18:09:40,327d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 18:09:40,431d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 18:09:40,447d:\PytestAutoApi\logs\error-2025-04-11.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-11 18:11:33,379d:\PytestAutoApi\logs\error-2025-04-11.log:conftest.py:151 失败用例数: 0
+ERROR   2025-04-11 18:12:28,569d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 18:12:28,678d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 18:12:28,692d:\PytestAutoApi\logs\error-2025-04-11.log:conftest.py:151 失败用例数: 2
+ERROR   2025-04-11 18:13:14,788d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 18:13:14,898d:\PytestAutoApi\logs\error-2025-04-11.log:log_decorator.py:37 'NoneType' object has no attribute 'detail'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 20, in wrapper
+    f"用例标题: {res.detail}\n"
+                 ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'detail'
+ERROR   2025-04-11 18:13:14,918d:\PytestAutoApi\logs\error-2025-04-11.log:conftest.py:151 失败用例数: 2

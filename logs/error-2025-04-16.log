@@ -1,0 +1,88 @@
+ERROR   2025-04-16 09:28:03,972d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 11:14:36,007d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 11:18:03,160d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 11:20:50,816d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 11:21:56,800d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 11:25:53,019d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 11:26:11,613d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 11:26:51,383d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 11:27:48,199d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 11:33:41,351d:\PytestAutoApi\logs\error-2025-04-16.log:assert_control.py:153 JsonPath值获取失败 $.data.msg 
+ERROR   2025-04-16 11:33:41,482d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 11:42:06,663d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 13:55:26,214d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 13:56:18,407d:\PytestAutoApi\logs\error-2025-04-16.log:regular_control.py:204 缓存中没有bannerId的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-16 13:56:18,666d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 14:07:25,557d:\PytestAutoApi\logs\error-2025-04-16.log:log_decorator.py:37 'CurrentRequestSetCache' object has no attribute 'cache_name'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 445, in http_request
+    ).set_caches_main()
+      ^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\set_current_request_cache.py", line 45, in set_caches_main
+    _cache_name = i.cache_name
+                  ^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pydantic\main.py", line 984, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'CurrentRequestSetCache' object has no attribute 'cache_name'
+ERROR   2025-04-16 14:07:25,734d:\PytestAutoApi\logs\error-2025-04-16.log:regular_control.py:204 缓存中没有banner_list_02_bannerId的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-16 14:07:25,858d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 2
+ERROR   2025-04-16 14:11:33,732d:\PytestAutoApi\logs\error-2025-04-16.log:log_decorator.py:37 CacheHandler.update_cache() got an unexpected keyword argument 'cache_data'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 445, in http_request
+    ).set_caches_main()
+      ^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\set_current_request_cache.py", line 51, in set_caches_main
+    self.set_response_cache(
+  File "d:\PytestAutoApi\utils\request_tool\set_current_request_cache.py", line 32, in set_response_cache
+    CacheHandler.update_cache(cache_data=cache_name, value=_response_data[0])
+TypeError: CacheHandler.update_cache() got an unexpected keyword argument 'cache_data'
+ERROR   2025-04-16 14:11:33,825d:\PytestAutoApi\logs\error-2025-04-16.log:regular_control.py:204 缓存中没有banner_list_02_bannerId的值, 请检查缓存是否存在, 缓存不存在
+ERROR   2025-04-16 14:11:33,942d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 2
+ERROR   2025-04-16 14:12:53,237d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:86 获取token失败: 'NoneType' object is not subscriptable
+ERROR   2025-04-16 14:12:53,399d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 14:13:39,385d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 14:15:16,889d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
+ERROR   2025-04-16 15:45:37,212d:\PytestAutoApi\logs\error-2025-04-16.log:log_decorator.py:37 'str' object has no attribute 'items'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 422, in http_request
+    res = requests_type_mapping.get(self.__yaml_case.requestType)(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 232, in request_type_for_file
+    multipart = self.upload_file()
+                ^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 140, in upload_file
+    for key, value in ast.literal_eval(cache_regular(str(_data)))["file"].items():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'items'
+ERROR   2025-04-16 15:45:37,351d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 15:50:12,169d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 16:17:33,161d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 16:26:21,862d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 16:28:17,230d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 16:37:27,269d:\PytestAutoApi\logs\error-2025-04-16.log:run_time_decorator.py:17 
+==============================================
+测试用例执行时间较长，请关注.
+函数运行时间: 3482.26 ms
+测试用例相关数据: url='http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic' is_run=True detail='正常登录' response_data='{"code":200,"msg":"操作成功","data":{"pic":"bannerImage/2025/04/16/gifpic_20250416083725969.gif","url":"https://uspublic.s3.us-west-1.amazonaws.com/bannerImage/2025/04/16/gifpic_20250416083725969.gif","picType":"uspublic"},"paramMsg":null,"errCode":null}' request_body={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}} method='POST' sql_data={'sql': None} yaml_data=TestCase(url='http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic', method='POST', detail='正常登录', assert_data={'code': {'jsonpath': '$.code', 'type': '==', 'value': 401, 'AssertType': None, 'message': '登录失败'}}, headers={'Content-Language': 'zh_CN', 'Authorization': '$cache{token}', 'Content-Type': 'multipart/form-data; boundary=-----------------------------67930095539597921040495509812'}, requestType='FILE', is_run=True, data={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}, dependence_case=False, dependence_case_data=None, sql=None, setup_sql=None, status_code=None, teardown_sql=None, teardown=None, current_request_set_cache=None, sleep=None) headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Language': 'zh_CN', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJzeXNfdXNlcjoxNjU5MzkxNjY2MjU0NzA0NjQyIiwicm5TdHIiOiJJYTVhS2JPYWVXMHVRQjdyOVZVNzBaVGNFNWpCNUE5NiIsInVzZXJJZCI6MTY1OTM5MTY2NjI1NDcwNDY0Mn0.hFrH_gXeganvwSJhuu4cvyIA8WXilM0D6rKKTtj9NzA', 'Content-Type': 'multipart/form-data; boundary=-----------------------------67930095539597921040495509812', 'Content-Length': '539636'} cookie={} assert_data={'code': {'jsonpath': '$.code', 'type': '==', 'value': 401, 'AssertType': None, 'message': '登录失败'}} res_time=3482.26 status_code=200 teardown=None teardown_sql=None body={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}
+=================================================
+ERROR   2025-04-16 16:37:27,373d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 17:11:55,493d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 1
+ERROR   2025-04-16 17:13:27,837d:\PytestAutoApi\logs\error-2025-04-16.log:conftest.py:156 失败用例数: 0
