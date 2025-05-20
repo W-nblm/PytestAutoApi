@@ -1,0 +1,70 @@
+ERROR   2025-04-19 08:59:08,956d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 09:31:41,613d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 09:35:23,955d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 09:35:58,896d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 10:04:20,667d:\PytestAutoApi\logs\error-2025-04-19.log:log_decorator.py:37 DependentCase.navigate_to() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 308, in get_dependent_data
+    parent = self.navigate_to(self.__yaml_case, ["data"] + path_parts[:-1])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: DependentCase.navigate_to() takes 2 positional arguments but 3 were given
+ERROR   2025-04-19 10:05:25,760d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-19 10:12:09,090d:\PytestAutoApi\logs\error-2025-04-19.log:log_decorator.py:37 'data'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 308, in get_dependent_data
+    parent = self.navigate_to(self.__yaml_case, ["data"] + path_parts[:-1])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 284, in navigate_to
+    target = target[
+             ^^^^^^^
+KeyError: 'data'
+ERROR   2025-04-19 10:12:09,446d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-19 10:14:11,893d:\PytestAutoApi\logs\error-2025-04-19.log:log_decorator.py:37 'data'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 308, in get_dependent_data
+    parent = self.navigate_to(self.__yaml_case, ["data"] + path_parts[:-1])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 284, in navigate_to
+    target = target[
+             ^^^^^^^
+KeyError: 'data'
+ERROR   2025-04-19 10:14:12,225d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-19 10:26:50,587d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 10:35:48,749d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 10:41:55,395d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 10:47:40,810d:\PytestAutoApi\logs\error-2025-04-19.log:run_time_decorator.py:17 
+==============================================
+测试用例执行时间较长，请关注.
+函数运行时间: 3796.28 ms
+测试用例相关数据: url='http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic' is_run=True detail='正常登录' response_data='{"code":200,"msg":"操作成功","data":{"pic":"bannerImage/2025/04/19/gifpic_20250419024739199.gif","url":"https://uspublic.s3.us-west-1.amazonaws.com/bannerImage/2025/04/19/gifpic_20250419024739199.gif","picType":"uspublic"},"paramMsg":null,"errCode":null}' request_body={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}} method='POST' sql_data={'sql': None} yaml_data=TestCase(url='http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic', method='POST', detail='正常登录', assert_data={'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '上传图片成功'}}, headers={'Content-Language': 'zh_CN', 'Authorization': '$cache{token}', 'Content-Type': 'multipart/form-data; boundary=-----------------------------41915601603293630817469070225'}, requestType='FILE', is_run=True, data={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}, dependence_case=False, dependence_case_data=None, sql=None, setup_sql=None, status_code=None, teardown_sql=None, teardown=None, current_request_set_cache=[CurrentRequestSetCache(type='response', jsonpath='$.data.url', name='upload_img_01_url')], sleep=None) headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Language': 'zh_CN', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJzeXNfdXNlcjoxNjU5MzkxNjY2MjU0NzA0NjQyIiwicm5TdHIiOiJSSkl6elY3aVcwM2lDR21JdXhYbDVncHNEWUFuVEdMdiIsInVzZXJJZCI6MTY1OTM5MTY2NjI1NDcwNDY0Mn0.SnBZ8-CY1ekP3eAfMp2CuSI3I373g5SVfWSJIXdEo2E', 'Content-Type': 'multipart/form-data; boundary=-----------------------------41915601603293630817469070225', 'Content-Length': '539624'} cookie={} assert_data={'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '上传图片成功'}} res_time=3796.28 status_code=200 teardown=None teardown_sql=None body={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}
+=================================================
+ERROR   2025-04-19 10:49:59,035d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 10:53:44,176d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 11:02:01,402d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 17:18:59,183d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 17:20:19,392d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-19 18:00:33,971d:\PytestAutoApi\logs\error-2025-04-19.log:conftest.py:158 失败用例数: 0

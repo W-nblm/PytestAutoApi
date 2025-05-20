@@ -1,0 +1,11 @@
+{
+  "rebootRequest": {
+    "objDevId": "default_objDevId",
+    "authKey": "default_authKey",
+    "uid": "default_uid"
+  },
+  "rebootResponse": {
+    "objDevId": "default_objDevId",
+    "msg": "default_msg"
+  }
+}

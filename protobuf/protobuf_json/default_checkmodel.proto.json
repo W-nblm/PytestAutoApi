@@ -1,0 +1,11 @@
+{
+  "CheckModelRequest": {
+    "objDevId": "default_objDevId",
+    "authKey": "default_authKey"
+  },
+  "CheckModelResponse": {
+    "msg": "default_msg",
+    "authKey": "default_authKey"
+  },
+  "codes": {}
+}

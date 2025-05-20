@@ -1,5 +1,4 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Thu Apr 17 17:16:05 CST 2025","Thu Apr 17 17:16:05 CST 2025","129","test_case.Banner","test_banner_list","TestLogin","","","test_get_code[获取banner列表]",""
-"skipped","Thu Apr 17 17:16:05 CST 2025","Thu Apr 17 17:16:05 CST 2025","0","test_case.Login","test_get_code","TestLogin","","","test_get_code[获取验证码和uuid]",""
-"passed","Thu Apr 17 17:16:02 CST 2025","Thu Apr 17 17:16:05 CST 2025","2146","test_case.Banner","test_upload_img","TestLogin","","","test_upload_img[正常登录]",""
-"skipped","Thu Apr 17 17:16:05 CST 2025","Thu Apr 17 17:16:05 CST 2025","0","test_case.Login","test_login","TestLogin","","","test_login[正常登录]",""
+"skipped","Wed Apr 30 16:43:52 CST 2025","Wed Apr 30 16:43:52 CST 2025","0","test_case.Wobirdy.Login","test_login","TestLogin","","","test_login[正常登录]",""
+"passed","Wed Apr 30 16:43:52 CST 2025","Wed Apr 30 16:43:52 CST 2025","84","test_case.Wobirdy.Collect","test_album_page","TestLogin","","","test_login[我的收藏-云相册-列表]",""
+"passed","Wed Apr 30 16:43:52 CST 2025","Wed Apr 30 16:43:52 CST 2025","145","test_case.Wobirdy.Capture","test_query_bird_page","TestLogin","","","test_login[鸟类首页-智趣瞬间]",""

@@ -1,1 +1,0 @@
-"{'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '登录失败'}, 'username': {'jsonpath': '$.msg', 'type': 'contains', 'value': '查询成功', 'AssertType': None}}"

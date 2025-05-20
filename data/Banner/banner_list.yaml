@@ -40,9 +40,6 @@ banner_list_01:
           jsonpath: $.data.uuid
           set_cache: code_01_uuid
 
-        - dependent_type: response
-          jsonpath: $.data.img
-          set_cache: code_01_code
   current_request_set_cache:
     - type: response
       jsonpath: $.rows[0].bannerId

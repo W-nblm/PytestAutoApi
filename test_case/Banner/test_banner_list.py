@@ -12,10 +12,10 @@ TestData = GetTestCase.case_data(case_id)
 re_data = regular(str(TestData))
 
 
-@allure.epic("登录接口")
+@allure.epic("banner管理接口")
 class TestLogin:
-    @allure.feature("登录接口")
-    @allure.story("登录接口-登录成功")
+    @allure.feature("banner列表接口")
+    @allure.story("banner列表接口-获取banner列表")
     @pytest.mark.parametrize(
         "in_data", eval(re_data), ids=[i["detail"] for i in TestData]
     )

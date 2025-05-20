@@ -1,0 +1,41 @@
+{
+  "EventVo": {
+    "objDevId": "default_objDevId",
+    "eventId": "default_eventId",
+    "etype": "default_etype",
+    "picUrl": "default_picUrl",
+    "localfile": "default_localfile",
+    "msg": "default_msg",
+    "TmZone": "default_TmZone",
+    "encryptKey": "default_encryptKey"
+  },
+  "OssEventVo": {
+    "objDevId": "default_objDevId",
+    "eventId": "default_eventId",
+    "osstype": "default_osstype",
+    "ossUrl": "default_ossUrl",
+    "TmZone": "default_TmZone",
+    "encryptKey": "default_encryptKey"
+  },
+  "AlarmEventVo": {
+    "objDevId": "default_objDevId",
+    "eventId": "default_eventId",
+    "alarmType": "default_alarmType",
+    "data": {
+      "modelCode": "default_modelCode",
+      "value": "default_value",
+      "thresholdValue": "default_thresholdValue",
+      "msg": "default_msg"
+    },
+    "TmZone": "default_TmZone",
+    "userId": "default_userId",
+    "devName": "default_devName",
+    "jsonInfo": "default_jsonInfo"
+  },
+  "AlarmData": {
+    "modelCode": "default_modelCode",
+    "value": "default_value",
+    "thresholdValue": "default_thresholdValue",
+    "msg": "default_msg"
+  }
+}

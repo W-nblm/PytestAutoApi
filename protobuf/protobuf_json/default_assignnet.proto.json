@@ -1,0 +1,49 @@
+{
+  "AssignNetRequest": {
+    "device": {
+      "taskId": "default_taskId",
+      "homeId": "default_homeId",
+      "deviceId": "default_deviceId",
+      "uuid": "default_uuid",
+      "productId": "default_productId",
+      "uid": "default_uid",
+      "appId": "default_appId",
+      "ipaddr": "default_ipaddr",
+      "devName": "default_devName",
+      "timezone": "default_timezone",
+      "fmvVer": "default_fmvVer",
+      "socVer": "default_socVer",
+      "mcuVer": "default_mcuVer",
+      "wirelessVer": "default_wirelessVer",
+      "language": "default_language",
+      "serviceArea": "default_serviceArea",
+      "ipclicenseId": "default_ipclicenseId"
+    },
+    "authKey": "default_authKey",
+    "requestId": "default_requestId"
+  },
+  "AssignNetResponse": {
+    "msg": "default_msg",
+    "authKey": "default_authKey",
+    "requestId": "default_requestId"
+  },
+  "DeviceInfo": {
+    "taskId": "default_taskId",
+    "homeId": "default_homeId",
+    "deviceId": "default_deviceId",
+    "uuid": "default_uuid",
+    "productId": "default_productId",
+    "uid": "default_uid",
+    "appId": "default_appId",
+    "ipaddr": "default_ipaddr",
+    "devName": "default_devName",
+    "timezone": "default_timezone",
+    "fmvVer": "default_fmvVer",
+    "socVer": "default_socVer",
+    "mcuVer": "default_mcuVer",
+    "wirelessVer": "default_wirelessVer",
+    "language": "default_language",
+    "serviceArea": "default_serviceArea",
+    "ipclicenseId": "default_ipclicenseId"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "BirdEventVo": {
+    "objDevId": "default_objDevId",
+    "eventId": "default_eventId",
+    "etype": "default_etype",
+    "lableJson": "default_lableJson",
+    "url": "default_url",
+    "TmZone": "default_TmZone",
+    "encryptKey": "default_encryptKey",
+    "localfile": "default_localfile"
+  }
+}

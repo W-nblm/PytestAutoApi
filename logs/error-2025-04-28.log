@@ -1,0 +1,44 @@
+ERROR   2025-04-28 11:52:36,591d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:177 失败用例数: 0
+ERROR   2025-04-28 11:53:24,623d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:177 失败用例数: 1
+ERROR   2025-04-28 12:00:24,982d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:181 失败用例数: 0
+ERROR   2025-04-28 12:00:53,880d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:182 失败用例数: 0
+ERROR   2025-04-28 12:01:28,194d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:182 失败用例数: 0
+ERROR   2025-04-28 12:01:45,922d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:182 失败用例数: 1
+ERROR   2025-04-28 13:53:11,665d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:182 失败用例数: 1
+ERROR   2025-04-28 13:56:56,062d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:180 失败用例数: 1
+ERROR   2025-04-28 14:16:19,170d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:184 失败用例数: 1
+ERROR   2025-04-28 14:37:50,350d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:195 失败用例数: 0
+ERROR   2025-04-28 14:39:58,253d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:195 失败用例数: 1
+ERROR   2025-04-28 14:42:37,353d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:197 失败用例数: 1
+ERROR   2025-04-28 14:51:15,551d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:198 失败用例数: 1
+ERROR   2025-04-28 15:10:59,645d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:198 失败用例数: 1
+ERROR   2025-04-28 15:11:39,547d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:198 失败用例数: 1
+ERROR   2025-04-28 15:19:44,170d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:207 失败用例数: 1
+ERROR   2025-04-28 15:24:27,645d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:209 失败用例数: 0
+ERROR   2025-04-28 15:24:40,527d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:209 失败用例数: 1
+ERROR   2025-04-28 15:38:13,229d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:209 失败用例数: 1
+ERROR   2025-04-28 15:40:59,724d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:211 失败用例数: 1
+ERROR   2025-04-28 15:41:19,586d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:211 失败用例数: 1
+ERROR   2025-04-28 16:14:03,768d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:210 失败用例数: 0
+ERROR   2025-04-28 16:30:12,276d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:210 失败用例数: 1
+ERROR   2025-04-28 16:50:02,149d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:210 失败用例数: 1
+ERROR   2025-04-28 16:54:04,555d:\PytestAutoApi\logs\error-2025-04-28.log:log_decorator.py:37 缓存设置失败，程序中未检测到需要缓存的数据。响应内容: {"code":470,"msg":"Incorrect username or password","data":null,"paramMsg":null,"errCode":10005}提取的 jsonpath 内容: $.data.token
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 455, in http_request
+    ).set_caches_main()
+      ^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\set_current_request_cache.py", line 51, in set_caches_main
+    self.set_response_cache(
+  File "d:\PytestAutoApi\utils\request_tool\set_current_request_cache.py", line 34, in set_response_cache
+    raise ValueNotFoundError(
+utils.other_tools.exceptions.ValueNotFoundError: 缓存设置失败，程序中未检测到需要缓存的数据。响应内容: {"code":470,"msg":"Incorrect username or password","data":null,"paramMsg":null,"errCode":10005}提取的 jsonpath 内容: $.data.token
+ERROR   2025-04-28 16:54:04,623d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:210 失败用例数: 2
+ERROR   2025-04-28 16:59:24,256d:\PytestAutoApi\logs\error-2025-04-28.log:assert_control.py:153 JsonPath值获取失败 $.data.bannerId 
+ERROR   2025-04-28 16:59:24,381d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:197 失败用例数: 1
+ERROR   2025-04-28 17:02:23,238d:\PytestAutoApi\logs\error-2025-04-28.log:conftest.py:197 失败用例数: 0

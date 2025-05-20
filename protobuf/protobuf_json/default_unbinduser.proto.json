@@ -1,0 +1,12 @@
+{
+  "unbindRequest": {
+    "objDevId": "default_objDevId",
+    "authKey": "default_authKey",
+    "uid": "default_uid"
+  },
+  "unbindResponse": {
+    "objDevId": "default_objDevId",
+    "msg": "default_msg",
+    "uid": "default_uid"
+  }
+}

@@ -1,0 +1,16 @@
+syntax="proto3";
+option java_package = "com.szlongzy.common.protobuf.dto";
+// 指定模板类的名称，名称必须是有实际业务意义的
+option java_outer_classname = "GeneralBuffDataVo";
+
+/* 对应 【2】、【3】命令*/
+message GeneralBuffData{
+  // 平台先请求 命令类型：UpgradeFirm:主动升级固件；FirmwareGet:主动获取固件版本；AppUnbind：app主动请求设备解绑，
+  // 设备先请求命令类型：FirmwareUp:设备上传固件版本；ShadowGet：设备主动获取需要更新的影子设备属性；DevUnbind：设备主动请求解绑
+  string  type = 1;
+  // Base64格式，实际是Protobuf而二进制数据转换成的base64，实际命令数据格式
+  string buff = 2;
+  // 服务器发送时间
+  int64 time = 3;
+  string  requestId=4;
+}

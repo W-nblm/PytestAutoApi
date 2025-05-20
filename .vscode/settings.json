@@ -2,19 +2,27 @@
   "cSpell.words": [
     "addopts",
     "alluredir",
+    "appdevice",
     "autouse",
     "datas",
     "ddddocr",
+    "keeplive",
     "modifyitems",
+    "mqtt",
     "nodeid",
     "numcollected",
+    "paho",
+    "protoc",
     "publickey",
     "pytest",
     "sessionstarttime",
     "startswitch",
+    "subcribe",
     "terminalreporter",
     "testpaths",
     "toolbelt",
-    "vcode"
+    "vcode",
+    "wobirdy",
+    "worbirdy"
   ]
 }

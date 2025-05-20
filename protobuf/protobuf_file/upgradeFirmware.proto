@@ -1,0 +1,56 @@
+syntax="proto3";
+// 指定模板类的包路径
+option java_package = "com.szlongzy.common.protobuf.dto";
+// 指定模板类的名称，名称必须是有实际业务意义的
+option java_outer_classname = "UpgradeFirmwareVo";
+
+
+/* 通知升级固件*/
+message UpgradeRequest{
+
+  // 实际目标设备
+  string  objDevId = 1;
+  //升级oatid
+  string otaId =2;
+  //升级数据数据结构
+  FirmwareVo data = 3;
+}
+
+/* 升级回复*/
+message UpgradeResponse{
+  // 回复
+  bool  result = 1;
+  // 实际目标设备
+  string  objDevId = 2;
+  // 错误信息
+  string  msg = 3;
+  string otaId =4;
+
+}
+
+
+message FirmwareVo{
+  // 固件下载url
+  string  url = 1;
+
+  //0:其他；1：soc固件；2:mcu固件；3.包含soc和mcu的固件；4：无线模块固件
+  int32 type = 2;
+  // 固件名称名称
+  string version = 3;
+}
+
+
+/* 升级状态，设备主动床： 状态类型：UpgradeState */
+message UpgradeStateVo{
+  string otaId =1;
+  //设备类型
+  string  objDevId = 2;
+  //状态类型：0：未知：1 ：下载固件状态 ；2：固件升级状态
+  int32  stateType = 3;
+  //状态类型：0：未知：1成功：2超时，3失败
+  int32  status = 4;
+  // 错误信息
+  string  msg = 5;
+}
+
+

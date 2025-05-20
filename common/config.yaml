@@ -2,7 +2,9 @@ project_name: PytestAutoApi
 env: 测试环境
 tester_name: 自动化测试
 host: "http://47.107.113.31:18090/prod-api"
+host_list: "http://47.107.113.31:19800/api/hostList"
 app_host:
+customId: "uqWpSNdirt7wYZUOLwkI/I6O4A3fAH1bTThuLXlIrHxi3D6yvTXKBOIO0aNgkH8rvczDclVfAhp6cHJoqLfH1xmxQFcQxVEN95CQuFYzkQodivGZLIeeqIZdV12gO9hKdPn6o3ZO3vTJVRnMHUKWqC0aRTtjz6xvPTQ2E+9QdM0="
 real_time_update_test_cases: False
 notification_type: 0
 excel_report: False
@@ -12,11 +14,11 @@ ding_talk:
 # 数据库配置
 mysql_db:
   switch: true
-  host: 192.168.100.105
-  port: 3336
-  user: root
-  password: "wohouseplatform"
-  database: lzyiot
+  host: 47.107.113.31
+  port: 13306
+  user: iot_test
+  password: "DPbbkXGvauYD38uY"
+  # database: "iot-cloud"
 
 mirror_source: sdfsdf
 

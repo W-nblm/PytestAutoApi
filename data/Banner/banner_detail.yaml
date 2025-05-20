@@ -5,7 +5,7 @@ case_common:
 
 banner_detail_01:
   host: ${{host()}}
-  url: /system/bannerConfigInfo/$cache{banner_list_02_bannerId}
+  url: /system/bannerConfigInfo/$url_params{banner_id}
   method: GET
   detail: 获取banner详细信息
   headers:
@@ -17,6 +17,7 @@ banner_detail_01:
   # 是否执行，空或者 true 都会执行
   is_run:
   data:
+    id: ""
     pageQuery:
       pageSize: 10
       pageNum: 1
@@ -31,21 +32,23 @@ banner_detail_01:
 
     # 是否有依赖业务，为空或者false则表示没有
   dependence_case:
-    False
-    # 依赖的数据
+    True
+    # 依赖数据库中的数据，dependent_type=sqlData时,数据来源为setup_sql的查询结果
   dependence_case_data:
-    - case_id: code_01
+    - case_id: self
       dependent_data:
-        - dependent_type: response
-          jsonpath: $.data.uuid
-          set_cache: code_01_uuid
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          # set_cache: code_01_uuid
+          replace_key: $url_params{banner_id}
 
-        - dependent_type: response
-          jsonpath: $.data.img
-          set_cache: code_01_code
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          replace_key: $.data.paramData.bannerName
+          # set_cache: code_01_uuid
 
   assert:
-    # 断言接口状态码
+    # 断言接口状态码,AssertType=SQL时与sql查询结果进行断言
     code:
       jsonpath: $.code
       type: ==
@@ -58,4 +61,16 @@ banner_detail_01:
       type: "contains"
       value: "操作成功"
       AssertType:
+
+    banner_id:
+      # 断言接口返回的bannerId
+      jsonpath: $.data.bannerId
+      type: ==
+      # 数据库中的sql查询结果
+      value: $.banner_id
+      AssertType: SQL
+
   sql:
+    - SELECT * FROM `iot-cloud`.app_banner_config_info abci WHERE abci.banner_id = "bid4s149fmba474eriqnr"
+  setup_sql:
+    - SELECT * FROM `iot-cloud`.app_banner_config_info abci WHERE abci.banner_id = "bid4s149fmba474eriqnr"

@@ -426,12 +426,14 @@ class RequestControl:
             # 处理多业务逻辑
             if dependent_switch is True:
                 DependentCase(self.__yaml_case).get_dependent_data()
-
+            INFO.logger.info(f"---------------处理多业务逻辑结束---------------")
+            INFO.logger.info(f"---------------开始请求---------------")
             res = requests_type_mapping.get(self.__yaml_case.requestType)(
                 headers=self.__yaml_case.headers,
                 method=self.__yaml_case.method,
                 **kwargs,
             )
+            INFO.logger.info(f"---------------请求结束----------------")
             if self.__yaml_case.sleep is not None:
                 time.sleep(self.__yaml_case.sleep)
 
@@ -453,3 +455,4 @@ class RequestControl:
             ).set_caches_main()
 
             return _res_data
+        

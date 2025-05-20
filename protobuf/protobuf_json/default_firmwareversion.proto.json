@@ -1,0 +1,25 @@
+{
+  "VersionRequest": {
+    "objDevId": "default_objDevId",
+    "authKey": "default_authKey"
+  },
+  "VersionResponse": {
+    "objDevId": "default_objDevId",
+    "msg": "default_msg",
+    "authKey": "default_authKey",
+    "data": {
+      "fmvVer": "default_fmvVer",
+      "socVer": "default_socVer",
+      "mcuVer": "default_mcuVer",
+      "wirelessVer": "default_wirelessVer",
+      "standby": "default_standby"
+    }
+  },
+  "FirmwareVersionVo": {
+    "fmvVer": "default_fmvVer",
+    "socVer": "default_socVer",
+    "mcuVer": "default_mcuVer",
+    "wirelessVer": "default_wirelessVer",
+    "standby": "default_standby"
+  }
+}

@@ -1,0 +1,40 @@
+syntax = "proto3";
+option java_package = "com.szlongzy.common.protobuf.dto";
+
+option java_outer_classname = "BirdOssEvent";
+
+
+message BirdEventVo{
+  // 设备id
+  string   objDevId = 1;
+  // 事件id
+  string   eventId = 2;
+  // 文件类型0:未知  1：图片，2：视频
+  int32   ftype = 3;
+  // 事件类型: move ：移动 ；penson ：人检测；car: 车检测 : bird：鸟类；cat：猫；squirrel：松鼠;
+  string etype=4;
+  //标签json对象
+  string  lableJson=5;
+  //套餐类型：3：免费，7：7天循环，15，15循环保存，30：30天循环保存
+  int32   osstype =6;
+  //上传oss的文件url连接
+  string   url = 7;
+  //图片或者视频文件字节长度
+  int32    iLen = 8;
+  //0时区时间戳
+  int64    zeroTm = 9;
+  //时区 例如：UTC+8
+  string    TmZone = 10;
+  //时长（s)
+  int32    duration = 11;
+  //是否自定义加密上传云
+  bool  isEncrypt=12;
+  //加密key
+  string encryptKey=13;
+
+  //事件对应设备本地文件名称
+  string  localfile=14;
+
+}
+
+

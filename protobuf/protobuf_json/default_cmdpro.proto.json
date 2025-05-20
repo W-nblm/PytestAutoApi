@@ -1,0 +1,27 @@
+{
+  "CmdProRequest": {
+    "objDevId": "default_objDevId",
+    "data": {
+      "code": "default_code",
+      "value": "default_value"
+    },
+    "authKey": "default_authKey",
+    "productId": "default_productId",
+    "requestId": "default_requestId"
+  },
+  "CmdProResponse": {
+    "objDevId": "default_objDevId",
+    "data": {
+      "code": "default_code",
+      "value": "default_value"
+    },
+    "msg": "default_msg",
+    "authKey": "default_authKey",
+    "productId": "default_productId",
+    "requestId": "default_requestId"
+  },
+  "dataVo": {
+    "code": "default_code",
+    "value": "default_value"
+  }
+}

@@ -1,0 +1,621 @@
+ERROR   2025-04-18 11:19:40,904d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 Failed to set up MySQL data: (1049, "Unknown database 'iot-cloud'")
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 111, in setup_sql_data
+    self.execute(sql=i)
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 65, in execute
+    data = self.cursor.execute(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1049, "Unknown database 'iot-cloud'")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 101, in _dependent_type_for_sql
+    sql_data = SetUpMySQL().setup_sql_data(setup_sql)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 114, in setup_sql_data
+    raise DataAcquisitionFailed(f"Failed to set up MySQL data: {e}")
+utils.other_tools.exceptions.DataAcquisitionFailed: Failed to set up MySQL data: (1049, "Unknown database 'iot-cloud'")
+ERROR   2025-04-18 11:19:41,187d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 11:43:31,637d:\PytestAutoApi\logs\error-2025-04-18.log:mysql_control.py:31 Failed to connect to MySQL: (2003, "Can't connect to MySQL server on '47.107.113.31' ([WinError 10061] 由于目标计算机积极拒绝，无法连接。)")
+ERROR   2025-04-18 11:43:31,639d:\PytestAutoApi\logs\error-2025-04-18.log:mysql_control.py:69 MySQL connection not established
+ERROR   2025-04-18 11:43:31,639d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 Failed to set up MySQL data: 'SetUpMySQL' object has no attribute 'conn'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 65, in execute
+    data = self.cursor.execute(sql)
+           ^^^^^^^^^^^
+AttributeError: 'SetUpMySQL' object has no attribute 'cursor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 111, in setup_sql_data
+    self.execute(sql=i)
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 70, in execute
+    self.conn.rollback()
+    ^^^^^^^^^
+AttributeError: 'SetUpMySQL' object has no attribute 'conn'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 101, in _dependent_type_for_sql
+    sql_data = SetUpMySQL().setup_sql_data(setup_sql)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 114, in setup_sql_data
+    raise DataAcquisitionFailed(f"Failed to set up MySQL data: {e}")
+utils.other_tools.exceptions.DataAcquisitionFailed: Failed to set up MySQL data: 'SetUpMySQL' object has no attribute 'conn'
+ERROR   2025-04-18 11:43:31,787d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 11:43:44,164d:\PytestAutoApi\logs\error-2025-04-18.log:mysql_control.py:39 Failed to close MySQL connection: 'SetUpMySQL' object has no attribute 'cursor'
+ERROR   2025-04-18 11:50:23,389d:\PytestAutoApi\logs\error-2025-04-18.log:mysql_control.py:31 Failed to connect to MySQL: (2003, "Can't connect to MySQL server on '47.107.113.31' ([WinError 10061] 由于目标计算机积极拒绝，无法连接。)")
+ERROR   2025-04-18 11:50:23,389d:\PytestAutoApi\logs\error-2025-04-18.log:mysql_control.py:69 MySQL connection not established
+ERROR   2025-04-18 11:50:23,389d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 Failed to set up MySQL data: 'SetUpMySQL' object has no attribute 'conn'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 65, in execute
+    data = self.cursor.execute(sql)
+           ^^^^^^^^^^^
+AttributeError: 'SetUpMySQL' object has no attribute 'cursor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 111, in setup_sql_data
+    self.execute(sql=i)
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 70, in execute
+    self.conn.rollback()
+    ^^^^^^^^^
+AttributeError: 'SetUpMySQL' object has no attribute 'conn'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 101, in _dependent_type_for_sql
+    sql_data = SetUpMySQL().setup_sql_data(setup_sql)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 114, in setup_sql_data
+    raise DataAcquisitionFailed(f"Failed to set up MySQL data: {e}")
+utils.other_tools.exceptions.DataAcquisitionFailed: Failed to set up MySQL data: 'SetUpMySQL' object has no attribute 'conn'
+ERROR   2025-04-18 11:50:23,546d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 11:50:26,126d:\PytestAutoApi\logs\error-2025-04-18.log:mysql_control.py:39 Failed to close MySQL connection: 'SetUpMySQL' object has no attribute 'cursor'
+ERROR   2025-04-18 11:55:52,991d:\PytestAutoApi\logs\error-2025-04-18.log:mysql_control.py:31 Failed to connect to MySQL: (2003, "Can't connect to MySQL server on '47.107.113.31' ([WinError 10061] 由于目标计算机积极拒绝，无法连接。)")
+ERROR   2025-04-18 11:55:52,991d:\PytestAutoApi\logs\error-2025-04-18.log:mysql_control.py:69 MySQL connection not established
+ERROR   2025-04-18 11:55:52,992d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 Failed to set up MySQL data: 'SetUpMySQL' object has no attribute 'conn'
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 65, in execute
+    data = self.cursor.execute(sql)
+           ^^^^^^^^^^^
+AttributeError: 'SetUpMySQL' object has no attribute 'cursor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 111, in setup_sql_data
+    self.execute(sql=i)
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 70, in execute
+    self.conn.rollback()
+    ^^^^^^^^^
+AttributeError: 'SetUpMySQL' object has no attribute 'conn'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 101, in _dependent_type_for_sql
+    sql_data = SetUpMySQL().setup_sql_data(setup_sql)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 114, in setup_sql_data
+    raise DataAcquisitionFailed(f"Failed to set up MySQL data: {e}")
+utils.other_tools.exceptions.DataAcquisitionFailed: Failed to set up MySQL data: 'SetUpMySQL' object has no attribute 'conn'
+ERROR   2025-04-18 11:55:53,137d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 11:55:55,663d:\PytestAutoApi\logs\error-2025-04-18.log:mysql_control.py:39 Failed to close MySQL connection: 'SetUpMySQL' object has no attribute 'cursor'
+ERROR   2025-04-18 11:58:35,930d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 表达式$.banner_id提取不到数据
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 107, in _dependent_type_for_sql
+    jsonpath_data = self.jsonpath_data(obj=sql_data, expr=_jsonpath)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 41, in jsonpath_data
+    raise ValueNotFoundError(f"表达式{expr}提取不到数据")
+utils.other_tools.exceptions.ValueNotFoundError: 表达式$.banner_id提取不到数据
+ERROR   2025-04-18 11:58:36,071d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 13:40:58,645d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 表达式$.banner_id提取不到数据
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 107, in _dependent_type_for_sql
+    jsonpath_data = self.jsonpath_data(obj=sql_data, expr=_jsonpath)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 41, in jsonpath_data
+    raise ValueNotFoundError(f"表达式{expr}提取不到数据")
+utils.other_tools.exceptions.ValueNotFoundError: 表达式$.banner_id提取不到数据
+ERROR   2025-04-18 13:40:58,932d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 13:44:48,631d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 表达式$.banner_id提取不到数据
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 107, in _dependent_type_for_sql
+    jsonpath_data = self.jsonpath_data(obj=sql_data, expr=_jsonpath)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 41, in jsonpath_data
+    raise ValueNotFoundError(f"表达式{expr}提取不到数据")
+utils.other_tools.exceptions.ValueNotFoundError: 表达式$.banner_id提取不到数据
+ERROR   2025-04-18 13:44:48,774d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 14:05:34,240d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 表达式$.banner_id提取不到数据
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 107, in _dependent_type_for_sql
+    jsonpath_data = self.jsonpath_data(obj=sql_data, expr=_jsonpath)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 41, in jsonpath_data
+    raise ValueNotFoundError(f"表达式{expr}提取不到数据")
+utils.other_tools.exceptions.ValueNotFoundError: 表达式$.banner_id提取不到数据
+ERROR   2025-04-18 14:05:34,383d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 14:16:25,921d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 表达式$.banner_id提取不到数据
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 107, in _dependent_type_for_sql
+    jsonpath_data = self.jsonpath_data(obj=sql_data, expr=_jsonpath)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 41, in jsonpath_data
+    raise ValueNotFoundError(f"表达式{expr}提取不到数据")
+utils.other_tools.exceptions.ValueNotFoundError: 表达式$.banner_id提取不到数据
+ERROR   2025-04-18 14:16:26,084d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 14:31:45,926d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 Failed to set up MySQL data: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-cloud.app_banner_config_info abci WHERE abci.banner_id = 'bid4s149fmba474eriqnr' at line 1")
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 114, in setup_sql_data
+    self.execute(sql=i)
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 67, in execute
+    data = self.cursor.execute(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\w8345\.conda\envs\pytestAutoApi\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-cloud.app_banner_config_info abci WHERE abci.banner_id = 'bid4s149fmba474eriqnr' at line 1")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 101, in _dependent_type_for_sql
+    sql_data = SetUpMySQL().setup_sql_data(setup_sql)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 119, in setup_sql_data
+    raise DataAcquisitionFailed(f"Failed to set up MySQL data: {e}")
+utils.other_tools.exceptions.DataAcquisitionFailed: Failed to set up MySQL data: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-cloud.app_banner_config_info abci WHERE abci.banner_id = 'bid4s149fmba474eriqnr' at line 1")
+ERROR   2025-04-18 14:31:46,163d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 14:35:40,039d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 表达式$.banner_id提取不到数据
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 107, in _dependent_type_for_sql
+    jsonpath_data = self.jsonpath_data(obj=sql_data, expr=_jsonpath)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 41, in jsonpath_data
+    raise ValueNotFoundError(f"表达式{expr}提取不到数据")
+utils.other_tools.exceptions.ValueNotFoundError: 表达式$.banner_id提取不到数据
+ERROR   2025-04-18 14:35:40,187d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 15:21:56,881d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 Failed to set up MySQL data: name 'i' is not defined
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 107, in setup_sql_data
+    if i.strip().lower().startswith("select"):
+       ^
+NameError: name 'i' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 247, in get_dependent_data
+    _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 182, in is_dependent
+    self._dependent_type_for_sql(
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 101, in _dependent_type_for_sql
+    sql_data = SetUpMySQL().setup_sql_data(setup_sql)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\mysql_tool\mysql_control.py", line 132, in setup_sql_data
+    raise DataAcquisitionFailed(f"Failed to set up MySQL data: {e}")
+utils.other_tools.exceptions.DataAcquisitionFailed: Failed to set up MySQL data: name 'i' is not defined
+ERROR   2025-04-18 15:21:57,067d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 15:23:04,328d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 name 'bid4s149fmba474eriqnr' is not defined
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 264, in get_dependent_data
+    exec(_new_data)
+  File "<string>", line 1, in <module>
+NameError: name 'bid4s149fmba474eriqnr' is not defined
+ERROR   2025-04-18 15:23:04,470d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 15:24:34,689d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 name 'bid4s149fmba474eriqnr' is not defined
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 264, in get_dependent_data
+    exec(_new_data)
+  File "<string>", line 1, in <module>
+NameError: name 'bid4s149fmba474eriqnr' is not defined
+ERROR   2025-04-18 15:24:34,828d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 15:27:54,854d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 name 'bid4s149fmba474eriqnr' is not defined
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 264, in get_dependent_data
+    exec(_new_data)
+  File "<string>", line 1, in <module>
+NameError: name 'bid4s149fmba474eriqnr' is not defined
+ERROR   2025-04-18 15:27:55,006d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 15:48:12,064d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 name 'bid4s149fmba474eriqnr' is not defined
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 265, in get_dependent_data
+    exec(_new_data)
+  File "<string>", line 1, in <module>
+NameError: name 'bid4s149fmba474eriqnr' is not defined
+ERROR   2025-04-18 15:48:12,206d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 16:33:08,702d:\PytestAutoApi\logs\error-2025-04-18.log:run_time_decorator.py:17 
+==============================================
+测试用例执行时间较长，请关注.
+函数运行时间: 12232.43 ms
+测试用例相关数据: url='http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic' is_run=True detail='正常登录' response_data='{"code":200,"msg":"操作成功","data":{"pic":"bannerImage/2025/04/18/gifpic_20250418083259721.gif","url":"https://uspublic.s3.us-west-1.amazonaws.com/bannerImage/2025/04/18/gifpic_20250418083259721.gif","picType":"uspublic"},"paramMsg":null,"errCode":null}' request_body={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}} method='POST' sql_data={'sql': None} yaml_data=TestCase(url='http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic', method='POST', detail='正常登录', assert_data={'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '上传图片成功'}}, headers={'Content-Language': 'zh_CN', 'Authorization': '$cache{token}', 'Content-Type': 'multipart/form-data; boundary=-----------------------------79475596198056205792550636716'}, requestType='FILE', is_run=True, data={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}, dependence_case=False, dependence_case_data=None, sql=None, setup_sql=None, status_code=None, teardown_sql=None, teardown=None, current_request_set_cache=[CurrentRequestSetCache(type='response', jsonpath='$.data.url', name='upload_img_01_url')], sleep=None) headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Language': 'zh_CN', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJzeXNfdXNlcjoxNjU5MzkxNjY2MjU0NzA0NjQyIiwicm5TdHIiOiI1NlZCbXVMYkhKOFJmU2oyZWJOQmc4N25uYmFwdHpjTyIsInVzZXJJZCI6MTY1OTM5MTY2NjI1NDcwNDY0Mn0.4t2aUT3-wrsmQ7JbW_cRY7kr_dU0-8jBEqMvgrRpNrI', 'Content-Type': 'multipart/form-data; boundary=-----------------------------79475596198056205792550636716', 'Content-Length': '539624'} cookie={} assert_data={'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '上传图片成功'}} res_time=12232.43 status_code=200 teardown=None teardown_sql=None body={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}
+=================================================
+ERROR   2025-04-18 16:33:08,948d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 name 'bid4s149fmba474eriqnr' is not defined
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 267, in get_dependent_data
+    exec(_new_data)
+  File "<string>", line 1, in <module>
+NameError: name 'bid4s149fmba474eriqnr' is not defined
+ERROR   2025-04-18 16:33:09,160d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 16:34:39,326d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 name 'bid4s149fmba474eriqnr' is not defined
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 268, in get_dependent_data
+    exec(_new_data)
+  File "<string>", line 1, in <module>
+NameError: name 'bid4s149fmba474eriqnr' is not defined
+ERROR   2025-04-18 16:34:39,471d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 16:47:28,412d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 invalid syntax (<string>, line 1)
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 267, in get_dependent_data
+    exec(_new_data)
+  File "<string>", line 1
+    yaml_case["url"] = http://47.107.113.31:18090/prod-api/system/bannerConfigInfo/bid4s149fmba474eriqnr
+                           ^
+SyntaxError: invalid syntax
+ERROR   2025-04-18 16:47:28,558d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 17:23:38,363d:\PytestAutoApi\logs\error-2025-04-18.log:run_time_decorator.py:17 
+==============================================
+测试用例执行时间较长，请关注.
+函数运行时间: 3768.67 ms
+测试用例相关数据: url='http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic' is_run=True detail='正常登录' response_data='{"code":200,"msg":"操作成功","data":{"pic":"bannerImage/2025/04/18/gifpic_20250418092337973.gif","url":"https://uspublic.s3.us-west-1.amazonaws.com/bannerImage/2025/04/18/gifpic_20250418092337973.gif","picType":"uspublic"},"paramMsg":null,"errCode":null}' request_body={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}} method='POST' sql_data={'sql': None} yaml_data=TestCase(url='http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic', method='POST', detail='正常登录', assert_data={'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '上传图片成功'}}, headers={'Content-Language': 'zh_CN', 'Authorization': '$cache{token}', 'Content-Type': 'multipart/form-data; boundary=-----------------------------36964808310113675348678564212'}, requestType='FILE', is_run=True, data={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}, dependence_case=False, dependence_case_data=None, sql=None, setup_sql=None, status_code=None, teardown_sql=None, teardown=None, current_request_set_cache=[CurrentRequestSetCache(type='response', jsonpath='$.data.url', name='upload_img_01_url')], sleep=None) headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Language': 'zh_CN', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJzeXNfdXNlcjoxNjU5MzkxNjY2MjU0NzA0NjQyIiwicm5TdHIiOiJpcnZxQzBrVkNvTHNrVGw2eTUzSnJWV3ZBV25XTjIzOSIsInVzZXJJZCI6MTY1OTM5MTY2NjI1NDcwNDY0Mn0.R_QF932U8jWoRFUbHJcFTrVR_hv9jA5mZHqBTpAveqQ', 'Content-Type': 'multipart/form-data; boundary=-----------------------------36964808310113675348678564212', 'Content-Length': '539624'} cookie={} assert_data={'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '上传图片成功'}} res_time=3768.67 status_code=200 teardown=None teardown_sql=None body={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}
+=================================================
+ERROR   2025-04-18 17:23:38,555d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 invalid syntax (<string>, line 1)
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 267, in get_dependent_data
+    exec(f"{_new_data}={value}")
+  File "<string>", line 1
+    yaml_case["url"] = http://47.107.113.31:18090/prod-api/system/bannerConfigInfo/bid4s149fmba474eriqnr=http://47.107.113.31:18090/prod-api/system/bannerConfigInfo/bid4s149fmba474eriqnr
+                           ^
+SyntaxError: invalid syntax
+ERROR   2025-04-18 17:23:38,696d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 17:24:27,421d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 invalid syntax (<string>, line 1)
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 267, in get_dependent_data
+    exec(f"{_new_data}={value}")
+  File "<string>", line 1
+    yaml_case["url"]=http://47.107.113.31:18090/prod-api/system/bannerConfigInfo/bid4s149fmba474eriqnr
+                         ^
+SyntaxError: invalid syntax
+ERROR   2025-04-18 17:24:27,569d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 17:25:32,291d:\PytestAutoApi\logs\error-2025-04-18.log:run_time_decorator.py:17 
+==============================================
+测试用例执行时间较长，请关注.
+函数运行时间: 3770.17 ms
+测试用例相关数据: url='http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic' is_run=True detail='正常登录' response_data='{"code":200,"msg":"操作成功","data":{"pic":"bannerImage/2025/04/18/gifpic_20250418092531938.gif","url":"https://uspublic.s3.us-west-1.amazonaws.com/bannerImage/2025/04/18/gifpic_20250418092531938.gif","picType":"uspublic"},"paramMsg":null,"errCode":null}' request_body={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}} method='POST' sql_data={'sql': None} yaml_data=TestCase(url='http://47.107.113.31:18090/prod-api/product/upload/common/uploadPublic', method='POST', detail='正常登录', assert_data={'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '上传图片成功'}}, headers={'Content-Language': 'zh_CN', 'Authorization': '$cache{token}', 'Content-Type': 'multipart/form-data; boundary=-----------------------------69714165825706473764323291466'}, requestType='FILE', is_run=True, data={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}, dependence_case=False, dependence_case_data=None, sql=None, setup_sql=None, status_code=None, teardown_sql=None, teardown=None, current_request_set_cache=[CurrentRequestSetCache(type='response', jsonpath='$.data.url', name='upload_img_01_url')], sleep=None) headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Language': 'zh_CN', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJzeXNfdXNlcjoxNjU5MzkxNjY2MjU0NzA0NjQyIiwicm5TdHIiOiIwamhkR3JBM3hEMnM1YVhwMFRNNEZKdm1XYlpkOHY3SCIsInVzZXJJZCI6MTY1OTM5MTY2NjI1NDcwNDY0Mn0.p550shZC0EUErLD3xwF2rWQjNCOP3_Icd0-Gp3XJ0xs', 'Content-Type': 'multipart/form-data; boundary=-----------------------------69714165825706473764323291466', 'Content-Length': '539624'} cookie={} assert_data={'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '上传图片成功'}} res_time=3770.17 status_code=200 teardown=None teardown_sql=None body={'file': {'multipartFile': 'gifpic.gif'}, 'data': {'fileBusType': 'bannerImage', 'fileMd5Str': 'd41d8cd98f00b204e9800998ecf8427e'}}
+=================================================
+ERROR   2025-04-18 17:25:32,493d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 invalid syntax (<string>, line 1)
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 267, in get_dependent_data
+    exec(_new_data)
+  File "<string>", line 1
+    yaml_case["url"] = http://47.107.113.31:18090/prod-api/system/bannerConfigInfo/bid4s149fmba474eriqnr
+                           ^
+SyntaxError: invalid syntax
+ERROR   2025-04-18 17:25:32,629d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 17:33:35,588d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 invalid syntax (<string>, line 1)
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 268, in get_dependent_data
+    exec(_new_data)
+  File "<string>", line 1
+    yaml_case["url"] = http://47.107.113.31:18090/prod-api/system/bannerConfigInfo/bid4s149fmba474eriqnr
+                           ^
+SyntaxError: invalid syntax
+ERROR   2025-04-18 17:33:35,730d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 17:40:04,352d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 'TestCase' object does not support item assignment
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 269, in get_dependent_data
+    exec(_new_data, {}, {"yaml_case": self.__yaml_case})
+  File "<string>", line 1, in <module>
+TypeError: 'TestCase' object does not support item assignment
+ERROR   2025-04-18 17:40:04,504d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 17:44:20,040d:\PytestAutoApi\logs\error-2025-04-18.log:log_decorator.py:37 'TestCase' object is not subscriptable
+Traceback (most recent call last):
+  File "d:\PytestAutoApi\utils\logging_tool\log_decorator.py", line 17, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\logging_tool\run_time_decorator.py", line 13, in wrapper
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "d:\PytestAutoApi\utils\request_tool\request_control.py", line 428, in http_request
+    DependentCase(self.__yaml_case).get_dependent_data()
+  File "d:\PytestAutoApi\utils\request_tool\dependent_case.py", line 291, in get_dependent_data
+    getattr(target, part) if hasattr(target, part) else target[part]
+                                                        ~~~~~~^^^^^^
+TypeError: 'TestCase' object is not subscriptable
+ERROR   2025-04-18 17:44:20,181d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 1
+ERROR   2025-04-18 18:03:05,942d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-18 18:20:57,045d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-18 18:25:05,988d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-18 18:27:45,951d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 0
+ERROR   2025-04-18 18:28:46,243d:\PytestAutoApi\logs\error-2025-04-18.log:conftest.py:158 失败用例数: 0

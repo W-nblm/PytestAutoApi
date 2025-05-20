@@ -23,7 +23,7 @@ class MySqlDB:
                     user=config.mysql_db.user,
                     password=config.mysql_db.password,
                     port=config.mysql_db.port,
-                    database=config.mysql_db.database,
+                    # database=config.mysql_db.database,
                 )
                 self.cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)
                 INFO.logger.info(f"Connected Successfully to MySQL,conn:{self.conn}")
@@ -52,7 +52,9 @@ class MySqlDB:
                     data = self.cursor.fetchone()
                 else:
                     raise ValueError("Invalid state parameter")
+                INFO.logger.info(f"Successfully query SQL: {sql}, data: {data}")
                 return data
+
             except Exception as e:
                 ERROR.logger.error(f"Failed to execute SQL: {e}")
 
@@ -64,6 +66,7 @@ class MySqlDB:
             try:
                 data = self.cursor.execute(sql)
                 self.conn.commit()
+                INFO.logger.info(f"Successfully executed SQL: {sql}, data: {data}")
                 return data
             except AttributeError:
                 ERROR.logger.error("MySQL connection not established")
@@ -97,21 +100,37 @@ class SetUpMySQL(MySqlDB):
         :param sql: 前置sql
         :return:
         """
-        sql = ast.literal_eval(cache_regular(str(sql)))
-        try:
-            data = {}
-            if sql is not None:
+        if isinstance(sql, list):
+            sql = ast.literal_eval(cache_regular(str(sql)))
+            try:
+                data = {}
                 for i in sql:
-                    # 判断sql查询类型
-                    if i.startswith("select"):
-                        sql_data = self.query(sql=i)[0]
-                        for key, value in sql_data.items():
-                            data[key] = value
+                    if i.strip().lower().startswith("select"):
+                        sql_data = self.query(sql=i)
+                        if sql_data:
+                            data.update(sql_data[0])
+                        else:
+                            ERROR.logger.error(
+                                f"未查询到数据,请检查sql语句,sql语句为:{sql}"
+                            )
+                            raise DataAcquisitionFailed(
+                                f"未查询到数据,请检查sql语句,sql语句为:{sql}"
+                            )
                     else:
-                        self.execute(sql=i)
-            return data
-        except Exception as e:
-            raise DataAcquisitionFailed(f"Failed to set up MySQL data: {e}")
+                        _sql_types = ["update", "delete", "insert"]
+                        if any(i.strip().lower().startswith(j) for j in _sql_types):
+                            self.execute(sql=i)
+                        else:
+                            ERROR.logger.error(
+                                f"sql语句类型错误,请检查sql语句,sql语句为:{sql}"
+                            )
+                            raise DataAcquisitionFailed(
+                                f"sql语句类型错误,请检查sql语句,sql语句为:{sql}"
+                            )
+                INFO.logger.info(f"Successfully set up MySQL data: {data}")
+                return data
+            except Exception as e:
+                raise DataAcquisitionFailed(f"Failed to set up MySQL data: {e}")
 
 
 class AssertExecution(MySqlDB):

@@ -1,0 +1,19 @@
+{
+  "ProductModel": {
+    "modelFunc": {
+      "code": "default_code",
+      "egName": "default_egName",
+      "cnName": "default_cnName",
+      "floatfunc": {
+        "unit": "default_unit"
+      },
+      "intfunc": {
+        "unit": "default_unit"
+      },
+      "strjsonfunc": {
+        "value": "default_value",
+        "readme": "default_readme"
+      }
+    }
+  }
+}

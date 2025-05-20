@@ -1,0 +1,55 @@
+case_common:
+  allureEpic: WObird
+  allureFeature: 我的收藏-云相册
+  allureStory: 单图片百科
+
+wobirdy_query_bird_album_capture_wiki_01:
+  host: ${{host()}}
+  url: /appdevice/info/birdAlbum/queryBirdCaptureWiki/$url_params{eventId}
+  method: GET
+  detail: 我的收藏-云相册-单图片百科
+  headers:
+    App-Source: "WObird"
+    Content-Language: "zh_CN"
+    Authorization: $cache{app_token}
+    Platform: "apple"
+  # Content-Type: multipart/form-data;
+  # 请求的数据，是 params 还是 json、或者file、data
+  requestType: None
+  # 是否执行，空或者 true 都会执行
+  is_run:
+  data:
+    eventId: ""
+    # 是否有依赖业务，为空或者false则表示没有
+  dependence_case:
+    False
+    # 依赖数据库中的数据，dependent_type=sqlData时,数据来源为setup_sql的查询结果
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          # set_cache: code_01_uuid
+          replace_key: $url_params{banner_id}
+
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          replace_key: $.data.paramData.bannerName
+          # set_cache: code_01_uuid
+
+  assert:
+    # 断言接口状态码,AssertType=SQL时与sql查询结果进行断言
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType:
+      message: "登录失败"
+    # 断言接口返回的msg
+    username:
+      jsonpath: $.msg
+      type: "contains"
+      value: "操作成功"
+      AssertType:
+  sql:
+  setup_sql:

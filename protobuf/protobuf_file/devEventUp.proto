@@ -1,0 +1,103 @@
+syntax = "proto3";
+option java_package = "com.szlongzy.common.protobuf.dto";
+
+option java_outer_classname = "DevEventUpVo";
+import "modelType.proto";
+
+// eventId
+//普通事件数据结果
+message EventVo{
+  // 设备id
+  string   objDevId = 1;
+  // 事件id
+  string   eventId = 2;
+  // 事件类型: move ：移动 ；penson ：人检测；car: 车检测 : pet : 宠物
+  string   etype = 3;
+  string   picUrl = 4;
+  //设备本地文件名称
+  string   localfile = 5;
+  //告警内容
+  string  msg = 6;
+  //0时区时间
+  int64    zeroTm = 7;
+  //时区 例如：UTC+8
+  string    TmZone = 8;
+  //是否自定义加密上传云
+  bool  is_encrypt=9;
+  //加密key
+  string encryptKey=10;
+}
+
+//事件关联的云视频
+message OssEventVo{
+  // 设备id
+  string   objDevId = 1;
+  // 事件id
+  string   eventId = 2;
+  //套餐类型：有7天，30等套餐类型
+  string   osstype = 3;
+  //上传oss的文件url连接
+  string   ossUrl = 4;
+  //0时区时间戳
+  int64    zeroTm = 5;
+  //时区 例如：UTC+8
+  string    TmZone = 6;
+  //时长（s)
+  int32    duration = 7;
+  //是否自定义加密上传云
+  bool  is_encrypt=8;
+  //加密key
+  string encryptKey=9;
+  //视频文件长度
+  int32    videoLen = 10;
+}
+
+//告警事件
+message AlarmEventVo{
+  // 设备id
+  string   objDevId = 1;
+  // 事件id
+  string   eventId = 2;
+  //告警事件类型：lowBattery :低电量告警
+  string   alarmType = 3;
+  //具体告警数据
+  AlarmData data =4;
+  //0时区时间戳
+  int64    zeroTm = 5;
+  //时区 例如：UTC+8
+  string    TmZone = 6;
+  //用户id
+  string    userId = 7;
+  //0时区时间戳
+  string    devName = 8;
+  //时区 例如：UTC+8
+  string    jsonInfo = 9;
+
+}
+
+message AlarmData{
+
+  //物模型code，不关联物模型为null或者空字符串
+  string   modelCode = 1;
+  //当前告警的数值
+  string   value = 2;
+  //物模型类型： 枚举值
+  ModelType codeType = 3;
+  //告警条件
+  AlarmCondition condition = 4;
+  //告警阈值
+  string   thresholdValue = 5;
+  //告警消息
+  string   msg = 6;
+
+}
+
+enum  AlarmCondition {
+  other = 0; // 其他
+  eq = 1; //等于标准值
+  gt = 2; //大于
+  lt = 3; //小于
+  gte = 4; //大于等于
+  lte = 5; //小于等于
+  in = 6; //in条件
+}

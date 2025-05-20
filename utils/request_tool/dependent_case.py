@@ -1,6 +1,6 @@
 import ast
 import json
-from typing import Text, Dict, Union, List
+from typing import Any, Text, Dict, Union, List
 from jsonpath import jsonpath
 from utils.request_tool.request_control import RequestControl
 from utils.mysql_tool.mysql_control import SetUpMySQL
@@ -97,19 +97,25 @@ class DependentCase:
         if setup_sql is not None:
             if config.mysql_db.switch:
                 setup_sql = ast.literal_eval(cache_regular(str(setup_sql)))
+                # 数据库中提取数据
                 sql_data = SetUpMySQL().setup_sql_data(setup_sql)
+                # 依赖数据
                 dependent_data = dependence_case_data.dependent_data
                 for i in dependent_data:
                     _jsonpath = i.jsonpath
+                    # 从查询结果中提取数据
                     jsonpath_data = self.jsonpath_data(obj=sql_data, expr=_jsonpath)
                     _set_value = self.set_cache_value(i)
                     _replace_key = self.replace_key(i)
+
+                    # 判断是否需要缓存
                     if _set_value is not None:
                         CacheHandler.update_cache(
                             cache_name=_set_value, value=jsonpath_data[0]
                         )
+
+                    # 判断是否需要替换
                     if _replace_key is not None:
-                        jsonpath_datas[_replace_key] = jsonpath_data[0]
                         self.url_replace(
                             replace_key=_replace_key,
                             jsonpath_datas=jsonpath_datas,
@@ -137,6 +143,7 @@ class DependentCase:
         :param dependent_type: 依赖类型
         :return:
         """
+        # 通过jsonpath获取到需要的数据
         jsonpath_data = self.jsonpath_data(obj=data, expr=_jsonpath)
         if set_value is not None:
             if len(jsonpath_data) > 1:
@@ -221,8 +228,8 @@ class DependentCase:
             except KeyError as exc:
                 # pass
                 raise ValueNotFoundError(
-                    f"dependence_case_data依赖用例中，未找到 {exc} 参数，请检查是否填写"
-                    f"如已填写，请检查是否存在yaml缩进问题"
+                    f"dependence_case_data依赖用例中,未找到 {exc} 参数，请检查是否填写"
+                    f"如已填写,请检查是否存在yaml缩进问题"
                 ) from exc
             except TypeError as exc:
                 raise ValueNotFoundError(
@@ -232,26 +239,80 @@ class DependentCase:
         else:
             return False
 
-    def get_dependent_data(self) -> None:
-        """
-        jsonpath 和 依赖的数据,进行替换
-        :return:
-        """
-        _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+    # def get_dependent_data(self) -> None:
+    #     """
+    #     jsonpath 和 依赖的数据,进行替换
+    #     :return:
+    #     """
+    #     _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+    #     INFO.logger.info(f"测试用例: {self.__yaml_case}")
+    #     INFO.logger.info(f"依赖数据: {_dependent_data}")
+    #     INFO.logger.info(f"测试用例数据: {type(self.__yaml_case.data)}")
+    #     _new_data = ""
+    #     # 判断有依赖
+    #     if _dependent_data is not None and _dependent_data is not False:
+    #         # if _dependent_data is not False:
+    #         for key, value in _dependent_data.items():
+    #             # 通过jsonpath判断出需要替换数据的位置
+    #             _change_data = key.split(".")
+    #             INFO.logger.info(f"替换数据: {_change_data}")
+    #             # jsonpath 数据解析
+    #             # 不要删 这个yaml_case
+    #             yaml_case = self.__yaml_case
+    #             _new_data = jsonpath_replace(
+    #                 change_data=_change_data, key_name="yaml_case"
+    #             )
+    #             # 最终提取到的数据,转换成 __yaml_case.data
+    #             _new_data += " = " + repr(value)
+    #             INFO.logger.info(f"Exec: {_new_data}")
+    #             # 明确传入 yaml_case
+    #             exec(_new_data, {}, {"yaml_case": self.__yaml_case})
 
-        _new_data = None
-        # 判断有依赖
-        if _dependent_data is not None and _dependent_data is not False:
-            # if _dependent_data is not False:
-            for key, value in _dependent_data.items():
-                # 通过jsonpath判断出需要替换数据的位置
-                _change_data = key.split(".")
-                # jsonpath 数据解析
-                # 不要删 这个yaml_case
-                yaml_case = self.__yaml_case
-                _new_data = jsonpath_replace(
-                    change_data=_change_data, key_name="yaml_case"
-                )
-                # 最终提取到的数据,转换成 __yaml_case.data
-                _new_data += " = " + str(value)
-                exec(_new_data)
+    def navigate_to(self, target: Any, path: List[str]) -> Any:
+        """
+        递归导航到 target 对象或 dict 的嵌套字段：
+        - 如果 target 有属性 name,用 getattr 访问；
+        - 否则如果 target 是 dict,用 target[name] 访问；
+        - 否则抛出 KeyError。
+        """
+        for name in path:
+            if hasattr(target, name):
+                target = getattr(target, name)
+            elif isinstance(target, dict):
+                target = target[name]
+            else:
+                raise KeyError(f"无法在 {target!r} 上访问键/属性 {name!r}")
+        return target
+
+    def get_dependent_data(self) -> None:
+        _dependent_data = DependentCase(self.__yaml_case).is_dependent()
+        if not _dependent_data:
+            return
+
+        for raw_key, new_value in _dependent_data.items():
+            # 1) URL 替换
+            if raw_key.startswith("$.url"):
+                # 直接替换模型的 url 属性
+                self.__yaml_case.url = new_value
+                INFO.logger.info(f"已替换 URL → {new_value}")
+
+            # 2) data 嵌套字段替换
+            elif raw_key.startswith("$.data."):
+                # 去掉 "$.data." 前缀
+                nested = raw_key[len("$.data.") :]
+                path_parts = nested.split(".")
+                # 导航到 data 的父级对象（可能是模型属性或 dict）
+                parent = self.navigate_to(self.__yaml_case, ["data"] + path_parts[:-1])
+                last_attr = path_parts[-1]
+
+                # 动态赋值
+                if hasattr(parent, last_attr):
+                    setattr(parent, last_attr, new_value)
+                elif isinstance(parent, dict):
+                    parent[last_attr] = new_value
+                else:
+                    raise TypeError(f"{parent!r} 不支持赋值字段 {last_attr!r}")
+                INFO.logger.info(f"已替换 {raw_key} → {new_value}")
+            else:
+                INFO.logger.warning(f"未知的依赖 Key: {raw_key}")
+            INFO.logger.info(f"替换后的用例数据: {self.__yaml_case}")

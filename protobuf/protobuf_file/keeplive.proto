@@ -1,0 +1,16 @@
+syntax="proto3";
+// 指定模板类的包路径
+option java_package = "com.szlongzy.common.protobuf.dto";
+// 指定模板类的名称，名称必须是有实际业务意义的
+option java_outer_classname = "KeepliveData";
+
+/* "status": 0
+	"time":12434323324,*/
+message keeplive{
+  // 实际目标设备
+  string  objDevId = 1;
+  // 系统正常
+  bool status = 2;
+  // 服务器发送时间
+  int64 time = 3;
+}

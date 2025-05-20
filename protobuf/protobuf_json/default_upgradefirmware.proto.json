@@ -1,0 +1,24 @@
+{
+  "UpgradeRequest": {
+    "objDevId": "default_objDevId",
+    "otaId": "default_otaId",
+    "data": {
+      "url": "default_url",
+      "version": "default_version"
+    }
+  },
+  "UpgradeResponse": {
+    "objDevId": "default_objDevId",
+    "msg": "default_msg",
+    "otaId": "default_otaId"
+  },
+  "FirmwareVo": {
+    "url": "default_url",
+    "version": "default_version"
+  },
+  "UpgradeStateVo": {
+    "otaId": "default_otaId",
+    "objDevId": "default_objDevId",
+    "msg": "default_msg"
+  }
+}

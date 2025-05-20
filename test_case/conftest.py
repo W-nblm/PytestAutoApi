@@ -14,6 +14,8 @@ from utils.read_files_tool.clean_files import del_file
 from utils.other_tools.allure_data.allure_tools import allure_step, allure_step_no
 from utils.cache_process.cache_control import CacheHandler
 from utils.captcha.vcode import fix_img, cut_img, train_model, rek_img
+from utils import config
+from utils.other_tools.rsa_encrypt import rsa_encrypt
 
 
 INFO.logger.info("初始化conftest.py")
@@ -28,6 +30,47 @@ def clear_report() -> None:
     del_file(ensure_path_sep("\\report"))
 
 
+# app接口登录初始化，获取登录token
+@pytest.fixture(scope="session", autouse=True)
+def app_login_init():
+    """
+    登录初始化
+    """
+    INFO.logger.info("app接口登录初始化")
+    # 获取host list
+    host_url = "http://47.107.113.31:19800/api/hostList"
+    headers = {
+        "App-Source": "WObird",
+        "Content-Language": "CN",
+        "Authorization": "",
+        "Platform": "apple",
+    }
+    response = requests.post(url=host_url, headers=headers)
+    AL_HOST = response.json()["data"]["hostListVoList"][0]["host"]
+    DEV_HOST = response.json()["data"]["hostListVoList"][1]["host"]
+    CacheHandler.update_cache(cache_name="AL_HOST", value=AL_HOST)
+    CacheHandler.update_cache(cache_name="DEV_HOST", value=DEV_HOST)
+    CacheHandler.update_cache(cache_name="customId", value=config.customId)
+    INFO.logger.info(f"AL_HOST: {AL_HOST}")
+    INFO.logger.info(f"DEV_HOST: {DEV_HOST}")
+
+    iot_url = f"{AL_HOST}/app/info/appUser/loginTest"
+    para = {
+        "email": "834532523@qq.com",
+        "password": "w12345678",
+        "customId": config.customId,
+        "countryCode": "US",
+        "loginConfirm": 1,
+    }
+    response_json = requests.post(url=iot_url, headers=headers, json=para)
+    token = response_json.json()["data"]["token"]
+    userId = response_json.json()["data"]["userInfo"]["userUid"]
+    INFO.logger.info(f"登录响应: {response_json.json()}")
+    CacheHandler.update_cache(cache_name="app_token", value=token)
+    CacheHandler.update_cache(cache_name="userId", value=userId)
+
+
+# iot接口登录初始化，获取登录token
 @pytest.fixture(scope="session", autouse=True)
 def work_login_init():
     """
@@ -94,7 +137,6 @@ def pytest_collection_modifyitems(items):
         item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
 
     # 期望用例顺序
-
 
     appoint_items = [
         "test_upload_img",

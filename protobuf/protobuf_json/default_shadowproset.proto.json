@@ -1,0 +1,12 @@
+{
+  "ShadowRequest": {
+    "objDevId": "default_objDevId",
+    "authKey": "default_authKey"
+  },
+  "ShadowResponse": {
+    "objDevId": "default_objDevId",
+    "msg": "default_msg",
+    "authKey": "default_authKey",
+    "jsonData": "default_jsonData"
+  }
+}

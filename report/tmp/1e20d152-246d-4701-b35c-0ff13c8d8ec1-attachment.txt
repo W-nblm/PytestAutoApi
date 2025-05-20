@@ -1,0 +1,17 @@
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-30.log:test_album_page.py:27 data: {'url': 'http://47.107.113.31:18090/prod-api/appdevice/info/birdAlbum/queryBirdAlbumPage', 'method': 'POST', 'detail': '我的收藏-云相册-列表', 'assert_data': {'code': {'jsonpath': '$.code', 'type': '==', 'value': 200, 'AssertType': None, 'message': '登录失败'}, 'username': {'jsonpath': '$.msg', 'type': 'contains', 'value': '操作成功', 'AssertType': None}}, 'headers': {'App-Source': 'WObird', 'Content-Language': 'zh_CN', 'Authorization': '$cache{app_token}', 'Platform': 'apple'}, 'requestType': 'JSON', 'is_run': None, 'data': {'pageQuery': {'pageSize': 5, 'pageNum': 1, 'orderByColumn': '', 'isAsc': ''}, 'paramData': {'isMark': True, 'etypes': ['penson', 'bird', 'pet']}}, 'dependence_case': False, 'dependence_case_data': None, 'sql': None, 'setup_sql': None, 'status_code': None, 'teardown_sql': None, 'teardown': None, 'current_request_set_cache': None, 'sleep': None}
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-30.log:dependent_case.py:171 _dependent_type: False
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-30.log:dependent_case.py:172 _dependence_case_datas: None
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-30.log:request_control.py:429 ---------------处理多业务逻辑结束---------------
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-30.log:request_control.py:430 ---------------开始请求---------------
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-30.log:request_control.py:436 ---------------请求结束----------------
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-04-30.log:log_decorator.py:32 
+======================================================
+用例标题: 我的收藏-云相册-列表
+请求路径: http://47.107.113.31:18090/prod-api/appdevice/info/birdAlbum/queryBirdAlbumPage
+请求方式: POST
+请求头:   {'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'App-Source': 'WObird', 'Content-Language': 'zh_CN', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJ1dWIxOTdjNjY3MDZiZXEwcWMiLCJjdG0iOjE3NDYwMDI2MzIyODl9.DUPpGW_aYIYzoY5cbbUQHFmy-Dx4pOykF0JNZ-DQ_yA', 'Platform': 'apple', 'Content-Length': '146', 'Content-Type': 'application/json'}
+请求内容: {'pageQuery': {'pageSize': 5, 'pageNum': 1, 'orderByColumn': '', 'isAsc': ''}, 'paramData': {'isMark': True, 'etypes': ['penson', 'bird', 'pet']}}
+接口响应内容: {"code":200,"msg":"操作成功","data":{"pageSize":5,"pageNum":1,"totalPage":0,"total":0,"rows":[],"code":200,"msg":"查询成功"},"paramMsg":null,"errCode":null}
+接口响应时长: 78.36 ms
+Http状态码: 200
+=====================================================
