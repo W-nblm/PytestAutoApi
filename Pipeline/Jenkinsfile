@@ -12,7 +12,7 @@ pipeline {
         stage('执行python脚本'){
             steps {
                 script{
-                    sh "python ${env.WORKSPACE}/redis_main.py"
+                    sh "python3 ${env.WORKSPACE}/redis_main.py"
                 }
             }
         }
