@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Print WorkSpace') {
             steps {
-                script {
-				    echo "Hello world"
+                script{
+                    echo "Hello world"
                     echo "当前的工作目录: ${env.WORKSPACE}"
                 }
             }
@@ -12,9 +12,8 @@ pipeline {
         stage('执行python脚本'){
             steps {
                 script{
-                    sh "python ${env.WORKSPACE}/tt.py"
+                    sh "python ${env.WORKSPACE}/redis_main.py"
                 }
-                
             }
         }
     }
