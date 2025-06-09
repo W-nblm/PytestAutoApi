@@ -8,6 +8,7 @@ pipeline {
                     echo "当前的工作目录: ${env.WORKSPACE}"
                 }
             }
+        }
         stage('执行python脚本'){
             steps {
                 script{
@@ -15,7 +16,6 @@ pipeline {
                 }
                 
             }
-        }
         }
     }
 }
