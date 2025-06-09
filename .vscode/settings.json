@@ -6,6 +6,8 @@
     "autouse",
     "datas",
     "ddddocr",
+    "devtime",
+    "keepalive",
     "keeplive",
     "modifyitems",
     "mqtt",
@@ -15,14 +17,19 @@
     "protoc",
     "publickey",
     "pytest",
+    "respone",
+    "Respose",
     "sessionstarttime",
     "startswitch",
     "subcribe",
     "terminalreporter",
     "testpaths",
+    "timestmp",
     "toolbelt",
     "vcode",
+    "wechat",
     "wobirdy",
-    "worbirdy"
+    "worbirdy",
+    "wykhome"
   ]
 }

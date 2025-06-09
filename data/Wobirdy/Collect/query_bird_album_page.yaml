@@ -7,16 +7,13 @@ wobirdy_query_bird_album_page_01:
   host: ${{host()}}
   url: /appdevice/info/birdAlbum/queryBirdAlbumPage
   method: POST
-  detail: 我的收藏-云相册-列表
+  detail: 我的收藏-云相册-正常收藏+多类型
   headers:
     App-Source: "WObird"
     Content-Language: "zh_CN"
     Authorization: $cache{app_token}
     Platform: "apple"
-  # Content-Type: multipart/form-data;
-  # 请求的数据，是 params 还是 json、或者file、data
   requestType: json
-  # 是否执行，空或者 true 都会执行
   is_run:
   data:
     pageQuery:
@@ -30,32 +27,209 @@ wobirdy_query_bird_album_page_01:
         - penson
         - bird
         - pet
-    # 是否有依赖业务，为空或者false则表示没有
-  dependence_case:
-    False
-    # 依赖数据库中的数据，dependent_type=sqlData时,数据来源为setup_sql的查询结果
+  dependence_case: False
   dependence_case_data:
     - case_id: self
       dependent_data:
         - dependent_type: sqlData
           jsonpath: $.banner_id
-          # set_cache: code_01_uuid
           replace_key: $url_params{banner_id}
-
         - dependent_type: sqlData
           jsonpath: $.banner_id
           replace_key: $.data.paramData.bannerName
-          # set_cache: code_01_uuid
-
   assert:
-    # 断言接口状态码,AssertType=SQL时与sql查询结果进行断言
     code:
       jsonpath: $.code
       type: ==
       value: 200
       AssertType:
       message: "登录失败"
-    # 断言接口返回的msg
+    username:
+      jsonpath: $.msg
+      type: "contains"
+      value: "操作成功"
+      AssertType:
+  sql:
+  setup_sql:
+
+wobirdy_query_bird_album_page_02:
+  host: ${{host()}}
+  url: /appdevice/info/birdAlbum/queryBirdAlbumPage
+  method: POST
+  detail: 我的收藏-云相册-未收藏+类型bird
+  headers:
+    App-Source: "WObird"
+    Content-Language: "zh_CN"
+    Authorization: $cache{app_token}
+    Platform: "apple"
+  requestType: json
+  is_run:
+  data:
+    pageQuery:
+      pageSize: 5
+      pageNum: 1
+      orderByColumn: ""
+      isAsc: ""
+    paramData:
+      isMark: false
+      etypes:
+        - bird
+  dependence_case: False
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          replace_key: $url_params{banner_id}
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          replace_key: $.data.paramData.bannerName
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType:
+      message: "登录失败"
+    username:
+      jsonpath: $.msg
+      type: "contains"
+      value: "操作成功"
+      AssertType:
+  sql:
+  setup_sql:
+
+wobirdy_query_bird_album_page_03:
+  host: ${{host()}}
+  url: /appdevice/info/birdAlbum/queryBirdAlbumPage
+  method: POST
+  detail: 我的收藏-云相册-分页参数负数
+  headers:
+    App-Source: "WObird"
+    Content-Language: "zh_CN"
+    Authorization: $cache{app_token}
+    Platform: "apple"
+  requestType: json
+  is_run:
+  data:
+    pageQuery:
+      pageSize: 10
+      pageNum: -1
+      orderByColumn: ""
+      isAsc: ""
+    paramData:
+      isMark: true
+      etypes:
+        - pet
+  dependence_case: False
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          replace_key: $url_params{banner_id}
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          replace_key: $.data.paramData.bannerName
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 500
+      AssertType:
+      message: "登录失败"
+    username:
+      jsonpath: $.msg
+      type: "contains"
+      value: "must be greater than or equal to 1"
+      AssertType:
+  sql:
+  setup_sql:
+
+wobirdy_query_bird_album_page_04:
+  host: ${{host()}}
+  url: /appdevice/info/birdAlbum/queryBirdAlbumPage
+  method: POST
+  detail: 我的收藏-云相册-排序字段为空（默认）
+  headers:
+    App-Source: "WObird"
+    Content-Language: "zh_CN"
+    Authorization: $cache{app_token}
+    Platform: "apple"
+  requestType: json
+  is_run:
+  data:
+    pageQuery:
+      pageSize: 10
+      pageNum: 1
+      orderByColumn: ""
+      isAsc: ""
+    paramData:
+      isMark: true
+      etypes: []
+  dependence_case: False
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          replace_key: $url_params{banner_id}
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          replace_key: $.data.paramData.bannerName
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType:
+      message: "登录失败"
+    username:
+      jsonpath: $.msg
+      type: "contains"
+      value: "操作成功"
+      AssertType:
+  sql:
+  setup_sql:
+
+wobirdy_query_bird_album_page_05:
+  host: ${{host()}}
+  url: /appdevice/info/birdAlbum/queryBirdAlbumPage
+  method: POST
+  detail: 我的收藏-云相册-仅分页参数
+  headers:
+    App-Source: "WObird"
+    Content-Language: "zh_CN"
+    Authorization: $cache{app_token}
+    Platform: "apple"
+  requestType: json
+  is_run:
+  data:
+    pageQuery:
+      pageSize: 5
+      pageNum: 1
+      orderByColumn: ""
+      isAsc: ""
+    paramData:
+      isMark:
+      etypes: []
+  dependence_case: False
+  dependence_case_data:
+    - case_id: self
+      dependent_data:
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          replace_key: $url_params{banner_id}
+        - dependent_type: sqlData
+          jsonpath: $.banner_id
+          replace_key: $.data.paramData.bannerName
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType:
+      message: "登录失败"
     username:
       jsonpath: $.msg
       type: "contains"

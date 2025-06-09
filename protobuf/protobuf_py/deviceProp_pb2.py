@@ -13,7 +13,6 @@ _sym_db = _symbol_database.Default()
 
 import modelType_pb2 as modelType__pb2
 
-
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x64\x65viceProp.proto\x1a\x0fmodelType.proto\"C\n\nPropDataVo\x12\x18\n\x04type\x18\x01 \x01(\x0e\x32\n.ModelType\x12\r\n\x05value\x18\x02 \x01(\t\x12\x0c\n\x04time\x18\x03 \x01(\x03\x42*\n com.szlongzy.common.protobuf.dtoB\x06PropVob\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())

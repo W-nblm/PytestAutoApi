@@ -14,7 +14,7 @@ re_data = regular(str(TestData))
 
 @allure.epic("WObird App")
 @allure.feature("鸟类首页")
-class TestLogin:
+class TestQueryBirdPage:
     @allure.story("添加收藏")
     @pytest.mark.parametrize(
         "in_data", eval(re_data), ids=[i["detail"] for i in TestData]

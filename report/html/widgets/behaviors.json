@@ -1,1 +1,1 @@
-{"total":2,"items":[{"uid":"73bb5dd1e3fe9a4ccdb2f6efc6231a69","name":"WObird App","statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2}},{"uid":"50618f1c26920efbcc8f628418a6723a","name":"WObird App登录接口","statistic":{"failed":0,"broken":0,"skipped":1,"passed":0,"unknown":0,"total":1}}]}
+{"total":1,"items":[{"uid":"73bb5dd1e3fe9a4ccdb2f6efc6231a69","name":"WObird App","statistic":{"failed":1,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":1}}]}
