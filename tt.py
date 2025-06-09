@@ -61,5 +61,5 @@ if __name__ == "__main__":
     print(ip)
     # if not ip:
     #     exit(1)
-
+    # sdfsd
     # update_record(dns_name, zone_id, token, dns_id, ip)
