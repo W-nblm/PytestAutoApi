@@ -12,27 +12,36 @@ pipeline {
         stage('准备 Python 环境') {
             steps {
                 script {
-                def venvExists = fileExists('venv/bin/activate')
-                if (!venvExists) {
-                    echo "未检测到虚拟环境，创建并安装依赖"
-                    sh '''
-                        python3 -m venv venv
-                        . venv/bin/activate
-                        
-                    '''
-                } else {
-                    echo "虚拟环境已存在，跳过安装"
-                }
-                
-                }
+                    def venvExists = fileExists('venv/bin/activate')
+                    def needReinstall = false
 
-            steps {
-                script {
-                    sh 'pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple'
+                    if (!venvExists) {
+                        echo "未检测到虚拟环境，创建中..."
+                        sh 'python3 -m venv venv'
+                        needReinstall = true
+                    }
+
+                    // 总是尝试安装依赖，失败则清理虚拟环境以避免下次错误
+                    echo "安装 Python 依赖..."
+                    def status = sh(
+                        script: '''
+                            . venv/bin/activate
+                            pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+                        ''',
+                        returnStatus: true
+                    )
+
+                    if (status != 0) {
+                        echo "依赖安装失败，清理虚拟环境以便下次重装"
+                        sh 'rm -rf venv'
+                        error("依赖安装失败，请检查 requirements.txt 或网络连接")
+                    } else {
+                        echo "依赖安装成功"
+                    }
                 }
-            }
             }
         }
+
         stage('执行python脚本'){
             steps {
                 script{
