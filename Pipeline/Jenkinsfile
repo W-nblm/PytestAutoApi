@@ -9,6 +9,23 @@ pipeline {
                 }
             }
         }
+        stage('准备 Python 环境') {
+            steps {
+                script {
+                    // 检查 python3 是否存在
+                    if (sh(script: 'command -v python3', returnStatus: true) != 0) {
+                        error "Python3 不存在，请检查 Jenkins 容器中是否已安装 python3"
+                    }
+                    // 检查 pip
+                    if (sh(script: 'command -v pip3', returnStatus: true) != 0) {
+                        error "pip3 不存在，请确保 python3-pip 安装正确"
+                    }
+
+                    echo "Python 和 pip 检查通过，准备安装 requirements.txt"
+                    sh "pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple"
+                }
+            }
+        }
         stage('执行python脚本'){
             steps {
                 script{
