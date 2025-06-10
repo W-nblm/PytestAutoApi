@@ -24,6 +24,18 @@ pipeline {
                     echo "Python 和 pip 检查通过，准备安装 requirements.txt"
                     sh "pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple"
                 }
+
+                def venvExists = fileExists('venv/bin/activate')
+                if (!venvExists) {
+                    echo "未检测到虚拟环境，创建并安装依赖"
+                    sh '''
+                        python3 -m venv venv
+                        . venv/bin/activate
+                        pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+                    '''
+                } else {
+                    echo "虚拟环境已存在，跳过安装"
+                }
             }
         }
         stage('执行python脚本'){
