@@ -17,7 +17,6 @@ pipeline {
                     echo "未检测到虚拟环境，创建"
                     sh 'python3 -m venv venv'
                 }
-
                 echo "尝试安装依赖（支持断点续装）"
                 sh '''
                     . venv/bin/activate
