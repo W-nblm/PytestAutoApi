@@ -1,44 +1,68 @@
 pipeline {
     agent any
+
+    environment {
+        VENV_PATH = 'venv'
+        PIP_INDEX = 'https://pypi.tuna.tsinghua.edu.cn/simple'
+        PIP_CACHE = '/tmp/pip-cache'
+    }
+
     stages {
-        stage('Print WorkSpace') {
+        stage('初始化环境') {
             steps {
-                script{
-                    echo "Hello world"
-                    echo "当前的工作目录: ${env.WORKSPACE}"
+                echo '打印工作目录和 Python 版本'
+                sh 'pwd'
+                sh 'python3 --version || true'
+                sh 'pip3 --version || true'
+            }
+        }
+
+        stage('准备 Python 虚拟环境') {
+            steps {
+                script {
+                    def venvExists = fileExists("${VENV_PATH}/bin/activate")
+                    if (!venvExists) {
+                        echo "未检测到虚拟环境，正在创建"
+                        sh "python3 -m venv ${VENV_PATH}"
+                    } else {
+                        echo "虚拟环境已存在，跳过创建"
+                    }
                 }
             }
         }
 
-
-        stage('准备 Python 环境') {
+        stage('安装依赖') {
             steps {
-                script {
-                    def venvExists = fileExists('venv/bin/activate')
-                    if (!venvExists) {
-                        echo "未检测到虚拟环境，创建"
-                        sh 'python3 -m venv venv'
-                    }
-                    echo "尝试安装依赖（支持断点续装）"
-                    sh '''
-                        . venv/bin/activate
-                        pip install -r requirements.txt \
-                            --default-timeout=100 \
-                            --retries=5 \
-                            --cache-dir=/tmp/pip-cache \
-                            -i https://pypi.tuna.tsinghua.edu.cn/simple || true
-                    '''
-                    }
-                }
+                echo "开始安装 requirements.txt（自动断点续装）"
+                // 使用 subshell 防止影响当前 shell 环境
+                sh """
+                    . ${VENV_PATH}/bin/activate && \
+                    pip install -r requirements.txt \
+                        --default-timeout=100 \
+                        --retries=5 \
+                        --cache-dir=${PIP_CACHE} \
+                        -i ${PIP_INDEX} || true
+                """
             }
+        }
 
-
-        stage('执行python脚本'){
+        stage('执行 Python 脚本') {
             steps {
-                script{
-                    sh "python3 ${env.WORKSPACE}/redis_main.py"
-                }
+                echo "执行 redis_main.py"
+                sh """
+                    . ${VENV_PATH}/bin/activate && \
+                    python redis_main.py
+                """
             }
+        }
+    }
+
+    post {
+        failure {
+            echo '❌ 构建失败，请检查日志。'
+        }
+        success {
+            echo '✅ 构建成功。'
         }
     }
 }
