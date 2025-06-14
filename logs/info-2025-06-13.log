@@ -1,0 +1,5 @@
+INFO    2025-06-13 17:44:53,631d:\PytestAutoApi\logs\info-2025-06-13.log:mysql_tool.py:29 MySQL connection closed successfully
+INFO    2025-06-13 17:45:32,737d:\PytestAutoApi\logs\info-2025-06-13.log:mysql_tool.py:47 Successfully query SQL: select au.user_uid FROM app_user au WHERE au.email = '834532523@qq.com' AND au.reg_app_source = 'WObird', data: [{'user_uid': 'uub197c66706beq0qc'}]
+INFO    2025-06-13 17:45:32,754d:\PytestAutoApi\logs\info-2025-06-13.log:mysql_tool.py:29 MySQL connection closed successfully
+INFO    2025-06-13 17:47:26,743d:\PytestAutoApi\logs\info-2025-06-13.log:mysql_tool.py:47 Successfully query SQL: select au.user_uid FROM app_user au WHERE au.email = '834532523@qq.com' AND au.reg_app_source = 'WObird', data: {'user_uid': 'uub197c66706beq0qc'}
+INFO    2025-06-13 17:47:26,759d:\PytestAutoApi\logs\info-2025-06-13.log:mysql_tool.py:29 MySQL connection closed successfully

@@ -165,7 +165,7 @@ class AssertExecution(MySqlDB):
             ERROR.logger.error(f"Failed to assert execution: {e}")
             raise e
 
-        if __name__ == "__main__":
-            mysql = MySqlDB()
-            b = mysql.query("select * from user")
-            print(b)
+if __name__ == "__main__":
+    mysql = MySqlDB()
+    b = mysql.query("select * from user")
+    print(b)

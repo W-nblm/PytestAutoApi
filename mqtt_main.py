@@ -2,61 +2,69 @@ from utils.mqtt_tool.devices import DeviceModel
 from utils.mqtt_tool.mqtt import Mqtt
 import sys
 from utils.redis_tool.redis_helper import RedisHelper
-import enum
+from utils.mysql_tool.mysql_tool import MysqlTool
 
 sys.path.append("d:/PytestAutoApi/protobuf/protobuf_py")
-from enum import Enum
+import asyncio
+import sys
+from mqtt_client import AsyncMqttClient
+from device import Device
+
+if sys.platform.startswith("win"):
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
-class CommandType(Enum):
-    temperature_mark_sw = "温度开关"
-    time_watermark = "时间水印"
-    pir_sensitivity = "人体感应灵敏度"
-    infrared_sw = "红外开关"
-    sd_status = "SD卡状态"
-    sd_capacity = "SD卡容量"
-    sd_formatting = "SD卡格式化"
-    feed_plan_sw = "喂食计划开关"
-    detect_person_switch = "检测到人开关"
-    volume_set = "音量设置"
-    battery_quantity = "电池电量"
-    anti_flicker = "防眩晕"
-    detect_time = "检测时间"
-    rt_v_bird_quality = "实时视频鸟类质量"
-    hand_feed = "手动喂食"
-    basic_osd = "基础OSD"
-    basic_indicator = "基础指示灯"
+async def main():
+
+    async with AsyncMqttClient() as mqtt_client:
+        # 初始化device
+        print("初始化device")
+        devices = [
+            Device(
+                device_id=f"dev{i:03d}",
+                product_id="p-0c947c67-8ghjjvw3",
+                uid="uub197c66706beq0qc",
+                mqtt_client=mqtt_client,
+            )
+            for i in range(2)
+        ]
+        all_topics = []
+        for device in devices:
+            all_topics.extend(device.get_topics())
+        await mqtt_client.subscribe_many(all_topics)
+        devices[0].activate()
+
+        # 监听消息流
+        async for message in mqtt_client.get_message_stream():
+            topic = message.topic
+            payload = await message.payload.read()
+            for device in devices:
+                if device.device_id in topic:
+                    device.handle_message(topic, payload)
 
 
 if __name__ == "__main__":
-    # mqtt = Mqtt(device_id="d-f5701968-w3o1q6nf")
-    # mqtt.client_loop_forever()
-    # mqtt.client_disconnect()
-    from protobuf.protobuf_py import deviceProp_pb2
-    from protobuf.protobuf_py import modelType_pb2
-    import base64
+    asyncio.run(main())
 
-    redis_helper = RedisHelper(db=5)
-    res = redis_helper.get_cached_messages(
-        topic_prefix="dev:op:shadowProp:d-s240012"
-    )
-    res = res["dev:op:shadowProp:d-s240012"]
-    # ENUM = 1;
-    # INTEGER = 2;
-    # FLOAT = 3;
-    # STRING = 4;
-    # JSON = 5;
-    # RAW = 6;
+# if __name__ == "__main__":
+#     # 获取用户的uid，用户邮箱：834532523@qq.com
+#     # 初始化mysql
+#     mysql_tool = MysqlTool(
+#         host="47.107.113.31",
+#         user="iot_test",
+#         port=13306,
+#         password="DPbbkXGvauYD38uY",
+#         database="iot-cloud",
+#     )
+#     # 获取用户的uid
+#     user_data = mysql_tool.query(
+#         "select au.user_uid FROM app_user au WHERE au.email = '834532523@qq.com' AND au.reg_app_source = 'WObird'",
+#         state="one",
+#     )
+#     print(user_data)  # {'user_uid': 'uub197c66706beq0qc'}
 
-    result = {}
-    for key, value in res.items():
-        ntpResponse = deviceProp_pb2.PropDataVo()
-        ntpResponse.ParseFromString(base64.b64decode(value))
-
-        data = {}
-        data["type"] = modelType_pb2.ModelType.Name(ntpResponse.type)
-        data["value"] = ntpResponse.value
-        data["time"] = ntpResponse.time
-        result[key] = data
-
-    print(result)
+#     # 获取用户下的设备
+#     data = mysql_tool.query(
+#         f'select * from device_app_user_ship ds where ds.user_id = "{user_data["user_uid"]}"'
+#     )
+#     print(data)
