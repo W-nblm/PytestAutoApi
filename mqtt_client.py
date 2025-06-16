@@ -1,4 +1,5 @@
 import aiomqtt
+from utils.logging_tool.log_control import INFO, ERROR, WARNING
 
 
 class AsyncMqttClient:
@@ -35,9 +36,11 @@ class AsyncMqttClient:
         await self.client.__aexit__(exc_type, exc_val, exc_tb)
 
     async def publish(self, topic, payload):
+        INFO.logger.info(f"Publishing to {topic}: {payload}")
         await self.client.publish(topic, payload)
 
     async def subscribe(self, topic):
+        INFO.logger.info(f"Subscribing to {topic}")
         await self.client.subscribe(topic)
 
     def get_message_stream(self):
@@ -45,4 +48,5 @@ class AsyncMqttClient:
 
     async def subscribe_many(self, topics: list[str]):
         for topic in topics:
+            print(f"Subscribing to {topic}")
             await self.client.subscribe(topic)
