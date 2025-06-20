@@ -20,14 +20,22 @@ async def main():
     async with AsyncMqttClient() as mqtt_client:
         # 初始化device
         INFO.logger.info("初始化device")
+        # devices = [
+        #     Device(
+        #         device_id=f"dev{i:03d}",
+        #         product_id="p-0c947c67-8ghjjvw3",
+        #         uid="uub197c66706beq0qc",
+        #         mqtt_client=mqtt_client,
+        #     )
+        #     for i in range(2)
+        # ]
         devices = [
             Device(
-                device_id=f"dev{i:03d}",
+                device_id="d-8d8b4768-ns6aoiho",
                 product_id="p-0c947c67-8ghjjvw3",
                 uid="uub197c66706beq0qc",
                 mqtt_client=mqtt_client,
             )
-            for i in range(2)
         ]
         all_topics = []
         for device in devices:
@@ -40,12 +48,13 @@ async def main():
 
         # 监听消息流
         async for message in mqtt_client.get_message_stream():
-            topic_str = str(message.topic)  
+            topic_str = str(message.topic)
             payload = message.payload
             for device in devices:
                 if device.device_id in topic_str:
                     device.handle_message(topic_str, payload)
-
+        
+        # 停止所有设备
         await asyncio.gather(*(device.stop() for device in devices))
 
 

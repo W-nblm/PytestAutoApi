@@ -1,0 +1,99 @@
+INFO    2025-06-20 08:55:48,303d:\PytestAutoApi\logs\info-2025-06-20.log:mqtt_main.py:22 初始化device
+INFO    2025-06-20 08:55:48,377d:\PytestAutoApi\logs\info-2025-06-20.log:mqtt_main.py:46 激活所有设备...
+INFO    2025-06-20 08:55:48,377d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:220 [d-8d8b4768-ns6aoiho] Activating...
+INFO    2025-06-20 08:55:48,379d:\PytestAutoApi\logs\info-2025-06-20.log:mqtt_client.py:39 Publishing to device/network/devices/d-8d8b4768-ns6aoiho/send/requestId=: b'\n\xa2\x02\n$4e005e4d-4d71-11f0-9894-ac50deed1590\x12$4e009705-4d71-11f0-a4fa-ac50deed1590\x1a\x13d-8d8b4768-ns6aoiho"$4e009706-4d71-11f0-80d3-ac50deed1590*\x13p-0c947c67-8ghjjvw32\x12uub197c66706beq0qcB\r192.168.0.200J\x08test_wykR\x06UTC+08r\x0edefault_socVerz\x0edefault_mcuVer\x82\x01\x13default_wirelessVer\x8a\x01\x02CN\x92\x01\x13default_serviceArea\x10\x99\xd7\xd6\xd6\xf82\x1a\x0fdefault_authKey"\nrequestId='
+INFO    2025-06-20 08:55:48,554d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:109 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+type: "StoreBucket"
+buff: "ChNkLThkOGI0NzY4LW5zNmFvaWhvEgNwaWMaA2F3cyIUQUtJQVpPV0xCWldMV1hDTkpNNzUqKHgwNE9VZElMdGFhZktxNFU2WHlwTWNyM1lJUG9zR1FjVTBNL0NxWXg6GnMzLnVzLXdlc3QtMS5hbWF6b25hd3MuY29tQgl1cy13ZXN0LTFKCXVzdmlkZW8zMA=="
+time: 1750380948339
+requestId: "339-94b15468-kvpr0zj"
+
+INFO    2025-06-20 08:55:48,554d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:130 [d-8d8b4768-ns6aoiho] 收到平台下发开始播放指令: b'\n\x13d-8d8b4768-ns6aoiho\x12\x03pic\x1a\x03aws"\x14AKIAZOWLBZWLWXCNJM75*(x04OUdILtaafKq4U6XypMcr3YIPosGQcU0M/CqYx:\x1as3.us-west-1.amazonaws.comB\tus-west-1J\tusvideo30'
+INFO    2025-06-20 08:55:48,554d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:133 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+objDevId: "d-8d8b4768-ns6aoiho"
+authKey: "aws"
+
+INFO    2025-06-20 08:55:48,760d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:81 [d-8d8b4768-ns6aoiho] 网络激活响应: result: true
+
+INFO    2025-06-20 09:02:43,007d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:170 服务器响ntp反序列化后数据:{'deviceSendTime': 1750410159169, 'serverRecvTime': 1750381362577, 'serverSendTime': 1750381362803}
+INFO    2025-06-20 09:02:43,007d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:171 服务端unix时间: 1750366964609.0
+INFO    2025-06-20 09:02:43,258d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:94 [d-8d8b4768-ns6aoiho] Received message on topic: device/general_dev_to_plat/devices/d-8d8b4768-ns6aoiho/response/requestId= 
+type: "ShadowGet"
+buff: "EhNkLThkOGI0NzY4LW5zNmFvaWhv"
+time: 1750381363057
+requestId: "d-8d8b4768-ns6aoiho"
+
+INFO    2025-06-20 09:02:43,258d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:101 [d-8d8b4768-ns6aoiho] 收到平台获取影子数据响应: 
+objDevId: "d-8d8b4768-ns6aoiho"
+
+INFO    2025-06-20 09:02:43,280d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:109 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+type: "CloudPackage"
+buff: "ChNkLThkOGI0NzY4LW5zNmFvaWhvEgExIMzX1tb4MijN59GqgjMwATgeQhRBS0lBWk9XTEJaV0xXWENOSk03NUooeDA0T1VkSUx0YWFmS3E0VTZYeXBNY3IzWUlQb3NHUWNVME0vQ3FZeFIaczMudXMtd2VzdC0xLmFtYXpvbmF3cy5jb21aCXVzLXdlc3QtMWIJdXN2aWRlbzMwagNhd3M="
+time: 1750381363075
+requestId: "75-33b35468-v9r8pb0"
+
+INFO    2025-06-20 09:02:43,280d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:114 [d-8d8b4768-ns6aoiho] 收到云端下发数据: b'\n\x13d-8d8b4768-ns6aoiho\x12\x011 \xcc\xd7\xd6\xd6\xf82(\xcd\xe7\xd1\xaa\x8230\x018\x1eB\x14AKIAZOWLBZWLWXCNJM75J(x04OUdILtaafKq4U6XypMcr3YIPosGQcU0M/CqYxR\x1as3.us-west-1.amazonaws.comZ\tus-west-1b\tusvideo30j\x03aws'
+INFO    2025-06-20 09:02:43,281d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:117 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+objDevId: "d-8d8b4768-ns6aoiho"
+eventId: "1"
+zeroTm: 30
+TmZone: "AKIAZOWLBZWLWXCNJM75"
+encryptKey: "s3.us-west-1.amazonaws.com"
+
+INFO    2025-06-20 09:02:51,760d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:94 [d-8d8b4768-ns6aoiho] Received message on topic: device/general_dev_to_plat/devices/d-8d8b4768-ns6aoiho/response/requestId= 
+type: "ShadowGet"
+buff: "EhNkLThkOGI0NzY4LW5zNmFvaWhv"
+time: 1750381371558
+requestId: "d-8d8b4768-ns6aoiho"
+
+INFO    2025-06-20 09:02:51,760d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:101 [d-8d8b4768-ns6aoiho] 收到平台获取影子数据响应: 
+objDevId: "d-8d8b4768-ns6aoiho"
+
+INFO    2025-06-20 09:02:52,008d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:170 服务器响ntp反序列化后数据:{'deviceSendTime': 1750410168295, 'serverRecvTime': 1750381371129, 'serverSendTime': 1750381371805}
+INFO    2025-06-20 09:02:52,008d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:171 服务端unix时间: 1750366973323.5
+INFO    2025-06-20 09:03:32,131d:\PytestAutoApi\logs\info-2025-06-20.log:mqtt_main.py:22 初始化device
+INFO    2025-06-20 09:03:32,188d:\PytestAutoApi\logs\info-2025-06-20.log:mqtt_main.py:46 激活所有设备...
+INFO    2025-06-20 09:03:32,189d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:220 [d-8d8b4768-ns6aoiho] Activating...
+INFO    2025-06-20 09:03:32,190d:\PytestAutoApi\logs\info-2025-06-20.log:mqtt_client.py:39 Publishing to device/network/devices/d-8d8b4768-ns6aoiho/send/requestId=: b'\n\xa2\x02\n$62748007-4d72-11f0-96d3-ac50deed1590\x12$6274a386-4d72-11f0-ab63-ac50deed1590\x1a\x13d-8d8b4768-ns6aoiho"$6274a387-4d72-11f0-8416-ac50deed1590*\x13p-0c947c67-8ghjjvw32\x12uub197c66706beq0qcB\r192.168.0.200J\x08test_wykR\x06UTC+08r\x0edefault_socVerz\x0edefault_mcuVer\x82\x01\x13default_wirelessVer\x8a\x01\x02CN\x92\x01\x13default_serviceArea\x10\xdd\xfe\xf2\xd6\xf82\x1a\x0fdefault_authKey"\nrequestId='
+INFO    2025-06-20 09:03:32,664d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:109 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+type: "StoreBucket"
+buff: "ChNkLThkOGI0NzY4LW5zNmFvaWhvEgNwaWMaA2F3cyIUQUtJQVpPV0xCWldMV1hDTkpNNzUqKHgwNE9VZElMdGFhZktxNFU2WHlwTWNyM1lJUG9zR1FjVTBNL0NxWXg6GnMzLnVzLXdlc3QtMS5hbWF6b25hd3MuY29tQgl1cy13ZXN0LTFKCXVzdmlkZW8zMA=="
+time: 1750381412454
+requestId: "454-64b35468-3c4xvkq"
+
+INFO    2025-06-20 09:03:32,665d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:130 [d-8d8b4768-ns6aoiho] 收到平台下发StoreBucket: b'\n\x13d-8d8b4768-ns6aoiho\x12\x03pic\x1a\x03aws"\x14AKIAZOWLBZWLWXCNJM75*(x04OUdILtaafKq4U6XypMcr3YIPosGQcU0M/CqYx:\x1as3.us-west-1.amazonaws.comB\tus-west-1J\tusvideo30'
+INFO    2025-06-20 09:03:32,666d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:133 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+objDevId: "d-8d8b4768-ns6aoiho"
+eventId: "pic"
+etype: "aws"
+picUrl: "AKIAZOWLBZWLWXCNJM75"
+localfile: "x04OUdILtaafKq4U6XypMcr3YIPosGQcU0M/CqYx"
+TmZone: "us-west-1"
+
+INFO    2025-06-20 09:03:32,806d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:81 [d-8d8b4768-ns6aoiho] 网络激活响应: result: true
+
+INFO    2025-06-20 09:04:23,295d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:94 [d-8d8b4768-ns6aoiho] Received message on topic: device/general_dev_to_plat/devices/d-8d8b4768-ns6aoiho/response/requestId= 
+type: "ShadowGet"
+buff: "EhNkLThkOGI0NzY4LW5zNmFvaWhv"
+time: 1750381463093
+requestId: "d-8d8b4768-ns6aoiho"
+
+INFO    2025-06-20 09:04:23,295d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:101 [d-8d8b4768-ns6aoiho] 收到平台获取影子数据响应: 
+objDevId: "d-8d8b4768-ns6aoiho"
+
+INFO    2025-06-20 09:04:23,334d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:109 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+type: "CloudPackage"
+buff: "ChNkLThkOGI0NzY4LW5zNmFvaWhvEgExIK+B89b4Miiwke6qgjMwATgeQhRBS0lBWk9XTEJaV0xXWENOSk03NUooeDA0T1VkSUx0YWFmS3E0VTZYeXBNY3IzWUlQb3NHUWNVME0vQ3FZeFIaczMudXMtd2VzdC0xLmFtYXpvbmF3cy5jb21aCXVzLXdlc3QtMWIJdXN2aWRlbzMwagNhd3M="
+time: 1750381463133
+requestId: "133-97b35468-62wbnr3"
+
+INFO    2025-06-20 09:04:23,334d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:114 [d-8d8b4768-ns6aoiho] 收到云端下发数据: b'\n\x13d-8d8b4768-ns6aoiho\x12\x011 \xaf\x81\xf3\xd6\xf82(\xb0\x91\xee\xaa\x8230\x018\x1eB\x14AKIAZOWLBZWLWXCNJM75J(x04OUdILtaafKq4U6XypMcr3YIPosGQcU0M/CqYxR\x1as3.us-west-1.amazonaws.comZ\tus-west-1b\tusvideo30j\x03aws'
+INFO    2025-06-20 09:04:23,335d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:117 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+objDevId: "d-8d8b4768-ns6aoiho"
+eventId: "1"
+zeroTm: 30
+TmZone: "AKIAZOWLBZWLWXCNJM75"
+encryptKey: "s3.us-west-1.amazonaws.com"
+
+INFO    2025-06-20 09:04:24,008d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:170 服务器响ntp反序列化后数据:{'deviceSendTime': 1750410259492, 'serverRecvTime': 1750381462936, 'serverSendTime': 1750381463816}
+INFO    2025-06-20 09:04:24,008d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:171 服务端unix时间: 1750367065634.0

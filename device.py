@@ -8,9 +8,15 @@ from protobuf.protobuf_py import (
     ntpTime_pb2,
     generalBuffData_pb2,
     cmdPro_pb2,
+    shadowProSet_pb2,
+    checkModel_pb2,
+    devEventUp_pb2,
+    birdOssEvent_pb2,
 )
 from utils.logging_tool.log_control import INFO, ERROR, WARNING
 from mqtt_client import AsyncMqttClient
+import base64
+import json
 
 
 class TopicRouter:
@@ -53,7 +59,7 @@ class Device:
             self.handle_general_plat_to_dev_response,
         )
         self.router.add_route(
-            f"plat/commands/home/+/devices/{self.device_id}/send/*",
+            f"plat/commands/home/*/devices/{self.device_id}/send/*",
             self.handle_plat_commands_response,
         )
         self.router.add_route(
@@ -85,29 +91,61 @@ class Device:
         """自定义处理设备消息"""
         msg = generalBuffData_pb2.GeneralBuffData()
         msg.ParseFromString(payload)
-
         INFO.logger.info(
-            f"[{self.device_id}] Received message on topic: {topic}, payload: {payload}"
+            f"[{self.device_id}] Received message on topic: {topic} \n{msg}"
         )
+        if msg.type == "ShadowGet":
+            buff = base64.b64decode(msg.buff)
+            shadow_msg = shadowProSet_pb2.ShadowResponse()
+            shadow_msg.ParseFromString(buff)
+            INFO.logger.info(
+                f"[{self.device_id}] 收到平台获取影子数据响应: \n{shadow_msg}"
+            )
 
     def handle_general_plat_to_dev_response(self, topic: str, payload: bytes):
         """自定义处理平台消息"""
         msg = generalBuffData_pb2.GeneralBuffData()
         msg.ParseFromString(payload)
         INFO.logger.info(
-            f"[{self.device_id}] Received message on topic: {topic}, payload: {payload}"
+            f"[{self.device_id}] Received message on topic: {topic} \n{msg}"
         )
+        if msg.type == "CloudPackage":
+            buff = base64.b64decode(msg.buff)
+            INFO.logger.info(f"[{self.device_id}] 收到云端下发数据: {buff}")
+            buff_data = devEventUp_pb2.EventVo()
+            buff_data.ParseFromString(buff)
+            INFO.logger.info(
+                f"[{self.device_id}] Received message on topic: {topic} \n{buff_data}"
+            )
+        if msg.type == "StartPlay":
+            buff = base64.b64decode(msg.buff)
+            INFO.logger.info(f"[{self.device_id}] 收到平台下发开始播放指令: {buff}")
+            buff_data = checkModel_pb2.CheckModelRequest()
+            buff_data.ParseFromString(buff)
+            INFO.logger.info(
+                f"[{self.device_id}] Received message on topic: {topic} \n{buff_data}"
+            )
+        if msg.type == "StoreBucket":
+            buff = base64.b64decode(msg.buff)
+            INFO.logger.info(f"[{self.device_id}] 收到平台下发StoreBucket: {buff}")
+            buff_data = devEventUp_pb2.EventVo()
+            buff_data.ParseFromString(buff)
+            INFO.logger.info(
+                f"[{self.device_id}] Received message on topic: {topic} \n{buff_data}"
+            )
 
     def handle_plat_commands_response(self, topic: str, payload: bytes):
         """自定义处理平台命令响应"""
-
+        # msg = cmdPro_pb2.CmdProResponse()
+        # msg.ParseFromString(payload)
+        msg = cmdPro_pb2.CmdProRequest()
+        msg.ParseFromString(payload)
         INFO.logger.info(
-            f"[{self.device_id}] Received message on topic: {topic}, payload: {payload}"
+            f"[{self.device_id}] Received message on topic: {topic} \n{msg}"
         )
 
     def handle_plat_properties_get_response(self, topic: str, payload: bytes):
         """自定义处理平台属性获取响应"""
-
         INFO.logger.info(
             f"[{self.device_id}] Received message on topic: {topic}, payload: {payload}"
         )
@@ -166,7 +204,7 @@ class Device:
         request_protobuf.result = 1
         request_protobuf.objDevId = self.device_id
         request_protobuf.msg = "wyk test"
-        request_protobuf.productId = "p-379d8164-im60dioh"
+        request_protobuf.productId = self.product_id
         request_protobuf.optype = cmdPro_pb2.opType.Property
         request_protobuf.data.code = "basic_indicator"
         request_protobuf.data.type = cmdPro_pb2.modelType__pb2.ModelType.INTEGER

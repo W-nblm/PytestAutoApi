@@ -25,10 +25,10 @@ class AESUtils:
 if __name__ == '__main__':
     
     aes = AESUtils()
-    # data = "p6QuBDGAwUJpSYJmpuXh4pwi7e5IrAu630Qf+mQi4djPsteiOr6QDJgCbWPUptrtl9OR1ePHwXQ8+K2Scq5/8w=="
-    # key = "qSkAYaSj1SbdJblgx9+1747812443533"
-    data="zIrS7SszBVTqfDwje3Xv6AjPWjIBq83Y14AEyE5fTOIPSBG1t/MdrY/LZJFPIGSS\n"
-    key="60a55bfb1c7544849c+1749105890841"
+    data = "p6QuBDGAwUJpSYJmpuXh4pwi7e5IrAu630Qf+mQi4djPsteiOr6QDJgCbWPUptrtl9OR1ePHwXQ8+K2Scq5/8w=="
+    key = "qSkAYaSj1SbdJblgx9+1747812443533"
+    # data="CAESE2QtOGQ4YjQ3NjgtbnM2YW9paG8="
+    # key="103-98805268-t8252pg+1750266133590"
     # encrypted_data = aes.encrypt(data, key)
     # print(encrypted_data)
     decrypted_data = aes.decrypt(data, key)
