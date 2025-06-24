@@ -97,3 +97,46 @@ encryptKey: "s3.us-west-1.amazonaws.com"
 
 INFO    2025-06-20 09:04:24,008d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:170 服务器响ntp反序列化后数据:{'deviceSendTime': 1750410259492, 'serverRecvTime': 1750381462936, 'serverSendTime': 1750381463816}
 INFO    2025-06-20 09:04:24,008d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:171 服务端unix时间: 1750367065634.0
+INFO    2025-06-20 09:11:24,161d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:170 服务器响ntp反序列化后数据:{'deviceSendTime': 1750410680853, 'serverRecvTime': 1750381883881, 'serverSendTime': 1750381883970}
+INFO    2025-06-20 09:11:24,161d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:171 服务端unix时间: 1750367485573.0
+INFO    2025-06-20 09:11:24,399d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:94 [d-8d8b4768-ns6aoiho] Received message on topic: device/general_dev_to_plat/devices/d-8d8b4768-ns6aoiho/response/requestId= 
+type: "ShadowGet"
+buff: "EhNkLThkOGI0NzY4LW5zNmFvaWhv"
+time: 1750381884216
+requestId: "d-8d8b4768-ns6aoiho"
+
+INFO    2025-06-20 09:11:24,399d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:101 [d-8d8b4768-ns6aoiho] 收到平台获取影子数据响应: 
+objDevId: "d-8d8b4768-ns6aoiho"
+
+INFO    2025-06-20 09:11:26,844d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:109 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+type: "StartPlay"
+buff: "ChNkLThkOGI0NzY4LW5zNmFvaWhvEMT5j9f4Mg=="
+time: 1750381886660
+requestId: "660-3eb55468-qhnlx9z"
+
+INFO    2025-06-20 09:11:26,844d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:122 [d-8d8b4768-ns6aoiho] 收到平台下发开始播放指令: b'\n\x13d-8d8b4768-ns6aoiho\x10\xc4\xf9\x8f\xd7\xf82'
+INFO    2025-06-20 09:11:26,844d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:125 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+objDevId: "d-8d8b4768-ns6aoiho"
+time: 1750381886660
+
+INFO    2025-06-20 09:11:43,269d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:109 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+type: "StartPlay"
+buff: "ChNkLThkOGI0NzY4LW5zNmFvaWhvEOv5kNf4Mg=="
+time: 1750381903083
+requestId: "83-4fb55468-nl87k8m"
+
+INFO    2025-06-20 09:11:43,269d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:122 [d-8d8b4768-ns6aoiho] 收到平台下发开始播放指令: b'\n\x13d-8d8b4768-ns6aoiho\x10\xeb\xf9\x90\xd7\xf82'
+INFO    2025-06-20 09:11:43,269d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:125 [d-8d8b4768-ns6aoiho] Received message on topic: plat/general_plat_to_dev/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+objDevId: "d-8d8b4768-ns6aoiho"
+time: 1750381903083
+
+INFO    2025-06-20 09:11:51,368d:\PytestAutoApi\logs\info-2025-06-20.log:device.py:143 [d-8d8b4768-ns6aoiho] Received message on topic: plat/commands/home/-1/devices/d-8d8b4768-ns6aoiho/send/requestId= 
+objDevId: "d-8d8b4768-ns6aoiho"
+data {
+  code: "basic_osd"
+  value: "1"
+}
+authKey: "uub197c66706beq0qc"
+productId: "p-0c947c67-8ghjjvw3"
+requestId: "187-57b55468-8odmkdz"
+
