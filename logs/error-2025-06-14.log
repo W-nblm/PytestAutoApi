@@ -1,1 +1,0 @@
-ERROR   2025-06-14 11:12:10,938d:\PytestAutoApi\logs\error-2025-06-14.log:mysql_tool.py:51 Failed to execute SQL: (1054, "Unknown column 'uub197c66706beq0qc' in 'where clause'")

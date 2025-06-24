@@ -1,1 +1,0 @@
-ERROR   2025-06-13 17:44:53,615d:\PytestAutoApi\logs\error-2025-06-13.log:mysql_tool.py:51 Failed to execute SQL: (1146, "Table 'lzyiot.app_user' doesn't exist")
