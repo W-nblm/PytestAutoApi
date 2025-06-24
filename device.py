@@ -70,6 +70,10 @@ class Device:
             f"device/ntp/devices/{self.device_id}/response/*",
             self.handle_ntp_response,
         )
+        self.router.add_route(
+            f"plat/properties/home/*/devices/{self.device_id}/report",
+            self.handle_plat_properties_report,
+        )
         # 更多 topic 和 handler 可以继续注册
 
     def handle_message(self, topic: str, payload: bytes):
@@ -150,6 +154,18 @@ class Device:
             f"[{self.device_id}] Received message on topic: {topic}, payload: {payload}"
         )
 
+    def handle_plat_properties_report(self, topic: str, payload: bytes):
+        """自定义处理平台属性上报"""
+        INFO.logger.info(
+            f"[{self.device_id}] Received message on topic: {topic}, payload: {payload}"
+        )
+
+        msg = cmdPro_pb2.CmdProResponse()
+        msg.ParseFromString(payload)
+        INFO.logger.info(
+            f"[{self.device_id}] Received message on topic: {topic} \n{msg}"
+        )
+
     def handle_ntp_response(self, topic: str, payload: bytes):
         """自定义处理ntp响应"""
         # 等待接收绑定设备的推送消息、反序列化收到推送消息
@@ -179,6 +195,7 @@ class Device:
             f"device/ntp/devices/{self.device_id}/response/+",
             f"plat/commands/home/+/devices/{self.device_id}/send/+",
             f"plat/properties_get/home/+/devices/{self.device_id}/send/+",
+            f"plat/properties/home/+/devices/{self.device_id}/report",
         ]
 
     async def send_heartbeat(self):
@@ -188,7 +205,7 @@ class Device:
         msg.objDevId = self.device_id
         msg.status = 1
         msg.time = int(time.time() * 1000)
-        msg.SerializeToString()
+        msg = msg.SerializeToString()
         INFO.logger.info(f"[{self.device_id}] Sending heartbeat message: {msg}")
         await self.mqtt.publish(topic, msg)
 

@@ -35,7 +35,13 @@ async def main():
                 product_id="p-0c947c67-8ghjjvw3",
                 uid="uub197c66706beq0qc",
                 mqtt_client=mqtt_client,
-            )
+            ),
+            Device(
+                device_id="wyk123456",
+                product_id="p-0c947c67-8ghjjvw3",
+                uid="uub197c66706beq0qc",
+                mqtt_client=mqtt_client,
+            ),
         ]
         all_topics = []
         for device in devices:
@@ -43,9 +49,9 @@ async def main():
         await mqtt_client.subscribe_many(all_topics)
         # ✅ 并发激活所有设备
 
-        INFO.logger.info("激活所有设备...")
-        await asyncio.gather(*(device.activate() for device in devices))
-
+        # INFO.logger.info("激活所有设备...")
+        # await asyncio.gather(*(device.activate() for device in devices))
+        # await asyncio.gather(*(device.run_keeplive_loop() for device in devices))
         # 监听消息流
         async for message in mqtt_client.get_message_stream():
             topic_str = str(message.topic)
@@ -53,7 +59,7 @@ async def main():
             for device in devices:
                 if device.device_id in topic_str:
                     device.handle_message(topic_str, payload)
-        
+
         # 停止所有设备
         await asyncio.gather(*(device.stop() for device in devices))
 

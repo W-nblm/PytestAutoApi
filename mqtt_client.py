@@ -48,5 +48,5 @@ class AsyncMqttClient:
 
     async def subscribe_many(self, topics: list[str]):
         for topic in topics:
-            print(f"Subscribing to {topic}")
+            INFO.logger.info(f"Subscribing to {topic}")
             await self.client.subscribe(topic)
