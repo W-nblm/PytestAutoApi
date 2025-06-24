@@ -1,6 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Fri Jun 06 11:10:22 CST 2025","Fri Jun 06 11:10:23 CST 2025","131","test_case.Wobirdy.Collect","test_query_bird_album_page","TestAlbumPage","","","test_album_page[我的收藏-云相册-仅分页参数]",""
-"passed","Fri Jun 06 11:10:22 CST 2025","Fri Jun 06 11:10:22 CST 2025","192","test_case.Wobirdy.Collect","test_query_bird_album_page","TestAlbumPage","","","test_album_page[我的收藏-云相册-正常收藏+多类型]",""
-"passed","Fri Jun 06 11:10:22 CST 2025","Fri Jun 06 11:10:22 CST 2025","115","test_case.Wobirdy.Collect","test_query_bird_album_page","TestAlbumPage","","","test_album_page[我的收藏-云相册-未收藏+类型bird]",""
-"failed","Fri Jun 06 11:10:22 CST 2025","Fri Jun 06 11:10:22 CST 2025","55","test_case.Wobirdy.Collect","test_query_bird_album_page","TestAlbumPage","","","test_album_page[我的收藏-云相册-分页参数负数]",""
-"passed","Fri Jun 06 11:10:22 CST 2025","Fri Jun 06 11:10:22 CST 2025","144","test_case.Wobirdy.Collect","test_query_bird_album_page","TestAlbumPage","","","test_album_page[我的收藏-云相册-排序字段为空（默认）]",""
