@@ -10,58 +10,39 @@ import asyncio
 import sys
 from mqtt_client import AsyncMqttClient
 from device import Device
+from device_manager import DeviceManager
 
 if sys.platform.startswith("win"):
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
 async def main():
+    manager = DeviceManager()
+    devices = [
+        {
+            "device_id": "d-8d8b4768-ns6aoiho",
+            "product_id": "p-0c947c67-8ghjjvw3",
+            "uid": "uub197c66706beq0qc",
+            "activate": False,
+            "start_tasks": True,
+        },
+        {
+            "device_id": "wyk123456",
+            "product_id": "p-0c947c67-8ghjjvw3",
+            "uid": "uub197c66706beq0qc",
+            "activate": False,
+            "start_tasks": True,
+        },
+    ]
+    # 创建多个设备并添加到管理器中
+    await manager.start(device_configs=devices)
 
-    async with AsyncMqttClient() as mqtt_client:
-        # 初始化device
-        INFO.logger.info("初始化device")
-        # devices = [
-        #     Device(
-        #         device_id=f"dev{i:03d}",
-        #         product_id="p-0c947c67-8ghjjvw3",
-        #         uid="uub197c66706beq0qc",
-        #         mqtt_client=mqtt_client,
-        #     )
-        #     for i in range(2)
-        # ]
-        devices = [
-            Device(
-                device_id="d-8d8b4768-ns6aoiho",
-                product_id="p-0c947c67-8ghjjvw3",
-                uid="uub197c66706beq0qc",
-                mqtt_client=mqtt_client,
-            ),
-            Device(
-                device_id="wyk123456",
-                product_id="p-0c947c67-8ghjjvw3",
-                uid="uub197c66706beq0qc",
-                mqtt_client=mqtt_client,
-            ),
-        ]
-        all_topics = []
-        for device in devices:
-            all_topics.extend(device.get_topics())
-        await mqtt_client.subscribe_many(all_topics)
-        # ✅ 并发激活所有设备
-
-        # INFO.logger.info("激活所有设备...")
-        # await asyncio.gather(*(device.activate() for device in devices))
-        # await asyncio.gather(*(device.run_keeplive_loop() for device in devices))
-        # 监听消息流
-        async for message in mqtt_client.get_message_stream():
-            topic_str = str(message.topic)
-            payload = message.payload
-            for device in devices:
-                if device.device_id in topic_str:
-                    device.handle_message(topic_str, payload)
-
-        # 停止所有设备
-        await asyncio.gather(*(device.stop() for device in devices))
+    try:
+        while True:
+            await asyncio.sleep(60)
+            manager.list_status()
+    except (KeyboardInterrupt, asyncio.CancelledError):
+        await manager.stop_all()
 
 
 if __name__ == "__main__":
