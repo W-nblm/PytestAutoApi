@@ -28,7 +28,7 @@ class DeviceManager:
 
         self._mqtt_listener_task = asyncio.create_task(self._mqtt_message_listener())
 
-    async def add_device(self, device, activate=True, start_tasks=True):
+    async def add_device(self, device: Device, activate=True, start_tasks=True):
         """添加设备，可控制是否激活和启动后台任务"""
         self.devices.append(device)
         self.tasks[device.device_id] = []
@@ -49,6 +49,7 @@ class DeviceManager:
 
         if start_tasks:
             try:
+                INFO.logger.info(f"[{device.device_id}] 启动心跳/上报任务")
                 t1 = asyncio.create_task(device.run_keeplive_loop())
                 t2 = asyncio.create_task(device.property_report_loop())
                 self.tasks[device.device_id].extend([t1, t2])
@@ -79,16 +80,6 @@ class DeviceManager:
 
         except Exception as e:
             ERROR.logger.exception(f"MQTT 消息监听出错: {e}")
-
-    async def activate_all(self):
-        """激活所有设备"""
-        for device in self.devices:
-            INFO.logger.info(f"[{device.device_id}] 开始激活")
-            try:
-                await device.activate()
-                INFO.logger.info(f"[{device.device_id}] 激活完成")
-            except Exception as e:
-                ERROR.logger.error(f"[{device.device_id}] 激活失败: {e}")
 
     async def start_all(self):
         """启动所有设备的后台任务"""

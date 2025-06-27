@@ -63,3 +63,22 @@
 #     #     exit(1)
 #     # sdfsd
 #     # update_record(dns_name, zone_id, token, dns_id, ip)
+import base64
+
+auth_key = "1+kerOsP0wPDscT3CFVs1+GirhJxuK5SfqxxB08HdtxWcZ6zYRfTXeO5pTqhOPFL"
+try:
+    decoded = base64.b64decode(auth_key)
+    print(decoded)
+except Exception as e:
+    print(f"解码失败：{e}")
+    
+from Crypto.Cipher import DES
+import base64
+
+authKey = "1+kerOsP0wPDscT3CFVs1+GirhJxuK5SfqxxB08HdtxWcZ6zYRfTXeO5pTqhOPFL"
+ciphertext = base64.b64decode(authKey)
+
+key = b"Property"  # 必须是 8 字节 DES 密钥
+cipher = DES.new(key, DES.MODE_ECB)
+plaintext = cipher.decrypt(ciphertext)
+print(plaintext)

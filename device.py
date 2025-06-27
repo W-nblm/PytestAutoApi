@@ -265,8 +265,4 @@ class Device:
         )
         await self.mqtt.publish(topic, msg.SerializeToString())
 
-    async def stop(self):
-        for task in self.tasks:
-            task.cancel()
-        await asyncio.gather(*self.tasks, return_exceptions=True)
-        INFO.logger.info(f"[{self.device_id}] 已停止任务")
+
