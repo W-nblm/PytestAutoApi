@@ -1,5 +1,12 @@
 pipeline {
     agent any
+    parameters {
+        choice(
+            name: 'PYTHON_SCRIPT',
+            choices: ['redis_main.py', 'main.py'],
+            description: '请选择要运行的 Python 脚本'
+        )
+    }
 
     environment {
         VENV_PATH = 'venv'
@@ -57,12 +64,12 @@ pipeline {
             }
         }
 
-        stage('执行 Python 脚本') {
+        stage('执行 接口自动化Python 脚本') {
             steps {
-                echo "🚀 执行 redis_main.py"
+                echo "🚀 执行 main.py"
                 sh """
                     . ${VENV_PATH}/bin/activate && \
-                    python redis_main.py
+                    python ${params.PYTHON_SCRIPT}
                 """
             }
         }
