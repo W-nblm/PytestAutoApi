@@ -15,32 +15,36 @@ wobirdy_bird_ai_album_by_image_01:
     Platform: "apple"
   # Content-Type: multipart/form-data;
   # 请求的数据，是 params 还是 json、或者file、data
-  requestType: None
+  requestType: json
   # 是否执行，空或者 true 都会执行
   is_run:
   data:
-    eventId: ""
-    ownerId: ""
-    devId: ""
+    eventId: $cache{collect_event_id}
+    ownerId: $cache(userId)
+    devId: $cache(collect_event_devId)
     picHdUrl: ""
-    picUrl: ""
+    picUrl: $cache(collect_event_picUrl)
     # 是否有依赖业务，为空或者false则表示没有
   dependence_case:
     False
     # 依赖数据库中的数据，dependent_type=sqlData时,数据来源为setup_sql的查询结果
   dependence_case_data:
-    - case_id: self
+    - case_id: wobirdy_query_bird_album_page_01
       dependent_data:
-        - dependent_type: sqlData
-          jsonpath: $.banner_id
-          # set_cache: code_01_uuid
-          replace_key: $url_params{banner_id}
+        - dependent_type: response
+          jsonpath: $.data.birdAlbumAndWikiInfoPage.rows[1].deviceBirdAlbumSaveVercollapVo.eventId
+          set_cache: collect_event_id
+    - case_id: wobirdy_query_bird_album_page_01
+      dependent_data:
+        - dependent_type: response
+          jsonpath: $.data.birdAlbumAndWikiInfoPage.rows[1].deviceBirdAlbumSaveVercollapVo.picUrl
+          set_cache: collect_event_picUrl
 
-        - dependent_type: sqlData
-          jsonpath: $.banner_id
-          replace_key: $.data.paramData.bannerName
-          # set_cache: code_01_uuid
-
+    - case_id: wobirdy_query_bird_album_page_01
+      dependent_data:
+        - dependent_type: response
+          jsonpath: $.data.birdAlbumAndWikiInfoPage.rows[1].deviceBirdAlbumSaveVercollapVo.devId
+          set_cache: collect_event_devId
   assert:
     # 断言接口状态码,AssertType=SQL时与sql查询结果进行断言
     code:

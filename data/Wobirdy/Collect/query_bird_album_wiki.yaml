@@ -19,23 +19,18 @@ wobirdy_query_bird_album_capture_wiki_01:
   # 是否执行，空或者 true 都会执行
   is_run:
   data:
-    eventId: ""
+    eventId: $cache{collect_event_wiki_id}
     # 是否有依赖业务，为空或者false则表示没有
   dependence_case:
     False
     # 依赖数据库中的数据，dependent_type=sqlData时,数据来源为setup_sql的查询结果
   dependence_case_data:
-    - case_id: self
+    - case_id: wobirdy_query_bird_album_page_01
       dependent_data:
-        - dependent_type: sqlData
-          jsonpath: $.banner_id
-          # set_cache: code_01_uuid
-          replace_key: $url_params{banner_id}
-
-        - dependent_type: sqlData
-          jsonpath: $.banner_id
-          replace_key: $.data.paramData.bannerName
-          # set_cache: code_01_uuid
+        - dependent_type: response
+          jsonpath: $.data.birdAlbumAndWikiInfoPage.rows[0].deviceBirdAlbumSaveVercollapVo.eventId
+          set_cache: collect_event_wiki_id
+          # replace_key: $url_params{banner_id}
 
   assert:
     # 断言接口状态码,AssertType=SQL时与sql查询结果进行断言
