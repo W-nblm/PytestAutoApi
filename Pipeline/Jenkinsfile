@@ -3,7 +3,7 @@ pipeline {
     parameters {
         choice(
             name: 'PYTHON_SCRIPT',
-            choices: ['redis_main.py', 'main.py'],
+            choices: ['main.py','redis_main.py'],
             description: '请选择要运行的 Python 脚本'
         )
     }

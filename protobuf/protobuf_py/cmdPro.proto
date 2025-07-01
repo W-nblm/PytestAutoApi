@@ -1,0 +1,82 @@
+syntax="proto3";
+// 指定模板类的包路径
+option java_package = "com.szlongzy.common.protobuf.dto";
+// 指定模板类的名称，名称必须是有实际业务意义的
+option java_outer_classname = "CmdPropVo";
+import "modelType.proto";
+
+
+/* 单个命令和属性请求（【1.2】，【1.3】请求）*/
+message CmdProRequest{
+
+  // 实际目标设备
+  string  objDevId = 1;
+  //请求命令离线
+  opType optype=2;
+  //实际请求
+  dataVo data = 3;
+  string authKey =4;
+  //产品id,必填
+  string productId =5;
+  string  requestId=6;
+}
+
+/* 【1.2】，【1.3】返回结果和【1.4】设备上传*/
+message CmdProResponse{
+  // 回复
+  bool  result = 1;
+  // 实际目标设备
+  string  objDevId = 2;
+  opType optype=3;
+  dataVo data = 4;
+  // 错误信息
+  string  msg = 5;
+  string authKey =6;
+  //产品id
+  string productId =7;
+
+  string  requestId=8;
+}
+
+
+
+/* 单个命令和属性共用数据结构体*/
+message dataVo{
+  // 请求编码
+  string  code = 1;
+  /**Boolean, Enum, Integer,float,String,Json, Raw
+  //
+  **/
+  ModelType type = 2;
+  // 实际执行命令指，字符型，命令是bool传true/false或者0/1的字符串,int传int字符串，float传float字符串，枚举传枚举对应命令值
+  string value = 3;
+}
+
+/*
+enum ModelType //功能点类型
+{
+  //Boolean, Enum, Integer,String,Json, Raw
+  BOOLEAN = 0; //proto3版本中，首成员必须为0，成员不应有相同的值
+  ENUM = 1;
+  INTEGER = 2;
+  FLOAT = 3;
+  STRING = 4;
+  JSON = 5;
+  RAW = 6;
+}
+*/
+
+
+
+
+
+enum opType //功能点类型
+{
+  //命令
+  Command = 0; //
+  //属性
+  Property = 1;
+}
+
+
+

@@ -1,0 +1,18 @@
+syntax="proto3";
+option java_package = "com.szlongzy.common.protobuf.dto";
+// 指定模板类的包路径
+
+option java_outer_classname = "ModelTypeEnum";
+
+enum ModelType //功能点类型
+{
+  //Boolean, Enum, Integer,String,Json, Raw
+  BOOLEAN = 0; //proto3版本中，首成员必须为0，成员不应有相同的值
+  ENUM = 1;
+  INTEGER = 2;
+  FLOAT = 3;
+  STRING = 4;
+  JSON = 5;
+  RAW = 6;
+}
+

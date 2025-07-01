@@ -1,0 +1,24 @@
+syntax="proto3";
+// 指定模板类的包路径
+option java_package = "com.szlongzy.common.protobuf.dto";
+// 指定模板类的名称，名称必须是有实际业务意义的
+option java_outer_classname = "NtpTime";
+
+/* ntp对时返回*/
+message NtpRespose{
+  // 设备发时
+   int64 deviceSendTime = 1;
+  // 服务器接收时间
+   int64 serverRecvTime = 2;
+  // 服务器发送时间
+   int64 serverSendTime = 3;
+}
+
+//对时请求
+message NtpRequest{
+   // 设备发送时间
+   int64 deviceSendTime = 1;
+
+}
+
+

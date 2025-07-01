@@ -1,0 +1,62 @@
+syntax="proto3";
+// 指定模板类的包路径
+option java_package = "com.szlongzy.common.protobuf.dto";
+// 指定模板类的名称，名称必须是有实际业务意义的
+option java_outer_classname = "ShadowPropSetVo";
+import "modelType.proto";
+import "cmdPro.proto";
+
+
+/* 单个命令和属性*/
+message ShadowRequest{
+
+  // 实际目标设备
+  string  objDevId = 1;
+  //备用
+  string authKey =2;
+}
+
+/* 单个命令和属性*/
+message ShadowResponse{
+  // 回复
+  bool  result = 1;
+  // 实际目标设备
+  string  objDevId = 2;
+  // 错误信息
+  string  msg = 3;
+  //备用
+  string authKey =4;
+ // repeated dataVo data = 5;
+//  dataVo List<dataVo> json格式
+  //例如[{"code": "alarm_switch", "type": 0 ,"value":"1"}]
+  string jsonData = 5;
+
+}
+
+
+
+
+/* 单个命令和属性共用数据结构体*/
+
+/*
+
+
+*/
+
+
+/*
+
+enum ModelType //功能点类型
+{
+  //Boolean, Enum, Integer,String,Json, Raw
+  BOOLEAN = 0; //proto3版本中，首成员必须为0，成员不应有相同的值
+  ENUM = 1;
+  INTEGER = 2;
+  FLOAT = 3;
+  STRING = 4;
+  JSON = 5;
+  RAW = 6;
+}
+
+*/
+

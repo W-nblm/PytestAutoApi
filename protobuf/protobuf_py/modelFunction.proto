@@ -1,0 +1,93 @@
+syntax = "proto3";
+//import "google/protobuf/any.proto";
+// 指定模板类的包路径
+option java_package = "com.szlongzy.common.protobuf.dto";
+// 指定模板类的名称，名称必须是有实际业务意义的
+option java_outer_classname = "ModelFunctionVo";
+import "modelType.proto";
+
+/***
+ 功能模型
+ */
+message ModelFunction {
+  /***
+   功能码
+   */
+  string  code = 1;
+  /***
+   英文名称
+ */
+  string egName = 2;
+  /***
+  中文名称
+ */
+  string cnName = 3;
+  /***
+   类型
+ */
+  ModelType type = 4;
+  /***
+ 实际功能值
+ */
+  int32  db = 5;
+  /*是否保存日志*/
+  bool saveLog = 6;
+  BoolFunc boolfunc = 7;
+  FloatFunc floatfunc = 8;
+  IntFunc intfunc = 9;
+  EnumFunc enumfunc = 10;
+  StringJsonFunc strjsonfunc = 11;
+}
+
+
+message BoolFunc{
+  /* 枚举功能*/
+  repeated BoolVo  list = 1;
+
+  message BoolVo{
+    //具体值
+    bool value = 1;
+    //功能说明
+    string readme = 2;
+  }
+}
+
+message EnumFunc{
+  /* 枚举功能*/
+  repeated RangeVo  range = 1;
+
+  message RangeVo{
+    //具体值
+    string value = 1;
+    //功能说明
+    string readme = 2;
+  }
+}
+
+message IntFunc {
+  // 设备发时
+  string  unit = 1;
+  int32 min = 2;
+  int32 max = 3;
+  int32 scale = 4;
+  int32 step = 5;
+}
+
+message FloatFunc{
+  // 设备发时
+  string  unit = 1;
+  double min = 2;
+  double max = 3;
+  double scale = 4;
+  double step = 5;
+  int32 bit = 6;
+}
+
+
+message StringJsonFunc{
+  // json
+  string  value = 1;
+  string  readme = 2;
+}
+
+

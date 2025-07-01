@@ -1,5 +1,6 @@
 import glob
 import os
+import shutil
 import subprocess
 import json
 import importlib.util
@@ -21,9 +22,9 @@ def delete_files(*folder_path):
                 else:
                     try:
                         os.remove(file)
-                        print(f"Deleted: {file}")
+                        print(f"✅ Deleted: {file}")
                     except Exception as e:
-                        print(f"Failed to delete {file}: {e}")
+                        print(f"❌ Failed to delete {file}: {e}")
 
 
 def compile_proto_files():
@@ -37,6 +38,7 @@ def compile_proto_files():
     json_folder = os.path.join(
         r"{}\protobuf_json".format(os.path.dirname(os.path.abspath(__file__)))
     )
+
     # 清空编译的文件
     delete_files(output_folder, json_folder)
 
@@ -47,23 +49,30 @@ def compile_proto_files():
             f.write(
                 "# This file is required for Python to recognize the folder as a module"
             )
-            print(f"Created: {os.path.join(output_folder, '__init__.py')}")
+            print(f"✅ Created: {os.path.join(output_folder, '__init__.py')}")
+
+    # 拷贝一份proto文件到输出目录
+    for file in os.listdir(proto_folder):
+        if file.endswith(".proto"):
+            src = os.path.join(proto_folder, file)
+            dst = os.path.join(output_folder, file)
+            shutil.copyfile(src, dst)
+            print(f"✅ Copied: {file} -> {dst}")
 
     # 遍历proto_folder中的所有文件
-    for filename in os.listdir(proto_folder):
+    for filename in os.listdir(output_folder):
         if filename.endswith(".proto"):
-            proto_file = os.path.join(proto_folder, filename)
+            # proto_file = os.path.join(output_folder, filename)
             # 调用protoc命令来生成Python文件和描述符文件
             command = [
                 "protoc",
-                f"--python_out={output_folder}",
-                f"--proto_path={proto_folder}",
-                f"--descriptor_set_out={os.path.join(output_folder, filename + '.pb')}",
-                proto_file,
+                f"--python_out=.",
+                f"--proto_path=.",
+                f"--descriptor_set_out={filename}.pb",
+                filename,
             ]
-            subprocess.run(command, check=True)
-
-            print(f"Compiled {filename} to {output_folder}")
+            subprocess.run(command, check=True, cwd=output_folder)
+            print(f"✅ Compiled {filename} to {output_folder}")
 
 
 def parse_descriptor(descriptor_path):
@@ -134,7 +143,7 @@ def proto_to_json(output_folder):
             )
             with open(json_output_path, "w") as json_file:
                 json.dump(json_data_all_messages, json_file, indent=2)
-            print(f"Generated JSON file: {json_output_path}")
+            print(f"✅ Generated JSON file: {json_output_path}")
 
 
 if __name__ == "__main__":

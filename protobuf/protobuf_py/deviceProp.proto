@@ -1,0 +1,15 @@
+syntax="proto3";
+option java_package = "com.szlongzy.common.protobuf.dto";
+
+option java_outer_classname = "PropVo";
+import "modelType.proto";
+
+// 属性
+message PropDataVo{
+   ModelType type = 1;
+  // 实际值
+   string value = 2;
+  // 命令回复实际
+   int64 time = 3;
+
+}

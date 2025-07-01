@@ -1,0 +1,85 @@
+syntax="proto3";
+// 配网数据结构
+option java_package = "com.szlongzy.common.protobuf.dto";
+// 指定模板类的名称，名称必须是有实际业务意义的
+option java_outer_classname = "AssignNetVo";
+
+
+/* 配网命令*/
+message AssignNetRequest{
+  // 实际目标设备详细
+  DeviceInfo device =1;
+  int64  time=2;
+  //备用验证字段
+  string authKey =3;
+
+  string  requestId=4;
+
+}
+
+/* 配网返回数据*/
+message AssignNetResponse{
+  // 返回结果是否成功
+  bool  result = 1;
+  // 错误信息
+  string  msg = 2;
+  //备用验证字段
+  string authKey =3;
+  string  requestId=4;
+}
+
+
+
+/* homeId	必选	如果没有传-1；
+deviceId	必选	String	设备id
+uuid	必选	String	设备uuid
+productId	必选	String	产品id
+uid	可选	String	App用户id
+ipaddr	可选	String	Ip地址
+devName	可选	String	设备名称
+timezone	可选	String	设备时区，例如Asia/Shanghai、America/New_York
+lat	可选	Double	维度
+lon	可选	Double	精度
+bv	String	String	固件版本
+			*/
+message DeviceInfo{
+  //任务id ，app提供
+  string  taskId=1;
+  // 家庭id非必须
+  string  homeId = 2;
+  //设备id
+  string  deviceId = 3;
+  //设备uuid
+  string  uuid = 4;
+  //产品id
+  string  productId = 5;
+  //用户id
+  string  uid = 6;
+  //app大版本id，
+  string  appId = 7;
+  //ip地址非必须
+  string  ipaddr = 8;
+  //设备名称非必须
+  string  devName = 9;
+  //时区
+  string  timezone = 10;
+  //经度非必须
+  double lat = 11 ;
+  //维度非必须
+  double lon = 12;
+  //通用固件版本
+  string fmvVer = 13;
+  //sco固件版本
+  string socVer = 14;
+  //mcu固件版本
+  string mcuVer = 15;
+  //无线固件版本
+  string wirelessVer = 16;
+  //语言编码CN,EN，用于多语言
+  string language = 17;
+  //服务区域
+  string serviceArea = 18;
+  //非必须
+  string ipclicenseId= 19;
+
+}

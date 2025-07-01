@@ -1,0 +1,15 @@
+syntax="proto3";
+//import "google/protobuf/any.proto";
+// 指定模板类的包路径
+option java_package = "com.szlongzy.common.protobuf.dto";
+option java_outer_classname = "ProductModelVo";
+import "modelFunction.proto";
+
+
+message ProductModel {
+
+  ModelFunction  modelFunc=1;
+  bool  up = 2;
+  bool  down =3;
+  bool  isCustom=4;
+}
