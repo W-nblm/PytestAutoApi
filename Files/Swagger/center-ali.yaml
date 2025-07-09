@@ -1,0 +1,6901 @@
+openapi: 3.0.1
+info:
+  title: 标题：iot-data-center后台管理系统_接口文档
+  description: 描述：用于管理集团旗下公司的人员信息,具体包括XXX,XXX模块...
+  contact:
+    name: factory
+    url: '111'
+    email: xxx@163.com
+  version: '版本号: ${iot-factory-test-tool.version}'
+servers:
+- url: http://47.107.113.31
+  description: Generated server url
+security:
+- apiKey: []
+tags:
+- name: 代码生成 操作处理
+  description: 代码生成 操作处理
+- name: 用户信息
+  description: 用户信息
+- name: 个人信息 业务处理
+  description: 个人信息 业务处理
+- name: 角色信息
+  description: 角色信息
+- name: 岗位信息操作处理
+  description: 岗位信息操作处理
+- name: 对象存储配置
+  description: 对象存储配置
+- name: 公告 信息操作处理
+  description: 公告 信息操作处理
+- name: 菜单信息
+  description: 菜单信息
+- name: 数据字典信息
+  description: 数据字典信息
+- name: 部门信息
+  description: 部门信息
+- name: 参数配置 信息操作处理
+  description: 参数配置 信息操作处理
+- name: 测试树表Controller
+  description: 测试树表Controller
+- name: 测试单表Controller
+  description: 测试单表Controller
+- name: 登录验证
+  description: 登录验证
+- name: 文件上传 控制层
+  description: 文件上传 控制层
+- name: swagger3 用法示例
+  description: swagger3 用法示例
+- name: 注册验证
+  description: 注册验证
+- name: app扫描配网 接口
+  description: app扫描配网 接口
+- name: 操作日志记录
+  description: 操作日志记录
+- name: 系统访问记录
+  description: 系统访问记录
+- name: 测试Excel功能
+  description: 测试Excel功能
+- name: 测试批量方法
+  description: 测试批量方法
+- name: api 接口
+  description: api 接口
+- name: 在线用户监控
+  description: 在线用户监控
+- name: 缓存监控
+  description: 缓存监控
+- name: 短信演示案例
+  description: "短信演示案例\n 请先阅读文档 否则无法使用"
+- name: 测试数据脱敏控制器
+  description: "测试数据脱敏控制器\n <p>\n 默认管理员不过滤\n 需自行根据业务重写实现"
+- name: 测试分布式锁的样例
+  description: 测试分布式锁的样例
+- name: Redis 发布订阅 演示案例
+  description: Redis 发布订阅 演示案例
+- name: 测试分布式限流样例
+  description: 测试分布式限流样例
+- name: 优先队列 演示案例
+  description: "优先队列 演示案例\n <p>\n 轻量级队列 重量级数据量 请使用 MQ\n <p>\n 集群测试通过 同一个消息只会被消费一次\
+    \ 做好事务补偿\n 集群测试流程 在其中一台发送数据 两端分别调用获取接口 一次获取一条"
+- name: 延迟队列 演示案例
+  description: "延迟队列 演示案例\n <p>\n 轻量级队列 重量级数据量 请使用 MQ\n 例如: 创建订单30分钟后过期处理\n <p>\n\
+    \ 集群测试通过 同一个数据只会被消费一次 做好事务补偿\n 集群测试流程 两台集群分别开启订阅 在其中一台发送数据 观察接收消息的规律"
+- name: 有界队列 演示案例
+  description: "有界队列 演示案例\n <p>\n 轻量级队列 重量级数据量 请使用 MQ\n <p>\n 集群测试通过 同一个数据只会被消费一次\
+    \ 做好事务补偿\n 集群测试流程 在其中一台发送数据 两端分别调用获取接口 一次获取一条"
+- name: 邮件发送案例
+  description: 邮件发送案例
+- name: 测试国际化
+  description: 测试国际化
+- name: 测试数据库加解密功能
+  description: 测试数据库加解密功能
+- name: spring-cache 演示案例
+  description: spring-cache 演示案例
+- name: 验证码操作处理
+  description: 验证码操作处理
+- name: 首页
+  description: 首页
+paths:
+  /tool/gen:
+    put:
+      tags:
+      - 代码生成 操作处理
+      summary: 修改保存代码生成业务
+      description: 修改保存代码生成业务
+      operationId: editSave
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenTable'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user:
+    put:
+      tags:
+      - 用户信息
+      summary: 修改用户
+      description: 修改用户
+      operationId: edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 用户信息
+      summary: 新增用户
+      description: 新增用户
+      operationId: add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/resetPwd:
+    put:
+      tags:
+      - 用户信息
+      summary: 重置密码
+      description: 重置密码
+      operationId: resetPwd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/profile:
+    get:
+      tags:
+      - 个人信息 业务处理
+      summary: 个人信息
+      description: 个人信息
+      operationId: profile
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+    put:
+      tags:
+      - 个人信息 业务处理
+      summary: 修改用户
+      description: 修改用户
+      operationId: updateProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/profile/updatePwd:
+    put:
+      tags:
+      - 个人信息 业务处理
+      summary: 重置密码
+      description: 重置密码
+      operationId: updatePwd
+      parameters:
+      - name: oldPassword
+        in: query
+        description: 新密码
+        required: true
+        schema:
+          type: string
+      - name: newPassword
+        in: query
+        description: 旧密码
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/changeStatus:
+    put:
+      tags:
+      - 用户信息
+      summary: 状态修改
+      description: 状态修改
+      operationId: changeStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/authRole:
+    put:
+      tags:
+      - 用户信息
+      summary: 用户授权角色
+      description: 用户授权角色
+      operationId: insertAuthRole
+      parameters:
+      - name: userId
+        in: query
+        description: 用户Id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: roleIds
+        in: query
+        description: 角色ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role:
+    put:
+      tags:
+      - 角色信息
+      summary: 修改保存角色
+      description: 修改保存角色
+      operationId: edit_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysRole'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 角色信息
+      summary: 新增角色
+      description: 新增角色
+      operationId: add_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysRole'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/dataScope:
+    put:
+      tags:
+      - 角色信息
+      summary: 修改保存数据权限
+      description: 修改保存数据权限
+      operationId: dataScope
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysRole'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/changeStatus:
+    put:
+      tags:
+      - 角色信息
+      summary: 状态修改
+      description: 状态修改
+      operationId: changeStatus_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysRole'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/authUser/selectAll:
+    put:
+      tags:
+      - 角色信息
+      summary: 批量选择用户授权
+      description: 批量选择用户授权
+      operationId: selectAuthUserAll
+      parameters:
+      - name: roleId
+        in: query
+        description: 角色ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userIds
+        in: query
+        description: 用户ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/authUser/cancel:
+    put:
+      tags:
+      - 角色信息
+      summary: 取消授权用户
+      description: 取消授权用户
+      operationId: cancelAuthUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUserRole'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/authUser/cancelAll:
+    put:
+      tags:
+      - 角色信息
+      summary: 批量取消授权用户
+      description: 批量取消授权用户
+      operationId: cancelAuthUserAll
+      parameters:
+      - name: roleId
+        in: query
+        description: 角色ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userIds
+        in: query
+        description: 用户ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/post:
+    put:
+      tags:
+      - 岗位信息操作处理
+      summary: 修改岗位
+      description: 修改岗位
+      operationId: edit_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysPost'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 岗位信息操作处理
+      summary: 新增岗位
+      description: 新增岗位
+      operationId: add_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysPost'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/oss/config:
+    put:
+      tags:
+      - 对象存储配置
+      summary: 修改对象存储配置
+      description: 修改对象存储配置
+      operationId: edit_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysOssConfigBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 对象存储配置
+      summary: 新增对象存储配置
+      description: 新增对象存储配置
+      operationId: add_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysOssConfigBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/oss/config/changeStatus:
+    put:
+      tags:
+      - 对象存储配置
+      summary: 状态修改
+      description: 状态修改
+      operationId: changeStatus_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysOssConfigBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/notice:
+    put:
+      tags:
+      - 公告 信息操作处理
+      summary: 修改通知公告
+      description: 修改通知公告
+      operationId: edit_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysNotice'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 公告 信息操作处理
+      summary: 新增通知公告
+      description: 新增通知公告
+      operationId: add_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysNotice'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/menu:
+    put:
+      tags:
+      - 菜单信息
+      summary: 修改菜单
+      description: 修改菜单
+      operationId: edit_5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysMenu'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 菜单信息
+      summary: 新增菜单
+      description: 新增菜单
+      operationId: add_5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysMenu'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dict/type:
+    put:
+      tags:
+      - 数据字典信息
+      summary: 修改字典类型
+      description: 修改字典类型
+      operationId: edit_6
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDictType'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 数据字典信息
+      summary: 新增字典类型
+      description: 新增字典类型
+      operationId: add_6
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDictType'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dict/data:
+    put:
+      tags:
+      - 数据字典信息
+      summary: 修改保存字典类型
+      description: 修改保存字典类型
+      operationId: edit_7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDictData'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 数据字典信息
+      summary: 新增字典类型
+      description: 新增字典类型
+      operationId: add_7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDictData'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dept:
+    put:
+      tags:
+      - 部门信息
+      summary: 修改部门
+      description: 修改部门
+      operationId: edit_8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDept'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 部门信息
+      summary: 新增部门
+      description: 新增部门
+      operationId: add_8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDept'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/config:
+    put:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 修改参数配置
+      description: 修改参数配置
+      operationId: edit_9
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysConfig'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 新增参数配置
+      description: 新增参数配置
+      operationId: add_9
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysConfig'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/config/updateByKey:
+    put:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 根据参数键名修改参数配置
+      description: 根据参数键名修改参数配置
+      operationId: updateByKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysConfig'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/tree:
+    put:
+      tags:
+      - 测试树表Controller
+      summary: 修改测试树表
+      description: 修改测试树表
+      operationId: edit_10
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestTreeBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 测试树表Controller
+      summary: 新增测试树表
+      description: 新增测试树表
+      operationId: add_10
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestTreeBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/demo:
+    put:
+      tags:
+      - 测试单表Controller
+      summary: 修改测试单表
+      description: 修改测试单表
+      operationId: edit_11
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestDemoBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 测试单表Controller
+      summary: 新增测试单表
+      description: 新增测试单表
+      operationId: add_11
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestDemoBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /xcxLogin:
+    post:
+      tags:
+      - 登录验证
+      summary: 小程序登录(示例)
+      description: 小程序登录(示例)
+      operationId: xcxLogin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: 结果
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /tool/gen/importTable:
+    post:
+      tags:
+      - 代码生成 操作处理
+      summary: 导入表结构（保存）
+      description: 导入表结构（保存）
+      operationId: importTableSave
+      parameters:
+      - name: tables
+        in: query
+        description: 表名串
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/profile/avatar:
+    post:
+      tags:
+      - 个人信息 业务处理
+      summary: 头像上传
+      description: 头像上传
+      operationId: avatar
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - avatarfile
+              type: object
+              properties:
+                avatarfile:
+                  type: string
+                  description: 用户头像
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/user/importTemplate:
+    post:
+      tags:
+      - 用户信息
+      summary: 获取导入模板
+      description: 获取导入模板
+      operationId: importTemplate
+      responses:
+        '200':
+          description: OK
+  /system/user/importData:
+    post:
+      tags:
+      - 用户信息
+      summary: 导入数据
+      description: 导入数据
+      operationId: importData
+      parameters:
+      - name: updateSupport
+        in: query
+        description: 是否更新已存在数据
+        required: true
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: 导入文件
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/export:
+    post:
+      tags:
+      - 用户信息
+      summary: 导出用户列表
+      description: 导出用户列表
+      operationId: export
+      parameters:
+      - name: user
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysUser'
+      responses:
+        '200':
+          description: OK
+  /system/role/export:
+    post:
+      tags:
+      - 角色信息
+      summary: 导出角色信息列表
+      description: 导出角色信息列表
+      operationId: export_1
+      parameters:
+      - name: role
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysRole'
+      responses:
+        '200':
+          description: OK
+  /system/post/export:
+    post:
+      tags:
+      - 岗位信息操作处理
+      summary: 导出岗位列表
+      description: 导出岗位列表
+      operationId: export_2
+      parameters:
+      - name: post
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysPost'
+      responses:
+        '200':
+          description: OK
+  /system/oss/upload:
+    post:
+      tags:
+      - 文件上传 控制层
+      summary: 上传OSS对象存储
+      description: 上传OSS对象存储
+      operationId: upload
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: 文件
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringString'
+  /system/dict/type/export:
+    post:
+      tags:
+      - 数据字典信息
+      summary: 导出字典类型列表
+      description: 导出字典类型列表
+      operationId: export_3
+      parameters:
+      - name: dictType
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDictType'
+      responses:
+        '200':
+          description: OK
+  /system/dict/data/export:
+    post:
+      tags:
+      - 数据字典信息
+      summary: 导出字典数据列表
+      description: 导出字典数据列表
+      operationId: export_4
+      parameters:
+      - name: dictData
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDictData'
+      responses:
+        '200':
+          description: OK
+  /system/config/export:
+    post:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 导出参数配置列表
+      description: 导出参数配置列表
+      operationId: export_5
+      parameters:
+      - name: config
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysConfig'
+      responses:
+        '200':
+          description: OK
+  /swagger/demo/upload:
+    post:
+      tags:
+      - swagger3 用法示例
+      summary: "上传请求\n 必须使用 @RequestPart 注解标注为文件"
+      description: "上传请求\n 必须使用 @RequestPart 注解标注为文件"
+      operationId: upload_1
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: 文件
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /smsLogin:
+    post:
+      tags:
+      - 登录验证
+      summary: 短信登录
+      description: 短信登录
+      operationId: smsLogin
+      requestBody:
+        description: 登录信息
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmsLoginBody'
+        required: true
+      responses:
+        '200':
+          description: 结果
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /register:
+    post:
+      tags:
+      - 注册验证
+      summary: 用户注册
+      description: 用户注册
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /network/sendNetworkSuccess:
+    post:
+      tags:
+      - app扫描配网 接口
+      summary: 通知是否可以进行配网
+      description: 通知是否可以进行配网
+      operationId: sendNetworkSuccess
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /network/insertNetWorkData:
+    post:
+      tags:
+      - app扫描配网 接口
+      summary: 新增配网数据
+      description: 新增配网数据
+      operationId: insertNetWorkData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /network/getNetWorkType:
+    post:
+      tags:
+      - app扫描配网 接口
+      summary: 查询设备上线状态
+      description: 查询设备上线状态
+      operationId: getNetWorkType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /network/getNetWorkData:
+    post:
+      tags:
+      - app扫描配网 接口
+      summary: 查询配网数据
+      description: 查询配网数据
+      operationId: getNetWorkData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /network/deleteNetWorkData:
+    post:
+      tags:
+      - app扫描配网 接口
+      summary: 删除配网数据
+      description: 删除配网数据
+      operationId: deleteNetWorkData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /monitor/operlog/export:
+    post:
+      tags:
+      - 操作日志记录
+      summary: 导出操作日志记录列表
+      description: 导出操作日志记录列表
+      operationId: export_6
+      parameters:
+      - name: operLog
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysOperLog'
+      responses:
+        '200':
+          description: OK
+  /monitor/logininfor/export:
+    post:
+      tags:
+      - 系统访问记录
+      summary: 导出系统访问记录列表
+      description: 导出系统访问记录列表
+      operationId: export_7
+      parameters:
+      - name: logininfor
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysLogininfor'
+      responses:
+        '200':
+          description: OK
+  /logout:
+    post:
+      tags:
+      - 登录验证
+      summary: 退出登录
+      description: 退出登录
+      operationId: logout
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /login:
+    post:
+      tags:
+      - 登录验证
+      summary: 登录方法
+      description: 登录方法
+      operationId: login
+      requestBody:
+        description: 登录信息
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginBody'
+        required: true
+      responses:
+        '200':
+          description: 结果
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /emailLogin:
+    post:
+      tags:
+      - 登录验证
+      summary: 邮件登录
+      description: 邮件登录
+      operationId: emailLogin
+      requestBody:
+        description: 登录信息
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailLoginBody'
+        required: true
+      responses:
+        '200':
+          description: 结果
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /demo/excel/importWithOptions:
+    post:
+      tags:
+      - 测试Excel功能
+      summary: 导入表格
+      description: 导入表格
+      operationId: importWithOptions
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExportDemoVo'
+  /demo/demo/importData:
+    post:
+      tags:
+      - 测试单表Controller
+      summary: 导入数据
+      description: 导入数据
+      operationId: importData_1
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: 导入文件
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/demo/export:
+    post:
+      tags:
+      - 测试单表Controller
+      summary: 导出测试单表列表
+      description: 导出测试单表列表
+      operationId: export_8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestDemoBo'
+      responses:
+        '200':
+          description: OK
+  /demo/batch/add:
+    post:
+      tags:
+      - 测试批量方法
+      summary: "新增批量方法 可完美替代 saveBatch 秒级插入上万数据 (对mysql负荷较大)\n "
+      description: "新增批量方法 可完美替代 saveBatch 秒级插入上万数据 (对mysql负荷较大)\n <p>\n 3.5.0 版本\
+        \ 增加 rewriteBatchedStatements=true 批处理参数 使 MP 原生批处理可以达到同样的速度"
+      operationId: add_12
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/batch/addOrUpdate:
+    post:
+      tags:
+      - 测试批量方法
+      summary: "新增或更新 可完美替代 saveOrUpdateBatch 高性能\n "
+      description: "新增或更新 可完美替代 saveOrUpdateBatch 高性能\n <p>\n 3.5.0 版本 增加 rewriteBatchedStatements=true\
+        \ 批处理参数 使 MP 原生批处理可以达到同样的速度"
+      operationId: addOrUpdate
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /api/updateInfo:
+    post:
+      tags:
+      - api 接口
+      summary: 更新用户信息
+      description: 更新用户信息
+      operationId: updateInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /api/hostList:
+    post:
+      tags:
+      - api 接口
+      summary: 服务器地址+地区列表
+      description: 服务器地址+地区列表
+      operationId: hostList
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCenterVo'
+  /api/serverAndCountryCodeList:
+    post:
+      tags:
+      - api 接口
+      summary: 服务器地址+地区列表
+      description: 服务器地址+地区列表
+      operationId: hostList_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCenterVo'
+  /api/queryInfo:
+    post:
+      tags:
+      - api 接口
+      summary: 查询用户信息
+      description: 查询用户信息
+      operationId: queryInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /api/hostItem:
+    post:
+      tags:
+      - api 接口
+      summary: 服务器地址列表
+      description: 服务器地址列表
+      operationId: hostItem
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListCommonHostList'
+  /api/deleteInfo:
+    post:
+      tags:
+      - api 接口
+      summary: 删除用户信息
+      description: 删除用户信息
+      operationId: deleteInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /api/center/post:
+    post:
+      tags:
+      - api 接口
+      operationId: wopetApiPost
+      requestBody:
+        description: apiVo
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /api/addInfo:
+    post:
+      tags:
+      - api 接口
+      summary: 新增用户信息
+      description: 新增用户信息
+      operationId: addInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /tool/gen/{tableId}:
+    get:
+      tags:
+      - 代码生成 操作处理
+      summary: 修改代码生成业务
+      description: 修改代码生成业务
+      operationId: getInfo
+      parameters:
+      - name: tableId
+        in: path
+        description: 表ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /tool/gen/synchDb/{tableName}:
+    get:
+      tags:
+      - 代码生成 操作处理
+      summary: 同步数据库
+      description: 同步数据库
+      operationId: synchDb
+      parameters:
+      - name: tableName
+        in: path
+        description: 表名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /tool/gen/preview/{tableId}:
+    get:
+      tags:
+      - 代码生成 操作处理
+      summary: 预览代码
+      description: 预览代码
+      operationId: preview
+      parameters:
+      - name: tableId
+        in: path
+        description: 表ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringString'
+  /tool/gen/list:
+    get:
+      tags:
+      - 代码生成 操作处理
+      summary: 查询代码生成列表
+      description: 查询代码生成列表
+      operationId: genList
+      parameters:
+      - name: genTable
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/GenTable'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoGenTable'
+  /tool/gen/genCode/{tableName}:
+    get:
+      tags:
+      - 代码生成 操作处理
+      summary: 生成代码（自定义路径）
+      description: 生成代码（自定义路径）
+      operationId: genCode
+      parameters:
+      - name: tableName
+        in: path
+        description: 表名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /tool/gen/download/{tableName}:
+    get:
+      tags:
+      - 代码生成 操作处理
+      summary: 生成代码（下载方式）
+      description: 生成代码（下载方式）
+      operationId: download
+      parameters:
+      - name: tableName
+        in: path
+        description: 表名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /tool/gen/db/list:
+    get:
+      tags:
+      - 代码生成 操作处理
+      summary: 查询数据库列表
+      description: 查询数据库列表
+      operationId: dataList
+      parameters:
+      - name: genTable
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/GenTable'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoGenTable'
+  /tool/gen/column/{tableId}:
+    get:
+      tags:
+      - 代码生成 操作处理
+      summary: 查询数据表字段列表
+      description: 查询数据表字段列表
+      operationId: columnList
+      parameters:
+      - name: tableId
+        in: query
+        description: 表ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoGenTableColumn'
+  /tool/gen/batchGenCode:
+    get:
+      tags:
+      - 代码生成 操作处理
+      summary: 批量生成代码
+      description: 批量生成代码
+      operationId: batchGenCode
+      parameters:
+      - name: tables
+        in: query
+        description: 表名串
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /system/user/list:
+    get:
+      tags:
+      - 用户信息
+      summary: 获取用户列表
+      description: 获取用户列表
+      operationId: list
+      parameters:
+      - name: user
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysUser'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysUser'
+  /system/user/deptTree:
+    get:
+      tags:
+      - 用户信息
+      summary: 获取部门树列表
+      description: 获取部门树列表
+      operationId: deptTree
+      parameters:
+      - name: dept
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDept'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListTreeLong'
+  /system/user/authRole/{userId}:
+    get:
+      tags:
+      - 用户信息
+      summary: 根据用户编号获取授权角色
+      description: 根据用户编号获取授权角色
+      operationId: authRole
+      parameters:
+      - name: userId
+        in: path
+        description: 用户ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/user/{userId}:
+    get:
+      tags:
+      - 用户信息
+      summary: 根据用户编号获取详细信息
+      description: 根据用户编号获取详细信息
+      operationId: getInfo_1
+      parameters:
+      - name: userId
+        in: path
+        description: 用户ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/user/:
+    get:
+      tags:
+      - 用户信息
+      summary: 根据用户编号获取详细信息
+      description: 根据用户编号获取详细信息
+      operationId: getInfo_2
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/role/{roleId}:
+    get:
+      tags:
+      - 角色信息
+      summary: 根据角色编号获取详细信息
+      description: 根据角色编号获取详细信息
+      operationId: getInfo_3
+      parameters:
+      - name: roleId
+        in: path
+        description: 角色ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysRole'
+  /system/role/optionselect:
+    get:
+      tags:
+      - 角色信息
+      summary: 获取角色选择框列表
+      description: 获取角色选择框列表
+      operationId: optionselect
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysRole'
+  /system/role/list:
+    get:
+      tags:
+      - 角色信息
+      summary: 获取角色信息列表
+      description: 获取角色信息列表
+      operationId: list_1
+      parameters:
+      - name: role
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysRole'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysRole'
+  /system/role/deptTree/{roleId}:
+    get:
+      tags:
+      - 角色信息
+      summary: 获取对应角色部门树列表
+      description: 获取对应角色部门树列表
+      operationId: roleDeptTreeselect
+      parameters:
+      - name: roleId
+        in: path
+        description: 角色ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/role/authUser/unallocatedList:
+    get:
+      tags:
+      - 角色信息
+      summary: 查询未分配用户角色列表
+      description: 查询未分配用户角色列表
+      operationId: unallocatedList
+      parameters:
+      - name: user
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysUser'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysUser'
+  /system/role/authUser/allocatedList:
+    get:
+      tags:
+      - 角色信息
+      summary: 查询已分配用户角色列表
+      description: 查询已分配用户角色列表
+      operationId: allocatedList
+      parameters:
+      - name: user
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysUser'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysUser'
+  /system/post/{postId}:
+    get:
+      tags:
+      - 岗位信息操作处理
+      summary: 根据岗位编号获取详细信息
+      description: 根据岗位编号获取详细信息
+      operationId: getInfo_4
+      parameters:
+      - name: postId
+        in: path
+        description: 岗位ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysPost'
+  /system/post/optionselect:
+    get:
+      tags:
+      - 岗位信息操作处理
+      summary: 获取岗位选择框列表
+      description: 获取岗位选择框列表
+      operationId: optionselect_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysPost'
+  /system/post/list:
+    get:
+      tags:
+      - 岗位信息操作处理
+      summary: 获取岗位列表
+      description: 获取岗位列表
+      operationId: list_2
+      parameters:
+      - name: post
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysPost'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysPost'
+  /system/oss/list:
+    get:
+      tags:
+      - 文件上传 控制层
+      summary: 查询OSS对象存储列表
+      description: 查询OSS对象存储列表
+      operationId: list_3
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysOssBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysOssVo'
+  /system/oss/listByIds/{ossIds}:
+    get:
+      tags:
+      - 文件上传 控制层
+      summary: 查询OSS对象基于id串
+      description: 查询OSS对象基于id串
+      operationId: listByIds
+      parameters:
+      - name: ossIds
+        in: path
+        description: OSS对象ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysOssVo'
+  /system/oss/download/{ossId}:
+    get:
+      tags:
+      - 文件上传 控制层
+      summary: 下载OSS对象
+      description: 下载OSS对象
+      operationId: download_1
+      parameters:
+      - name: ossId
+        in: path
+        description: OSS对象ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+  /system/oss/config/{ossConfigId}:
+    get:
+      tags:
+      - 对象存储配置
+      summary: 获取对象存储配置详细信息
+      description: 获取对象存储配置详细信息
+      operationId: getInfo_5
+      parameters:
+      - name: ossConfigId
+        in: path
+        description: OSS配置ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysOssConfigVo'
+  /system/oss/config/list:
+    get:
+      tags:
+      - 对象存储配置
+      summary: 查询对象存储配置列表
+      description: 查询对象存储配置列表
+      operationId: list_4
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysOssConfigBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysOssConfigVo'
+  /system/notice/{noticeId}:
+    get:
+      tags:
+      - 公告 信息操作处理
+      summary: 根据通知公告编号获取详细信息
+      description: 根据通知公告编号获取详细信息
+      operationId: getInfo_6
+      parameters:
+      - name: noticeId
+        in: path
+        description: 公告ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysNotice'
+  /system/notice/list:
+    get:
+      tags:
+      - 公告 信息操作处理
+      summary: 获取通知公告列表
+      description: 获取通知公告列表
+      operationId: list_5
+      parameters:
+      - name: notice
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysNotice'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysNotice'
+  /system/menu/{menuId}:
+    get:
+      tags:
+      - 菜单信息
+      summary: 根据菜单编号获取详细信息
+      description: 根据菜单编号获取详细信息
+      operationId: getInfo_7
+      parameters:
+      - name: menuId
+        in: path
+        description: 菜单ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysMenu'
+    delete:
+      tags:
+      - 菜单信息
+      summary: 删除菜单
+      description: 删除菜单
+      operationId: remove_10
+      parameters:
+      - name: menuId
+        in: path
+        description: 菜单ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/menu/treeselect:
+    get:
+      tags:
+      - 菜单信息
+      summary: 获取菜单下拉树列表
+      description: 获取菜单下拉树列表
+      operationId: treeselect
+      parameters:
+      - name: menu
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysMenu'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListTreeLong'
+  /system/menu/roleMenuTreeselect/{roleId}:
+    get:
+      tags:
+      - 菜单信息
+      summary: 加载对应角色菜单列表树
+      description: 加载对应角色菜单列表树
+      operationId: roleMenuTreeselect
+      parameters:
+      - name: roleId
+        in: path
+        description: 角色ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/menu/list:
+    get:
+      tags:
+      - 菜单信息
+      summary: 获取菜单列表
+      description: 获取菜单列表
+      operationId: list_6
+      parameters:
+      - name: menu
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysMenu'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysMenu'
+  /system/dict/type/{dictId}:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 查询字典类型详细
+      description: 查询字典类型详细
+      operationId: getInfo_8
+      parameters:
+      - name: dictId
+        in: path
+        description: 字典ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysDictType'
+  /system/dict/type/optionselect:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 获取字典选择框列表
+      description: 获取字典选择框列表
+      operationId: optionselect_2
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysDictType'
+  /system/dict/type/list:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 查询字典类型列表
+      description: 查询字典类型列表
+      operationId: list_7
+      parameters:
+      - name: dictType
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDictType'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysDictType'
+  /system/dict/data/{dictCode}:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 查询字典数据详细
+      description: 查询字典数据详细
+      operationId: getInfo_9
+      parameters:
+      - name: dictCode
+        in: path
+        description: 字典code
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysDictData'
+  /system/dict/data/type/{dictType}:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 根据字典类型查询字典数据信息
+      description: 根据字典类型查询字典数据信息
+      operationId: dictType
+      parameters:
+      - name: dictType
+        in: path
+        description: 字典类型
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysDictData'
+  /system/dict/data/list:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 查询字典数据列表
+      description: 查询字典数据列表
+      operationId: list_8
+      parameters:
+      - name: dictData
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDictData'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysDictData'
+  /system/dept/{deptId}:
+    get:
+      tags:
+      - 部门信息
+      summary: 根据部门编号获取详细信息
+      description: 根据部门编号获取详细信息
+      operationId: getInfo_10
+      parameters:
+      - name: deptId
+        in: path
+        description: 部门ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysDept'
+    delete:
+      tags:
+      - 部门信息
+      summary: 删除部门
+      description: 删除部门
+      operationId: remove_13
+      parameters:
+      - name: deptId
+        in: path
+        description: 部门ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dept/list:
+    get:
+      tags:
+      - 部门信息
+      summary: 获取部门列表
+      description: 获取部门列表
+      operationId: list_9
+      parameters:
+      - name: dept
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDept'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysDept'
+  /system/dept/list/exclude/{deptId}:
+    get:
+      tags:
+      - 部门信息
+      summary: 查询部门列表（排除节点）
+      description: 查询部门列表（排除节点）
+      operationId: excludeChild
+      parameters:
+      - name: deptId
+        in: path
+        description: 部门ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysDept'
+  /system/config/{configId}:
+    get:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 根据参数编号获取详细信息
+      description: 根据参数编号获取详细信息
+      operationId: getInfo_11
+      parameters:
+      - name: configId
+        in: path
+        description: 参数ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysConfig'
+  /system/config/list:
+    get:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 获取参数配置列表
+      description: 获取参数配置列表
+      operationId: list_10
+      parameters:
+      - name: config
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysConfig'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysConfig'
+  /system/config/configKey/{configKey}:
+    get:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 根据参数键名查询参数值
+      description: 根据参数键名查询参数值
+      operationId: getConfigKey
+      parameters:
+      - name: configKey
+        in: path
+        description: 参数Key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /monitor/operlog/list:
+    get:
+      tags:
+      - 操作日志记录
+      summary: 获取操作日志记录列表
+      description: 获取操作日志记录列表
+      operationId: list_11
+      parameters:
+      - name: operLog
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysOperLog'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysOperLog'
+  /monitor/online/list:
+    get:
+      tags:
+      - 在线用户监控
+      summary: 获取在线用户监控列表
+      description: 获取在线用户监控列表
+      operationId: list_12
+      parameters:
+      - name: ipaddr
+        in: query
+        description: IP地址
+        required: true
+        schema:
+          type: string
+      - name: userName
+        in: query
+        description: 用户名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysUserOnline'
+  /monitor/logininfor/unlock/{userName}:
+    get:
+      tags:
+      - 系统访问记录
+      operationId: unlock
+      parameters:
+      - name: userName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /monitor/logininfor/list:
+    get:
+      tags:
+      - 系统访问记录
+      summary: 获取系统访问记录列表
+      description: 获取系统访问记录列表
+      operationId: list_13
+      parameters:
+      - name: logininfor
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysLogininfor'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysLogininfor'
+  /monitor/cache:
+    get:
+      tags:
+      - 缓存监控
+      summary: 获取缓存监控列表
+      description: 获取缓存监控列表
+      operationId: getInfo_12
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /monitor/cache/getValue/{cacheName}/{cacheKey}:
+    get:
+      tags:
+      - 缓存监控
+      summary: 获取缓存监控缓存值详情
+      description: 获取缓存监控缓存值详情
+      operationId: getCacheValue
+      parameters:
+      - name: cacheName
+        in: path
+        description: 缓存名
+        required: true
+        schema:
+          type: string
+      - name: cacheKey
+        in: path
+        description: 缓存key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysCache'
+  /monitor/cache/getNames:
+    get:
+      tags:
+      - 缓存监控
+      summary: 获取缓存监控缓存名列表
+      description: 获取缓存监控缓存名列表
+      operationId: cache
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysCache'
+  /monitor/cache/getKeys/{cacheName}:
+    get:
+      tags:
+      - 缓存监控
+      summary: 获取缓存监控Key列表
+      description: 获取缓存监控Key列表
+      operationId: getCacheKeys
+      parameters:
+      - name: cacheName
+        in: path
+        description: 缓存名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCollectionString'
+  /getRouters:
+    get:
+      tags:
+      - 登录验证
+      summary: 获取路由信息
+      description: 获取路由信息
+      operationId: getRouters
+      responses:
+        '200':
+          description: 路由信息
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListRouterVo'
+  /getInfo:
+    get:
+      tags:
+      - 登录验证
+      summary: 获取用户信息
+      description: 获取用户信息
+      operationId: getInfo_13
+      responses:
+        '200':
+          description: 用户信息
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /demo/tree/{id}:
+    get:
+      tags:
+      - 测试树表Controller
+      summary: 获取测试树表详细信息
+      description: 获取测试树表详细信息
+      operationId: getInfo_14
+      parameters:
+      - name: id
+        in: path
+        description: 测试树ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTestTreeVo'
+  /demo/tree/list:
+    get:
+      tags:
+      - 测试树表Controller
+      summary: 查询测试树表列表
+      description: 查询测试树表列表
+      operationId: list_14
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/TestTreeBo'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListTestTreeVo'
+  /demo/tree/export:
+    get:
+      tags:
+      - 测试树表Controller
+      summary: 导出测试树表列表
+      description: 导出测试树表列表
+      operationId: export_9
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/TestTreeBo'
+      responses:
+        '200':
+          description: OK
+  /demo/sms/sendTencent:
+    get:
+      tags:
+      - 短信演示案例
+      summary: 发送短信Tencent
+      description: 发送短信Tencent
+      operationId: sendTencent
+      parameters:
+      - name: phones
+        in: query
+        description: 电话号
+        required: true
+        schema:
+          type: string
+      - name: templateId
+        in: query
+        description: 模板ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RObject'
+  /demo/sms/sendAliyun:
+    get:
+      tags:
+      - 短信演示案例
+      summary: 发送短信Aliyun
+      description: 发送短信Aliyun
+      operationId: sendAliyun
+      parameters:
+      - name: phones
+        in: query
+        description: 电话号
+        required: true
+        schema:
+          type: string
+      - name: templateId
+        in: query
+        description: 模板ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RObject'
+  /demo/sensitive/test:
+    get:
+      tags:
+      - 测试数据脱敏控制器
+      summary: 测试数据脱敏
+      description: 测试数据脱敏
+      operationId: test
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTestSensitive'
+  /demo/redisLock/testLock4j:
+    get:
+      tags:
+      - 测试分布式锁的样例
+      summary: 测试lock4j 注解
+      description: 测试lock4j 注解
+      operationId: testLock4j
+      parameters:
+      - name: key
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /demo/redisLock/testLock4jLockTemplate:
+    get:
+      tags:
+      - 测试分布式锁的样例
+      summary: 测试lock4j 工具
+      description: 测试lock4j 工具
+      operationId: testLock4jLockTemplate
+      parameters:
+      - name: key
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /demo/redis/pubsub/sub:
+    get:
+      tags:
+      - Redis 发布订阅 演示案例
+      summary: 订阅消息
+      description: 订阅消息
+      operationId: sub
+      parameters:
+      - name: key
+        in: query
+        description: 通道Key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/redis/pubsub/pub:
+    get:
+      tags:
+      - Redis 发布订阅 演示案例
+      summary: 发布消息
+      description: 发布消息
+      operationId: pub
+      parameters:
+      - name: key
+        in: query
+        description: 通道Key
+        required: true
+        schema:
+          type: string
+      - name: value
+        in: query
+        description: 发送内容
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/rateLimiter/testip:
+    get:
+      tags:
+      - 测试分布式限流样例
+      summary: "测试请求IP限流\n 同一IP请求受影响"
+      description: "测试请求IP限流\n 同一IP请求受影响"
+      operationId: testip
+      parameters:
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /demo/rateLimiter/testcluster:
+    get:
+      tags:
+      - 测试分布式限流样例
+      summary: "测试集群实例限流\n 启动两个后端服务互不影响"
+      description: "测试集群实例限流\n 启动两个后端服务互不影响"
+      operationId: testcluster
+      parameters:
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /demo/rateLimiter/test:
+    get:
+      tags:
+      - 测试分布式限流样例
+      summary: "测试全局限流\n 全局影响"
+      description: "测试全局限流\n 全局影响"
+      operationId: test_1
+      parameters:
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /demo/rateLimiter/testObj:
+    get:
+      tags:
+      - 测试分布式限流样例
+      summary: "测试请求IP限流(key基于参数获取)\n 同一IP请求受影响\n\n 简单变量获取 #变量 复杂表达式 #{#变量 != 1 ?\
+        \ 1 : 0}"
+      description: "测试请求IP限流(key基于参数获取)\n 同一IP请求受影响\n\n 简单变量获取 #变量 复杂表达式 #{#变量 !=\
+        \ 1 ? 1 : 0}"
+      operationId: testObj
+      parameters:
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /demo/queue/priority/remove:
+    get:
+      tags:
+      - 优先队列 演示案例
+      summary: 删除队列数据
+      description: 删除队列数据
+      operationId: remove
+      parameters:
+      - name: queueName
+        in: query
+        description: 队列名
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: query
+        description: 对象名
+        required: true
+        schema:
+          type: string
+      - name: orderNum
+        in: query
+        description: 排序号
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/queue/priority/get:
+    get:
+      tags:
+      - 优先队列 演示案例
+      summary: 获取队列数据
+      description: 获取队列数据
+      operationId: get
+      parameters:
+      - name: queueName
+        in: query
+        description: 队列名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/queue/priority/add:
+    get:
+      tags:
+      - 优先队列 演示案例
+      summary: 添加队列数据
+      description: 添加队列数据
+      operationId: add_13
+      parameters:
+      - name: queueName
+        in: query
+        description: 队列名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/queue/delayed/subscribe:
+    get:
+      tags:
+      - 延迟队列 演示案例
+      summary: 订阅队列
+      description: 订阅队列
+      operationId: subscribe
+      parameters:
+      - name: queueName
+        in: query
+        description: 队列名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/queue/delayed/remove:
+    get:
+      tags:
+      - 延迟队列 演示案例
+      summary: 删除队列数据
+      description: 删除队列数据
+      operationId: remove_1
+      parameters:
+      - name: queueName
+        in: query
+        description: 队列名
+        required: true
+        schema:
+          type: string
+      - name: orderNum
+        in: query
+        description: 订单号
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/queue/delayed/destroy:
+    get:
+      tags:
+      - 延迟队列 演示案例
+      summary: 销毁队列
+      description: 销毁队列
+      operationId: destroy
+      parameters:
+      - name: queueName
+        in: query
+        description: 队列名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/queue/delayed/add:
+    get:
+      tags:
+      - 延迟队列 演示案例
+      summary: 添加队列数据
+      description: 添加队列数据
+      operationId: add_14
+      parameters:
+      - name: queueName
+        in: query
+        description: 队列名
+        required: true
+        schema:
+          type: string
+      - name: orderNum
+        in: query
+        description: 订单号
+        required: true
+        schema:
+          type: string
+      - name: time
+        in: query
+        description: 延迟时间(秒)
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/queue/bounded/remove:
+    get:
+      tags:
+      - 有界队列 演示案例
+      summary: 删除队列数据
+      description: 删除队列数据
+      operationId: remove_2
+      parameters:
+      - name: queueName
+        in: query
+        description: 队列名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/queue/bounded/get:
+    get:
+      tags:
+      - 有界队列 演示案例
+      summary: 获取队列数据
+      description: 获取队列数据
+      operationId: get_1
+      parameters:
+      - name: queueName
+        in: query
+        description: 队列名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/queue/bounded/add:
+    get:
+      tags:
+      - 有界队列 演示案例
+      summary: 添加队列数据
+      description: 添加队列数据
+      operationId: add_15
+      parameters:
+      - name: queueName
+        in: query
+        description: 队列名
+        required: true
+        schema:
+          type: string
+      - name: capacity
+        in: query
+        description: 容量
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/mail/sendSimpleMessage:
+    get:
+      tags:
+      - 邮件发送案例
+      summary: 发送邮件
+      description: 发送邮件
+      operationId: sendSimpleMessage
+      parameters:
+      - name: to
+        in: query
+        description: 接收人
+        required: true
+        schema:
+          type: string
+      - name: subject
+        in: query
+        description: 标题
+        required: true
+        schema:
+          type: string
+      - name: text
+        in: query
+        description: 内容
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/mail/sendMessageWithAttachment:
+    get:
+      tags:
+      - 邮件发送案例
+      summary: 发送邮件（带附件）
+      description: 发送邮件（带附件）
+      operationId: sendMessageWithAttachment
+      parameters:
+      - name: to
+        in: query
+        description: 接收人
+        required: true
+        schema:
+          type: string
+      - name: subject
+        in: query
+        description: 标题
+        required: true
+        schema:
+          type: string
+      - name: text
+        in: query
+        description: 内容
+        required: true
+        schema:
+          type: string
+      - name: filePath
+        in: query
+        description: 附件路径
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/i18n:
+    get:
+      tags:
+      - 测试国际化
+      summary: "通过code获取国际化内容\n code为 messages"
+      description: "通过code获取国际化内容\n code为 messages.properties 中的 key\n <p>\n 测试使用\
+        \ user.register.success"
+      operationId: get_2
+      parameters:
+      - name: code
+        in: query
+        description: 国际化code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/i18n/test2:
+    get:
+      tags:
+      - 测试国际化
+      summary: "Bean 校验国际化\n 不传值 分别查看异常返回\n "
+      description: "Bean 校验国际化\n 不传值 分别查看异常返回\n <p>\n 测试使用 not.null"
+      operationId: test2
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/TestI18nBo'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTestI18nBo'
+  /demo/i18n/test1:
+    get:
+      tags:
+      - 测试国际化
+      summary: "Validator 校验国际化\n 不传值 分别查看异常返回\n "
+      description: "Validator 校验国际化\n 不传值 分别查看异常返回\n <p>\n 测试使用 not.null"
+      operationId: test1
+      parameters:
+      - name: str
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/excel/exportWithOptions:
+    get:
+      tags:
+      - 测试Excel功能
+      summary: 导出下拉框
+      description: 导出下拉框
+      operationId: exportWithOptions
+      responses:
+        '200':
+          description: OK
+  /demo/excel/exportTemplateOne:
+    get:
+      tags:
+      - 测试Excel功能
+      summary: 单列表多数据
+      description: 单列表多数据
+      operationId: exportTemplateOne
+      responses:
+        '200':
+          description: OK
+  /demo/excel/exportTemplateMuliti:
+    get:
+      tags:
+      - 测试Excel功能
+      summary: 多列表多数据
+      description: 多列表多数据
+      operationId: exportTemplateMuliti
+      responses:
+        '200':
+          description: OK
+  /demo/encrypt:
+    get:
+      tags:
+      - 测试数据库加解密功能
+      summary: 测试数据库加解密
+      description: 测试数据库加解密
+      operationId: test_2
+      parameters:
+      - name: key
+        in: query
+        description: 测试key
+        required: true
+        schema:
+          type: string
+      - name: value
+        in: query
+        description: 测试value
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringTestDemoEncrypt'
+  /demo/demo/{id}:
+    get:
+      tags:
+      - 测试单表Controller
+      summary: 获取测试单表详细信息
+      description: 获取测试单表详细信息
+      operationId: getInfo_15
+      parameters:
+      - name: id
+        in: path
+        description: 测试ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTestDemoVo'
+  /demo/demo/page:
+    get:
+      tags:
+      - 测试单表Controller
+      summary: 自定义分页查询
+      description: 自定义分页查询
+      operationId: page
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/TestDemoBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoTestDemoVo'
+  /demo/demo/list:
+    get:
+      tags:
+      - 测试单表Controller
+      summary: 查询测试单表列表
+      description: 查询测试单表列表
+      operationId: list_15
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/TestDemoBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoTestDemoVo'
+  /demo/cache/test6:
+    get:
+      tags:
+      - spring-cache 演示案例
+      summary: "测试设置过期时间\n 手动设置过期时间10秒\n 11秒后获取 判断是否相等"
+      description: "测试设置过期时间\n 手动设置过期时间10秒\n 11秒后获取 判断是否相等"
+      operationId: test6
+      parameters:
+      - name: key
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /demo/cache/test3:
+    get:
+      tags:
+      - spring-cache 演示案例
+      summary: "测试 @CacheEvict\n "
+      description: "测试 @CacheEvict\n <p>\n 使用了CacheEvict注解的方法,会清空指定缓存\n 「一般用在删除的方法上」\n\
+        \ <p>\n cacheNames 命名规则 查看 {@link CacheNames CacheNames} 注释 支持多参数"
+      operationId: test3
+      parameters:
+      - name: key
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /demo/cache/test2:
+    get:
+      tags:
+      - spring-cache 演示案例
+      summary: "测试 @CachePut\n "
+      description: "测试 @CachePut\n <p>\n 加了@CachePut注解的方法,会把方法的返回值put到缓存里面缓存起来,供其它地方使用\n\
+        \ 它「通常用在新增或者实时更新方法上」\n <p>\n cacheNames 命名规则 查看 {@link CacheNames CacheNames}\
+        \ 注释 支持多参数"
+      operationId: test2_1
+      parameters:
+      - name: key
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /demo/cache/test1:
+    get:
+      tags:
+      - spring-cache 演示案例
+      summary: "测试 @Cacheable\n "
+      description: "测试 @Cacheable\n <p>\n 表示这个方法有了缓存的功能,方法的返回值会被缓存下来\n 下一次调用该方法前,会去检查是否缓存中已经有值\n\
+        \ 如果有就直接返回,不调用方法\n 如果没有,就调用方法,然后把结果缓存起来\n 这个注解「一般用在查询方法上」\n <p>\n 重点说明: 缓存注解严谨与其他筛选数据功能一起使用\n\
+        \ 例如: 数据权限注解 会造成 缓存击穿 与 数据不一致问题\n <p>\n cacheNames 命名规则 查看 {@link CacheNames\
+        \ CacheNames} 注释 支持多参数"
+      operationId: test1_1
+      parameters:
+      - name: key
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /captchaSms:
+    get:
+      tags:
+      - 验证码操作处理
+      summary: 短信验证码
+      description: 短信验证码
+      operationId: smsCaptcha
+      parameters:
+      - name: phonenumber
+        in: query
+        description: 用户手机号
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /captchaImage:
+    get:
+      tags:
+      - 验证码操作处理
+      summary: 生成验证码
+      description: 生成验证码
+      operationId: getCode
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /captchaEmail:
+    get:
+      tags:
+      - 验证码操作处理
+      summary: 邮箱验证码
+      description: 邮箱验证码
+      operationId: emailCode
+      parameters:
+      - name: email
+        in: query
+        description: 邮箱
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /api/tcpList:
+    get:
+      tags:
+      - api 接口
+      summary: TCP服务器地址(设备用)
+      description: TCP服务器地址(设备用)
+      operationId: tcpList
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+  /api/tcpInfo/{area}:
+    get:
+      tags:
+      - api 接口
+      summary: TCP服务器地址(设备用)
+      description: TCP服务器地址(设备用)
+      operationId: tcpInfo
+      parameters:
+      - name: area
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TcpResp'
+  /:
+    get:
+      tags:
+      - 首页
+      summary: 访问首页，提示语
+      description: 访问首页，提示语
+      operationId: index
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /tool/gen/{tableIds}:
+    delete:
+      tags:
+      - 代码生成 操作处理
+      summary: 删除代码生成
+      description: 删除代码生成
+      operationId: remove_3
+      parameters:
+      - name: tableIds
+        in: path
+        description: 表ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/{userIds}:
+    delete:
+      tags:
+      - 用户信息
+      summary: 删除用户
+      description: 删除用户
+      operationId: remove_4
+      parameters:
+      - name: userIds
+        in: path
+        description: 角色ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/{roleIds}:
+    delete:
+      tags:
+      - 角色信息
+      summary: 删除角色
+      description: 删除角色
+      operationId: remove_5
+      parameters:
+      - name: roleIds
+        in: path
+        description: 角色ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/post/{postIds}:
+    delete:
+      tags:
+      - 岗位信息操作处理
+      summary: 删除岗位
+      description: 删除岗位
+      operationId: remove_6
+      parameters:
+      - name: postIds
+        in: path
+        description: 岗位ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/oss/{ossIds}:
+    delete:
+      tags:
+      - 文件上传 控制层
+      summary: 删除OSS对象存储
+      description: 删除OSS对象存储
+      operationId: remove_7
+      parameters:
+      - name: ossIds
+        in: path
+        description: OSS对象ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/oss/config/{ossConfigIds}:
+    delete:
+      tags:
+      - 对象存储配置
+      summary: 删除对象存储配置
+      description: 删除对象存储配置
+      operationId: remove_8
+      parameters:
+      - name: ossConfigIds
+        in: path
+        description: OSS配置ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/notice/{noticeIds}:
+    delete:
+      tags:
+      - 公告 信息操作处理
+      summary: 删除通知公告
+      description: 删除通知公告
+      operationId: remove_9
+      parameters:
+      - name: noticeIds
+        in: path
+        description: 公告ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dict/type/{dictIds}:
+    delete:
+      tags:
+      - 数据字典信息
+      summary: 删除字典类型
+      description: 删除字典类型
+      operationId: remove_11
+      parameters:
+      - name: dictIds
+        in: path
+        description: 字典ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dict/type/refreshCache:
+    delete:
+      tags:
+      - 数据字典信息
+      summary: 刷新字典缓存
+      description: 刷新字典缓存
+      operationId: refreshCache
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dict/data/{dictCodes}:
+    delete:
+      tags:
+      - 数据字典信息
+      summary: 删除字典类型
+      description: 删除字典类型
+      operationId: remove_12
+      parameters:
+      - name: dictCodes
+        in: path
+        description: 字典code串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/config/{configIds}:
+    delete:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 删除参数配置
+      description: 删除参数配置
+      operationId: remove_14
+      parameters:
+      - name: configIds
+        in: path
+        description: 参数ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/config/refreshCache:
+    delete:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 刷新参数缓存
+      description: 刷新参数缓存
+      operationId: refreshCache_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /monitor/operlog/{operIds}:
+    delete:
+      tags:
+      - 操作日志记录
+      summary: 批量删除操作日志记录
+      description: 批量删除操作日志记录
+      operationId: remove_15
+      parameters:
+      - name: operIds
+        in: path
+        description: 日志ids
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /monitor/operlog/clean:
+    delete:
+      tags:
+      - 操作日志记录
+      summary: 清理操作日志记录
+      description: 清理操作日志记录
+      operationId: clean
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /monitor/online/{tokenId}:
+    delete:
+      tags:
+      - 在线用户监控
+      summary: 强退用户
+      description: 强退用户
+      operationId: forceLogout
+      parameters:
+      - name: tokenId
+        in: path
+        description: token值
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /monitor/logininfor/{infoIds}:
+    delete:
+      tags:
+      - 系统访问记录
+      summary: 批量删除登录日志
+      description: 批量删除登录日志
+      operationId: remove_16
+      parameters:
+      - name: infoIds
+        in: path
+        description: 日志ids
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /monitor/logininfor/clean:
+    delete:
+      tags:
+      - 系统访问记录
+      summary: 清理系统访问记录
+      description: 清理系统访问记录
+      operationId: clean_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /monitor/cache/clearCacheName/{cacheName}:
+    delete:
+      tags:
+      - 缓存监控
+      summary: 清理缓存监控缓存名
+      description: 清理缓存监控缓存名
+      operationId: clearCacheName
+      parameters:
+      - name: cacheName
+        in: path
+        description: 缓存名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /monitor/cache/clearCacheKey/{cacheName}/{cacheKey}:
+    delete:
+      tags:
+      - 缓存监控
+      summary: 清理缓存监控Key
+      description: 清理缓存监控Key
+      operationId: clearCacheKey
+      parameters:
+      - name: cacheName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cacheKey
+        in: path
+        description: key名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /monitor/cache/clearCacheAll:
+    delete:
+      tags:
+      - 缓存监控
+      summary: 清理全部缓存监控
+      description: 清理全部缓存监控
+      operationId: clearCacheAll
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/tree/{ids}:
+    delete:
+      tags:
+      - 测试树表Controller
+      summary: 删除测试树表
+      description: 删除测试树表
+      operationId: remove_17
+      parameters:
+      - name: ids
+        in: path
+        description: 测试树ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/demo/{ids}:
+    delete:
+      tags:
+      - 测试单表Controller
+      summary: 删除测试单表
+      description: 删除测试单表
+      operationId: remove_18
+      parameters:
+      - name: ids
+        in: path
+        description: 测试ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /demo/batch:
+    delete:
+      tags:
+      - 测试批量方法
+      summary: 删除批量方法
+      description: 删除批量方法
+      operationId: remove_19
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+components:
+  schemas:
+    GenTable:
+      required:
+      - businessName
+      - className
+      - functionAuthor
+      - functionName
+      - moduleName
+      - packageName
+      - tableComment
+      - tableName
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        tableId:
+          type: integer
+          description: 编号
+          format: int64
+        tableName:
+          type: string
+          description: 表名称
+        tableComment:
+          type: string
+          description: 表描述
+        subTableName:
+          type: string
+          description: 关联父表的表名
+        subTableFkName:
+          type: string
+          description: 本表关联父表的外键名
+        className:
+          type: string
+          description: 实体类名称(首字母大写)
+        tplCategory:
+          type: string
+          description: 使用的模板（crud单表操作 tree树表操作 sub主子表操作）
+        packageName:
+          type: string
+          description: 生成包路径
+        moduleName:
+          type: string
+          description: 生成模块名
+        businessName:
+          type: string
+          description: 生成业务名
+        functionName:
+          type: string
+          description: 生成功能名
+        functionAuthor:
+          type: string
+          description: 生成作者
+        genType:
+          type: string
+          description: 生成代码方式（0zip压缩包 1自定义路径）
+        genPath:
+          type: string
+          description: 生成路径（不填默认项目路径）
+        pkColumn:
+          $ref: '#/components/schemas/GenTableColumn'
+        subTable:
+          $ref: '#/components/schemas/GenTable'
+        columns:
+          type: array
+          description: 表列信息
+          items:
+            $ref: '#/components/schemas/GenTableColumn'
+        options:
+          type: string
+          description: 其它生成选项
+        remark:
+          type: string
+          description: 备注
+        treeCode:
+          type: string
+          description: 树编码字段
+        treeParentCode:
+          type: string
+          description: 树父编码字段
+        treeName:
+          type: string
+          description: 树名称字段
+        menuIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        parentMenuId:
+          type: string
+          description: 上级菜单ID字段
+        parentMenuName:
+          type: string
+          description: 上级菜单名称字段
+        tree:
+          type: boolean
+        sub:
+          type: boolean
+        crud:
+          type: boolean
+      description: 业务表 gen_table
+    GenTableColumn:
+      required:
+      - javaField
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        columnId:
+          type: integer
+          description: 编号
+          format: int64
+        tableId:
+          type: integer
+          description: 归属表编号
+          format: int64
+        columnName:
+          type: string
+          description: 列名称
+        columnComment:
+          type: string
+          description: 列描述
+        columnType:
+          type: string
+          description: 列类型
+        javaType:
+          type: string
+          description: JAVA类型
+        javaField:
+          type: string
+          description: JAVA字段名
+        isPk:
+          type: string
+          description: 是否主键（1是）
+        isIncrement:
+          type: string
+          description: 是否自增（1是）
+        isRequired:
+          type: string
+          description: 是否必填（1是）
+        isInsert:
+          type: string
+          description: 是否为插入字段（1是）
+        isEdit:
+          type: string
+          description: 是否编辑字段（1是）
+        isList:
+          type: string
+          description: 是否列表字段（1是）
+        isQuery:
+          type: string
+          description: 是否查询字段（1是）
+        queryType:
+          type: string
+          description: 查询方式（EQ等于、NE不等于、GT大于、LT小于、LIKE模糊、BETWEEN范围）
+        htmlType:
+          type: string
+          description: 显示类型（input文本框、textarea文本域、select下拉框、checkbox复选框、radio单选框、datetime日期控件、image图片上传控件、upload文件上传控件、editor富文本控件）
+        dictType:
+          type: string
+          description: 字典类型
+        sort:
+          type: integer
+          description: 排序
+          format: int32
+        list:
+          type: boolean
+        required:
+          type: boolean
+        pk:
+          type: boolean
+        insert:
+          type: boolean
+        edit:
+          type: boolean
+        usableColumn:
+          type: boolean
+        superColumn:
+          type: boolean
+        query:
+          type: boolean
+        capJavaField:
+          type: string
+        increment:
+          type: boolean
+      description: 代码生成业务字段表 gen_table_column
+    RVoid:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: object
+      description: 响应信息主体
+    SysDept:
+      required:
+      - deptName
+      - orderNum
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        parentName:
+          type: string
+          description: 父菜单名称
+        parentId:
+          type: integer
+          description: 父菜单ID
+          format: int64
+        children:
+          type: array
+          description: 子部门
+          items:
+            $ref: '#/components/schemas/SysDept'
+        deptId:
+          type: integer
+          description: 部门ID
+          format: int64
+        deptName:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 部门名称
+        orderNum:
+          type: integer
+          description: 显示顺序
+          format: int32
+        leader:
+          type: string
+          description: 负责人
+        phone:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: 联系电话
+        email:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: 邮箱
+        status:
+          type: string
+          description: 部门状态:0正常,1停用
+        delFlag:
+          type: string
+          description: 删除标志（0代表存在 2代表删除）
+        ancestors:
+          type: string
+          description: 祖级列表
+      description: 部门表 sys_dept
+    SysRole:
+      required:
+      - roleKey
+      - roleName
+      - roleSort
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        roleId:
+          type: integer
+          description: 角色ID
+          format: int64
+        roleName:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 角色名称
+        roleKey:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 角色权限
+        roleSort:
+          type: integer
+          description: 角色排序
+          format: int32
+        dataScope:
+          type: string
+          description: 数据范围（1：所有数据权限；2：自定义数据权限；3：本部门数据权限；4：本部门及以下数据权限；5：仅本人数据权限）
+        menuCheckStrictly:
+          type: boolean
+          description: 菜单树选择项是否关联显示（ 0：父子不互相关联显示 1：父子互相关联显示）
+        deptCheckStrictly:
+          type: boolean
+          description: 部门树选择项是否关联显示（0：父子不互相关联显示 1：父子互相关联显示 ）
+        status:
+          type: string
+          description: 角色状态（0正常 1停用）
+        delFlag:
+          type: string
+          description: 删除标志（0代表存在 2代表删除）
+        remark:
+          type: string
+          description: 备注
+        flag:
+          type: boolean
+          description: 用户是否存在此角色标识 默认不存在
+        menuIds:
+          type: array
+          description: 菜单组
+          items:
+            type: integer
+            format: int64
+        deptIds:
+          type: array
+          description: 部门组（数据权限）
+          items:
+            type: integer
+            format: int64
+        admin:
+          type: boolean
+      description: 角色表 sys_role
+    SysUser:
+      required:
+      - nickName
+      - userName
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        userId:
+          type: integer
+          description: 用户ID
+          format: int64
+        deptId:
+          type: integer
+          description: 部门ID
+          format: int64
+        userName:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 用户账号
+        nickName:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 用户昵称
+        userType:
+          type: string
+          description: 用户类型（sys_user系统用户）
+        email:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: 用户邮箱
+        phonenumber:
+          type: string
+          description: 手机号码
+        sex:
+          type: string
+          description: 用户性别
+        avatar:
+          type: string
+          description: 用户头像
+        password:
+          type: string
+          description: 密码
+          writeOnly: true
+        status:
+          type: string
+          description: 帐号状态（0正常 1停用）
+        delFlag:
+          type: string
+          description: 删除标志（0代表存在 2代表删除）
+        loginIp:
+          type: string
+          description: 最后登录IP
+        loginDate:
+          type: integer
+          description: 最后登录时间
+          format: int64
+        remark:
+          type: string
+          description: 备注
+        dept:
+          $ref: '#/components/schemas/SysDept'
+        roles:
+          type: array
+          description: 角色对象
+          items:
+            $ref: '#/components/schemas/SysRole'
+        roleIds:
+          type: array
+          description: 角色组
+          items:
+            type: integer
+            format: int64
+        postIds:
+          type: array
+          description: 岗位组
+          items:
+            type: integer
+            format: int64
+        roleId:
+          type: integer
+          description: 数据权限 当前角色ID
+          format: int64
+        admin:
+          type: boolean
+      description: 用户对象 sys_user
+    SysUserRole:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: 用户ID
+          format: int64
+        roleId:
+          type: integer
+          description: 角色ID
+          format: int64
+      description: 用户和角色关联 sys_user_role
+    SysPost:
+      required:
+      - postCode
+      - postName
+      - postSort
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        postId:
+          type: integer
+          description: 岗位序号
+          format: int64
+        postCode:
+          maxLength: 64
+          minLength: 0
+          type: string
+          description: 岗位编码
+        postName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: 岗位名称
+        postSort:
+          type: integer
+          description: 岗位排序
+          format: int32
+        status:
+          type: string
+          description: 状态（0正常 1停用）
+        remark:
+          type: string
+          description: 备注
+        flag:
+          type: boolean
+          description: 用户是否存在此岗位标识 默认不存在
+      description: 岗位表 sys_post
+    SysOssConfigBo:
+      required:
+      - accessKey
+      - accessPolicy
+      - bucketName
+      - configKey
+      - endpoint
+      - ossConfigId
+      - secretKey
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        ossConfigId:
+          type: integer
+          description: 主建
+          format: int64
+        configKey:
+          maxLength: 100
+          minLength: 2
+          type: string
+          description: 配置key
+        accessKey:
+          maxLength: 100
+          minLength: 2
+          type: string
+          description: accessKey
+        secretKey:
+          maxLength: 100
+          minLength: 2
+          type: string
+          description: 秘钥
+        bucketName:
+          maxLength: 100
+          minLength: 2
+          type: string
+          description: 桶名称
+        prefix:
+          type: string
+          description: 前缀
+        endpoint:
+          maxLength: 100
+          minLength: 2
+          type: string
+          description: 访问站点
+        domain:
+          type: string
+          description: 自定义域名
+        isHttps:
+          type: string
+          description: 是否https（Y=是,N=否）
+        status:
+          type: string
+          description: 是否默认（0=是,1=否）
+        region:
+          type: string
+          description: 域
+        ext1:
+          type: string
+          description: 扩展字段
+        remark:
+          type: string
+          description: 备注
+        accessPolicy:
+          type: string
+          description: 桶权限类型(0private 1public 2custom)
+      description: 对象存储配置业务对象 sys_oss_config
+    SysNotice:
+      required:
+      - noticeTitle
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        noticeId:
+          type: integer
+          description: 公告ID
+          format: int64
+        noticeTitle:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: 公告标题
+        noticeType:
+          type: string
+          description: 公告类型（1通知 2公告）
+        noticeContent:
+          type: string
+          description: 公告内容
+        status:
+          type: string
+          description: 公告状态（0正常 1关闭）
+        remark:
+          type: string
+          description: 备注
+      description: 通知公告表 sys_notice
+    SysMenu:
+      required:
+      - menuName
+      - menuType
+      - orderNum
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        parentName:
+          type: string
+          description: 父菜单名称
+        parentId:
+          type: integer
+          description: 父菜单ID
+          format: int64
+        children:
+          type: array
+          description: 子部门
+          items:
+            $ref: '#/components/schemas/SysMenu'
+        menuId:
+          type: integer
+          description: 菜单ID
+          format: int64
+        menuName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: 菜单名称
+        orderNum:
+          type: integer
+          description: 显示顺序
+          format: int32
+        path:
+          maxLength: 200
+          minLength: 0
+          type: string
+          description: 路由地址
+        component:
+          maxLength: 200
+          minLength: 0
+          type: string
+          description: 组件路径
+        queryParam:
+          type: string
+          description: 路由参数
+        isFrame:
+          type: string
+          description: 是否为外链（0是 1否）
+        isCache:
+          type: string
+          description: 是否缓存（0缓存 1不缓存）
+        menuType:
+          type: string
+          description: 类型（M目录 C菜单 F按钮）
+        visible:
+          type: string
+          description: 显示状态（0显示 1隐藏）
+        status:
+          type: string
+          description: 菜单状态（0正常 1停用）
+        perms:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 权限字符串
+        icon:
+          type: string
+          description: 菜单图标
+        remark:
+          type: string
+          description: 备注
+      description: 菜单权限表 sys_menu
+    SysDictType:
+      required:
+      - dictName
+      - dictType
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        dictId:
+          type: integer
+          description: 字典主键
+          format: int64
+        dictName:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 字典名称
+        dictType:
+          maxLength: 100
+          minLength: 0
+          pattern: ^[a-z][a-z0-9_]*$
+          type: string
+          description: 字典类型
+        status:
+          type: string
+          description: 状态（0正常 1停用）
+        remark:
+          type: string
+          description: 备注
+      description: 字典类型表 sys_dict_type
+    SysDictData:
+      required:
+      - dictLabel
+      - dictType
+      - dictValue
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        dictCode:
+          type: integer
+          description: 字典编码
+          format: int64
+        dictSort:
+          type: integer
+          description: 字典排序
+          format: int32
+        dictLabel:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 字典标签
+        dictValue:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 字典键值
+        dictType:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 字典类型
+        cssClass:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 样式属性（其他样式扩展）
+        listClass:
+          type: string
+          description: 表格字典样式
+        isDefault:
+          type: string
+          description: 是否默认（Y是 N否）
+        status:
+          type: string
+          description: 状态（0正常 1停用）
+        remark:
+          type: string
+          description: 备注
+        default:
+          type: boolean
+      description: 字典数据表 sys_dict_data
+    SysConfig:
+      required:
+      - configKey
+      - configName
+      - configValue
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        configId:
+          type: integer
+          description: 参数主键
+          format: int64
+        configName:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 参数名称
+        configKey:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 参数键名
+        configValue:
+          maxLength: 500
+          minLength: 0
+          type: string
+          description: 参数键值
+        configType:
+          type: string
+          description: 系统内置（Y是 N否）
+        remark:
+          type: string
+          description: 备注
+      description: 参数配置表 sys_config
+    TestTreeBo:
+      required:
+      - deptId
+      - id
+      - treeName
+      - userId
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        parentName:
+          type: string
+          description: 父菜单名称
+        parentId:
+          type: integer
+          description: 父菜单ID
+          format: int64
+        children:
+          type: array
+          description: 子部门
+          items:
+            $ref: '#/components/schemas/TestTreeBo'
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        deptId:
+          type: integer
+          description: 部门id
+          format: int64
+        userId:
+          type: integer
+          description: 用户id
+          format: int64
+        treeName:
+          type: string
+          description: 树节点名
+      description: 测试树表业务对象 test_tree
+    TestDemoBo:
+      required:
+      - deptId
+      - id
+      - orderNum
+      - testKey
+      - userId
+      - value
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        deptId:
+          type: integer
+          description: 部门id
+          format: int64
+        userId:
+          type: integer
+          description: 用户id
+          format: int64
+        orderNum:
+          type: integer
+          description: 排序号
+          format: int32
+        testKey:
+          type: string
+          description: key键
+        value:
+          type: string
+          description: 值
+      description: 测试单表业务对象 test_demo
+    RMapStringObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: object
+      description: 响应信息主体
+    RMapStringString:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+      description: 响应信息主体
+    RString:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: string
+      description: 响应信息主体
+    SmsLoginBody:
+      required:
+      - phonenumber
+      - smsCode
+      type: object
+      properties:
+        phonenumber:
+          type: string
+          description: 手机号
+        smsCode:
+          type: string
+          description: 短信code
+      description: 短信登录对象
+    RegisterBody:
+      required:
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+          description: 用户名
+        password:
+          type: string
+          description: 用户密码
+        code:
+          type: string
+          description: 验证码
+        uuid:
+          type: string
+          description: 唯一标识
+        userType:
+          type: string
+      description: 用户注册对象
+    ApiVo:
+      type: object
+      properties:
+        data:
+          type: string
+          description: 加密后的数据
+      description: ''
+    RApiVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/ApiVo'
+      description: 响应信息主体
+    SysOperLog:
+      type: object
+      properties:
+        operId:
+          type: integer
+          description: 日志主键
+          format: int64
+        title:
+          type: string
+          description: 操作模块
+        businessType:
+          type: integer
+          description: 业务类型（0其它 1新增 2修改 3删除）
+          format: int32
+        businessTypes:
+          type: array
+          description: 业务类型数组
+          items:
+            type: integer
+            format: int32
+        method:
+          type: string
+          description: 请求方法
+        requestMethod:
+          type: string
+          description: 请求方式
+        operatorType:
+          type: integer
+          description: 操作类别（0其它 1后台用户 2手机端用户）
+          format: int32
+        operName:
+          type: string
+          description: 操作人员
+        deptName:
+          type: string
+          description: 部门名称
+        operUrl:
+          type: string
+          description: 请求url
+        operIp:
+          type: string
+          description: 操作地址
+        operLocation:
+          type: string
+          description: 操作地点
+        operParam:
+          type: string
+          description: 请求参数
+        jsonResult:
+          type: string
+          description: 返回参数
+        status:
+          type: integer
+          description: 操作状态（0正常 1异常）
+          format: int32
+        errorMsg:
+          type: string
+          description: 错误消息
+        operTime:
+          type: integer
+          description: 操作时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+      description: 操作日志记录表 oper_log
+    SysLogininfor:
+      type: object
+      properties:
+        infoId:
+          type: integer
+          description: ID
+          format: int64
+        userName:
+          type: string
+          description: 用户账号
+        status:
+          type: string
+          description: 登录状态 0成功 1失败
+        ipaddr:
+          type: string
+          description: 登录IP地址
+        loginLocation:
+          type: string
+          description: 登录地点
+        browser:
+          type: string
+          description: 浏览器类型
+        os:
+          type: string
+          description: 操作系统
+        msg:
+          type: string
+          description: 提示消息
+        loginTime:
+          type: integer
+          description: 访问时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+      description: 系统访问记录表 sys_logininfor
+    LoginBody:
+      required:
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+          description: 用户名
+        password:
+          type: string
+          description: 用户密码
+        code:
+          type: string
+          description: 验证码
+        uuid:
+          type: string
+          description: 唯一标识
+      description: 用户登录对象
+    EmailLoginBody:
+      required:
+      - email
+      - emailCode
+      type: object
+      properties:
+        email:
+          type: string
+          description: 邮箱
+        emailCode:
+          type: string
+          description: 邮箱code
+      description: 邮箱登录对象
+    ExportDemoVo:
+      required:
+      - area
+      - areaId
+      - city
+      - cityId
+      - email
+      - gender
+      - nickName
+      - phoneNumber
+      - province
+      - provinceId
+      - userStatus
+      type: object
+      properties:
+        nickName:
+          type: string
+          description: 用户昵称
+        userStatus:
+          type: string
+          description: "用户类型\n </p>\n 使用ExcelEnumFormat注解需要进行下拉选的部分"
+        gender:
+          type: string
+          description: "性别\n <p>\n 使用ExcelDictFormat注解需要进行下拉选的部分"
+        phoneNumber:
+          type: string
+          description: 手机号
+        email:
+          type: string
+          description: Email
+        province:
+          type: string
+          description: "省\n <p>\n 级联下拉，仅判断是否选了"
+        provinceId:
+          type: integer
+          description: "数据库中的省ID\n </p>\n 处理完毕后再判断是否市正确的值"
+          format: int32
+        city:
+          type: string
+          description: "市\n <p>\n 级联下拉"
+        cityId:
+          type: integer
+          description: 数据库中的市ID
+          format: int32
+        area:
+          type: string
+          description: "县\n <p>\n 级联下拉"
+        areaId:
+          type: integer
+          description: 数据库中的县ID
+          format: int32
+      description: 带有下拉选的Excel导出
+    CenterVo:
+      type: object
+      properties:
+        areaListVoList:
+          type: array
+          description: 区域列表
+          items:
+            $ref: '#/components/schemas/CommonDictItemVo'
+        hostListVoList:
+          type: array
+          description: 区域对应的服务器地址
+          items:
+            $ref: '#/components/schemas/HostListVo'
+      description: 数据中心区域/服务器查询
+    CommonDictItemVo:
+      type: object
+      properties:
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        dictType:
+          type: string
+          description: 字典类型
+        category:
+          type: string
+          description: 种类
+        categoryName:
+          type: string
+          description: 种类名称
+        parentCategory:
+          type: string
+          description: 种类父级
+        dictKey:
+          type: string
+          description: 字典键值
+        dictKeyName:
+          type: string
+          description: 字典键值
+        dictDataRemark:
+          type: string
+        imageUrl:
+          type: string
+          description: 字典图片url
+        dictFlag:
+          type: string
+          description: 是否热门,是否常用等标记,
+        sort:
+          type: integer
+          description: 排序
+          format: int32
+        language:
+          type: string
+          description: 语言类型,(EN,CN)等
+        languageValue:
+          type: string
+          description: 语言类型值
+      description: 多语言字典对象O
+    HostListVo:
+      type: object
+      properties:
+        dataCenterCode:
+          type: string
+          description: 数据中心code
+        host:
+          type: string
+          description: 数据中心域名前缀:http://eu.szlongzy.com
+        wopetHost:
+          type: string
+      description: 数据中心域名列对象
+    RCenterVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/CenterVo'
+      description: 响应信息主体
+    CommonHostList:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        domainId:
+          type: integer
+          format: int64
+        dataCenterCode:
+          type: string
+          description: 数据中心code
+        host:
+          type: string
+          description: 数据中心域名前缀:http://eu.szlongzy.com
+        wopetHost:
+          type: string
+        appSource:
+          type: string
+      description: 数据中心域名列对象 common_domain_list
+    RListCommonHostList:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommonHostList'
+      description: 响应信息主体
+    PageQuery:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int32
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int32
+        orderByColumn:
+          type: string
+          description: 排序列
+        isAsc:
+          type: string
+          description: 排序的方向desc或者asc
+      description: 分页查询实体类
+    TableDataInfoGenTable:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/GenTable'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    TableDataInfoGenTableColumn:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/GenTableColumn'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    TableDataInfoSysUser:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysUser'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RListTreeLong:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TreeLong'
+      description: 响应信息主体
+    TreeLong:
+      type: object
+      properties:
+        config:
+          $ref: '#/components/schemas/TreeNodeConfig'
+        weight:
+          type: object
+        parentId:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        name:
+          type: object
+        empty:
+          type: boolean
+      additionalProperties:
+        type: object
+      description: ''
+    TreeNodeConfig:
+      type: object
+      properties:
+        idKey:
+          type: string
+        parentIdKey:
+          type: string
+        weightKey:
+          type: string
+        nameKey:
+          type: string
+        childrenKey:
+          type: string
+        deep:
+          type: integer
+          format: int32
+      description: ''
+    RSysRole:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/SysRole'
+      description: 响应信息主体
+    RListSysRole:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SysRole'
+      description: 响应信息主体
+    TableDataInfoSysRole:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysRole'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysPost:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/SysPost'
+      description: 响应信息主体
+    RListSysPost:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SysPost'
+      description: 响应信息主体
+    TableDataInfoSysPost:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysPost'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    SysOssBo:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        ossId:
+          type: integer
+          description: ossId
+          format: int64
+        fileName:
+          type: string
+          description: 文件名
+        originalName:
+          type: string
+          description: 原名
+        fileSuffix:
+          type: string
+          description: 文件后缀名
+        url:
+          type: string
+          description: URL地址
+        service:
+          type: string
+          description: 服务商
+      description: OSS对象存储分页查询对象 sys_oss
+    SysOssVo:
+      type: object
+      properties:
+        ossId:
+          type: integer
+          description: 对象存储主键
+          format: int64
+        fileName:
+          type: string
+          description: 文件名
+        originalName:
+          type: string
+          description: 原名
+        fileSuffix:
+          type: string
+          description: 文件后缀名
+        url:
+          type: string
+          description: URL地址
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        createBy:
+          type: string
+          description: 上传人
+        service:
+          type: string
+          description: 服务商
+      description: OSS对象存储视图对象 sys_oss
+    TableDataInfoSysOssVo:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysOssVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RListSysOssVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SysOssVo'
+      description: 响应信息主体
+    RSysOssConfigVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/SysOssConfigVo'
+      description: 响应信息主体
+    SysOssConfigVo:
+      type: object
+      properties:
+        ossConfigId:
+          type: integer
+          description: 主建
+          format: int64
+        configKey:
+          type: string
+          description: 配置key
+        accessKey:
+          type: string
+          description: accessKey
+        secretKey:
+          type: string
+          description: 秘钥
+        bucketName:
+          type: string
+          description: 桶名称
+        prefix:
+          type: string
+          description: 前缀
+        endpoint:
+          type: string
+          description: 访问站点
+        domain:
+          type: string
+          description: 自定义域名
+        isHttps:
+          type: string
+          description: 是否https（Y=是,N=否）
+        region:
+          type: string
+          description: 域
+        status:
+          type: string
+          description: 是否默认（0=是,1=否）
+        ext1:
+          type: string
+          description: 扩展字段
+        remark:
+          type: string
+          description: 备注
+        accessPolicy:
+          type: string
+          description: 桶权限类型(0private 1public 2custom)
+      description: 对象存储配置视图对象 sys_oss_config
+    TableDataInfoSysOssConfigVo:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysOssConfigVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysNotice:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/SysNotice'
+      description: 响应信息主体
+    TableDataInfoSysNotice:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysNotice'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysMenu:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/SysMenu'
+      description: 响应信息主体
+    RListSysMenu:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SysMenu'
+      description: 响应信息主体
+    RSysDictType:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/SysDictType'
+      description: 响应信息主体
+    RListSysDictType:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SysDictType'
+      description: 响应信息主体
+    TableDataInfoSysDictType:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysDictType'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysDictData:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/SysDictData'
+      description: 响应信息主体
+    RListSysDictData:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SysDictData'
+      description: 响应信息主体
+    TableDataInfoSysDictData:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysDictData'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysDept:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/SysDept'
+      description: 响应信息主体
+    RListSysDept:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SysDept'
+      description: 响应信息主体
+    RSysConfig:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/SysConfig'
+      description: 响应信息主体
+    TableDataInfoSysConfig:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysConfig'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    TableDataInfoSysOperLog:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysOperLog'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    SysUserOnline:
+      type: object
+      properties:
+        tokenId:
+          type: string
+          description: 会话编号
+        deptName:
+          type: string
+          description: 部门名称
+        userName:
+          type: string
+          description: 用户名称
+        ipaddr:
+          type: string
+          description: 登录IP地址
+        loginLocation:
+          type: string
+          description: 登录地址
+        browser:
+          type: string
+          description: 浏览器类型
+        os:
+          type: string
+          description: 操作系统
+        loginTime:
+          type: integer
+          description: 登录时间
+          format: int64
+      description: 当前在线会话
+    TableDataInfoSysUserOnline:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysUserOnline'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    TableDataInfoSysLogininfor:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysLogininfor'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysCache:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/SysCache'
+      description: 响应信息主体
+    SysCache:
+      type: object
+      properties:
+        cacheName:
+          type: string
+          description: 缓存名称
+        cacheKey:
+          type: string
+          description: 缓存键名
+        cacheValue:
+          type: string
+          description: 缓存内容
+        remark:
+          type: string
+          description: 备注
+      description: 缓存信息
+    RListSysCache:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SysCache'
+      description: 响应信息主体
+    RCollectionString:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            type: string
+      description: 响应信息主体
+    MetaVo:
+      type: object
+      properties:
+        title:
+          type: string
+          description: 设置该路由在侧边栏和面包屑中展示的名字
+        icon:
+          type: string
+          description: 设置该路由的图标，对应路径src/assets/icons/svg
+        noCache:
+          type: boolean
+          description: 设置为true，则不会被 <keep-alive>缓存
+        link:
+          type: string
+          description: 内链地址（http(s)://开头）
+      description: 路由显示信息
+    RListRouterVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RouterVo'
+      description: 响应信息主体
+    RouterVo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 路由名字
+        path:
+          type: string
+          description: 路由地址
+        hidden:
+          type: boolean
+          description: 是否隐藏路由，当设置 true 的时候该路由不会再侧边栏出现
+        redirect:
+          type: string
+          description: 重定向地址，当设置 noRedirect 的时候该路由在面包屑导航中不可被点击
+        component:
+          type: string
+          description: 组件地址
+        query:
+          type: string
+          description: '路由参数：如 {"id": 1, "name": "ry"}'
+        alwaysShow:
+          type: boolean
+          description: 当你一个路由下面的 children 声明的路由大于1个时，自动会变成嵌套的模式--如组件页面
+        meta:
+          $ref: '#/components/schemas/MetaVo'
+      description: 路由配置信息
+    RTestTreeVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/TestTreeVo'
+      description: 响应信息主体
+    TestTreeVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        parentId:
+          type: integer
+          description: 父id
+          format: int64
+        deptId:
+          type: integer
+          description: 部门id
+          format: int64
+        userId:
+          type: integer
+          description: 用户id
+          format: int64
+        treeName:
+          type: string
+          description: 树节点名
+        createTime:
+          type: string
+          description: 创建时间
+          format: date-time
+      description: 测试树表视图对象 test_tree
+    RListTestTreeVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestTreeVo'
+      description: 响应信息主体
+    RObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: object
+      description: 响应信息主体
+    RTestSensitive:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/TestSensitive'
+      description: 响应信息主体
+    TestSensitive:
+      type: object
+      properties:
+        idCard:
+          type: string
+          description: 身份证
+        phone:
+          type: string
+          description: 电话
+        address:
+          type: string
+          description: 地址
+        email:
+          type: string
+          description: 邮箱
+        bankCard:
+          type: string
+          description: 银行卡
+      description: ''
+    TestI18nBo:
+      required:
+      - age
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: integer
+          format: int32
+      description: ''
+    RTestI18nBo:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/TestI18nBo'
+      description: 响应信息主体
+    RMapStringTestDemoEncrypt:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/TestDemoEncrypt'
+      description: 响应信息主体
+    TestDemoEncrypt:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        deptId:
+          type: integer
+          description: 部门id
+          format: int64
+        userId:
+          type: integer
+          description: 用户id
+          format: int64
+        orderNum:
+          type: integer
+          description: 排序号
+          format: int32
+        testKey:
+          type: string
+          description: key键
+        value:
+          type: string
+          description: 值
+        version:
+          type: integer
+          description: 版本
+          format: int64
+        delFlag:
+          type: integer
+          description: 删除标志
+          format: int64
+      description: ''
+    RTestDemoVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          $ref: '#/components/schemas/TestDemoVo'
+      description: 响应信息主体
+    TestDemoVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        deptId:
+          type: integer
+          description: 部门id
+          format: int64
+        userId:
+          type: integer
+          description: 用户id
+          format: int64
+        orderNum:
+          type: integer
+          description: 排序号
+          format: int32
+        testKey:
+          type: string
+          description: key键
+        value:
+          type: string
+          description: 值
+        createTime:
+          type: string
+          description: 创建时间
+          format: date-time
+        createBy:
+          type: string
+          description: 创建人
+        updateTime:
+          type: string
+          description: 更新时间
+          format: date-time
+        updateBy:
+          type: string
+          description: 更新人
+      description: 测试单表视图对象 test_demo
+    TableDataInfoTestDemoVo:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/TestDemoVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RBoolean:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+        data:
+          type: boolean
+      description: 响应信息主体
+    TcpResp:
+      type: object
+      properties:
+        dataCenterCode:
+          type: string
+          description: 数据中心code
+        mqttHost:
+          type: string
+          description: mqtt连接地址:tcp://emq-us.szlongzy.com:11883
+        mqttPort:
+          type: integer
+          format: int32
+        tcpHost:
+          type: string
+          description: tcp连接地址:tcp://emq-us.szlongzy.com:18023
+        tcpPort:
+          type: integer
+          format: int32
+      description: ''
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header

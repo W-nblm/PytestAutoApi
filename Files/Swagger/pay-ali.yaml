@@ -1,0 +1,1558 @@
+openapi: 3.0.1
+info:
+  title: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  description: 描述：微服务权限管理系统, 具体包括XXX,XXX模块...
+  contact:
+    name: lzyiot
+    url: https://szlongzy.com
+    email: lzyiot@szlongzy.com
+  version: 版本号：系统版本...
+servers:
+- url: http://172.10.21.14:9103/info
+  description: Generated server url
+security:
+- apiKey: []
+tags:
+- name: PayOrder控制器
+  description: PayOrder控制器
+- name: 云存储事件记录
+  description: 云存储事件记录
+- name: HeartBeat
+  description: HeartBeat
+paths:
+  /pay/info/payOrder/usePlan:
+    post:
+      tags:
+      - PayOrder控制器
+      summary: "云存储(使用中)使用中的计划\n 只有一条,没有有效的 则为空"
+      description: "云存储(使用中)使用中的计划\n 只有一条,没有有效的 则为空"
+      operationId: usePlan
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCSPlanResp'
+  /pay/info/payOrder/queryPlanSpecificationItem/{planId}:
+    post:
+      tags:
+      - PayOrder控制器
+      summary: 查询套餐计划规格列表
+      description: 查询套餐计划规格列表
+      operationId: queryPlanSpecificationItem
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCSPlanTypeResp'
+  /pay/info/payOrder/queryPlanList:
+    post:
+      tags:
+      - PayOrder控制器
+      summary: 查询套餐计划接口
+      description: 查询套餐计划接口
+      operationId: queryPlanList
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCSPlanResp'
+  /pay/info/payOrder/queryOrderBindDeviceList/{usePlanId}:
+    post:
+      tags:
+      - PayOrder控制器
+      summary: 查询单个订单已绑定设备接口列表
+      description: 查询单个订单已绑定设备接口列表
+      operationId: queryOrderBindDeviceList
+      parameters:
+      - name: usePlanId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListCloudStorageUsePlanDeviceVo'
+  /pay/info/payOrder/orderList:
+    post:
+      tags:
+      - PayOrder控制器
+      summary: 订单列表接口
+      description: 订单列表接口
+      operationId: orderList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamVoid'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoCloudStorageOrder'
+  /pay/info/payOrder/orderCallback:
+    post:
+      tags:
+      - PayOrder控制器
+      summary: 订单回调接口
+      description: 订单回调接口
+      operationId: orderCallback
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplePayCallbackReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /pay/info/payOrder/orderCallbackFree:
+    post:
+      tags:
+      - PayOrder控制器
+      summary: 订单回调接口免费套餐
+      description: 订单回调接口免费套餐
+      operationId: orderCallbackFree
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplePayCallbackReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /pay/info/payOrder/orderBindDevice:
+    post:
+      tags:
+      - PayOrder控制器
+      summary: 对单个订单绑定设备接口
+      description: 对单个订单绑定设备接口
+      operationId: orderBindDevice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CSOrderBindDevReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /pay/info/payOrder/createPreOrder:
+    post:
+      tags:
+      - PayOrder控制器
+      summary: 页面发起支付前生成订单接口
+      description: 页面发起支付前生成订单接口
+      operationId: createOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreOrderReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RPreOrderResp'
+  /pay/info/payOrder/canBindDeviceList:
+    post:
+      tags:
+      - PayOrder控制器
+      summary: 查询有云存储功能的设备列表
+      description: 查询有云存储功能的设备列表
+      operationId: canBindDeviceList
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListAppDeviceInfoVo'
+  /pay/info/cloud/videoMessage/queryOssMsgList:
+    post:
+      tags:
+      - 云存储事件记录
+      summary: 获取视频云储存记录
+      description: 获取视频云储存记录
+      operationId: queryOssPageList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamAppCloudOssEventReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTableDataInfoCloudDeviceOssEventResVo'
+  /pay/info/cloud/videoMessage/deleteBeachOssVideo:
+    post:
+      tags:
+      - 云存储事件记录
+      summary: 删除视频云储存记录
+      description: 删除视频云储存记录
+      operationId: deleteBeachOssVideo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteBeachOssVideoReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /pay/info/cloud/videoMessage/countBydata:
+    post:
+      tags:
+      - 云存储事件记录
+      summary: 获取每天是否有云视频记录
+      description: 获取每天是否有云视频记录
+      operationId: countBydata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OssVideoDateNumberRqBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListOssVideoDateNumberVo'
+  /pay/info/cloud/free/queryFreePlanList/{type}:
+    post:
+      tags:
+      - 云存储事件记录
+      summary: "获取免费云存储开通记录\n type 取 1,0  1使用中  0已过期"
+      description: "获取免费云存储开通记录\n type 取 1,0  1使用中  0已过期"
+      operationId: queryFreePlanList
+      parameters:
+      - name: type
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTableDataInfoCloudStorageFreeListVo'
+  /pay/info/payOrder/checkDevUsePlan/{devId}:
+    get:
+      tags:
+      - PayOrder控制器
+      summary: 判断设备是否绑定套餐
+      description: 判断设备是否绑定套餐
+      operationId: checkDevUsePlan
+      parameters:
+      - name: devId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCheckDevUsePlanResp'
+  /pay/info/payOrder/checkDevUsePlan/allDev:
+    get:
+      tags:
+      - PayOrder控制器
+      summary: 判断设备是否绑定套餐
+      description: 判断设备是否绑定套餐
+      operationId: checkDevUsePlan_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCheckDevUsePlanResp'
+  /pay/info/heartBeat:
+    get:
+      tags:
+      - HeartBeat
+      summary: HeartBeat
+      description: HeartBeat
+      operationId: heartBeat
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /pay/info/cloud/videoMessage/getOssDeviceNameList:
+    get:
+      tags:
+      - 云存储事件记录
+      summary: 获取开通过云套餐设备名称列表
+      description: 获取开通过云套餐设备名称列表
+      operationId: getOssDeviceNameList
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListUserDeviceNameResVo'
+components:
+  schemas:
+    CSPlanResp:
+      type: object
+      properties:
+        userFreeLabel:
+          type: integer
+          description: "免费试用标记(1:可以免费试用,2:不能免费试用)\n 与手机平台有关"
+          format: int32
+        payPlate:
+          type: integer
+          description: 支付平台 1ios 2 安卓
+          format: int32
+        usePlanId:
+          type: integer
+          description: 使用中计划表主键id
+          format: int64
+        csPlanVoList:
+          type: array
+          description: 套餐计划列表
+          items:
+            $ref: '#/components/schemas/CSPlanVo'
+      description: ''
+    CSPlanVo:
+      type: object
+      properties:
+        planId:
+          type: integer
+          description: 套餐id
+          format: int64
+        appSource:
+          type: string
+          description: 业务线
+        sourceType:
+          type: string
+          description: 业务类型
+        planName:
+          type: string
+          description: 套餐类型 标准计划standard
+        planDesc:
+          type: string
+          description: 套餐类型 标准计划standard
+        videoStorageType:
+          type: string
+          description: 录像存储类型
+        videoStorageDuration:
+          type: integer
+          description: 录像存储周期 30
+          format: int32
+        planShareDevice:
+          type: integer
+          description: 套餐可分享设备数量
+          format: int32
+        applePayGoodId:
+          type: string
+          description: 苹果支付商品id
+        googlePayGoodId:
+          type: string
+          description: 谷歌支付商品id
+        sort:
+          type: integer
+          description: 排序字段
+          format: int32
+        userPlanInfo:
+          $ref: '#/components/schemas/UserPlanInfo'
+      description: 云存储套餐计划返回列表
+    RCSPlanResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/CSPlanResp'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    UserPlanInfo:
+      type: object
+      properties:
+        startTime:
+          type: integer
+          description: 开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 到期时间
+          format: int64
+        userUid:
+          type: string
+          description: 用户id
+        usePlanId:
+          type: integer
+          description: 使用中计划表主键id
+          format: int64
+      description: 用户生效计划有效期
+    CSPlanTypeResp:
+      type: object
+      properties:
+        userFreeLabel:
+          type: integer
+          description: "免费试用标记(1:可以免费试用,2:不能免费试用)\n 与手机平台有关"
+          format: int32
+        csPlanVoList:
+          type: array
+          description: 套餐计划列表
+          items:
+            $ref: '#/components/schemas/CSPlanTypeVo'
+      description: ''
+    CSPlanTypeVo:
+      type: object
+      properties:
+        typeId:
+          type: integer
+          description: 主键
+          format: int64
+        planId:
+          type: integer
+          description: 套餐id
+          format: int64
+        planType:
+          type: string
+          description: 套餐时长 month包月 year包年
+        planTypeDuration:
+          type: integer
+          description: 套餐时长 30包月 365包年
+          format: int32
+        platePlanName:
+          type: string
+          description: 平台套餐规格名称
+        planTypeName:
+          type: string
+          description: app套餐规格名称
+        planTypeMultiName:
+          type: string
+          description: app套餐多语言规格名称
+        planIsFree:
+          type: string
+          description: 套餐是否支持免费使用 0否 1是
+        planFreeDuration:
+          type: integer
+          description: 套餐免费天数
+          format: int64
+        planFreeName:
+          type: string
+          description: 免费试用套餐名称
+        planFreeMultiName:
+          type: string
+          description: 免费试用套餐名称
+        planOriginPrice:
+          type: number
+          description: 套餐原价
+        planPrice:
+          type: number
+          description: 套餐价格
+        planIsDiscount:
+          type: string
+          description: 套餐是否折扣
+        planPriceUnit:
+          type: string
+          description: 套餐单位
+        planDescription:
+          type: string
+          description: 套餐描述
+        planTypeStatus:
+          type: string
+          description: 套餐使用状态 0未使用 1使用中
+        planSubscribeStatus:
+          type: string
+        sourceType:
+          type: string
+        videoStorageType:
+          type: string
+        videoStorageDuration:
+          type: integer
+          format: int64
+        sort:
+          type: integer
+          format: int32
+        applePayTypeId:
+          type: string
+          description: 苹果支付规格id
+        googlePayTypeId:
+          type: string
+          description: 谷歌支付规格id
+      description: ''
+    RCSPlanTypeResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/CSPlanTypeResp'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    CloudStorageUsePlanDeviceVo:
+      type: object
+      properties:
+        usePlanDeviceId:
+          type: integer
+          description: 使用中计划关联设备表id
+          format: int64
+        usePlanId:
+          type: integer
+          description: cloud_storage_use_plan表主键id
+          format: int64
+        userUid:
+          type: string
+          description: 用户id
+        devId:
+          type: string
+          description: 设备id
+        relationTime:
+          type: integer
+          description: 关联时间
+          format: int64
+        devName:
+          type: string
+          description: 设备名称
+      description: 使用中计划关联设备视图对象 cloud_storage_use_plan_device
+    RListCloudStorageUsePlanDeviceVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/CloudStorageUsePlanDeviceVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    PageQuery:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int32
+        pageNum:
+          minimum: 1
+          type: integer
+          description: 当前页数
+          format: int32
+        orderByColumn:
+          type: string
+          description: 排序列
+        isAsc:
+          type: string
+          description: "排序的方向desc或者asc\n 支持的用法如下:\n {isAsc:\"asc\",orderByColumn:\"\
+            id\"} order by id asc\n {isAsc:\"asc\",orderByColumn:\"id,createTime\"\
+            } order by id asc,create_time asc\n {isAsc:\"desc\",orderByColumn:\"id,createTime\"\
+            } order by id desc,create_time desc\n {isAsc:\"asc,desc\",orderByColumn:\"\
+            id,createTime\"} order by id asc,create_time desc"
+      description: 分页查询实体类
+    PageQueryParamVoid:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          type: object
+          description: 分页查询关键字条件对象
+      description: 带参数的分页查询对象
+    CloudStorageOrder:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        orderId:
+          type: integer
+          format: int64
+        orderNo:
+          type: string
+          description: 订单编号
+        payNo:
+          type: string
+          description: 第三方支付单号
+        payRefundNo:
+          type: string
+          description: 第三方退款单号
+        orderType:
+          type: string
+          description: 订单类型
+        planName:
+          type: string
+          description: app套餐名称
+        planMultiName:
+          type: string
+          description: app套餐多语言名称
+        planId:
+          type: integer
+          description: 套餐id
+          format: int64
+        planTypeId:
+          type: integer
+          description: 套餐规格id
+          format: int64
+        userId:
+          type: string
+          description: 用户id
+        usePlanId:
+          type: integer
+          description: 使用中的计划id
+          format: int64
+        orderPrice:
+          type: number
+          description: 订单金额
+        payPlate:
+          type: integer
+          description: 支付平台 1ios 2 安卓
+          format: int32
+        payType:
+          type: integer
+          description: 支付方式  1ApplePay  2 GooglePay
+          format: int32
+        payStatus:
+          type: integer
+          description: 支付状态 1支付成功 0支付失败
+          format: int32
+        refundStatus:
+          type: integer
+          description: 退看状态 1退款成功 0退款失败
+          format: int32
+        orderStatus:
+          type: integer
+          description: 套餐状态 1使用中 0已过期,2:待使用
+          format: int32
+        orderTime:
+          type: integer
+          description: 下单时间
+          format: int64
+        payTime:
+          type: integer
+          description: 支付时间
+          format: int64
+        refundTime:
+          type: integer
+          description: 退款时间
+          format: int64
+        orderBeginTime:
+          type: integer
+          description: 订单开始时间
+          format: int64
+        orderEndTime:
+          type: integer
+          description: 订单结束时间
+          format: int64
+        planShareDevice:
+          type: integer
+          description: 套餐设备分享数量
+          format: int32
+        planTypeName:
+          type: string
+          description: 套餐规格名称
+        planTypeMultiName:
+          type: string
+          description: 套餐规格多语言名称
+        paymentToken:
+          type: string
+          description: 支付完成token
+        planPrice:
+          type: number
+          description: 套餐金额
+        orderCount:
+          type: integer
+          description: 订单数量
+          format: int32
+        freeLabel:
+          type: integer
+          description: 是否免费套餐,1:是免费, 2:不是免费
+          format: int32
+      description: 云存储订单对象 cloud_storage_order
+    TableDataInfoCloudStorageOrder:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/CloudStorageOrder'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    ApplePayCallbackReq:
+      required:
+      - orderId
+      - orderNo
+      - packageName
+      - planId
+      - token
+      - typeId
+      - userId
+      type: object
+      properties:
+        orderId:
+          type: string
+          description: 订单号
+        packageName:
+          type: string
+          description: 包名
+        token:
+          type: string
+          description: 用户够买成功后的token有效期为订阅到期后的60天
+        planId:
+          type: integer
+          description: 订阅的套餐id
+          format: int64
+        typeId:
+          type: integer
+          description: 订阅的套餐规则id
+          format: int64
+        orderNo:
+          type: string
+        userId:
+          type: string
+      description: ''
+    RVoid:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    CSOrderBindDevReq:
+      required:
+      - usePlanId
+      type: object
+      properties:
+        usePlanId:
+          type: integer
+          description: 用户使用中的套餐计划id
+          format: int64
+        devIdList:
+          type: array
+          description: 绑定的设备列表 为空则取消所有已绑定的设备
+          items:
+            type: string
+      description: 云储绑定设备入参
+    PreOrderReq:
+      required:
+      - planId
+      - typeId
+      type: object
+      properties:
+        planId:
+          type: integer
+          description: 订阅的套餐id
+          format: int64
+        typeId:
+          type: integer
+          description: 订阅的套餐规则id
+          format: int64
+      description: ''
+    PreOrderResp:
+      type: object
+      properties:
+        orderNo:
+          type: string
+          description: 预生成的订单编号
+      description: ''
+    RPreOrderResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/PreOrderResp'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    AppDeviceInfoVo:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        name:
+          type: string
+          description: 设备名称
+        uuid:
+          type: string
+          description: 设备唯一标识
+        type:
+          type: integer
+          description: 对接平台类型 0:龙之源，1：涂鸦
+          format: int64
+        timezone:
+          type: string
+          description: 用户时区信息。取值示例：Asia/Shanghai
+        devUtcTimeZone:
+          type: string
+          description: 设备时区
+        appId:
+          type: string
+          description: 注册时appid,用来判断不同租户
+        productId:
+          type: string
+          description: 产品id
+        activeTime:
+          type: integer
+          description: 设备激活时间
+          format: int64
+        firstTime:
+          type: integer
+          description: 首次配网时间
+          format: int64
+        lastTime:
+          type: integer
+          description: 上次配网时间
+          format: int64
+        pv:
+          type: string
+          description: 网关协议版本
+        bv:
+          type: string
+          description: 网关通用固件版本
+        online:
+          type: integer
+          description: 设备在线状态：0：未知，1，在线，2休眠，3离线
+          format: int32
+        supportGroup:
+          type: boolean
+          description: 设备是否支持群组
+        isShare:
+          type: boolean
+          description: 是否是分享的设备
+        sub:
+          type: boolean
+          description: 判断是否为子设备
+        isZigbeeWifi:
+          type: boolean
+          description: 是否是 Zigbee 网关设备
+        isZigbee:
+          type: boolean
+          description: 是否有 Zigbee 设备
+        nodeId:
+          type: string
+          description: 用于网关和子设备类型的设备。属于子设备的一个属性，标识其短地址 ID，一个网关的子设备的 nodeId 都是唯一的。
+        lon:
+          type: string
+          description: 设备所在经度信息
+        lat:
+          type: string
+          description: 设备所在纬度信息
+        ipcType:
+          type: string
+          description: 第3方ipc厂家
+        ipcLicenseId:
+          type: string
+          description: ipc厂家licenseId，p2p使用
+        ipcLicenseAcount:
+          type: string
+          description: ipc厂家licenseId 用户
+        ipcLicensePwd:
+          type: string
+        ipcLicenseAuthkey:
+          type: string
+        productVo:
+          $ref: '#/components/schemas/AppProductVo'
+        updateStatus:
+          type: integer
+          description: 升级状态,1:正常状态,2:设备级中
+          format: int32
+        isOwner:
+          type: boolean
+          description: 是否拥有者，
+        eventPicUrl:
+          type: string
+          description: 最新事件图片url
+        picIsEncrypt:
+          type: boolean
+          description: eventPic是否加密
+        picBase64Key:
+          type: string
+          description: 事件图片访问加密key(base64)
+        picMd5key:
+          type: string
+          description: 事件图片访问加密key的md值(base64)
+        linkType:
+          type: integer
+          description: 连接类型： 0：直连非摄像头设备,1：单机 0：直连 ,1：单机 ：2：长电摄像头  3. 低功耗摄像头
+          format: int32
+        privatesw:
+          type: boolean
+          description: 隐私开关状态（linkType为3和4值有效）：null代表未知，true代表打卡
+        fromUserName:
+          type: string
+          description: 分享者用户名称；当设备是被分享时有值
+        ownerId:
+          type: string
+      description: ''
+    AppProductVo:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: 产品id
+        name:
+          type: string
+          description: 产品名称
+        multNameJson:
+          type: string
+        configNetworkJson:
+          type: string
+        modelSign:
+          type: string
+          description: 型号
+        linkType:
+          type: integer
+          description: 连接类型： 0：直连非摄像头设备,1：单机 0：直连 ,1：单机 ：2：长电摄像头  3. 低功耗摄像头
+          format: int64
+        capability:
+          type: integer
+          description: 联网通信能力标位： 0：未知 ：有线 1：WIFI ; 2:4G  3：WIFI+4G
+          format: int64
+        pic:
+          type: string
+          description: 产品图片
+        picPrefix:
+          type: string
+          description: 图片路径前缀
+        picType:
+          type: string
+          description: 图片存储服务商
+        typeId:
+          type: string
+          description: 品类id
+        typeName:
+          type: string
+          description: 品类名称
+        typeMutlNameJson:
+          type: string
+          description: 品类名称
+        dmsType:
+          type: integer
+          description: 配网类型：0:配网直接覆盖前面用户。1：需要用户解绑后才能配网
+          format: int32
+        cloudStoragePay:
+          type: integer
+          description: 云存储付费 0否 1是
+          format: int32
+        cloudStorageArea:
+          type: string
+          description: 云存区域
+        appSource:
+          type: string
+        redisTm:
+          type: integer
+          format: int64
+      description: ''
+    RListAppDeviceInfoVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/AppDeviceInfoVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    AppCloudOssEventReq:
+      type: object
+      properties:
+        devIds:
+          type: array
+          description: 设备id，请求所有设备传null
+          items:
+            type: string
+        etypes:
+          type: array
+          description: '事件类型列表：所有事件传null； motion ：移动 ；person ：人检测；car: 车检测 : pet :
+            宠物;'
+          items:
+            type: string
+        startTime:
+          type: integer
+          description: 开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 结束时间
+          format: int64
+      description: ''
+    PageQueryParamAppCloudOssEventReq:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/AppCloudOssEventReq'
+      description: 带参数的分页查询对象
+    CloudDeviceOssEventResVo:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        devName:
+          type: string
+          description: 设备名称
+        userId:
+          type: string
+          description: 用户id
+        type:
+          type: string
+          description: 套餐类型：有7天，30等套餐类型
+        videoUrl:
+          type: string
+          description: 视频url
+        ossName:
+          type: string
+          description: 对象名称存储：例如aws
+        isEncrypt:
+          type: boolean
+          description: 是否自定义加密
+        base64Key:
+          type: string
+          description: 访问加密key(base64)
+        md5key:
+          type: string
+          description: 访问加密key的md值(base64)
+        duration:
+          type: integer
+          description: 时长
+          format: int64
+        zeroTime:
+          type: integer
+          description: 设备0时区时间
+          format: int64
+        timeZone:
+          type: string
+          description: 时区
+        fileLen:
+          type: integer
+          description: 视频文件长度：字节大小
+          format: int64
+        createTime:
+          type: string
+          format: date-time
+        etype:
+          type: string
+          description: '事件类型: move ：移动 ；penson ：人检测；car: 车检测 : pet : 宠物'
+        picUrl:
+          type: string
+          description: 触发是抓拍图片url
+        modelSign:
+          type: string
+          description: 产品型号
+      description: ''
+    RTableDataInfoCloudDeviceOssEventResVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/TableDataInfoCloudDeviceOssEventResVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoCloudDeviceOssEventResVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/CloudDeviceOssEventResVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    DeleteBeachOssVideoReq:
+      type: object
+      properties:
+        eventIds:
+          type: array
+          description: 云视频事件id列表:删除指定事件，当不为null值，其他字段不判断
+          items:
+            type: string
+        devIds:
+          type: array
+          description: 设备id，请求所有设备传null
+          items:
+            type: string
+        etypes:
+          type: array
+          description: '事件类型列表：所有事件传null； motion ：移动 ；person ：人检测；car: 车检测 : pet :
+            宠物;'
+          items:
+            type: string
+        startTime:
+          type: integer
+          description: 删除开始时间，eventIds为null
+          format: int64
+        endTime:
+          type: integer
+          description: 删除结束时间，eventIds为null
+          format: int64
+      description: ''
+    RBoolean:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: boolean
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    OssVideoDateNumberRqBo:
+      required:
+      - startTime
+      - timeArea
+      type: object
+      properties:
+        timeArea:
+          type: string
+          description: 时区：必须 GTM-12 到 GTM+12
+        startTime:
+          type: integer
+          description: 开始时间的时间戳，毫秒
+          format: int64
+        endTime:
+          type: integer
+          description: 结束时间的时标
+          format: int64
+      description: ''
+    OssVideoDateNumberVo:
+      type: object
+      properties:
+        date:
+          type: string
+          description: 日期： 例如2023-10-01
+        number:
+          type: integer
+          description: 默认天的数量
+          format: int32
+      description: ''
+    RListOssVideoDateNumberVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/OssVideoDateNumberVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    CloudStorageFreeListVo:
+      type: object
+      properties:
+        appPlanMultiName:
+          type: string
+          description: App套餐类型多语言
+        appPlanName:
+          type: string
+          description: App套餐类型
+        appPlanDesc:
+          type: string
+          description: App套餐描述
+        planId:
+          type: integer
+          description: 套餐id
+          format: int64
+        devId:
+          type: string
+          description: 设备id
+        devName:
+          type: string
+          description: 设备名称
+        devImg:
+          type: string
+          description: 设备图片
+        orderEndTime:
+          type: integer
+          description: 订单结束时间
+          format: int64
+        orderBeginTime:
+          type: integer
+          description: 订单开始时间
+          format: int64
+      description: 云存储免费套餐列表查询Vo
+    RTableDataInfoCloudStorageFreeListVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/TableDataInfoCloudStorageFreeListVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoCloudStorageFreeListVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/CloudStorageFreeListVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    CheckDevUsePlanResp:
+      type: object
+      properties:
+        usePlanStatus:
+          type: boolean
+          description: 是否有使用的套餐 true 有 false 没有
+        devId:
+          type: string
+          description: 设备id
+        devBindPlanStatus:
+          type: boolean
+          description: 设备是否有绑定使用中的套餐 true 有 false 没有
+      description: 设备是否绑定使用中的套餐
+    RCheckDevUsePlanResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/CheckDevUsePlanResp'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RListUserDeviceNameResVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/UserDeviceNameResVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    UserDeviceNameResVo:
+      type: object
+      properties:
+        devId:
+          type: string
+        name:
+          type: string
+      description: ''
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header

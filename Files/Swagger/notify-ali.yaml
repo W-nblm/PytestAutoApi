@@ -1,0 +1,2011 @@
+openapi: 3.0.1
+info:
+  title: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  description: 描述：微服务权限管理系统, 具体包括XXX,XXX模块...
+  contact:
+    name: lzyiot
+    url: https://szlongzy.com
+    email: lzyiot@szlongzy.com
+  version: 版本号：系统版本...
+servers:
+- url: http://172.10.21.13:9104/info
+  description: Generated server url
+security:
+- apiKey: []
+tags:
+- name: 物联网卡
+  description: 物联网卡
+- name: 上报设备token
+  description: 上报设备token
+- name: 消息推送接口
+  description: 消息推送接口
+- name: 消息推送测试
+  description: 消息推送测试
+paths:
+  /notify/info/simCard/querySimCardStatusList:
+    post:
+      tags:
+      - 物联网卡
+      summary: 查询sim卡列表
+      description: 查询sim卡列表
+      operationId: querySimCardStatusList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageAllTypeReadVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListDeviceTelCardStatusVo'
+  /notify/info/sim/querySimCardStatusList:
+    post:
+      tags:
+      - 物联网卡
+      summary: 查询sim卡列表
+      description: 查询sim卡列表
+      operationId: querySimCardStatusList_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageAllTypeReadVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListDeviceTelCardStatusVo'
+  /notify/info/sim/getSimStateList:
+    post:
+      tags:
+      - 物联网卡
+      summary: 查询sim卡列表
+      description: 查询sim卡列表
+      operationId: querySimCardStatusList_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageAllTypeReadVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListDeviceTelCardStatusVo'
+  /notify/info/simCard/getSimStateList:
+    post:
+      tags:
+      - 物联网卡
+      summary: 查询sim卡列表
+      description: 查询sim卡列表
+      operationId: querySimCardStatusList_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageAllTypeReadVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListDeviceTelCardStatusVo'
+  /notify/info/reportDeviceToken:
+    post:
+      tags:
+      - 上报设备token
+      summary: 上报设备token接口
+      description: 上报设备token接口
+      operationId: reportDeviceToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportDeviceTokenVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/removeDeviceToken:
+    post:
+      tags:
+      - 上报设备token
+      summary: 清除设备token
+      description: 清除设备token
+      operationId: removeDeviceToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveDeviceTokenVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/reportNotifyEnableByTypeCom:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 通知开关上报通用查询  喂鸟器开关上报接口
+      description: 通知开关上报通用查询  喂鸟器开关上报接口
+      operationId: reportNotifyEnableByTypeCom
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageNotifyComTypeBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /notify/info/notify/readMessage:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 一级页面-消息已读接口单个  WOcam Wobirdy适用
+      description: 一级页面-消息已读接口单个  WOcam Wobirdy适用
+      operationId: readMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageReadVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/readMessageByType:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 根据类型查看消息状态
+      description: 根据类型查看消息状态
+      operationId: readMessageByType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageAllTypeReadVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapObjectObject'
+  /notify/info/notify/readMessageAllByType:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 一级页面-根据类型多选或者全选未读消息 Wopet适用
+      description: 一级页面-根据类型多选或者全选未读消息 Wopet适用
+      operationId: readMessageAllByType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageTypeReadVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/readAllMessage:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 一级页面-消息已读接口全部  WOcam wobirdy适用
+      description: 一级页面-消息已读接口全部  WOcam wobirdy适用
+      operationId: readAllMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageAllReadVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/queryNotifyEnableByType:
+    post:
+      tags:
+      - 消息推送接口
+      summary: FW90消息开关查询 Wopet适用
+      description: FW90消息开关查询 Wopet适用
+      operationId: queryNotifyEnableByType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageEnableQueryTypeVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMessageNotifyTypeVo'
+  /notify/info/notify/queryNotifyEnableByTypeCom:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 通知开关通用查询  喂鸟器开关查询接口
+      description: 通知开关通用查询  喂鸟器开关查询接口
+      operationId: queryNotifyEnableByTypeCom
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageEnableQueryComTypeVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMessageEnableResponseComTypeVo'
+  /notify/info/notify/queryMessageNotifyList:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 一级页面-查询通知消息列表接口
+      description: 一级页面-查询通知消息列表接口
+      operationId: queryMessageNotifyList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageAlarmNotifyListVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListMessageNotifyList'
+  /notify/info/notify/queryMessageNotifyEnable:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 消息开关查询接口
+      description: 消息开关查询接口
+      operationId: queryMessageNotifyEnable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageEnableQueryVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMessageEnableResultVo'
+  /notify/info/notify/queryMessageDeviceList:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 一级页面-查询告警设备列表  系统设备列表接口
+      description: 一级页面-查询告警设备列表  系统设备列表接口
+      operationId: queryMessageDeviceListVo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageDeviceListVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListMessageDeviceList'
+  /notify/info/notify/queryFeedRecordsList:
+    post:
+      tags:
+      - 消息推送接口
+      summary: FW90喂食记录列表查询 Wopet适用
+      description: FW90喂食记录列表查询 Wopet适用
+      operationId: queryFeedPlanList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageFeedPlanQueryVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListMessageNotifyList'
+  /notify/info/notify/queryDetectMessageNotifyList:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 二级页面-查询告警消息列表接口
+      description: 二级页面-查询告警消息列表接口
+      operationId: queryDetctMessageNotifyList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageDetectNotifyListVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListMessageNotifyList'
+  /notify/info/notify/queryDetectMessageNotifyDetail:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 三级页面-查询设备告警消息详情接口 WOcam  wobird适用
+      description: 三级页面-查询设备告警消息详情接口 WOcam  wobird适用
+      operationId: queryDetctMessageNotifyDetail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageNotifyDetailVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMessageNotifyDetail'
+  /notify/info/notify/queryAlarmMessageNotifyList:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 二级页面-查询系统消息列表接口
+      description: 二级页面-查询系统消息列表接口
+      operationId: queryAlarmMessageNotifyList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageAlarmNotifyListVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListMessageNotifyList'
+  /notify/info/notify/queryAlarmMessageNotifyDetail:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 三级页面-查询设备系统消息详情接口 WOcam wobird适用 适用
+      description: 三级页面-查询设备系统消息详情接口 WOcam wobird适用 适用
+      operationId: queryAlarmMessageNotifyDetail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageNotifyDetailVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMessageNotifyDetail'
+  /notify/info/notify/notifyMessage:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 消息推送测试接口
+      description: 消息推送测试接口
+      operationId: reportDeviceToken_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/enableNotifyEnableByType:
+    post:
+      tags:
+      - 消息推送接口
+      summary: FW90消息开关上报 Wopet适用
+      description: FW90消息开关上报 Wopet适用
+      operationId: enableNotifyEnableByType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageNotifyTypeBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/enableMessageNotify:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 消息开关上报接口
+      description: 消息开关上报接口
+      operationId: enableMessageNotify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageEnableVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/enableMessageNotifyDisturb:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 勿扰配置上报  Wopet适用
+      description: 勿扰配置上报  Wopet适用
+      operationId: enableMessageNotifyDisturb
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceNotifyDisturbEnableBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RDeviceNotifyDisturbEnable'
+  /notify/info/notify/deleteDetectMessageNotify:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 二级页面-告警消息单个多个删除  WOcam WObirdy适用
+      description: 二级页面-告警消息单个多个删除  WOcam WObirdy适用
+      operationId: deleteDetctMessageNotify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageDetectSingleDeleteVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/deleteDetectAllMessageNotify:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 二级页面-告警消息单个设备删除全部接口  WOcam WObirdy适用
+      description: 二级页面-告警消息单个设备删除全部接口  WOcam WObirdy适用
+      operationId: deleteDetctAllMessageNotify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageDetectAllDeleteVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/deleteAlarmMessageNotify:
+    post:
+      tags:
+      - 消息推送接口
+      summary: "二级页面-系统消息删除接口单个多个删除  包含wocam与wopet系统消息单个多个删除\n wocam wobirdy 传 123\n\
+        \ wopet 传 45"
+      description: "二级页面-系统消息删除接口单个多个删除  包含wocam与wopet系统消息单个多个删除\n wocam wobirdy 传\
+        \ 123\n wopet 传 45"
+      operationId: deleteAlarmMessageNotify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageAlarmSingleDeleteVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/deleteAlarmAllMessageNotify:
+    post:
+      tags:
+      - 消息推送接口
+      summary: "二级页面-系统消息删除全部接口  包含wocam与wopet告警消息全部删除\n wocam wobirdy 传 123\n wopet\
+        \ 传 45"
+      description: "二级页面-系统消息删除全部接口  包含wocam与wopet告警消息全部删除\n wocam wobirdy 传 123\n\
+        \ wopet 传 45"
+      operationId: deleteAlarmAllMessageNotify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageAlarmAllDeleteVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/deleteAlarmAllByType:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 一级页面-告警消息单个设备或多个设备删除接口 Wopet适用  只针对告警消息删除
+      description: 一级页面-告警消息单个设备或多个设备删除接口 Wopet适用  只针对告警消息删除
+      operationId: deleteAlarmAllByType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageTypeDeleteVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/notify/androidNotifyMessage:
+    post:
+      tags:
+      - 消息推送接口
+      summary: 安卓消息推送转发接口
+      description: 安卓消息推送转发接口
+      operationId: androidNotifyMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /notify/info/testget:
+    get:
+      tags:
+      - 消息推送测试
+      summary: 测试方法2
+      description: 测试方法2
+      operationId: s
+      responses:
+        '200':
+          description: OK
+  /notify/info/kafkatest:
+    get:
+      tags:
+      - 消息推送测试
+      operationId: sendShopMessage
+      parameters:
+      - name: content
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /notify/info/addMessage:
+    get:
+      tags:
+      - 消息推送测试
+      operationId: addMessage
+      parameters:
+      - name: json
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    MessageAllTypeReadVo:
+      required:
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+      description: 消息通知Vo
+    DeviceTelCardStatusVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        iccid:
+          type: string
+          description: iccid
+        devId:
+          type: string
+          description: 设备id
+        devName:
+          type: string
+          description: 设备名称
+        expectedEndDate:
+          type: integer
+          description: 过期时间
+          format: int64
+        cardStatus:
+          type: string
+          description: 卡状态 NON_ACTIVATED_NAME 待激活 ACTIVATED_NAME 已激活 DEACTIVATED_NAME
+            已停用 RETIRED_NAME 已失效
+        userId:
+          type: string
+          description: 用户id
+        cardName:
+          type: string
+        expectedEndDateStr:
+          type: string
+      description: 物联网卡状态列表类
+    RListDeviceTelCardStatusVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/DeviceTelCardStatusVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    ReportDeviceTokenVo:
+      required:
+      - appType
+      - isGoogleService
+      - phoneType
+      - userId
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        deviceToken:
+          type: string
+          description: 设备token
+        deviceId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        phoneType:
+          pattern: '[12]'
+          type: string
+          description: 手机类型  1 安卓 2 ios
+        appType:
+          pattern: '[123]'
+          type: string
+          description: app类型  1 Wopet 2 Wocam 3Wobird
+        isGoogleService:
+          pattern: '[01]'
+          type: string
+          description: "是否能获取到谷歌服务  1 是 0 否\n ios 默认传1"
+        createTime:
+          type: string
+          description: 创建时间
+          format: date-time
+        updateTime:
+          type: string
+          description: 修改时间
+          format: date-time
+        appLanguage:
+          type: string
+          description: wopet app语言
+      description: 设备上报token
+    RBoolean:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: boolean
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RemoveDeviceTokenVo:
+      required:
+      - appType
+      - userId
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: string
+          description: 用户id
+        phoneType:
+          type: string
+          description: 手机类型  1 安卓 2 ios
+        appType:
+          pattern: '[123]'
+          type: string
+          description: app类型  1 Wopet 2 Wocam 3Wobird
+      description: 设备上报token
+    MessageNotifyComTypeBo:
+      required:
+      - devId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        enableType:
+          type: string
+          description: "开关类型\n ca11Enable\n d02Enable\n woBirdEnable"
+          enum:
+          - ca11Enable
+          - d02Enable
+          - woBirdEnable
+        enableJson:
+          type: string
+          description: 开关json数据
+      description: 设备列表类
+    RVoid:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    MessageReadVo:
+      required:
+      - isRead
+      - messageType
+      - userId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: "设备id\n messageType等于1的情况下不传设备id\n messageType等于2的情况下传设备id"
+        isRead:
+          type: string
+          description: 消息已读  1已读
+        messageType:
+          pattern: '[12]'
+          type: string
+          description: 消息类型 1系统 2告警
+        alarmType:
+          pattern: '[12345]'
+          type: string
+          description: "messageType等于1的情况下传值\n 告警类型 1设备相关 2账户相关 3服务相关"
+        userId:
+          type: string
+          description: 用户id
+        shareFlag:
+          type: string
+          description: 是否共享设备  0否 1是
+      description: 消息通知Vo
+    RMapObjectObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          additionalProperties:
+            type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    MessageTypeReadVo:
+      required:
+      - messageType
+      - userId
+      type: object
+      properties:
+        messageType:
+          pattern: ^[1-3]$
+          type: string
+          description: 消息类型    1 告警  2 系统 3 消息
+        devIds:
+          type: array
+          description: "设备id\n 当messageType为1时，devIds必填\n  当isAll 为true时，devIds不传"
+          items:
+            type: string
+        eventIds:
+          type: array
+          description: "事件id\n 当messageType为3时，eventIds必填\n 当isAll 为true时，eventIds不传"
+          items:
+            type: string
+        userId:
+          type: string
+          description: 用户id
+        all:
+          type: boolean
+      description: 消息通知Vo
+    MessageAllReadVo:
+      required:
+      - isRead
+      - userId
+      type: object
+      properties:
+        isRead:
+          type: string
+          description: 消息已读  1已读
+        userId:
+          type: string
+          description: 用户id
+      description: 消息通知Vo
+    MessageEnableQueryTypeVo:
+      required:
+      - devId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id不能为空
+      description: 消息通知总开关Vo
+    MessageNotifyTypeVo:
+      type: object
+      properties:
+        offlineEnable:
+          type: string
+          description: 离线通知 0：关闭 1：开启
+        autoFeedEnable:
+          type: string
+          description: 自动喂食通知 0：关闭 1：开启
+        manualFeedEnable:
+          type: string
+          description: 人工喂食通知 0：关闭 1：开启
+        quickFeedEnable:
+          type: string
+          description: 快速喂食通知 0：关闭 1：开启
+        userId:
+          type: string
+          description: 用户id
+        devId:
+          type: string
+          description: 设备id
+        enableType:
+          type: string
+          description: 开关类型
+        enableJson:
+          type: string
+          description: 开关内容json
+      description: 设备列表类
+    RMessageNotifyTypeVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/MessageNotifyTypeVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    MessageEnableQueryComTypeVo:
+      required:
+      - devId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id不能为空
+        enableType:
+          type: string
+          description: "开关类型  固定值\n ca11Enable\n d02Enable\n woBirdEnable"
+          enum:
+          - ca11Enable
+          - d02Enable
+          - woBirdEnable
+      description: 消息通知总开关Vo
+    MessageEnableResponseComTypeVo:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id不能为空
+        enableJson:
+          type: string
+          description: 开关内容
+        enableType:
+          type: string
+          description: 开关类型
+        userId:
+          type: string
+          description: 用户id
+        appSource:
+          type: string
+          description: appSource
+      description: 消息通知总开关Vo
+    RMessageEnableResponseComTypeVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/MessageEnableResponseComTypeVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    MessageAlarmNotifyListVo:
+      required:
+      - type
+      - userId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备Id
+        userId:
+          type: string
+          description: 用户Id
+        startTime:
+          type: integer
+          description: 消息开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 消息结束时间
+          format: int64
+        alertType:
+          type: string
+          description: 消息告警类型
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int32
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int32
+        type:
+          pattern: '[12345]'
+          type: string
+          description: 通知类型  1 设备相关  2 账号相关 3 服务相关 4 Wopet告警消息  5 wopet通知消息
+      description: 设备列表类
+    MessageNotifyList:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备Id
+        messageId:
+          type: string
+          description: 消息Id
+        messageImage:
+          type: string
+          description: 消息图片
+        messageImageLen:
+          type: integer
+          description: 消息图片大小
+          format: int64
+        messageHdImage:
+          type: string
+          description: 消息Hd图片
+        messageHdImageLen:
+          type: integer
+          description: 消息Hd图片大小
+          format: int64
+        messageAlertTime:
+          type: integer
+          description: 消息提醒时间
+          format: int64
+        messageTitle:
+          type: string
+          description: 消息标题
+        messageBody:
+          type: string
+          description: 消息内容
+        timeZone:
+          type: string
+          description: 时区
+        messageType:
+          type: string
+          description: 消息类型 2告警消息  1系统消息 3 通知消息
+        alarmType:
+          type: string
+          description: 系统消息类型 1设备相关 2账户相关 3 服务型相关 4 wopet相关 5 通知消息
+        userId:
+          type: string
+          description: 用户id
+        type:
+          type: string
+          description: type
+        encryptKey:
+          type: string
+          description: 访问加密key
+        base64Key:
+          type: string
+          description: 访问加密key(base64)
+        md5key:
+          type: string
+          description: 访问加密key的md值(base64)
+        isEncrypt:
+          type: boolean
+          description: 是否加密
+        isRead:
+          type: string
+          description: 消息是否已读  0未读 1已读
+        isJump:
+          type: string
+          description: 是否列表跳转
+        pushJump:
+          type: string
+          description: 系统跳转路径
+        stationJump:
+          type: string
+          description: 站内跳转路径
+        productId:
+          type: string
+          description: 产品id
+        petId:
+          type: string
+          description: 宠物id
+        videoUrl:
+          type: string
+          description: 视频地址
+        aiNameJson:
+          type: string
+          description: ai json
+      description: 事件通知类
+    RListMessageNotifyList:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/MessageNotifyList'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    MessageEnableQueryVo:
+      required:
+      - appType
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        appType:
+          pattern: '[123]'
+          type: string
+          description: app类型 1wopet 2wocam 3wobird
+      description: 消息通知总开关Vo
+    MessageEnableResultVo:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        userId:
+          type: string
+          description: 用户id
+        notifyEnable:
+          type: string
+          description: 开关状态 0 关 1 开
+        loginEnable:
+          type: string
+          description: 登录状态
+        devId:
+          type: string
+          description: 设备id
+        appType:
+          type: string
+          description: app类型  1 wopet  2 wocam
+        deviceNotifyEnable:
+          type: string
+          description: 设备消息开关 0 关 1 开
+        accountMessageEnable:
+          type: string
+          description: 账户消息开关 0 关 1 开
+        disturbEnable:
+          type: string
+          description: 勿扰模式开关 0 关 1开
+        isEveryDay:
+          type: integer
+          description: 是否为每天
+          format: int32
+        periodList:
+          type: array
+          description: 星期数集合
+          items:
+            type: string
+        isNextDay:
+          type: integer
+          description: 是否是下一天 0 否 1是
+          format: int32
+        startTime:
+          type: string
+          description: 开始时间
+        endTime:
+          type: string
+          description: 结束时间
+        deviceList:
+          type: array
+          description: 设备id集合
+          items:
+            type: string
+        isAllDevice:
+          type: integer
+          description: 是否为全部设备  0否 1是
+          format: int32
+        enableJson:
+          type: string
+          description: 消息开关通用json
+      description: 消息通知总开关Vo
+    RMessageEnableResultVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/MessageEnableResultVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    MessageDeviceListVo:
+      required:
+      - messageType
+      - userId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备Id
+        userId:
+          type: string
+          description: 用户Id
+        pageSize:
+          type: integer
+          description: 每页条数
+          format: int32
+        pageNum:
+          type: integer
+          description: 页码
+          format: int32
+        messageType:
+          pattern: '[12]'
+          type: string
+          description: 消息类型  1 系统 2告警
+      description: 设备列表类
+    MessageDeviceList:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备Id
+        userId:
+          type: string
+          description: 用户Id
+        devImage:
+          type: string
+          description: 设备产品图
+        devName:
+          type: string
+          description: 设备名称
+        messageAlertTime:
+          type: integer
+          description: 消息提醒时间
+          format: int64
+        messageTitle:
+          type: string
+          description: 消息标题
+        isRead:
+          type: string
+          description: 消息阅读状态 0未读 1已读
+        alarmType:
+          type: string
+          description: 系统消息类型     1设备相关 2账号相关 3服务相关
+        messageType:
+          type: string
+          description: 消息类型  1 系统消息 2 告警消息
+        picType:
+          type: string
+          description: 图片类型
+        timeZone:
+          type: string
+          description: 时区
+        productName:
+          type: string
+          description: 产品名称
+        messageBody:
+          type: string
+          description: 消息内容
+        type:
+          type: string
+          description: Wopet消息类型
+        shareFlag:
+          type: string
+          description: 分享标志 识别分享使用 是否共享设备  0 否 1是
+        ownerId:
+          type: string
+          description: 拥有者id  当shareFlag为1时，userId 取 ownerId字段
+      description: 设备列表类
+    RListMessageDeviceList:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/MessageDeviceList'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    MessageFeedPlanQueryVo:
+      required:
+      - devId
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        devId:
+          type: string
+          description: 设备id
+        alarmTypeList:
+          type: array
+          description: 告警事件列表
+          items:
+            type: string
+        modelCodeList:
+          type: array
+          description: 事件关联的模型code列表
+          items:
+            type: string
+        startTime:
+          type: integer
+          description: 开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 结束时间
+          format: int64
+      description: 消息通知总开关Vo
+    MessageDetectNotifyListVo:
+      required:
+      - devId
+      - userId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备Id
+        userId:
+          type: string
+          description: 用户Id
+        startTime:
+          type: integer
+          description: 消息开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 消息结束时间
+          format: int64
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int32
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int32
+        shareFlag:
+          type: string
+          description: 是否共享设备  0否 1是
+        isCloudVideo:
+          type: string
+          description: 是否查询云视频  1是
+      description: 设备列表类
+    MessageNotifyDetailVo:
+      required:
+      - devId
+      - messageId
+      - userId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备Id
+        userId:
+          type: string
+          description: 用户Id
+        messageId:
+          type: string
+          description: 消息Id
+      description: 事件详情类
+    MessageNotifyDetail:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备Id
+        devName:
+          type: string
+          description: 设备名称
+        messageImage:
+          type: string
+          description: 消息图片
+        messageImageLen:
+          type: integer
+          description: 消息图片大小
+          format: int64
+        messageHdImage:
+          type: string
+          description: 消息Hd图片
+        messageHdImageLen:
+          type: integer
+          description: 消息Hd图片大小
+          format: int64
+        messageAlertTime:
+          type: integer
+          description: 消息提醒时间
+          format: int64
+        messageTitle:
+          type: string
+          description: 消息标题
+        messageBody:
+          type: string
+          description: 消息内容
+        messageVideoUrl:
+          type: string
+          description: 视频地址
+        timeZone:
+          type: string
+          description: 时区
+        messageType:
+          type: string
+          description: 消息类型 2告警 1系统
+        messageId:
+          type: string
+          description: 消息id
+        messageVideoLen:
+          type: integer
+          description: 视频大小
+          format: int64
+        modelSign:
+          type: string
+          description: 产品型号
+        encryptKey:
+          type: string
+          description: 访问加密key
+        base64Key:
+          type: string
+          description: 访问加密key(base64)
+        md5key:
+          type: string
+          description: 访问加密key的md值(base64)
+        isEncrypt:
+          type: boolean
+          description: 是否加密
+        aiNameJson:
+          type: string
+          description: ai json
+      description: 事件详情类
+    RMessageNotifyDetail:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/MessageNotifyDetail'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    MessageVo:
+      required:
+      - alarmType
+      - appType
+      - messageId
+      - msgBody
+      - msgTitle
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        appType:
+          type: string
+          description: 1 wopet 2wocam
+        msgBody:
+          type: string
+          description: 消息体
+        msgTitle:
+          type: string
+          description: 消息标题
+        badge:
+          type: integer
+          description: app提醒消息圆点数
+          format: int32
+        createTime:
+          type: string
+          description: 创建时间
+          format: date-time
+        updateTime:
+          type: string
+          description: 修改时间
+          format: date-time
+        topic:
+          type: string
+          description: 消息主题
+        alarmType:
+          type: string
+          description: "消息类型\n 侦测事件类型：1：lowBattery ；低电量告警 ; 2：network配网；3：upFirmware:升级固件\
+            \ 4：unline设备离线 5：editPw修改密码\n 告警事件类型: move ：移动 ；penson ：人检测；car: 车检测 :\
+            \ pet : 宠物'"
+        messageId:
+          type: string
+          description: 事件id
+        deviceToken:
+          type: string
+        paramMap:
+          type: object
+          additionalProperties:
+            type: object
+        appSource:
+          type: string
+      description: 消息通知Vo
+    MessageNotifyTypeBo:
+      required:
+      - devId
+      type: object
+      properties:
+        offlineEnable:
+          pattern: '[01]'
+          type: string
+          description: 离线通知 0：关闭 1：开启
+        autoFeedEnable:
+          pattern: '[01]'
+          type: string
+          description: 自动喂食通知 0：关闭 1：开启
+        manualFeedEnable:
+          pattern: '[01]'
+          type: string
+          description: 人工喂食通知 0：关闭 1：开启
+        quickFeedEnable:
+          pattern: '[01]'
+          type: string
+          description: 快速喂食通知 0：关闭 1：开启
+        devId:
+          type: string
+          description: 设备id
+      description: 设备列表类
+    MessageEnableVo:
+      required:
+      - appType
+      - userId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        appType:
+          pattern: '[123]'
+          type: string
+          description: app类型 1wopet 2wocam 3wobird
+        messageEnableListVos:
+          type: array
+          description: "消息开关集合\n notifyEnable   总开关 0关 1开\n deviceNotifyEnable  设备通知开关\
+            \  0关 1开\n accountMessageEnable 账户信息开关 0关 1开\n disturbEnable   账号勿扰开关\
+            \ 0关 1开"
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        enableJson:
+          type: string
+          description: "开关通用Json   wobird使用\n woBirdSystemEnable  系统开关  0关 1开\n woBirdAlertEnable\
+            \  告警开关"
+      description: 消息通知总开关Vo
+    DeviceNotifyDisturbEnableBo:
+      required:
+      - disturbEnable
+      - endTime
+      - id
+      - isAllDevice
+      - isEveryDay
+      - isNextDay
+      - startTime
+      - userId
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: string
+          description: 用户id
+        deviceList:
+          type: array
+          description: 设备列表
+          items:
+            type: string
+        isAllDevice:
+          type: integer
+          description: 是否为所有设备 0 否 1 是
+          format: int32
+        startTime:
+          type: string
+          description: 开始时间
+        endTime:
+          type: string
+          description: 结束时间
+        isNextDay:
+          type: integer
+          description: 是否为下一天时间 0 否 1 是
+          format: int32
+        timeZone:
+          type: string
+          description: app时区
+        periodList:
+          type: array
+          description: 周期列表 MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY SUNDAY
+          items:
+            type: string
+        isEveryDay:
+          type: integer
+          description: 是否为每一天 0 否 1 是
+          format: int32
+        disturbEnable:
+          type: string
+      description: 消息推送设备勿扰配置功能业务对象 device_notify_disturb_enable
+    DeviceNotifyDisturbEnable:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: string
+          description: 用户id
+        deviceList:
+          type: string
+          description: 设备列表
+        isAllDevice:
+          type: integer
+          description: 是否为所有设备
+          format: int32
+        startTime:
+          type: string
+          description: 开始时间
+        endTime:
+          type: string
+          description: 结束时间
+        isNextDay:
+          type: integer
+          description: 是否为下一天时间
+          format: int32
+        timeZone:
+          type: string
+          description: app时区
+        periodList:
+          type: string
+          description: 周期列表
+        isEveryDay:
+          type: integer
+          description: 是否为每一天 0 否 1 是
+          format: int32
+      description: 消息推送设备勿扰配置功能对象 device_notify_disturb_enable
+    RDeviceNotifyDisturbEnable:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/DeviceNotifyDisturbEnable'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    MessageDeleteVo:
+      required:
+      - messageId
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        messageId:
+          type: string
+          description: 事件id
+      description: 设备列表类
+    MessageDetectSingleDeleteVo:
+      required:
+      - devId
+      - nowDate
+      - userId
+      type: object
+      properties:
+        nowDate:
+          type: integer
+          description: 当前时间戳
+          format: int64
+        userId:
+          type: string
+          description: 用户id
+        devId:
+          type: string
+          description: 设备id
+        messageDeleteVoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageDeleteVo'
+      description: 设备列表类
+    MessageDetectAllDeleteVo:
+      required:
+      - devId
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        devId:
+          type: string
+          description: 设备id
+      description: 设备列表类
+    MessageAlarmSingleDeleteVo:
+      required:
+      - nowDate
+      - type
+      - userId
+      type: object
+      properties:
+        nowDate:
+          type: integer
+          format: int64
+        userId:
+          type: string
+        type:
+          pattern: '[12345]'
+          type: string
+          description: "系统通知类型  1 设备相关  2 账号相关 3服务相关 4 wopet告警消息 5wopet通知消息\n wocam\
+            \ wobird 传 123 类型\n wopet 传 45类型"
+        messageDeleteVoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageDeleteVo'
+      description: 设备列表类
+    MessageAlarmAllDeleteVo:
+      required:
+      - type
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        devId:
+          type: string
+          description: 设备id  备用字段，目前没用上
+        type:
+          pattern: '[12345]'
+          type: string
+          description: "系统通知类型 1设备相关 2 账户相关 3服务相关 4 wopet告警 5 wopet通知\n wocam wobird\
+            \ 传 123 类型\n wopet 传 45类型"
+      description: 设备列表类
+    MessageTypeDeleteVo:
+      required:
+      - messageType
+      - userId
+      type: object
+      properties:
+        messageType:
+          pattern: ^[1-3]$
+          type: string
+          description: 消息类型    1 告警  2 系统 3 消息
+        devIds:
+          type: array
+          description: "设备id\n 当messageType=1时，devIds必填"
+          items:
+            type: string
+        userId:
+          type: string
+          description: 用户id
+      description: 消息通知Vo
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header

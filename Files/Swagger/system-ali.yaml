@@ -1,0 +1,7701 @@
+openapi: 3.0.1
+info:
+  title: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  description: 描述：微服务权限管理系统, 具体包括XXX,XXX模块...
+  contact:
+    name: lzyiot
+    url: https://szlongzy.com
+    email: lzyiot@szlongzy.com
+  version: 版本号：系统版本...
+servers:
+- url: http://172.10.21.9:9201
+  description: Generated server url
+security:
+- apiKey: []
+tags:
+- name: 个人信息 业务处理
+  description: 个人信息 业务处理
+- name: 用户信息-平台管理
+  description: 用户信息-平台管理
+- name: 用户信息-企业管理
+  description: 用户信息-企业管理
+- name: 用户信息-企业用户
+  description: 用户信息-企业用户
+- name: 角色信息
+  description: 角色信息
+- name: 岗位信息操作处理
+  description: 岗位信息操作处理
+- name: 面板相关接口
+  description: 面板相关接口
+- name: 公告 信息操作处理
+  description: 公告 信息操作处理
+- name: 菜单信息
+  description: 菜单信息
+- name: 多语言字典控制器
+  description: 多语言字典控制器
+- name: 多语言字典种类控制器
+  description: 多语言字典种类控制器
+- name: 多语言字典数据控制器
+  description: 多语言字典数据控制器
+- name: 多语言字典数据语言控制器
+  description: 多语言字典数据语言控制器
+- name: 数据字典信息
+  description: 数据字典信息
+- name: 部门信息
+  description: 部门信息
+- name: 参数配置 信息操作处理
+  description: 参数配置 信息操作处理
+- name: 企业管理信息
+  description: 企业管理信息
+- name: banner配置信息
+  description: banner配置信息
+- name: 面板固件升级
+  description: 面板固件升级
+- name: 面板版本
+  description: 面板版本
+- name: 操作日志记录
+  description: 操作日志记录
+- name: 系统访问记录
+  description: 系统访问记录
+- name: app版本升级配置 APP升级配置模块
+  description: app版本升级配置 APP升级配置模块
+- name: 在线用户监控
+  description: 在线用户监控
+- name: HeartBeat
+  description: HeartBeat
+- name: app用户信息控制器
+  description: app用户信息控制器
+paths:
+  /system/user/profile:
+    get:
+      tags:
+      - 个人信息 业务处理
+      summary: 个人信息查询
+      description: 个人信息查询
+      operationId: profile
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+    put:
+      tags:
+      - 个人信息 业务处理
+      summary: 修改个人信息
+      description: 修改个人信息
+      operationId: updateProfile
+      parameters:
+      - name: fieldName
+        in: query
+        description: 字段类型
+        required: true
+        schema:
+          type: string
+          enum:
+          - userName
+          - companyName
+          - email
+          - phonenumber
+          - password
+          - newPassword
+          - oldPassword
+          - confirmNewPassword
+          - permProductIdList
+          - permCompanyUserIdList
+      requestBody:
+        description: 用户信息
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/profile/updatePwd:
+    put:
+      tags:
+      - 个人信息 业务处理
+      summary: 修改密码
+      description: 修改密码
+      operationId: updatePwd
+      parameters:
+      - name: oldPassword
+        in: query
+        description: 旧密码
+        required: true
+        schema:
+          type: string
+      - name: newPassword
+        in: query
+        description: 新密码
+        required: true
+        schema:
+          type: string
+      - name: confirmNewPassword
+        in: query
+        description: 确认新密码
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/platformUser:
+    get:
+      tags:
+      - 用户信息-平台管理
+      summary: 根据用户编号获取详细信息
+      description: 根据用户编号获取详细信息
+      operationId: getInfo_1
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+    put:
+      tags:
+      - 用户信息-平台管理
+      summary: 编辑用户信息-平台用户
+      description: 编辑用户信息-平台用户
+      operationId: edit
+      requestBody:
+        description: 用户信息
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 用户信息-平台管理
+      summary: 新增用户平台用户, 只有超级管理员
+      description: 新增用户平台用户, 只有超级管理员
+      operationId: platformUserAdd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/platformUserChangeStatus:
+    put:
+      tags:
+      - 用户信息-平台管理
+      summary: 状态修改-平台管理员
+      description: 状态修改-平台管理员
+      operationId: platformUserChangeStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/platformResetPwd:
+    put:
+      tags:
+      - 用户信息-平台管理
+      summary: 重置平台管理账号的密码
+      description: 重置平台管理账号的密码
+      operationId: resetPwd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/companyUser:
+    get:
+      tags:
+      - 用户信息-企业管理
+      summary: 根据用户编号获取详细信息
+      description: 根据用户编号获取详细信息
+      operationId: getInfo_4
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+    put:
+      tags:
+      - 用户信息-企业管理
+      summary: 编辑用户信息-企业管理
+      description: 编辑用户信息-企业管理
+      operationId: edit_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 用户信息-企业管理
+      summary: 新增企业管理
+      description: 新增企业管理
+      operationId: companyUserAdd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/companyUserChangeStatus:
+    put:
+      tags:
+      - 用户信息-企业管理
+      summary: 状态修改-企业管理员
+      description: 状态修改-企业管理员
+      operationId: companyUserChangeStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/companyResetPwd:
+    put:
+      tags:
+      - 用户信息-企业管理
+      summary: 重置企业管理的账号密码
+      description: 重置企业管理的账号密码
+      operationId: resetPwd_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/companyNormalUser:
+    get:
+      tags:
+      - 用户信息-企业用户
+      summary: 根据用户编号获取详细信息
+      description: 根据用户编号获取详细信息
+      operationId: getInfo_6
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+    put:
+      tags:
+      - 用户信息-企业用户
+      summary: 编辑用户信息-企业用户
+      description: 编辑用户信息-企业用户
+      operationId: edit_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 用户信息-企业用户
+      summary: 新建企业用户
+      description: 新建企业用户
+      operationId: companyNormalUserAdd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/companyNormalUserChangeStatus:
+    put:
+      tags:
+      - 用户信息-企业用户
+      summary: 状态修改-企业普通用户
+      description: 状态修改-企业普通用户
+      operationId: companyNormalUserChangeStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/user/companyNormalResetPwd:
+    put:
+      tags:
+      - 用户信息-企业用户
+      summary: 重置企业用户账号的密码
+      description: 重置企业用户账号的密码
+      operationId: resetPwd_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role:
+    put:
+      tags:
+      - 角色信息
+      summary: 修改保存角色
+      description: 修改保存角色
+      operationId: edit_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysRole'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 角色信息
+      summary: 新增角色
+      description: 新增角色
+      operationId: add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysRole'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/dataScope:
+    put:
+      tags:
+      - 角色信息
+      summary: 修改保存数据权限
+      description: 修改保存数据权限
+      operationId: dataScope
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysRole'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/changeStatus:
+    put:
+      tags:
+      - 角色信息
+      summary: 状态修改
+      description: 状态修改
+      operationId: changeStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysRole'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/authUser/selectAll:
+    put:
+      tags:
+      - 角色信息
+      summary: 批量选择用户授权
+      description: 批量选择用户授权
+      operationId: selectAuthUserAll
+      parameters:
+      - name: roleId
+        in: query
+        description: 角色ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userIds
+        in: query
+        description: 用户ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/authUser/cancel:
+    put:
+      tags:
+      - 角色信息
+      summary: 取消授权用户
+      description: 取消授权用户
+      operationId: cancelAuthUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysUserRole'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/authUser/cancelAll:
+    put:
+      tags:
+      - 角色信息
+      summary: 批量取消授权用户
+      description: 批量取消授权用户
+      operationId: cancelAuthUserAll
+      parameters:
+      - name: roleId
+        in: query
+        description: 角色ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userIds
+        in: query
+        description: 用户ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/post:
+    put:
+      tags:
+      - 岗位信息操作处理
+      summary: 修改岗位
+      description: 修改岗位
+      operationId: edit_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysPost'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 岗位信息操作处理
+      summary: 新增岗位
+      description: 新增岗位
+      operationId: add_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysPost'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/panel/edit:
+    put:
+      tags:
+      - 面板相关接口
+      summary: 编辑面板信息
+      description: 编辑面板信息
+      operationId: edit_5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppPanelBundleInfoBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/panel/delete/{appPanelBundleInfoId}:
+    put:
+      tags:
+      - 面板相关接口
+      summary: 删除面板信息
+      description: 删除面板信息
+      operationId: delete
+      parameters:
+      - name: appPanelBundleInfoId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/notice:
+    put:
+      tags:
+      - 公告 信息操作处理
+      summary: 修改通知公告
+      description: 修改通知公告
+      operationId: edit_6
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysNotice'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 公告 信息操作处理
+      summary: 新增通知公告
+      description: 新增通知公告
+      operationId: add_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysNotice'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/menu:
+    put:
+      tags:
+      - 菜单信息
+      summary: 修改菜单
+      description: 修改菜单
+      operationId: edit_7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysMenu'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 菜单信息
+      summary: 新增菜单
+      description: 新增菜单
+      operationId: add_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysMenu'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dictType:
+    put:
+      tags:
+      - 多语言字典控制器
+      summary: 修改多语言字典
+      description: 修改多语言字典
+      operationId: edit_8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonDictTypeBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 多语言字典控制器
+      summary: 新增多语言字典
+      description: 新增多语言字典
+      operationId: add_5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonDictTypeBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dictTypeCategory:
+    put:
+      tags:
+      - 多语言字典种类控制器
+      summary: 修改多语言字典种类
+      description: 修改多语言字典种类
+      operationId: edit_9
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonDictTypeCategoryBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 多语言字典种类控制器
+      summary: 新增多语言字典种类
+      description: 新增多语言字典种类
+      operationId: add_6
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonDictTypeCategoryBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dictData:
+    put:
+      tags:
+      - 多语言字典数据控制器
+      summary: 修改多语言字典数据
+      description: 修改多语言字典数据
+      operationId: edit_10
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonDictDataBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 多语言字典数据控制器
+      summary: 新增多语言字典数据
+      description: 新增多语言字典数据
+      operationId: add_7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonDictDataBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dictDataLanguage:
+    put:
+      tags:
+      - 多语言字典数据语言控制器
+      summary: 修改多语言字典数据语言
+      description: 修改多语言字典数据语言
+      operationId: edit_11
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonDictDataLanguageBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 多语言字典数据语言控制器
+      summary: 新增多语言字典数据语言
+      description: 新增多语言字典数据语言
+      operationId: add_8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonDictDataLanguageBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dict/type:
+    put:
+      tags:
+      - 数据字典信息
+      summary: 修改字典类型
+      description: 修改字典类型
+      operationId: edit_12
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDictType'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 数据字典信息
+      summary: 新增字典类型
+      description: 新增字典类型
+      operationId: add_9
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDictType'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dict/data:
+    put:
+      tags:
+      - 数据字典信息
+      summary: 修改保存字典类型
+      description: 修改保存字典类型
+      operationId: edit_13
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDictData'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 数据字典信息
+      summary: 新增字典类型
+      description: 新增字典类型
+      operationId: add_10
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDictData'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dept:
+    put:
+      tags:
+      - 部门信息
+      summary: 修改部门
+      description: 修改部门
+      operationId: edit_14
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDept'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 部门信息
+      summary: 新增部门
+      description: 新增部门
+      operationId: add_11
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysDept'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/config:
+    put:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 修改参数配置
+      description: 修改参数配置
+      operationId: edit_15
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysConfig'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 新增参数配置
+      description: 新增参数配置
+      operationId: add_12
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysConfig'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/config/updateByKey:
+    put:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 根据参数键名修改参数配置
+      description: 根据参数键名修改参数配置
+      operationId: updateByKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SysConfig'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/company/companyUser/{parentUserId}/{appSource}:
+    put:
+      tags:
+      - 企业管理信息
+      summary: 给企业配置appSource
+      description: 给企业配置appSource
+      operationId: companySetAppSource
+      parameters:
+      - name: parentUserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: appSource
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/bannerConfigInfo:
+    put:
+      tags:
+      - banner配置信息
+      summary: 修改banner配置信息
+      description: 修改banner配置信息
+      operationId: edit_16
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppBannerConfigInfoBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - banner配置信息
+      summary: 新增banner配置信息
+      description: 新增banner配置信息
+      operationId: add_14
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppBannerConfigInfoBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/bannerConfigInfo/publish/{bannerId}:
+    put:
+      tags:
+      - banner配置信息
+      summary: 上架
+      description: 上架
+      operationId: publish
+      parameters:
+      - name: bannerId
+        in: path
+        description: bannerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/bannerConfigInfo/cancel/{bannerId}:
+    put:
+      tags:
+      - banner配置信息
+      summary: 下架
+      description: 下架
+      operationId: cancel
+      parameters:
+      - name: bannerId
+        in: path
+        description: bannerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/appPanelFirmwareUpgrade:
+    put:
+      tags:
+      - 面板固件升级
+      summary: 修改面板固件升级
+      description: 修改面板固件升级
+      operationId: edit_17
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppPanelFmUpParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 面板固件升级
+      summary: 新增面板固件升级
+      description: 新增面板固件升级
+      operationId: add_15
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppPanelFmUpParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/appPanelFirmwareUpgrade/publish/{appPanelFirmwareUpgradeId}:
+    put:
+      tags:
+      - 面板固件升级
+      summary: 发布
+      description: 发布
+      operationId: publish_1
+      parameters:
+      - name: appPanelFirmwareUpgradeId
+        in: path
+        description: appPanelFirmwareUpgradeId
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/appPanelFirmwareUpgrade/cancel/{appPanelBundleVersionId}:
+    put:
+      tags:
+      - 面板固件升级
+      summary: 取消发布
+      description: 取消发布
+      operationId: cancel_1
+      parameters:
+      - name: appPanelBundleVersionId
+        in: path
+        description: appPanelBundleVersionId
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/appPanelBundleVersion:
+    put:
+      tags:
+      - 面板版本
+      summary: 修改面板版本
+      description: 修改面板版本
+      operationId: edit_18
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppPanelBundleVersionReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+    post:
+      tags:
+      - 面板版本
+      summary: 新增面板版本
+      description: 新增面板版本
+      operationId: add_16
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppPanelBundleVersionReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/appPanelBundleVersion/publish/{appPanelBundleVersionId}:
+    put:
+      tags:
+      - 面板版本
+      summary: 上架
+      description: 上架
+      operationId: publish_2
+      parameters:
+      - name: appPanelBundleVersionId
+        in: path
+        description: appPanelBundleVersionId
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/appPanelBundleVersion/cancel/{appPanelBundleVersionId}:
+    put:
+      tags:
+      - 面板版本
+      summary: 下架
+      description: 下架
+      operationId: cancel_2
+      parameters:
+      - name: appPanelBundleVersionId
+        in: path
+        description: appPanelBundleVersionId
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/appPanelBundleVersion/bundleVersionNotUse:
+    put:
+      tags:
+      - 面板版本
+      summary: "版本升级列表(配置固件面板升级用)\n 已配置的不显示"
+      description: "版本升级列表(配置固件面板升级用)\n 已配置的不显示"
+      operationId: alreadyConfigBundleVersion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppPanelVersionListReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListAppPanelBundleVersion'
+  /system/appPanelBundleVersion/bundleVersionAlreadyUse:
+    put:
+      tags:
+      - 面板版本
+      summary: 版本升级列表已使用(配置固件面板升级用)
+      description: 版本升级列表已使用(配置固件面板升级用)
+      operationId: queryBundleVersionAlreadyUse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppPanelVersionListReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListAppPanelBundleVersion'
+  /system/appPanelBundleVersion/bundleVersionAll:
+    put:
+      tags:
+      - 面板版本
+      summary: 版本升级列表全部(配置固件面板升级用)
+      description: 版本升级列表全部(配置固件面板升级用)
+      operationId: queryBundleVersionAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppPanelVersionListReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListAppPanelBundleVersion'
+  /system/user/profile/avatar:
+    post:
+      tags:
+      - 个人信息 业务处理
+      summary: 头像上传
+      description: 头像上传
+      operationId: avatar
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - avatarfile
+              type: object
+              properties:
+                avatarfile:
+                  type: string
+                  description: 用户头像
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/role/export:
+    post:
+      tags:
+      - 角色信息
+      summary: 导出角色信息列表
+      description: 导出角色信息列表
+      operationId: export
+      parameters:
+      - name: role
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysRole'
+      responses:
+        '200':
+          description: OK
+  /system/post/export:
+    post:
+      tags:
+      - 岗位信息操作处理
+      operationId: export_1
+      parameters:
+      - name: post
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysPost'
+      responses:
+        '200':
+          description: OK
+  /system/panel/list:
+    post:
+      tags:
+      - 面板相关接口
+      summary: 面板信息列表
+      description: 面板信息列表
+      operationId: list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamAppPanelParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoAppPanelBundleInfoVo'
+  /system/panel/appVersionList:
+    post:
+      tags:
+      - 面板相关接口
+      summary: 查询app版本列表
+      description: 查询app版本列表
+      operationId: appVersionList
+      requestBody:
+        description: appVersionListReq
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppVersionListReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListAppVersionResp'
+  /system/panel/add:
+    post:
+      tags:
+      - 面板相关接口
+      summary: 新增面板信息
+      description: 新增面板信息
+      operationId: add_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppPanelBundleInfoBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/operlog/export:
+    post:
+      tags:
+      - 操作日志记录
+      summary: 导出操作日志记录列表
+      description: 导出操作日志记录列表
+      operationId: export_2
+      parameters:
+      - name: operLog
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysOperLog'
+      responses:
+        '200':
+          description: OK
+  /system/logininfor/export:
+    post:
+      tags:
+      - 系统访问记录
+      summary: 导出系统访问记录列表
+      description: 导出系统访问记录列表
+      operationId: export_3
+      parameters:
+      - name: logininfor
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysLogininfor'
+      responses:
+        '200':
+          description: OK
+  /system/dictTypeCategory/export:
+    post:
+      tags:
+      - 多语言字典种类控制器
+      summary: 导出多语言字典种类列表
+      description: 导出多语言字典种类列表
+      operationId: export_4
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/CommonDictTypeCategoryBo'
+      responses:
+        '200':
+          description: OK
+  /system/dictType/export:
+    post:
+      tags:
+      - 多语言字典控制器
+      summary: 导出多语言字典列表
+      description: 导出多语言字典列表
+      operationId: export_5
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/CommonDictTypeBo'
+      responses:
+        '200':
+          description: OK
+  /system/dictDataLanguage/export:
+    post:
+      tags:
+      - 多语言字典数据语言控制器
+      summary: 导出多语言字典数据语言列表
+      description: 导出多语言字典数据语言列表
+      operationId: export_6
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/CommonDictDataLanguageBo'
+      responses:
+        '200':
+          description: OK
+  /system/dictData/export:
+    post:
+      tags:
+      - 多语言字典数据控制器
+      summary: 导出多语言字典数据列表
+      description: 导出多语言字典数据列表
+      operationId: export_7
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/CommonDictDataBo'
+      responses:
+        '200':
+          description: OK
+  /system/dict/type/export:
+    post:
+      tags:
+      - 数据字典信息
+      summary: 导出字典类型列表
+      description: 导出字典类型列表
+      operationId: export_8
+      parameters:
+      - name: dictType
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDictType'
+      responses:
+        '200':
+          description: OK
+  /system/dict/data/export:
+    post:
+      tags:
+      - 数据字典信息
+      summary: 导出字典数据列表
+      description: 导出字典数据列表
+      operationId: export_9
+      parameters:
+      - name: dictData
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDictData'
+      responses:
+        '200':
+          description: OK
+  /system/config/updateVersion:
+    post:
+      tags:
+      - app版本升级配置 APP升级配置模块
+      summary: 编辑版本
+      description: 编辑版本
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VersionUpgradeConfigVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/config/listVersion:
+    post:
+      tags:
+      - app版本升级配置 APP升级配置模块
+      summary: 分页查询版本
+      description: 分页查询版本
+      operationId: list_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamUpgradeConfigPageQueryParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoAppVersionUpgradeConfigResp'
+  /system/config/export:
+    post:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 导出参数配置
+      description: 导出参数配置
+      operationId: export_10
+      parameters:
+      - name: config
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysConfig'
+      responses:
+        '200':
+          description: OK
+  /system/config/addVersion:
+    post:
+      tags:
+      - app版本升级配置 APP升级配置模块
+      summary: 新增版本
+      description: 新增版本
+      operationId: add_13
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VersionUpgradeConfigVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/bannerCount/list:
+    post:
+      tags:
+      - banner配置信息
+      operationId: list_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamBannerCountParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoBannerTableDataVo'
+  /system/bannerCount/listData:
+    post:
+      tags:
+      - banner配置信息
+      summary: 查询banner配置信息列表
+      description: 查询banner配置信息列表
+      operationId: listData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerCountParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BannerCountDataVo'
+  /system/bannerCount/export:
+    post:
+      tags:
+      - banner配置信息
+      summary: banner导出
+      description: banner导出
+      operationId: export_11
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamBannerCountParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/bannerCount/export/taskList:
+    post:
+      tags:
+      - banner配置信息
+      summary: banner导出任务列表
+      description: banner导出任务列表
+      operationId: exportTaskList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamVoid'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoAppBannerExportTaskVo'
+  /system/bannerConfigInfo/list:
+    post:
+      tags:
+      - banner配置信息
+      summary: 查询banner配置信息列表
+      description: 查询banner配置信息列表
+      operationId: list_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamBannerListParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoAppBannerConfigInfoBo'
+  /system/bannerConfigInfo/listBanner:
+    post:
+      tags:
+      - banner配置信息
+      summary: 查询banner列表
+      description: 查询banner列表
+      operationId: listBanner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerNameVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppBannerConfigInfoVo'
+  /system/appPanelFirmwareUpgrade/list:
+    post:
+      tags:
+      - 面板固件升级
+      summary: 查询面板固件升级列表
+      description: 查询面板固件升级列表
+      operationId: list_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamAppPanelFmUpListParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoAppPanelFmUpListResp'
+  /system/appPanelBundleVersion/list:
+    post:
+      tags:
+      - 面板版本
+      summary: 查询面板版本列表
+      description: 查询面板版本列表
+      operationId: list_5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamAppPanelVersionListReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoAppPanelBundleVersionReq'
+  /system/user/platformUser/{userId}:
+    get:
+      tags:
+      - 用户信息-平台管理
+      summary: 根据用户编号获取详细信息
+      description: 根据用户编号获取详细信息
+      operationId: getInfo
+      parameters:
+      - name: userId
+        in: path
+        description: 用户ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/user/platformList:
+    get:
+      tags:
+      - 用户信息-平台管理
+      summary: 查询平台用户, 只有超级管理员或者有平台用户接口的管理员查询
+      description: 查询平台用户, 只有超级管理员或者有平台用户接口的管理员查询
+      operationId: platformList
+      parameters:
+      - name: user
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysUser'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysUser'
+  /system/user/getInfo:
+    get:
+      tags:
+      - 用户信息-平台管理
+      summary: 获取用户信息
+      description: 获取用户信息
+      operationId: getInfo_2
+      responses:
+        '200':
+          description: 用户信息
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/user/companyUser/{userId}:
+    get:
+      tags:
+      - 用户信息-企业管理
+      summary: 根据用户编号获取详细信息
+      description: 根据用户编号获取详细信息
+      operationId: getInfo_3
+      parameters:
+      - name: userId
+        in: path
+        description: 用户ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/user/companyNormalUser/{userId}:
+    get:
+      tags:
+      - 用户信息-企业用户
+      summary: 根据用户编号获取详细信息
+      description: 根据用户编号获取详细信息
+      operationId: getInfo_5
+      parameters:
+      - name: userId
+        in: path
+        description: 用户ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/user/companyNormalList:
+    get:
+      tags:
+      - 用户信息-企业用户
+      summary: "获取企业普通用户列表\n 平台管理员,可以查询被授权的企业的所有普通用户\n 企业管理员或企业普通用户, 只能查询本企业的数据"
+      description: "获取企业普通用户列表\n 平台管理员,可以查询被授权的企业的所有普通用户\n 企业管理员或企业普通用户, 只能查询本企业的数据"
+      operationId: companyNormalList
+      parameters:
+      - name: user
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysUser'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysUser'
+  /system/user/companyList:
+    get:
+      tags:
+      - 用户信息-企业管理
+      summary: 查询企业管理员用户, 只有超管或者被授权的平台管理员查询
+      description: 查询企业管理员用户, 只有超管或者被授权的平台管理员查询
+      operationId: companyList
+      parameters:
+      - name: user
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysUser'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysUser'
+  /system/role/{roleId}:
+    get:
+      tags:
+      - 角色信息
+      summary: 根据角色编号获取详细信息
+      description: 根据角色编号获取详细信息
+      operationId: getInfo_7
+      parameters:
+      - name: roleId
+        in: path
+        description: 角色ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysRole'
+  /system/role/roleType/user:
+    get:
+      tags:
+      - 角色信息
+      summary: 根据单前用户查询角色类型列表
+      description: 根据单前用户查询角色类型列表
+      operationId: dictType
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysDictData'
+  /system/role/optionselect:
+    get:
+      tags:
+      - 角色信息
+      summary: 获取角色选择框列表
+      description: 获取角色选择框列表
+      operationId: optionselect
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysRole'
+  /system/role/list:
+    get:
+      tags:
+      - 角色信息
+      summary: 查询角色信息列表
+      description: 查询角色信息列表
+      operationId: list_6
+      parameters:
+      - name: role
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysRole'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysRole'
+  /system/role/list/{roleType}:
+    get:
+      tags:
+      - 角色信息
+      summary: 根据角色类型查询角色列表
+      description: 根据角色类型查询角色列表
+      operationId: role
+      parameters:
+      - name: roleType
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysRole'
+  /system/role/list/menuCategory/{roleType}:
+    get:
+      tags:
+      - 角色信息
+      summary: 查询菜单分类id
+      description: 查询菜单分类id
+      operationId: menuCategory
+      parameters:
+      - name: roleType
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMenuCategoryVo'
+  /system/role/deptTree/{roleId}:
+    get:
+      tags:
+      - 角色信息
+      summary: 获取对应角色部门树列表
+      description: 获取对应角色部门树列表
+      operationId: deptTree
+      parameters:
+      - name: roleId
+        in: path
+        description: 角色ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/role/authUser/unallocatedList:
+    get:
+      tags:
+      - 角色信息
+      summary: 查询未分配用户角色列表
+      description: 查询未分配用户角色列表
+      operationId: unallocatedList
+      parameters:
+      - name: user
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysUser'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysUser'
+  /system/role/authUser/allocatedList:
+    get:
+      tags:
+      - 角色信息
+      summary: 查询已分配用户角色列表
+      description: 查询已分配用户角色列表
+      operationId: allocatedList
+      parameters:
+      - name: user
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysUser'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysUser'
+  /system/post/{postId}:
+    get:
+      tags:
+      - 岗位信息操作处理
+      summary: 根据岗位编号获取详细信息
+      description: 根据岗位编号获取详细信息
+      operationId: getInfo_8
+      parameters:
+      - name: postId
+        in: path
+        description: 岗位ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysPost'
+  /system/post/optionselect:
+    get:
+      tags:
+      - 岗位信息操作处理
+      summary: 获取岗位选择框列表
+      description: 获取岗位选择框列表
+      operationId: optionselect_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysPost'
+  /system/post/list:
+    get:
+      tags:
+      - 岗位信息操作处理
+      summary: 获取岗位列表
+      description: 获取岗位列表
+      operationId: list_7
+      parameters:
+      - name: post
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysPost'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysPost'
+  /system/operlog/systemModel:
+    get:
+      tags:
+      - 操作日志记录
+      summary: 操作菜单列表查询
+      description: 操作菜单列表查询
+      operationId: systemModel
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListString'
+  /system/operlog/list:
+    get:
+      tags:
+      - 操作日志记录
+      summary: 查询操作日志记录列表
+      description: 查询操作日志记录列表
+      operationId: list_8
+      parameters:
+      - name: operLog
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysOperLog'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysOperLog'
+  /system/online/list:
+    get:
+      tags:
+      - 在线用户监控
+      summary: 在线用户列表
+      description: 在线用户列表
+      operationId: list_9
+      parameters:
+      - name: ipaddr
+        in: query
+        description: ip地址
+        required: true
+        schema:
+          type: string
+      - name: userName
+        in: query
+        description: 用户名
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysUserOnline'
+  /system/notice/{noticeId}:
+    get:
+      tags:
+      - 公告 信息操作处理
+      summary: 根据通知公告编号获取详细信息
+      description: 根据通知公告编号获取详细信息
+      operationId: getInfo_9
+      parameters:
+      - name: noticeId
+        in: path
+        description: 通知ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysNotice'
+  /system/notice/list:
+    get:
+      tags:
+      - 公告 信息操作处理
+      summary: 获取通知公告列表
+      description: 获取通知公告列表
+      operationId: list_10
+      parameters:
+      - name: notice
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysNotice'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysNotice'
+  /system/menu/{menuId}:
+    get:
+      tags:
+      - 菜单信息
+      summary: 根据菜单编号获取详细信息
+      description: 根据菜单编号获取详细信息
+      operationId: getInfo_10
+      parameters:
+      - name: menuId
+        in: path
+        description: 菜单ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysMenu'
+    delete:
+      tags:
+      - 菜单信息
+      summary: 删除菜单
+      description: 删除菜单
+      operationId: remove_4
+      parameters:
+      - name: menuId
+        in: path
+        description: 菜单ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/menu/treeselect:
+    get:
+      tags:
+      - 菜单信息
+      summary: 获取菜单下拉树列表
+      description: 获取菜单下拉树列表
+      operationId: treeselect
+      parameters:
+      - name: menu
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysMenu'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListTreeLong'
+  /system/menu/roleMenuTreeselect/{roleId}:
+    get:
+      tags:
+      - 菜单信息
+      summary: 加载对应角色菜单列表树
+      description: 加载对应角色菜单列表树
+      operationId: roleMenuTreeselect
+      parameters:
+      - name: roleId
+        in: path
+        description: 角色ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /system/menu/list:
+    get:
+      tags:
+      - 菜单信息
+      summary: 获取菜单列表
+      description: 获取菜单列表
+      operationId: list_11
+      parameters:
+      - name: menu
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysMenu'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysMenu'
+  /system/menu/getRouters:
+    get:
+      tags:
+      - 菜单信息
+      summary: 获取路由信息
+      description: 获取路由信息
+      operationId: getRouters
+      responses:
+        '200':
+          description: 路由信息
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListRouterVo'
+  /system/logininfor/unlock/{userName}:
+    get:
+      tags:
+      - 系统访问记录
+      operationId: unlock
+      parameters:
+      - name: userName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/logininfor/list:
+    get:
+      tags:
+      - 系统访问记录
+      summary: 查询系统访问记录列表
+      description: 查询系统访问记录列表
+      operationId: list_12
+      parameters:
+      - name: logininfor
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysLogininfor'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysLogininfor'
+  /system/heartBeat:
+    get:
+      tags:
+      - HeartBeat
+      summary: HeartBeat
+      description: HeartBeat
+      operationId: heartBeat
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dictTypeCategory/{id}:
+    get:
+      tags:
+      - 多语言字典种类控制器
+      summary: 获取多语言字典种类详细信息
+      description: 获取多语言字典种类详细信息
+      operationId: getInfo_11
+      parameters:
+      - name: id
+        in: path
+        description: 主键
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCommonDictTypeCategoryVo'
+  /system/dictTypeCategory/list:
+    get:
+      tags:
+      - 多语言字典种类控制器
+      summary: 查询多语言字典种类列表
+      description: 查询多语言字典种类列表
+      operationId: list_13
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/CommonDictTypeCategoryBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoCommonDictTypeCategoryVo'
+  /system/dictType/{id}:
+    get:
+      tags:
+      - 多语言字典控制器
+      summary: 获取多语言字典详细信息
+      description: 获取多语言字典详细信息
+      operationId: getInfo_12
+      parameters:
+      - name: id
+        in: path
+        description: 主键
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCommonDictTypeVo'
+  /system/dictType/list:
+    get:
+      tags:
+      - 多语言字典控制器
+      summary: 查询多语言字典列表
+      description: 查询多语言字典列表
+      operationId: list_14
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/CommonDictTypeBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoCommonDictTypeVo'
+  /system/dictDataLanguage/{id}:
+    get:
+      tags:
+      - 多语言字典数据语言控制器
+      summary: 获取多语言字典数据语言详细信息
+      description: 获取多语言字典数据语言详细信息
+      operationId: getInfo_13
+      parameters:
+      - name: id
+        in: path
+        description: 主键
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCommonDictDataLanguageVo'
+  /system/dictDataLanguage/list:
+    get:
+      tags:
+      - 多语言字典数据语言控制器
+      summary: 查询多语言字典数据语言列表
+      description: 查询多语言字典数据语言列表
+      operationId: list_15
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/CommonDictDataLanguageBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoCommonDictDataLanguageVo'
+  /system/dictData/{id}:
+    get:
+      tags:
+      - 多语言字典数据控制器
+      summary: 获取多语言字典数据详细信息
+      description: 获取多语言字典数据详细信息
+      operationId: getInfo_14
+      parameters:
+      - name: id
+        in: path
+        description: 主键
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCommonDictDataVo'
+  /system/dictData/list:
+    get:
+      tags:
+      - 多语言字典数据控制器
+      summary: 查询多语言字典数据列表
+      description: 查询多语言字典数据列表
+      operationId: list_16
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/CommonDictDataBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoCommonDictDataVo'
+  /system/dict/type/{dictId}:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 查询字典类型详细
+      description: 查询字典类型详细
+      operationId: getInfo_15
+      parameters:
+      - name: dictId
+        in: path
+        description: 字典ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysDictType'
+  /system/dict/type/optionselect:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 获取字典选择框列表
+      description: 获取字典选择框列表
+      operationId: optionselect_2
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysDictType'
+  /system/dict/type/list:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 查询字典类型列表
+      description: 查询字典类型列表
+      operationId: list_17
+      parameters:
+      - name: dictType
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDictType'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysDictType'
+  /system/dict/data/{dictCode}:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 查询字典数据详细
+      description: 查询字典数据详细
+      operationId: getInfo_16
+      parameters:
+      - name: dictCode
+        in: path
+        description: 字典code
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysDictData'
+  /system/dict/data/type/{dictType}:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 根据字典类型查询字典数据信息
+      description: 根据字典类型查询字典数据信息
+      operationId: dictType_1
+      parameters:
+      - name: dictType
+        in: path
+        description: 字典类型
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysDictData'
+  /system/dict/data/list:
+    get:
+      tags:
+      - 数据字典信息
+      summary: 查询字典数据列表
+      description: 查询字典数据列表
+      operationId: list_18
+      parameters:
+      - name: dictData
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDictData'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysDictData'
+  /system/dept/{deptId}:
+    get:
+      tags:
+      - 部门信息
+      summary: 根据部门编号获取详细信息
+      description: 根据部门编号获取详细信息
+      operationId: getInfo_17
+      parameters:
+      - name: deptId
+        in: path
+        description: 部门ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysDept'
+    delete:
+      tags:
+      - 部门信息
+      summary: 删除部门
+      description: 删除部门
+      operationId: remove_12
+      parameters:
+      - name: deptId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dept/list:
+    get:
+      tags:
+      - 部门信息
+      summary: 获取部门列表
+      description: 获取部门列表
+      operationId: list_19
+      parameters:
+      - name: dept
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysDept'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysDept'
+  /system/dept/list/exclude/{deptId}:
+    get:
+      tags:
+      - 部门信息
+      summary: 查询部门列表（排除节点）
+      description: 查询部门列表（排除节点）
+      operationId: excludeChild
+      parameters:
+      - name: deptId
+        in: path
+        description: 部门ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysDept'
+  /system/config/{configId}:
+    get:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 根据参数编号获取详细信息
+      description: 根据参数编号获取详细信息
+      operationId: getInfo_18
+      parameters:
+      - name: configId
+        in: path
+        description: 配置ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RSysConfig'
+  /system/config/list:
+    get:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 获取参数配置列表
+      description: 获取参数配置列表
+      operationId: list_20
+      parameters:
+      - name: config
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SysConfig'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoSysConfig'
+  /system/config/configKey/{configKey}:
+    get:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 根据参数键名查询参数值
+      description: 根据参数键名查询参数值
+      operationId: getConfigKey
+      parameters:
+      - name: configKey
+        in: path
+        description: 配置key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/company/companyUser/{parentUserId}:
+    get:
+      tags:
+      - 企业管理信息
+      summary: 查询企业用户列表
+      description: 查询企业用户列表
+      operationId: queryCompanyUserList
+      parameters:
+      - name: parentUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysUser'
+  /system/company/companyList:
+    get:
+      tags:
+      - 企业管理信息
+      summary: 查询企业列表
+      description: 查询企业列表
+      operationId: companyList_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListSysUser'
+  /system/bannerConfigInfo/{bannerId}:
+    get:
+      tags:
+      - banner配置信息
+      summary: 获取banner配置信息详细信息
+      description: 获取banner配置信息详细信息
+      operationId: getInfo_19
+      parameters:
+      - name: bannerId
+        in: path
+        description: bannerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RAppBannerConfigInfoBo'
+    delete:
+      tags:
+      - banner配置信息
+      summary: 删除banner配置信息
+      description: 删除banner配置信息
+      operationId: remove_14
+      parameters:
+      - name: bannerId
+        in: path
+        description: bannerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/bannerConfigInfo/listApp/{parentUserId}:
+    get:
+      tags:
+      - banner配置信息
+      summary: 根据企业id查询管理App
+      description: 根据企业id查询管理App
+      operationId: listApp
+      parameters:
+      - name: parentUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SysCompanyAppSourceVo'
+  /system/appUser/list:
+    get:
+      tags:
+      - app用户信息控制器
+      summary: 查询app用户信息列表
+      description: 查询app用户信息列表
+      operationId: list_21
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/AppUserInfoBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoAppUserInfoResp'
+  /system/appPanelFirmwareUpgrade/{appPanelFirmwareUpgradeId}:
+    get:
+      tags:
+      - 面板固件升级
+      summary: 获取面板固件升级详细信息
+      description: 获取面板固件升级详细信息
+      operationId: getInfo_20
+      parameters:
+      - name: appPanelFirmwareUpgradeId
+        in: path
+        description: 主键
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RAppPanelFmUpParam'
+    delete:
+      tags:
+      - 面板固件升级
+      summary: 删除面板固件升级
+      description: 删除面板固件升级
+      operationId: remove_15
+      parameters:
+      - name: appPanelFirmwareUpgradeId
+        in: path
+        description: 主键串
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/role/{roleIds}:
+    delete:
+      tags:
+      - 角色信息
+      summary: 删除角色
+      description: 删除角色
+      operationId: remove
+      parameters:
+      - name: roleIds
+        in: path
+        description: 角色ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/post/{postIds}:
+    delete:
+      tags:
+      - 岗位信息操作处理
+      summary: 删除岗位
+      description: 删除岗位
+      operationId: remove_1
+      parameters:
+      - name: postIds
+        in: path
+        description: 岗位ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/operlog/{operIds}:
+    delete:
+      tags:
+      - 操作日志记录
+      summary: 删除操作日志记录
+      description: 删除操作日志记录
+      operationId: remove_2
+      parameters:
+      - name: operIds
+        in: path
+        description: 操作日志ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/operlog/clean:
+    delete:
+      tags:
+      - 操作日志记录
+      summary: 清空操作日志记录
+      description: 清空操作日志记录
+      operationId: clean
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/online/{tokenId}:
+    delete:
+      tags:
+      - 在线用户监控
+      summary: 强退用户
+      description: 强退用户
+      operationId: forceLogout
+      parameters:
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/notice/{noticeIds}:
+    delete:
+      tags:
+      - 公告 信息操作处理
+      summary: 删除通知公告
+      description: 删除通知公告
+      operationId: remove_3
+      parameters:
+      - name: noticeIds
+        in: path
+        description: 通知ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/logininfor/{infoIds}:
+    delete:
+      tags:
+      - 系统访问记录
+      summary: 删除系统访问记录
+      description: 删除系统访问记录
+      operationId: remove_5
+      parameters:
+      - name: infoIds
+        in: path
+        description: 记录ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/logininfor/clean:
+    delete:
+      tags:
+      - 系统访问记录
+      summary: 清空系统访问记录
+      description: 清空系统访问记录
+      operationId: clean_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dictTypeCategory/{ids}:
+    delete:
+      tags:
+      - 多语言字典种类控制器
+      summary: 删除多语言字典种类
+      description: 删除多语言字典种类
+      operationId: remove_6
+      parameters:
+      - name: ids
+        in: path
+        description: 主键串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dictType/{ids}:
+    delete:
+      tags:
+      - 多语言字典控制器
+      summary: 删除多语言字典
+      description: 删除多语言字典
+      operationId: remove_7
+      parameters:
+      - name: ids
+        in: path
+        description: 主键串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dictDataLanguage/{ids}:
+    delete:
+      tags:
+      - 多语言字典数据语言控制器
+      summary: 删除多语言字典数据语言
+      description: 删除多语言字典数据语言
+      operationId: remove_8
+      parameters:
+      - name: ids
+        in: path
+        description: 主键串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dictData/{ids}:
+    delete:
+      tags:
+      - 多语言字典数据控制器
+      summary: 删除多语言字典数据
+      description: 删除多语言字典数据
+      operationId: remove_9
+      parameters:
+      - name: ids
+        in: path
+        description: 主键串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dict/type/{dictIds}:
+    delete:
+      tags:
+      - 数据字典信息
+      summary: 删除字典类型
+      description: 删除字典类型
+      operationId: remove_10
+      parameters:
+      - name: dictIds
+        in: path
+        description: 字典ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dict/type/refreshCache:
+    delete:
+      tags:
+      - 数据字典信息
+      summary: 刷新字典缓存
+      description: 刷新字典缓存
+      operationId: refreshCache
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/dict/data/{dictCodes}:
+    delete:
+      tags:
+      - 数据字典信息
+      summary: 删除字典类型
+      description: 删除字典类型
+      operationId: remove_11
+      parameters:
+      - name: dictCodes
+        in: path
+        description: 字典Code串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/config/{configIds}:
+    delete:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 删除参数配置
+      description: 删除参数配置
+      operationId: remove_13
+      parameters:
+      - name: configIds
+        in: path
+        description: 配置ID串
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/config/refreshCache:
+    delete:
+      tags:
+      - 参数配置 信息操作处理
+      summary: 刷新参数缓存
+      description: 刷新参数缓存
+      operationId: refreshCache_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/config/deleteVersion/{appVersionUpgradeId}:
+    delete:
+      tags:
+      - app版本升级配置 APP升级配置模块
+      summary: 删除版本
+      description: 删除版本
+      operationId: delete_1
+      parameters:
+      - name: appVersionUpgradeId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /system/appPanelBundleVersion/{appPanelBundleVersionId}:
+    delete:
+      tags:
+      - 面板版本
+      summary: 删除面板版本
+      description: 删除面板版本
+      operationId: remove_16
+      parameters:
+      - name: appPanelBundleVersionId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+components:
+  schemas:
+    SysDept:
+      required:
+      - deptName
+      - orderNum
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        parentName:
+          type: string
+          description: 父菜单名称
+        parentId:
+          type: integer
+          description: 父菜单ID
+          format: int64
+        children:
+          type: array
+          description: 子部门
+          items:
+            $ref: '#/components/schemas/SysDept'
+        deptId:
+          type: integer
+          description: 部门ID
+          format: int64
+        deptName:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 部门名称
+        orderNum:
+          type: integer
+          description: 显示顺序
+          format: int32
+        leader:
+          type: string
+          description: 负责人
+        phone:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: 联系电话
+        email:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: 邮箱
+        status:
+          type: string
+          description: 部门状态:0正常,1停用
+        delFlag:
+          type: string
+          description: 删除标志（0代表存在 2代表删除）
+        ancestors:
+          type: string
+          description: 祖级列表
+      description: 部门表 sys_dept
+    SysRole:
+      required:
+      - roleName
+      - roleType
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        roleId:
+          type: integer
+          description: 角色ID
+          format: int64
+        roleName:
+          maxLength: 50
+          minLength: 1
+          type: string
+          description: 角色名称
+        roleKey:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 角色权限
+        roleSort:
+          type: integer
+          description: 角色排序
+          format: int32
+        dataScope:
+          type: string
+          description: 数据范围（1：所有数据权限；2：自定义数据权限；3：本部门数据权限；4：本部门及以下数据权限；5：仅本人数据权限）
+        menuCheckStrictly:
+          type: boolean
+          description: 菜单树选择项是否关联显示（ 0：父子不互相关联显示 1：父子互相关联显示）
+        deptCheckStrictly:
+          type: boolean
+          description: 部门树选择项是否关联显示（0：父子不互相关联显示 1：父子互相关联显示 ）
+        status:
+          type: string
+          description: 角色状态（0正常 1停用）
+        delFlag:
+          type: string
+          description: 删除标志（0代表存在 2代表删除）
+        remark:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: 备注
+        flag:
+          type: boolean
+          description: 用户是否存在此角色标识 默认不存在
+        menuIds:
+          type: array
+          description: 菜单组
+          items:
+            type: integer
+            format: int64
+        deptIds:
+          type: array
+          description: 部门组（数据权限）
+          items:
+            type: integer
+            format: int64
+        roleType:
+          type: string
+          description: 角色类型,字典:super_admin_role_types,company_admin_role_types
+        roleFlag:
+          type: string
+          description: 角色标记,1:默认角色,2:正常角色
+        userId:
+          type: integer
+          description: 角色所属用户(sys_user.user_id)字段(超级管理员or企业管理员)
+          format: int64
+        admin:
+          type: boolean
+      description: 角色表 sys_role
+    SysUser:
+      required:
+      - accountType
+      - email
+      - roleIds
+      - userName
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        userId:
+          type: integer
+          description: 用户ID
+          format: int64
+        deptId:
+          type: integer
+          description: 部门ID
+          format: int64
+        userName:
+          maxLength: 50
+          minLength: 1
+          type: string
+          description: 用户账号
+        nickName:
+          type: string
+          description: 用户昵称
+        userType:
+          type: string
+          description: 用户类型（sys_user系统用户）
+        email:
+          maxLength: 50
+          minLength: 1
+          type: string
+          description: 用户邮箱
+        phonenumber:
+          type: string
+          description: 手机号码
+        sex:
+          type: string
+          description: 用户性别
+        avatar:
+          type: string
+          description: 用户头像
+        password:
+          type: string
+          description: 密码
+          writeOnly: true
+        status:
+          type: string
+          description: 帐号状态（0正常 1停用）
+        delFlag:
+          type: string
+          description: 删除标志（0代表存在 2代表删除）
+        loginIp:
+          type: string
+          description: 最后登录IP
+        loginDate:
+          type: integer
+          description: 最后登录时间
+          format: int64
+        remark:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: 备注
+        dept:
+          $ref: '#/components/schemas/SysDept'
+        roles:
+          type: array
+          description: 角色对象
+          items:
+            $ref: '#/components/schemas/SysRole'
+        roleIds:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          description: 角色组
+          items:
+            type: integer
+            format: int64
+        postIds:
+          type: array
+          description: 岗位组
+          items:
+            type: integer
+            format: int64
+        roleId:
+          type: integer
+          description: 数据权限 当前角色ID
+          format: int64
+        accountType:
+          type: string
+          description: 账号类型 字典表账号类型所属
+        parentUserId:
+          type: integer
+          description: 账号所属用户
+          format: int64
+        permProductIdList:
+          type: array
+          description: 企业用户的产品权限
+          items:
+            type: string
+        permCompanyUserIdList:
+          type: array
+          description: 平台管理员的企业权限
+          items:
+            type: integer
+            format: int64
+        companyName:
+          maxLength: 50
+          minLength: 1
+          type: string
+          description: 企业名称
+        admin:
+          type: boolean
+      description: 用户对象 sys_user
+    RVoid:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    SysUserRole:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: 用户ID
+          format: int64
+        roleId:
+          type: integer
+          description: 角色ID
+          format: int64
+      description: 用户和角色关联 sys_user_role
+    SysPost:
+      required:
+      - postCode
+      - postName
+      - postSort
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        postId:
+          type: integer
+          description: 岗位序号
+          format: int64
+        postCode:
+          maxLength: 64
+          minLength: 0
+          type: string
+          description: 岗位编码
+        postName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: 岗位名称
+        postSort:
+          type: integer
+          description: 岗位排序
+          format: int32
+        status:
+          type: string
+          description: 状态（0正常 1停用）
+        remark:
+          type: string
+          description: 备注
+        flag:
+          type: boolean
+          description: 用户是否存在此岗位标识 默认不存在
+      description: 岗位表 sys_post
+    AppPanelBundleInfoBo:
+      required:
+      - appPanelBundleInfoId
+      - appSource
+      - panelId
+      - panelName
+      - panelType
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        appPanelBundleInfoId:
+          type: integer
+          description: 面板信息表主键
+          format: int64
+        panelId:
+          minimum: 1
+          type: integer
+          description: 面板自定义id
+          format: int64
+        panelType:
+          pattern: ^(appPanel|fmPanel)$
+          type: string
+          description: 面板类型 appPanel:APP面板,fmPanel:固件面板
+        panelName:
+          type: string
+          description: 面板名称
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        parentUserId:
+          type: integer
+          description: 面板所属企业用户id
+          format: int64
+        remark:
+          type: string
+          description: 备注
+      description: 面板信息业务对象 app_panel_bundle_info
+    SysNotice:
+      required:
+      - noticeTitle
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        noticeId:
+          type: integer
+          description: 公告ID
+          format: int64
+        noticeTitle:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: 公告标题
+        noticeType:
+          type: string
+          description: 公告类型（1通知 2公告）
+        noticeContent:
+          type: string
+          description: 公告内容
+        status:
+          type: string
+          description: 公告状态（0正常 1关闭）
+        remark:
+          type: string
+          description: 备注
+      description: 通知公告表 sys_notice
+    SysMenu:
+      required:
+      - menuName
+      - menuType
+      - orderNum
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        parentName:
+          type: string
+          description: 父菜单名称
+        parentId:
+          type: integer
+          description: 父菜单ID
+          format: int64
+        children:
+          type: array
+          description: 子部门
+          items:
+            $ref: '#/components/schemas/SysMenu'
+        menuId:
+          type: integer
+          description: 菜单ID
+          format: int64
+        menuName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: 菜单名称
+        orderNum:
+          type: integer
+          description: 显示顺序
+          format: int32
+        path:
+          maxLength: 200
+          minLength: 0
+          type: string
+          description: 路由地址
+        component:
+          maxLength: 200
+          minLength: 0
+          type: string
+          description: 组件路径
+        queryParam:
+          type: string
+          description: 路由参数
+        isFrame:
+          type: string
+          description: 是否为外链（0是 1否）
+        isCache:
+          type: string
+          description: 是否缓存（0缓存 1不缓存）
+        menuType:
+          type: string
+          description: 类型（M目录 C菜单 F按钮）
+        visible:
+          type: string
+          description: 显示状态（0显示 1隐藏）
+        status:
+          type: string
+          description: 菜单状态（0正常 1停用）
+        perms:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 权限字符串
+        icon:
+          type: string
+          description: 菜单图标
+        remark:
+          type: string
+          description: 备注
+      description: 菜单权限表 sys_menu
+    CommonDictTypeBo:
+      required:
+      - appSource
+      - dictName
+      - dictStatus
+      - dictType
+      - id
+      - multiLanguageItem
+      - remark
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        dictType:
+          type: string
+          description: 字典类型
+        dictName:
+          type: string
+          description: 字典名称
+        multiLanguageItem:
+          type: string
+          description: 多语言列表,json格式数组,ex:["EN","CN"]
+        dictStatus:
+          type: string
+          description: 字典状态,1:启用,0:禁用
+        remark:
+          type: string
+          description: 备注1
+      description: 多语言字典业务对象
+    CommonDictTypeCategoryBo:
+      required:
+      - appSource
+      - category
+      - categoryName
+      - categoryStatus
+      - dictType
+      - id
+      - parentCategory
+      - remark
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        dictType:
+          type: string
+          description: 字典类型
+        parentCategory:
+          type: string
+          description: 种类父级
+        category:
+          type: string
+          description: 种类
+        categoryName:
+          type: string
+          description: 种类名称
+        categoryStatus:
+          type: string
+          description: 种类状态,1:启用,0:禁用
+        remark:
+          type: string
+          description: 备注2
+      description: 多语言字典种类业务对象
+    CommonDictDataBo:
+      required:
+      - appSource
+      - category
+      - dictFlag
+      - dictKey
+      - dictKeyName
+      - dictType
+      - id
+      - imageUrl
+      - remark
+      - sort
+      - status
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        dictType:
+          type: string
+          description: 字典类型
+        category:
+          type: string
+          description: 种类
+        dictKey:
+          type: string
+          description: 字典键值
+        dictKeyName:
+          type: string
+          description: 字典中文名称
+        imageUrl:
+          type: string
+          description: 字典图片url
+        dictFlag:
+          type: string
+          description: 是否热门,是否常用等标记,
+        status:
+          type: string
+          description: 字典数据状态,1:启用,0:禁用
+        sort:
+          type: integer
+          description: 排序
+          format: int32
+        remark:
+          type: string
+          description: 备注3
+      description: 多语言字典数据业务对象
+    CommonDictDataLanguageBo:
+      required:
+      - dictDataId
+      - id
+      - language
+      - languageValue
+      - remark
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        dictDataId:
+          type: integer
+          description: common_dict_data字典数据表主键
+          format: int64
+        language:
+          type: string
+          description: 语言类型,(EN,CN)等
+        languageValue:
+          type: string
+          description: 语言类型值
+        remark:
+          type: string
+          description: 备注4
+      description: 多语言字典数据语言业务对象
+    SysDictType:
+      required:
+      - dictName
+      - dictType
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        dictId:
+          type: integer
+          description: 字典主键
+          format: int64
+        dictName:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 字典名称
+        dictType:
+          maxLength: 100
+          minLength: 0
+          pattern: ^[a-z][a-z0-9_]*$
+          type: string
+          description: 字典类型
+        status:
+          type: string
+          description: 状态（0正常 1停用）
+        remark:
+          type: string
+          description: 备注
+      description: 字典类型表 sys_dict_type
+    SysDictData:
+      required:
+      - dictLabel
+      - dictType
+      - dictValue
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        dictCode:
+          type: integer
+          description: 字典编码
+          format: int64
+        dictSort:
+          type: integer
+          description: 字典排序
+          format: int32
+        dictLabel:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 字典标签
+        dictValue:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 字典键值
+        dictType:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 字典类型
+        cssClass:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 样式属性（其他样式扩展）
+        listClass:
+          type: string
+          description: 表格字典样式
+        isDefault:
+          type: string
+          description: 是否默认（Y是 N否）
+        status:
+          type: string
+          description: 状态（0正常 1停用）
+        remark:
+          type: string
+          description: 备注
+        default:
+          type: boolean
+      description: 字典数据表 sys_dict_data
+    SysConfig:
+      required:
+      - configKey
+      - configName
+      - configValue
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        configId:
+          type: integer
+          description: 参数主键
+          format: int64
+        configName:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 参数名称
+        configKey:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: 参数键名
+        configValue:
+          maxLength: 500
+          minLength: 0
+          type: string
+          description: 参数键值
+        configType:
+          type: string
+          description: 系统内置（Y是 N否）
+        remark:
+          type: string
+          description: 备注
+      description: 参数配置表 sys_config
+    AppBannerConfigInfoBo:
+      required:
+      - appBannerConfigInfoId
+      - appSource
+      - bannerId
+      - bannerImageUrl
+      - bannerName
+      - bannerScope
+      - bannerType
+      - endTime
+      - jumpPageType
+      - sort
+      - startTime
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        appBannerConfigInfoId:
+          type: integer
+          description: banner配置信息表主键
+          format: int64
+        bannerId:
+          type: string
+          description: banner唯一id
+        bannerType:
+          type: string
+          description: banner类型
+        bannerName:
+          type: string
+          description: banner名称
+        appSource:
+          type: string
+          description: APP来源
+        parentUserId:
+          type: integer
+          description: banner所属企业用户id
+          format: int64
+        bannerImageUrl:
+          type: string
+          description: banner图片url
+        startTime:
+          type: integer
+          description: 上架周期开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 上架周期结束时间
+          format: int64
+        countDownStartTime:
+          type: integer
+          description: 倒计时开始时间
+          format: int64
+        countDownEndTime:
+          type: integer
+          description: 倒计时结束时间
+          format: int64
+        sort:
+          type: integer
+          description: 排序
+          format: int32
+        jumpPageType:
+          type: integer
+          description: 跳转页类型,1:内部链接,2:外部链接,3:无跳转
+          format: int32
+        jumpPagePath:
+          type: string
+          description: 跳转页路径
+        jumpPageShare:
+          type: integer
+          description: 外部链接是否能分享,0:不能分享,1:能分享
+          format: int32
+        systemTypeAndroid:
+          type: integer
+          description: 是否配置安卓版本,0:未配置,1:有配置
+          format: int32
+        androidVersionId:
+          type: integer
+          description: android版本id
+          format: int32
+        systemTypeIos:
+          type: integer
+          description: 是否配置ios版本,0:未配置,1:有配置
+          format: int32
+        iosVersionId:
+          type: integer
+          description: ios版本id
+          format: int32
+        bannerScope:
+          type: integer
+          description: banner展示范围,1:区域,2:宠物,3:设备类型
+          format: int32
+        putOnShelves:
+          type: integer
+          description: 是否上架,1.是,0.否
+          format: int32
+        remark:
+          type: string
+          description: 备注
+        bannerCountryCodeList:
+          type: array
+          description: 国家区域列表(全选 传ALL)
+          items:
+            type: string
+        bannerPetConfig:
+          $ref: '#/components/schemas/BannerPetConfig'
+        bannerProductConfig:
+          $ref: '#/components/schemas/BannerProductConfig'
+        isDelete:
+          type: integer
+          description: 是否删除
+          format: int32
+      description: banner配置信息业务对象 app_banner_config_info
+    BannerPetConfig:
+      type: object
+      properties:
+        petTypeList:
+          type: array
+          description: 宠物种类 Dog Cat
+          items:
+            type: string
+        petWeightMin:
+          type: integer
+          description: 宠物体重
+          format: int32
+        petWeightMax:
+          type: integer
+          format: int32
+        petQuantityMin:
+          type: integer
+          description: 宠物数量
+          format: int32
+        petQuantityMax:
+          type: integer
+          format: int32
+      description: ''
+    BannerProductConfig:
+      type: object
+      properties:
+        whetherIncludeProduct:
+          type: integer
+          description: 是否包含产品 1包含 0 不包含
+          format: int32
+        productTypeIdList:
+          type: array
+          description: 产品类型id列表
+          items:
+            type: string
+      description: ''
+    AppPanelFmUpParam:
+      required:
+      - appPanelBundleVersionId
+      - appPanelFirmwareUpgradeId
+      - firmwareInfoId
+      - productId
+      - upgradeManner
+      type: object
+      properties:
+        appPanelFirmwareUpgradeId:
+          type: integer
+          description: 新增固件升级主键
+          format: int64
+        appPanelBundleVersionId:
+          type: integer
+          description: 面板版本主键
+          format: int64
+        productId:
+          type: string
+          description: 产品id,product表productId
+        firmwareInfoId:
+          type: integer
+          description: 固件信息表id
+          format: int64
+        upgradeManner:
+          type: integer
+          description: 升级方式,2.建议升级,3.强制升级
+          format: int32
+        firmwareVersionIdList:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          description: 固件主版本 列表
+          items:
+            type: integer
+            format: int64
+        upgradeDescMulti:
+          type: string
+          description: 面板升级描述多语言json
+        upgradeDescMultiList:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/MultiLanguageVo'
+        publish:
+          type: integer
+          description: 是否发布,1.已发布, 0.未发布,2.已撤销
+          format: int32
+      description: 升级配置列表查询参数
+    MultiLanguageVo:
+      required:
+      - name
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: 语言类型缩写，英文US ，中文CN
+        name:
+          type: string
+          description: 名称
+      description: ''
+    AppPanelBundleVersionReq:
+      required:
+      - androidVersionList
+      - appPanelBundleInfoId
+      - appPanelBundleVersionId
+      - bundleFileMd5
+      - bundleUrl
+      - bundleVersion
+      - iosVersionList
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        appPanelBundleVersionId:
+          type: integer
+          description: 面板版本表主键
+          format: int64
+        appPanelBundleInfoId:
+          type: integer
+          description: 面板信息表主键
+          format: int64
+        bundleVersion:
+          pattern: ^\d{1,5}\.\d{1,5}\.\d{1,5}$
+          type: string
+          description: 面板版本不能为空
+        putOnShelves:
+          type: integer
+          description: 上下架状态 0下架 1上架
+          format: int32
+        remark:
+          type: string
+          description: 备注
+        bundleUrl:
+          type: string
+          description: bundle 下载地址
+        bundleFileMd5:
+          type: string
+          description: bundle文件md5
+        iosVersionList:
+          type: array
+          description: IOS版本 appUniId
+          items:
+            type: integer
+            format: int64
+        androidVersionList:
+          type: array
+          description: Android appUniId
+          items:
+            type: integer
+            format: int64
+      description: 新增面板版本业务对象
+    AppPanelVersionListReq:
+      required:
+      - appPanelBundleInfoId
+      type: object
+      properties:
+        putOnShelves:
+          type: integer
+          description: 上下架状态 0下架 1上架
+          format: int32
+        appPanelBundleInfoId:
+          type: integer
+          description: 面板主键 不能为空
+          format: int64
+      description: 升级配置列表查询参数
+    AppPanelBundleVersion:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        appPanelBundleVersionId:
+          type: integer
+          description: 面板版本表主键
+          format: int64
+        appPanelBundleInfoId:
+          type: integer
+          description: 面板信息表主键
+          format: int64
+        bundleVersion:
+          type: string
+          description: 面板版本
+        bundleVersionNum:
+          type: integer
+          description: 面板版本数字
+          format: int64
+        putOnShelves:
+          type: integer
+          description: 上下架状态 0下架 1上架
+          format: int32
+        bundleUrl:
+          type: string
+          description: bundle 下载地址
+        bundleFileMd5:
+          type: string
+          description: bundle文件md5
+        remark:
+          type: string
+          description: 备注
+      description: 面板版本对象 app_panel_bundle_version
+    RListAppPanelBundleVersion:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/AppPanelBundleVersion'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RMapStringObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          additionalProperties:
+            type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    AppPanelParam:
+      type: object
+      properties:
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        panelType:
+          type: string
+          description: 面板类型 appPanel:APP面板,fmPanel:固件面板
+        panelName:
+          type: string
+          description: 面板名称
+      description: 升级配置列表查询参数
+    PageQuery:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int32
+        pageNum:
+          minimum: 1
+          type: integer
+          description: 当前页数
+          format: int32
+        orderByColumn:
+          type: string
+          description: 排序列
+        isAsc:
+          type: string
+          description: "排序的方向desc或者asc\n 支持的用法如下:\n {isAsc:\"asc\",orderByColumn:\"\
+            id\"} order by id asc\n {isAsc:\"asc\",orderByColumn:\"id,createTime\"\
+            } order by id asc,create_time asc\n {isAsc:\"desc\",orderByColumn:\"id,createTime\"\
+            } order by id desc,create_time desc\n {isAsc:\"asc,desc\",orderByColumn:\"\
+            id,createTime\"} order by id asc,create_time desc"
+      description: 分页查询实体类
+    PageQueryParamAppPanelParam:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/AppPanelParam'
+      description: 带参数的分页查询对象
+    AppPanelBundleInfoVo:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        appPanelBundleInfoId:
+          type: integer
+          description: 面板信息表主键
+          format: int64
+        panelId:
+          type: integer
+          description: 面板自定义id
+          format: int64
+        panelType:
+          type: string
+          description: 面板类型
+        panelName:
+          type: string
+          description: 面板名称
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        parentUserId:
+          type: integer
+          description: 面板所属企业用户id
+          format: int64
+        remark:
+          type: string
+          description: 备注
+        bundleVersion:
+          type: string
+          description: 最新面板版本
+        appPanelBundleVersionId:
+          type: integer
+          description: 最新面板版本id
+          format: int64
+        bundleVersionCreateTime:
+          type: integer
+          description: 最新面板版本创建时间
+          format: int64
+        firmwareVersionIdList:
+          type: array
+          description: 固件版本id列表
+          items:
+            type: integer
+            format: int64
+        firmwareVersionList:
+          type: array
+          description: 固件版本列表
+          items:
+            type: string
+      description: 面板信息视图对象 app_panel_bundle_info
+    TableDataInfoAppPanelBundleInfoVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/AppPanelBundleInfoVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    AppVersionListReq:
+      required:
+      - appSource
+      - systemType
+      type: object
+      properties:
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        systemType:
+          type: integer
+          description: 系统类型类型,1.IOS, 2.Android
+          format: int32
+      description: 新增面板版本业务对象
+    AppVersionResp:
+      type: object
+      properties:
+        appUniId:
+          type: integer
+          format: int64
+        appSource:
+          type: string
+        systemType:
+          type: integer
+          format: int32
+        versionId:
+          type: integer
+          format: int64
+        versionNumber:
+          type: string
+      description: ''
+    RListAppVersionResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/AppVersionResp'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    SysOperLog:
+      type: object
+      properties:
+        operId:
+          type: integer
+          description: 日志主键
+          format: int64
+        title:
+          type: string
+          description: 操作模块
+        businessType:
+          type: integer
+          description: 业务类型（0其它 1新增 2修改 3删除）
+          format: int32
+        businessTypes:
+          type: array
+          description: 业务类型数组
+          items:
+            type: integer
+            format: int32
+        method:
+          type: string
+          description: 请求方法
+        requestMethod:
+          type: string
+          description: 请求方式
+        operatorType:
+          type: integer
+          description: 操作类别（0其它 1后台用户 2手机端用户）
+          format: int32
+        operName:
+          type: string
+          description: 操作人员
+        deptName:
+          type: string
+          description: 部门名称
+        operUrl:
+          type: string
+          description: 请求url
+        operIp:
+          type: string
+          description: 操作地址
+        operLocation:
+          type: string
+          description: 操作地点
+        operParam:
+          type: string
+          description: 请求参数
+        jsonResult:
+          type: string
+          description: 返回参数
+        status:
+          type: integer
+          description: 操作状态（0正常 1异常）
+          format: int32
+        errorMsg:
+          type: string
+          description: 错误消息
+        operTime:
+          type: integer
+          description: 操作时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+      description: 操作日志记录表 oper_log
+    SysLogininfor:
+      type: object
+      properties:
+        infoId:
+          type: integer
+          description: ID
+          format: int64
+        userName:
+          type: string
+          description: 用户账号
+        status:
+          type: string
+          description: 状态 0成功 1失败
+        ipaddr:
+          type: string
+          description: 地址
+        loginLocation:
+          type: string
+          description: 登录地点
+        browser:
+          type: string
+          description: 浏览器类型
+        os:
+          type: string
+          description: 操作系统
+        msg:
+          type: string
+          description: 描述
+        accessTime:
+          type: integer
+          description: 访问时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+      description: 系统访问记录表 sys_logininfor
+    VersionUpgradeConfigVo:
+      required:
+      - appType
+      - appVersionUpgradeId
+      - systemType
+      - upgradeManner
+      - versionId
+      type: object
+      properties:
+        appVersionUpgradeId:
+          type: integer
+          description: 主键id
+          format: int64
+        systemType:
+          type: integer
+          description: 系统类型类型,1.IOS, 2.Android
+          format: int32
+        versionId:
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          description: 版本id
+          format: int64
+        versionNumber:
+          pattern: ^[\w`\-=\[\]\\;',\./~!@#$%^&*\(\)_\+{}|:"<>?]{1,50}$
+          type: string
+          description: '版本号,版本号_允许输入字母、数字和符号，最大长度为50个字符:'
+        upgradeManner:
+          type: integer
+          description: 升级方式,1.提醒升级,2.建议升级,3.强制升级
+          format: int64
+        versionDescMulti:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          description: 版本描述
+          items:
+            $ref: '#/components/schemas/MultiLanguageVo'
+        appType:
+          type: integer
+          description: app类型,1.WOPet,2.WOcam
+          format: int32
+      description: "<p>\n VersionUpgradeConfigDto对象\n </p>"
+    PageQueryParamUpgradeConfigPageQueryParam:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/UpgradeConfigPageQueryParam'
+      description: 带参数的分页查询对象
+    UpgradeConfigPageQueryParam:
+      type: object
+      properties:
+        systemType:
+          type: integer
+          description: 系统类型类型,1.IOS, 2.Android
+          format: int32
+        upgradeManner:
+          type: array
+          description: 升级方式,1.提醒升级,2.建议升级,3.强制升级
+          items:
+            type: integer
+            format: int64
+        versionNumber:
+          type: string
+          description: 版本号_允许输入字母、数字和符号，最大长度为50个字符
+      description: 升级配置列表查询参数
+    AppVersionUpgradeConfigResp:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        appVersionUpgradeId:
+          type: integer
+          format: int64
+        appType:
+          type: integer
+          description: app类型,1.WOPet,2.WOcam
+          format: int32
+        systemType:
+          type: integer
+          description: 系统类型类型,1.IOS, 2.Android
+          format: int32
+        versionId:
+          type: integer
+          description: 版本id
+          format: int64
+        versionNumber:
+          type: string
+          description: 版本号
+        upgradeManner:
+          type: integer
+          description: 升级方式,1.提醒升级,2.建议升级,3.强制升级
+          format: int64
+        versionDesc:
+          type: string
+          description: 版本描述
+        versionDescMulti:
+          type: array
+          description: 多语言列表
+          items:
+            $ref: '#/components/schemas/MultiLanguageVo'
+      description: ''
+    TableDataInfoAppVersionUpgradeConfigResp:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/AppVersionUpgradeConfigResp'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    BannerCountParam:
+      type: object
+      properties:
+        parentUserId:
+          type: integer
+          format: int64
+        appSource:
+          type: string
+        bannerId:
+          type: string
+        bannerType:
+          type: string
+        startTime:
+          type: integer
+          format: int64
+        endTime:
+          type: integer
+          format: int64
+        bannerUserId:
+          type: array
+          items:
+            type: string
+        startTimeStr:
+          type: string
+        endTimeStr:
+          type: string
+        bannerFieldList:
+          type: array
+          items:
+            type: string
+      description: ''
+    PageQueryParamBannerCountParam:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/BannerCountParam'
+      description: 带参数的分页查询对象
+    BannerTableDataVo:
+      type: object
+      properties:
+        bannerId:
+          type: string
+          description: bannerId
+        bannerName:
+          type: string
+          description: banner名称
+        bannerType:
+          type: string
+          description: banner类型
+        clickCount:
+          type: integer
+          description: 点击次数
+          format: int32
+        waitTime:
+          type: integer
+          description: 停留时间
+          format: int32
+        parentUserId:
+          type: integer
+          description: 企业id
+          format: int64
+        isTransform:
+          type: integer
+          description: 是否转化
+          format: int32
+        appSource:
+          type: string
+          description: app名称
+        userId:
+          type: string
+          description: 用户id
+        nickName:
+          type: string
+          description: 用户昵称
+        area:
+          type: string
+          description: 地区
+        email:
+          type: string
+          description: 邮箱
+        sex:
+          type: string
+          description: 性别
+        age:
+          type: integer
+          description: 年龄
+          format: int32
+        productType:
+          type: string
+          description: 产品型号
+        petType:
+          type: string
+          description: 宠物种类
+        petCount:
+          type: integer
+          description: 宠物数量
+          format: int32
+        userInterest:
+          type: string
+          description: 用户兴趣
+        userSystemVersion:
+          type: string
+          description: 用户系统
+        createTimeStr:
+          type: string
+          description: 跟新时间
+      description: ''
+    TableDataInfoBannerTableDataVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/BannerTableDataVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    BannerCountDataVo:
+      type: object
+      properties:
+        clickCountRate:
+          type: string
+          description: 点击率
+        transferCountRate:
+          type: string
+          description: 转换率
+        completeCountRate:
+          type: string
+          description: 完读率
+      description: ''
+    PageQueryParamVoid:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          type: object
+          description: 分页查询关键字条件对象
+      description: 带参数的分页查询对象
+    AppBannerExportTaskVo:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        appBannerExportTaskId:
+          type: integer
+          description: banner导出信息表主键
+          format: int64
+        exportTaskId:
+          type: string
+          description: 导出任务id
+        parentUserId:
+          type: integer
+          description: 导出所属id
+          format: int64
+        userId:
+          type: integer
+          description: 用户id
+          format: int64
+        exportFilePath:
+          type: string
+          description: 导出文件路径
+        exportName:
+          type: string
+          description: 导出文件名称
+        exportFileStatus:
+          type: integer
+          description: 导出状态,1.进行中,2.完成,3.失败
+          format: int32
+        remark:
+          type: string
+          description: 备注
+      description: banner导出任务展视图对象 app_banner_export_task
+    TableDataInfoAppBannerExportTaskVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/AppBannerExportTaskVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    BannerListParam:
+      type: object
+      properties:
+        appSource:
+          type: string
+          description: APP来源
+        bannerName:
+          type: string
+          description: banner名称
+        bannerType:
+          type: string
+          description: banner类型
+        putOnShelves:
+          type: integer
+          description: 是否上架,1.是,0.否
+          format: int32
+        bannerScope:
+          type: integer
+          description: banner展示范围,1:区域,2:宠物,3:设备类型
+          format: int32
+      description: ''
+    PageQueryParamBannerListParam:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/BannerListParam'
+      description: 带参数的分页查询对象
+    TableDataInfoAppBannerConfigInfoBo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/AppBannerConfigInfoBo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    BannerNameVo:
+      type: object
+      properties:
+        appSource:
+          type: string
+          description: APP来源
+        bannerType:
+          type: string
+          description: banner类型
+        putOnShelves:
+          type: integer
+          description: 是否上架,1.是,0.否
+          format: int32
+        parentUserId:
+          type: integer
+          format: int64
+      description: ''
+    AppBannerConfigInfoVo:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        appBannerConfigInfoId:
+          type: integer
+          description: banner配置信息表主键
+          format: int64
+        bannerId:
+          type: string
+          description: banner唯一id
+        bannerType:
+          type: string
+          description: banner类型
+        bannerName:
+          type: string
+          description: banner名称
+        appSource:
+          type: string
+          description: APP来源
+        parentUserId:
+          type: integer
+          description: banner所属企业用户id
+          format: int64
+        bannerImageUrl:
+          type: string
+          description: banner图片url
+        startTime:
+          type: integer
+          description: 上架周期开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 上架周期结束时间
+          format: int64
+        countDownStartTime:
+          type: integer
+          description: 倒计时开始时间
+          format: int64
+        countDownEndTime:
+          type: integer
+          description: 倒计时结束时间
+          format: int64
+        sort:
+          type: integer
+          description: 排序
+          format: int32
+        jumpPageType:
+          type: integer
+          description: 跳转页类型,1:内部链接,2:外部链接,3:无跳转
+          format: int32
+        jumpPagePath:
+          type: string
+          description: 跳转页路径
+        jumpPageShare:
+          type: integer
+          description: 外部链接是否能分享,0:不能分享,1:能分享
+          format: int32
+        systemTypeAndroid:
+          type: integer
+          description: 是否配置安卓版本,0:未配置,1:有配置
+          format: int32
+        androidVersionId:
+          type: integer
+          description: android版本id
+          format: int32
+        systemTypeIos:
+          type: integer
+          description: 是否配置ios版本,0:未配置,1:有配置
+          format: int32
+        iosVersionId:
+          type: integer
+          description: ios版本id
+          format: int32
+        bannerScope:
+          type: integer
+          description: banner展示范围,1:区域,2:宠物,3:设备类型
+          format: int32
+        putOnShelves:
+          type: integer
+          description: 是否上架,1.是,0.否
+          format: int32
+        remark:
+          type: string
+          description: 备注
+        bannerCountryCodeList:
+          type: array
+          description: 国家区域列表(全选 传ALL)
+          items:
+            type: string
+        bannerPetConfig:
+          $ref: '#/components/schemas/BannerPetConfig'
+        bannerProductConfig:
+          $ref: '#/components/schemas/BannerProductConfig'
+        isDelete:
+          type: integer
+          description: 是否删除
+          format: int32
+      description: banner配置信息视图对象 app_banner_config_info
+    AppPanelFmUpListParam:
+      required:
+      - appPanelBundleInfoId
+      type: object
+      properties:
+        publish:
+          type: integer
+          description: 是否发布,1.已发布, 0.未发布,2.已撤销
+          format: int32
+        appPanelBundleInfoId:
+          type: integer
+          description: 面板主键 不能为空
+          format: int64
+      description: 升级固件面板配置列表查询参数
+    PageQueryParamAppPanelFmUpListParam:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/AppPanelFmUpListParam'
+      description: 带参数的分页查询对象
+    AppPanelFmUpListResp:
+      type: object
+      properties:
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        bundleVersion:
+          type: string
+          description: 面板版本
+        appPanelBundleVersionId:
+          type: integer
+          description: 面板版本表主键
+          format: int64
+        appPanelFirmwareUpgradeId:
+          type: integer
+          description: 固件面板升级表主键
+          format: int64
+        productId:
+          type: string
+          description: 产品id,product表productId
+        productName:
+          type: string
+          description: 产品名称
+        firmwareInfoId:
+          type: integer
+          description: 固件信息表id
+          format: int64
+        firmwareInfoName:
+          type: string
+          description: 固件信息表名称
+        firmwareVersionIdList:
+          type: array
+          description: 固件版本id列表
+          items:
+            type: integer
+            format: int64
+        firmwareVersionList:
+          type: array
+          description: 固件版本列表
+          items:
+            type: string
+        upgradeManner:
+          type: integer
+          description: 升级方式,2.建议升级,3.强制升级,4.静默升级
+          format: int32
+        publish:
+          type: integer
+          description: 是否发布,1.已发布, 0.未发布,2.已撤销
+          format: int32
+      description: 升级固件面板配置列表查询列表
+    TableDataInfoAppPanelFmUpListResp:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/AppPanelFmUpListResp'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    PageQueryParamAppPanelVersionListReq:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/AppPanelVersionListReq'
+      description: 带参数的分页查询对象
+    TableDataInfoAppPanelBundleVersionReq:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/AppPanelBundleVersionReq'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    TableDataInfoSysUser:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysUser'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysRole:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/SysRole'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RListSysDictData:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/SysDictData'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RListSysRole:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/SysRole'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoSysRole:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysRole'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    MenuCategoryVo:
+      type: object
+      properties:
+        roleMenuIdList:
+          type: array
+          description: 角色菜单id
+          items:
+            type: integer
+            format: int64
+        menuMenuIdList:
+          type: array
+          description: 菜单菜单id
+          items:
+            type: integer
+            format: int64
+        platformUserMenuIdList:
+          type: array
+          description: 平台管理菜单id
+          items:
+            type: integer
+            format: int64
+        companyUserMenuIdList:
+          type: array
+          description: 企业管理菜单id
+          items:
+            type: integer
+            format: int64
+        productMenuIdList:
+          type: array
+          description: 产品开发菜单id
+          items:
+            type: integer
+            format: int64
+        productModelFunctionMenuIdList:
+          type: array
+          description: 功能集
+          items:
+            type: integer
+            format: int64
+        productTypeMenuIdList:
+          type: array
+          description: 品牌品类
+          items:
+            type: integer
+            format: int64
+        firmwareInfoMenuIdList:
+          type: array
+          description: 固件信息
+          items:
+            type: integer
+            format: int64
+        firmwareOtaMenuIdList:
+          type: array
+          description: 固件ota
+          items:
+            type: integer
+            format: int64
+        messageTemplateList:
+          type: array
+          description: 运营管理-消息模版
+          items:
+            type: integer
+            format: int64
+        pushMethodList:
+          type: array
+          description: 运营管理-推送管理
+          items:
+            type: integer
+            format: int64
+        storagePlanList:
+          type: array
+          description: 运营管理-套餐类型
+          items:
+            type: integer
+            format: int64
+        storagePlanTypeList:
+          type: array
+          description: 运营管理-套餐规格
+          items:
+            type: integer
+            format: int64
+        knowledgeTypeList:
+          type: array
+          description: 运营管理-知识类型
+          items:
+            type: integer
+            format: int64
+        knowledgeArticleTypeList:
+          type: array
+          description: 运营管理-知识问题
+          items:
+            type: integer
+            format: int64
+        workOrderTypeList:
+          type: array
+          description: 运营管理-工单指派
+          items:
+            type: integer
+            format: int64
+        userIssueTypeList:
+          type: array
+          description: 运营管理-问题反馈
+          items:
+            type: integer
+            format: int64
+      description: ''
+    RMenuCategoryVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/MenuCategoryVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RSysPost:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/SysPost'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RListSysPost:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/SysPost'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoSysPost:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysPost'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RListString:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            type: string
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoSysOperLog:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysOperLog'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    SysUserOnline:
+      type: object
+      properties:
+        tokenId:
+          type: string
+          description: 会话编号
+        deptName:
+          type: string
+          description: 部门名称
+        userName:
+          type: string
+          description: 用户名称
+        ipaddr:
+          type: string
+          description: 登录IP地址
+        loginLocation:
+          type: string
+          description: 登录地址
+        browser:
+          type: string
+          description: 浏览器类型
+        os:
+          type: string
+          description: 操作系统
+        loginTime:
+          type: integer
+          description: 登录时间
+          format: int64
+      description: 当前在线会话
+    TableDataInfoSysUserOnline:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysUserOnline'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysNotice:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/SysNotice'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoSysNotice:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysNotice'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysMenu:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/SysMenu'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RListTreeLong:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/TreeLong'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TreeLong:
+      type: object
+      properties:
+        config:
+          $ref: '#/components/schemas/TreeNodeConfig'
+        id:
+          type: integer
+          format: int64
+        parentId:
+          type: integer
+          format: int64
+        weight:
+          type: object
+        name:
+          type: object
+        empty:
+          type: boolean
+      additionalProperties:
+        type: object
+      description: ''
+    TreeNodeConfig:
+      type: object
+      properties:
+        idKey:
+          type: string
+        parentIdKey:
+          type: string
+        weightKey:
+          type: string
+        nameKey:
+          type: string
+        childrenKey:
+          type: string
+        deep:
+          type: integer
+          format: int32
+      description: ''
+    RListSysMenu:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/SysMenu'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    MetaVo:
+      type: object
+      properties:
+        title:
+          type: string
+          description: 设置该路由在侧边栏和面包屑中展示的名字
+        icon:
+          type: string
+          description: 设置该路由的图标，对应路径src/assets/icons/svg
+        noCache:
+          type: boolean
+          description: 设置为true，则不会被 <keep-alive>缓存
+        link:
+          type: string
+          description: 内链地址（http(s)://开头）
+      description: 路由显示信息
+    RListRouterVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/RouterVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RouterVo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 路由名字
+        path:
+          type: string
+          description: 路由地址
+        hidden:
+          type: boolean
+          description: 是否隐藏路由，当设置 true 的时候该路由不会再侧边栏出现
+        redirect:
+          type: string
+          description: 重定向地址，当设置 noRedirect 的时候该路由在面包屑导航中不可被点击
+        component:
+          type: string
+          description: 组件地址
+        query:
+          type: string
+          description: '路由参数：如 {"id": 1, "name": "ry"}'
+        alwaysShow:
+          type: boolean
+          description: 当你一个路由下面的 children 声明的路由大于1个时，自动会变成嵌套的模式--如组件页面
+        meta:
+          $ref: '#/components/schemas/MetaVo'
+      description: 路由配置信息
+    TableDataInfoSysLogininfor:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysLogininfor'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    CommonDictTypeCategoryVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        dictType:
+          type: string
+          description: 字典类型
+        parentCategory:
+          type: string
+          description: 种类父级
+        category:
+          type: string
+          description: 种类
+        categoryName:
+          type: string
+          description: 种类名称
+        categoryStatus:
+          type: string
+          description: 种类状态,1:启用,0:禁用
+        remark:
+          type: string
+          description: 备注2
+      description: 多语言字典种类视图对象
+    RCommonDictTypeCategoryVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/CommonDictTypeCategoryVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoCommonDictTypeCategoryVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/CommonDictTypeCategoryVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    CommonDictTypeVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        dictType:
+          type: string
+          description: 字典类型
+        dictName:
+          type: string
+          description: 字典名称
+        multiLanguageItem:
+          type: string
+          description: 多语言列表,json格式数组,ex:["EN","CN"]
+        dictStatus:
+          type: string
+          description: 字典状态,1:启用,0:禁用
+        remark:
+          type: string
+          description: 备注1
+      description: 多语言字典视图对象
+    RCommonDictTypeVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/CommonDictTypeVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoCommonDictTypeVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/CommonDictTypeVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    CommonDictDataLanguageVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        dictDataId:
+          type: integer
+          description: common_dict_data字典数据表主键
+          format: int64
+        language:
+          type: string
+          description: 语言类型,(EN,CN)等
+        languageValue:
+          type: string
+          description: 语言类型值
+        remark:
+          type: string
+          description: 备注4
+      description: 多语言字典数据语言视图对象
+    RCommonDictDataLanguageVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/CommonDictDataLanguageVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoCommonDictDataLanguageVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/CommonDictDataLanguageVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    CommonDictDataVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 主键
+          format: int64
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        dictType:
+          type: string
+          description: 字典类型
+        category:
+          type: string
+          description: 种类
+        dictKey:
+          type: string
+          description: 字典键值
+        dictKeyName:
+          type: string
+          description: 字典中文名称
+        imageUrl:
+          type: string
+          description: 字典图片url
+        dictFlag:
+          type: string
+          description: 是否热门,是否常用等标记,
+        status:
+          type: string
+          description: 字典数据状态,1:启用,0:禁用
+        sort:
+          type: integer
+          description: 排序
+          format: int32
+        remark:
+          type: string
+          description: 备注3
+      description: 多语言字典数据视图对象
+    RCommonDictDataVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/CommonDictDataVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoCommonDictDataVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/CommonDictDataVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysDictType:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/SysDictType'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RListSysDictType:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/SysDictType'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoSysDictType:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysDictType'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysDictData:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/SysDictData'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoSysDictData:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysDictData'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RSysDept:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/SysDept'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RListSysDept:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/SysDept'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RSysConfig:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/SysConfig'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoSysConfig:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/SysConfig'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RListSysUser:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/SysUser'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RAppBannerConfigInfoBo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/AppBannerConfigInfoBo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    SysCompanyAppSourceVo:
+      type: object
+      properties:
+        companyAppSourceId:
+          type: integer
+          description: 主键
+          format: int64
+        parentUserId:
+          type: integer
+          description: 所属企业用户id
+          format: int64
+        appSource:
+          type: string
+          description: app来源 参数取值为:(WOcam,WOpet)
+        appSourceName:
+          type: string
+          description: app来源名称 参数取值为:(WOvison,WOpet)
+        status:
+          type: integer
+          description: 状态,1:启用,2:禁用
+          format: int32
+        sort:
+          type: integer
+          description: 排序
+          format: int32
+      description: 企业关联app视图对象 sys_company_app_source
+    AppUserInfoBo:
+      required:
+      - countryCode
+      - headPic
+      - id
+      - loginTime
+      - mobile
+      - nickName
+      - parentUserId
+      - phoneCode
+      - regAppSource
+      - regFrom
+      - sex
+      - snsNickName
+      - tempUnit
+      - timezoneId
+      - type
+      - userUid
+      - username
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          format: int64
+        userUid:
+          type: string
+          description: 用户id
+        username:
+          type: string
+          description: 用户名:手机号或者邮箱
+        type:
+          type: integer
+          description: 0：本公司数据, 1:涂鸦数据
+          format: int32
+        regFrom:
+          type: integer
+          description: 账号注册的类型。取值：0：邮箱 1：手机 2：注册（其它）3：腾讯 QQ 5：Facebook 6：Twitter 7：腾讯微信
+            9：App UID 10：Google
+          format: int32
+        regAppSource:
+          type: string
+          description: 注册来源:WOpet,WOcam
+        parentUserId:
+          type: integer
+          description: 账号所属企业用户id
+          format: int64
+        countryCode:
+          type: string
+          description: '当前账号所在的国家区域: CN,EN,JP,DE等'
+        phoneCode:
+          type: string
+          description: 国家码 86：中国 1：美国
+        mobile:
+          type: string
+          description: 手机号码
+        email:
+          type: string
+          description: 邮箱地址
+        headPic:
+          type: string
+          description: 用户头像链接
+        configKey:
+          type: string
+          description: 图片存放bucket
+        nickName:
+          type: string
+          description: 用户昵称
+        timezoneId:
+          type: string
+          description: 用户时区信息。取值示例：Asia/Shanghai
+        snsNickName:
+          type: string
+          description: 第三方平台账号的昵称
+        tempUnit:
+          type: integer
+          description: 温度单位。取值：1：表示摄氏度（°C） 2：表示华氏度（°F）
+          format: int64
+        loginTime:
+          type: integer
+          description: 最后登入时间
+          format: int64
+        sex:
+          type: integer
+          description: 用户性别（0男 1女 2未知）
+          format: int64
+        appLanguage:
+          type: string
+          description: app语言,CN.US.DE等
+      description: app用户信息业务对象
+    AppUserInfoResp:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userUid:
+          type: string
+          description: 用户id
+        username:
+          type: string
+          description: 用户名:手机号或者邮箱
+        type:
+          type: integer
+          description: 0：本公司数据, 1:涂鸦数据
+          format: int32
+        regFrom:
+          type: integer
+          description: 账号注册的类型。取值：0：邮箱 1：手机 2：注册（其它）3：腾讯 QQ 5：Facebook 6：Twitter 7：腾讯微信
+            9：App UID 10：Google
+          format: int32
+        regAppSource:
+          type: string
+          description: 注册来源:WOpet,WOcam
+        parentUserId:
+          type: integer
+          description: 账号所属企业用户id
+          format: int64
+        countryCode:
+          type: string
+          description: '当前账号所在的国家区域: CN,EN,JP,DE等'
+        phoneCode:
+          type: string
+          description: 国家码 86：中国 1：美国
+        mobile:
+          type: string
+          description: 手机号码
+        email:
+          type: string
+          description: 邮箱地址
+        headPic:
+          type: string
+          description: 用户头像链接
+        configKey:
+          type: string
+          description: 图片存放bucket
+        nickName:
+          type: string
+          description: 用户昵称
+        timezoneId:
+          type: string
+          description: 用户时区信息。取值示例：Asia/Shanghai
+        snsNickName:
+          type: string
+          description: 第三方平台账号的昵称
+        tempUnit:
+          type: integer
+          description: 温度单位。取值：1：表示摄氏度（°C） 2：表示华氏度（°F）
+          format: int32
+        loginTime:
+          type: integer
+          description: 最后登入时间
+          format: int64
+        sex:
+          type: integer
+          description: 用户性别（1男 2女 0未知）
+          format: int32
+        appLanguage:
+          type: string
+          description: app语言,CN.US.DE等
+        thirdPartyId:
+          type: string
+          description: 第三方用户id
+        companyName:
+          type: string
+        countryCodeName:
+          type: string
+      description: ''
+    TableDataInfoAppUserInfoResp:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/AppUserInfoResp'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    RAppPanelFmUpParam:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/AppPanelFmUpParam'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header
