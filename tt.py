@@ -156,9 +156,10 @@ from pathlib import Path
 class OpenAPITestcaseGenerator:
     def __init__(self, input_file: str, output_dir: str):
 
-        self.input_file = Path(ensure_path_sep(input_file))
+        self.input_file = Path(input_file)
         self.output_dir = Path(ensure_path_sep(output_dir))
         self.output_dir.mkdir(exist_ok=True)
+
         with open(self.input_file, "r", encoding="utf-8") as f:
             self.openapi_data = yaml.safe_load(f)
 
@@ -320,8 +321,22 @@ class OpenAPITestcaseGenerator:
 if __name__ == "__main__":
     # sw = SwaggerExporter()
     # sw.export_swagger()
-    generator = OpenAPITestcaseGenerator(
-        input_file="/Files/Swagger/mqtt-ali.yaml", output_dir="/Files/Testcase/"
-    )
-    generated_files = generator.generate_all_cases()
-    print(f"✅ 共生成 {len(generated_files)} 个测试用例文件：{generated_files}")
+    # generator = OpenAPITestcaseGenerator(
+    #     input_file="/Files/Swagger/mqtt-ali.yaml", output_dir="/Files/Testcase/"
+    # )
+    # generated_files = generator.generate_all_cases()
+    # print(f"✅ 共生成 {len(generated_files)} 个测试用例文件：{generated_files}")
+    import os
+
+    # for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
+    #     for file in files:
+    #         if file.endswith(".yaml"):
+    #             print(file)
+    for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
+        for file in files:
+            if file.endswith(".yaml"):
+                generator = OpenAPITestcaseGenerator(
+                    input_file=os.path.join(root, file),
+                    output_dir="/Files/Testcase/",
+                )
+                generator.generate_all_cases()
