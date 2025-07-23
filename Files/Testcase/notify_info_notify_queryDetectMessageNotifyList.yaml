@@ -1,0 +1,47 @@
+common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature:
+  - name: 物联网卡
+    description: 物联网卡
+  - name: 上报设备token
+    description: 上报设备token
+  - name: 消息推送接口
+    description: 消息推送接口
+  - name: 消息推送测试
+    description: 消息推送测试
+  allureStory: 二级页面-查询告警消息列表接口
+notify_info_notify_queryDetectMessageNotifyList_01:
+  host: ${{host()}}
+  url: /notify/info/notify/queryDetectMessageNotifyList
+  method: POST
+  detail: 消息推送接口 - 二级页面-查询告警消息列表接口
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+  requestType: json
+  is_run: ''
+  data:
+    devId: ${devId}
+    userId: ${userId}
+    startTime: ${startTime}
+    endTime: ${endTime}
+    pageSize: ${pageSize}
+    pageNum: ${pageNum}
+    shareFlag: ${shareFlag}
+    isCloudVideo: ${isCloudVideo}
+  dependence_case: ''
+  dependence_case_data: ''
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: ''
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: ''
+  sql: ''
+  setup_sql: ''

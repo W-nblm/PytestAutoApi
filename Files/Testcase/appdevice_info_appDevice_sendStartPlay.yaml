@@ -1,0 +1,68 @@
+common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature:
+  - name: 宠物音乐列表
+    description: 宠物音乐列表
+  - name: 问题反馈
+    description: 问题反馈
+  - name: 喂鸟器抓拍相关
+    description: 喂鸟器抓拍相关
+  - name: app设备控制
+    description: app设备控制
+  - name: 时刻相关接口
+    description: 时刻相关接口
+  - name: 相册图库相关接口
+    description: 相册图库相关接口
+  - name: pet 设备接口接口
+    description: pet 设备接口接口
+  - name: 宠物App食谱H5
+    description: 宠物App食谱H5
+  - name: oss
+    description: oss
+  - name: oss 相册相关生成预签名
+    description: oss 相册相关生成预签名
+  - name: 喂鸟器相册
+    description: 喂鸟器相册
+  - name: app产品信息接口
+    description: app产品信息接口
+  - name: app宠物相关
+    description: app宠物相关
+  - name: 设备配网
+    description: 设备配网
+  - name: 知识展示相关接口
+    description: 知识展示相关接口
+  - name: 触发固件升级相关接口
+    description: 触发固件升级相关接口
+  - name: app设备分享
+    description: app设备分享
+  - name: HeartBeat
+    description: HeartBeat
+  allureStory: app进入播放页面时通知设备开始播放
+appdevice_info_appDevice_sendStartPlay_01:
+  host: ${{host()}}
+  url: /appdevice/info/appDevice/sendStartPlay
+  method: GET
+  detail: app设备控制 - app进入播放页面时通知设备开始播放
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+  requestType: params
+  is_run: ''
+  data:
+    devId: $cache{devId}
+  dependence_case: ''
+  dependence_case_data: ''
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: ''
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: ''
+  sql: ''
+  setup_sql: ''

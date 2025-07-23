@@ -251,48 +251,71 @@ class OpenAPITestcaseGenerator:
         if "requestBody" in method_data:
             content_type = list(method_data["requestBody"]["content"].keys())[0]
             case[case_id]["requestType"] = "json" if "json" in content_type else "data"
-            refs = method_data["requestBody"]["content"][content_type]["schema"][
-                "$ref"
-            ].split("/")
-            ref_name = refs[-1]
-            if ref_name in schema_data:
-                schema = schema_data[ref_name]
-                for prop_name, prop_schema in schema.get("properties", {}).items():
-                    if "type" in prop_schema:
-                        if prop_schema["type"] == "string":
-                            case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
-                        elif prop_schema["type"] == "integer":
-                            case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
-                        elif prop_schema["type"] == "number":
-                            case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
-                        elif prop_schema["type"] == "boolean":
-                            case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
-                    if prop_name == "data":
-                        case[case_id]["data"][prop_name] = {}
-                        temp_ref_name = prop_schema["$ref"].split("/")[-1]
-                        if temp_ref_name in schema_data:
-                            temp_schema = schema_data[temp_ref_name]
-                            for temp_prop_name, temp_prop_schema in temp_schema.get(
-                                "properties", {}
-                            ).items():
-                                if "type" in temp_prop_schema:
-                                    if temp_prop_schema["type"] == "string":
-                                        case[case_id]["data"]["data"][
-                                            temp_prop_name
-                                        ] = f"${{{temp_prop_name}}}"
-                                    elif temp_prop_schema["type"] == "integer":
-                                        case[case_id]["data"]["data"][
-                                            temp_prop_name
-                                        ] = f"${{{temp_prop_name}}}"
-                                    elif temp_prop_schema["type"] == "number":
-                                        case[case_id]["data"]["data"][
-                                            temp_prop_name
-                                        ] = f"${{{temp_prop_name}}}"
-                                    elif temp_prop_schema["type"] == "boolean":
-                                        case[case_id]["data"]["data"][
-                                            temp_prop_name
-                                        ] = f"${{{temp_prop_name}}}"
+            try:
+                refs = method_data["requestBody"]["content"][content_type]["schema"][
+                    "$ref"
+                ].split("/")
 
+                ref_name = refs[-1]
+                if ref_name in schema_data:
+                    schema = schema_data[ref_name]
+                    for prop_name, prop_schema in schema.get("properties", {}).items():
+                        if "type" in prop_schema:
+                            if prop_schema["type"] == "string":
+                                case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
+                            elif prop_schema["type"] == "integer":
+                                case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
+                            elif prop_schema["type"] == "number":
+                                case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
+                            elif prop_schema["type"] == "boolean":
+                                case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
+                        if prop_name == "data":
+                            case[case_id]["data"][prop_name] = {}
+                            if "$ref" in prop_schema:
+                                temp_ref_name = prop_schema["$ref"].split("/")[-1]
+                                if temp_ref_name in schema_data:
+                                    temp_schema = schema_data[temp_ref_name]
+                                    for (
+                                        temp_prop_name,
+                                        temp_prop_schema,
+                                    ) in temp_schema.get("properties", {}).items():
+                                        if "type" in temp_prop_schema:
+                                            if temp_prop_schema["type"] == "string":
+                                                case[case_id]["data"]["data"][
+                                                    temp_prop_name
+                                                ] = f"${{{temp_prop_name}}}"
+                                            elif temp_prop_schema["type"] == "integer":
+                                                case[case_id]["data"]["data"][
+                                                    temp_prop_name
+                                                ] = f"${{{temp_prop_name}}}"
+                                            elif temp_prop_schema["type"] == "number":
+                                                case[case_id]["data"]["data"][
+                                                    temp_prop_name
+                                                ] = f"${{{temp_prop_name}}}"
+                                            elif temp_prop_schema["type"] == "boolean":
+                                                case[case_id]["data"]["data"][
+                                                    temp_prop_name
+                                                ] = f"${{{temp_prop_name}}}"
+                            else:
+                                if "type" in prop_schema:
+                                    if prop_schema["type"] == "string":
+                                        case[case_id]["data"][
+                                            prop_name
+                                        ] = f"${{{prop_name}}}"
+                                    elif prop_schema["type"] == "integer":
+                                        case[case_id]["data"][
+                                            prop_name
+                                        ] = f"${{{prop_name}}}"
+                                    elif prop_schema["type"] == "number":
+                                        case[case_id]["data"][
+                                            prop_name
+                                        ] = f"${{{prop_name}}}"
+                                    elif prop_schema["type"] == "boolean":
+                                        case[case_id]["data"][
+                                            prop_name
+                                        ] = f"${{{prop_name}}}"
+            except KeyError:
+                pass
         # 获取请求的参数
         return case
 

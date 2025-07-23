@@ -1,0 +1,101 @@
+common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature:
+  - name: 产品类型（第3层）
+    description: "产品类型（第3层）\n 前端访问路由地址为:/product/type"
+  - name: 同步数据
+    description: "同步数据\n 前端访问路由地址为:/product/sync"
+  - name: 云存储套餐规格
+    description: 云存储套餐规格
+  - name: 消息推送方式
+    description: 消息推送方式
+  - name: 产品
+    description: "产品\n 前端访问路由地址为:/product/product"
+  - name: 产品与app关系控制器
+    description: "产品与app关系控制器\n 前端访问路由地址为:/product/productShip"
+  - name: 产品与指令模型关系
+    description: "产品与指令模型关系\n 前端访问路由地址为:/product/productModel"
+  - name: 宠物食谱
+    description: 宠物食谱
+  - name: 消息code与模板类型关系
+    description: 消息code与模板类型关系
+  - name: 品牌品类与标准模型关系
+    description: "品牌品类与标准模型关系\n 前端访问路由地址为:/product/ModelstandardCategory"
+  - name: 标准指令模型功能点
+    description: "标准指令模型功能点\n 前端访问路由地址为:/product/modelFunction"
+  - name: 消息模版管理
+    description: 消息模版管理
+  - name: 知识类目
+    description: 知识类目
+  - name: 知识文章
+    description: 知识文章
+  - name: 2固件版本相关接口
+    description: "2固件版本相关接口\n 前端访问路由地址为:/firmware/version"
+  - name: 3固件ota升级相关接口
+    description: "3固件ota升级相关接口\n 前端访问路由地址为:/firmware/ota"
+  - name: 1固件信息控相关接口
+    description: "1固件信息控相关接口\n 前端访问路由地址为:/firmware/info"
+  - name: 问题反馈工单配置
+    description: 问题反馈工单配置
+  - name: 配网文案步骤说明控制器
+    description: "配网文案步骤说明控制器\n 前端访问路由地址为:/product/confnewtworkStep"
+  - name: 套餐功能
+    description: 套餐功能
+  - name: 云存储订单
+    description: 云存储订单
+  - name: 免费云存储
+    description: 免费云存储
+  - name: 品牌品类（第2层）
+    description: "品牌品类（第2层）\n 前端访问路由地址为:/product/brandCategory"
+  - name: 固件版本功能关联控制器
+    description: "固件版本功能关联控制器\n 前端访问路由地址为:/firmware/versionFunc"
+  - name: 公共上传接口
+    description: 公共上传接口
+  - name: 接收数据同步
+    description: 接收数据同步
+  - name: 宠物App食谱H5
+    description: 宠物App食谱H5
+  - name: 问题反馈
+    description: 问题反馈
+  - name: 已激活设备控制器
+    description: "已激活设备控制器\n 前端访问路由地址为:/device/deviceActive"
+  - name: HeartBeat
+    description: HeartBeat
+  allureStory: 修改bool类型指令模型功能点
+product_modelFunction_editBoolFunc_01:
+  host: ${{host()}}
+  url: /product/modelFunction/editBoolFunc
+  method: PUT
+  detail: 标准指令模型功能点 - 修改bool类型指令模型功能点
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+  requestType: json
+  is_run: ''
+  data:
+    code: ${code}
+    cnName: ${cnName}
+    egName: ${egName}
+    saveLog: ${saveLog}
+    isPublish: ${isPublish}
+    upStatus: ${upStatus}
+    downStatus: ${downStatus}
+    isConfTemplate: ${isConfTemplate}
+    type: ${type}
+    remark: ${remark}
+  dependence_case: ''
+  dependence_case_data: ''
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: ''
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: ''
+  sql: ''
+  setup_sql: ''

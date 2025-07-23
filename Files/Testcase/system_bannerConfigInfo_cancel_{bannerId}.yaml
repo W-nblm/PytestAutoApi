@@ -1,0 +1,84 @@
+common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature:
+  - name: 个人信息 业务处理
+    description: 个人信息 业务处理
+  - name: 用户信息-平台管理
+    description: 用户信息-平台管理
+  - name: 用户信息-企业管理
+    description: 用户信息-企业管理
+  - name: 用户信息-企业用户
+    description: 用户信息-企业用户
+  - name: 角色信息
+    description: 角色信息
+  - name: 岗位信息操作处理
+    description: 岗位信息操作处理
+  - name: 面板相关接口
+    description: 面板相关接口
+  - name: 公告 信息操作处理
+    description: 公告 信息操作处理
+  - name: 菜单信息
+    description: 菜单信息
+  - name: 多语言字典控制器
+    description: 多语言字典控制器
+  - name: 多语言字典种类控制器
+    description: 多语言字典种类控制器
+  - name: 多语言字典数据控制器
+    description: 多语言字典数据控制器
+  - name: 多语言字典数据语言控制器
+    description: 多语言字典数据语言控制器
+  - name: 数据字典信息
+    description: 数据字典信息
+  - name: 部门信息
+    description: 部门信息
+  - name: 参数配置 信息操作处理
+    description: 参数配置 信息操作处理
+  - name: 企业管理信息
+    description: 企业管理信息
+  - name: banner配置信息
+    description: banner配置信息
+  - name: 面板固件升级
+    description: 面板固件升级
+  - name: 面板版本
+    description: 面板版本
+  - name: 操作日志记录
+    description: 操作日志记录
+  - name: 系统访问记录
+    description: 系统访问记录
+  - name: app版本升级配置 APP升级配置模块
+    description: app版本升级配置 APP升级配置模块
+  - name: 在线用户监控
+    description: 在线用户监控
+  - name: HeartBeat
+    description: HeartBeat
+  - name: app用户信息控制器
+    description: app用户信息控制器
+  allureStory: 下架
+system_bannerConfigInfo_cancel_01:
+  host: ${{host()}}
+  url: /system/bannerConfigInfo/cancel/{bannerId}
+  method: PUT
+  detail: banner配置信息 - 下架
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+  requestType: params
+  is_run: ''
+  data:
+    bannerId: $cache{bannerId}
+  dependence_case: ''
+  dependence_case_data: ''
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: ''
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: ''
+  sql: ''
+  setup_sql: ''

@@ -1,0 +1,42 @@
+common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature:
+  - name: 对象存储配置Controller
+    description: 对象存储配置Controller
+  - name: 文件上传 控制层
+    description: 文件上传 控制层
+  - name: 短信功能
+    description: 短信功能
+  - name: HeartBeat
+    description: HeartBeat
+  - name: 邮件功能
+    description: 邮件功能
+  allureStory: 查询OSS对象基于id串
+resource_oss_listByIds_01:
+  host: ${{host()}}
+  url: /resource/oss/listByIds/{ossIds}
+  method: GET
+  detail: 文件上传 控制层 - 查询OSS对象基于id串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+  requestType: params
+  is_run: ''
+  data:
+    ossIds: $cache{ossIds}
+  dependence_case: ''
+  dependence_case_data: ''
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: ''
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: ''
+  sql: ''
+  setup_sql: ''
