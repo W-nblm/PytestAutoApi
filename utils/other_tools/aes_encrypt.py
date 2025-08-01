@@ -18,12 +18,14 @@ class AESUtils:
         key_bytes = key.encode("utf-8")
         cipher = AES.new(key_bytes, AES.MODE_ECB)
         decoded_data = base64.b64decode(encrypted_data)
+        print(decoded_data)
+        print(len(decoded_data))
         decrypted = unpad(cipher.decrypt(decoded_data), AES.block_size)
         return decrypted.decode("utf-8")
 
 
-if __name__ == '__main__':
-    
+if __name__ == "__main__":
+
     aes = AESUtils()
     data = "p6QuBDGAwUJpSYJmpuXh4pwi7e5IrAu630Qf+mQi4djPsteiOr6QDJgCbWPUptrtl9OR1ePHwXQ8+K2Scq5/8w=="
     key = "qSkAYaSj1SbdJblgx9+1747812443533"

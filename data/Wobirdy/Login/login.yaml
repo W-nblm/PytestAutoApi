@@ -52,10 +52,4 @@ wobirdy_login_01:
       value: 200
       AssertType:
       message: "登录失败"
-    # 断言接口返回的username
-    # username:
-    #   jsonpath: $.data.username
-    #   type: ==
-    #   value: "18800000001"
-    #   AssertType:
   sql:
