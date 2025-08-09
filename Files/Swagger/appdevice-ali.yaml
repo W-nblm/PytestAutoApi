@@ -868,6 +868,26 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/RGenPartUploadDto'
+  /appdevice/info/feedback/userIssue/queryIssueListPage:
+    post:
+      tags:
+      - 问题反馈
+      summary: 分页查询用户反馈列表
+      description: 分页查询用户反馈列表
+      operationId: PostMapping
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamVoid'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTableDataInfoFeedbackUserIssueVo'
   /appdevice/info/feedback/userIssue/continueFeedback:
     post:
       tags:
@@ -4271,6 +4291,154 @@ components:
           description: 仅状态码470有效校验errorcode
           format: int32
       description: 响应信息主体
+    PageQueryParamVoid:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          type: object
+          description: 分页查询关键字条件对象
+      description: 带参数的分页查询对象
+    FeedbackUserIssueVo:
+      type: object
+      properties:
+        feedbackUserIssueId:
+          type: integer
+          description: 主键
+          format: int64
+        parentUserId:
+          type: integer
+          description: 工单所属企业用户id
+          format: int64
+        appSource:
+          type: string
+          description: app来源 参数取值为:(WOcam,WOpet)
+        feedbackType:
+          type: string
+          description: 问题类型,设备问题:FEEDBACK_DEVICE,app问题:FEEDBACK_APP,功能建议:FEEDBACK_FUNC_SUGGESTION.其他:FEEDBACK_OTHER
+        feedbackUserId:
+          type: string
+          description: 反馈用户id
+        feedbackId:
+          type: string
+          description: 反馈id
+        feedbackTime:
+          type: integer
+          description: 反馈时间
+          format: int64
+        problemOccurrenceTime:
+          type: integer
+          description: 问题发生时间
+          format: int64
+        platformReplyTime:
+          type: integer
+          description: 平台回复时间
+          format: int64
+        userReplyTime:
+          type: integer
+          description: 用户回复时间
+          format: int64
+        devId:
+          type: string
+          description: 设备id
+        devName:
+          type: string
+          description: 设备名称
+        contactInformation:
+          type: string
+          description: 联系方式
+        phoneSystem:
+          type: string
+          description: 手机系统
+        phoneModel:
+          type: string
+          description: 手机型号
+        appVersion:
+          type: string
+          description: APP版本
+        feedbackStatus:
+          type: integer
+          description: 反馈状态:1:待处理,2:处理中,3:待用户反馈,4:已结单
+          format: int32
+        completeTime:
+          type: integer
+          description: 结单时间
+          format: int64
+        handlerUserId:
+          type: integer
+          description: 处理人id
+          format: int64
+        handlerUsername:
+          type: string
+          description: 处理人账号
+        feedbackContent:
+          type: string
+          description: 反馈内容
+        messageHint:
+          type: boolean
+          description: 新消息提示 true:有新消息, false:无新消息
+        productId:
+          type: string
+          description: 产品id
+        productName:
+          type: string
+      description: 问题反馈视图对象 feedback_user_issue
+    RTableDataInfoFeedbackUserIssueVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/TableDataInfoFeedbackUserIssueVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoFeedbackUserIssueVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/FeedbackUserIssueVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
     ReplyFeedbackReq:
       type: object
       properties:
@@ -4327,7 +4495,6 @@ components:
           type: string
           description: 反馈内容
         appSource:
-          pattern: ^(WOpet|WOcam)$
           type: string
           description: app来源 参数取值为:(WOcam,WOpet)
         feedbackType:
@@ -4338,6 +4505,7 @@ components:
           - FEEDBACK_APP
           - FEEDBACK_FUNC_SUGGESTION
           - FEEDBACK_OTHER
+          - FEEDBACK_CONFIG_NETWORK
         problemOccurrenceTime:
           type: integer
           description: 问题发生时间
@@ -7381,90 +7549,6 @@ components:
           description: 仅状态码470有效校验errorcode
           format: int32
       description: 响应信息主体
-    FeedbackUserIssueVo:
-      type: object
-      properties:
-        feedbackUserIssueId:
-          type: integer
-          description: 主键
-          format: int64
-        parentUserId:
-          type: integer
-          description: 工单所属企业用户id
-          format: int64
-        appSource:
-          type: string
-          description: app来源 参数取值为:(WOcam,WOpet)
-        feedbackType:
-          type: string
-          description: 问题类型,设备问题:FEEDBACK_DEVICE,app问题:FEEDBACK_APP,功能建议:FEEDBACK_FUNC_SUGGESTION.其他:FEEDBACK_OTHER
-        feedbackUserId:
-          type: string
-          description: 反馈用户id
-        feedbackId:
-          type: string
-          description: 反馈id
-        feedbackTime:
-          type: integer
-          description: 反馈时间
-          format: int64
-        problemOccurrenceTime:
-          type: integer
-          description: 问题发生时间
-          format: int64
-        platformReplyTime:
-          type: integer
-          description: 平台回复时间
-          format: int64
-        userReplyTime:
-          type: integer
-          description: 用户回复时间
-          format: int64
-        devId:
-          type: string
-          description: 设备id
-        devName:
-          type: string
-          description: 设备名称
-        contactInformation:
-          type: string
-          description: 联系方式
-        phoneSystem:
-          type: string
-          description: 手机系统
-        phoneModel:
-          type: string
-          description: 手机型号
-        appVersion:
-          type: string
-          description: APP版本
-        feedbackStatus:
-          type: integer
-          description: 反馈状态:1:待处理,2:处理中,3:待用户反馈,4:已结单
-          format: int32
-        completeTime:
-          type: integer
-          description: 结单时间
-          format: int64
-        handlerUserId:
-          type: integer
-          description: 处理人id
-          format: int64
-        handlerUsername:
-          type: string
-          description: 处理人账号
-        feedbackContent:
-          type: string
-          description: 反馈内容
-        messageHint:
-          type: boolean
-          description: 新消息提示 true:有新消息, false:无新消息
-        productId:
-          type: string
-          description: 产品id
-        productName:
-          type: string
-      description: 问题反馈视图对象 feedback_user_issue
     RListFeedbackUserIssueVo:
       type: object
       properties:

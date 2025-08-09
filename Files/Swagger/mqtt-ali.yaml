@@ -38,6 +38,26 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/RObject'
+  /mqtt/VirtualDeviceTest/startAi:
+    post:
+      tags:
+      - 虚拟设备
+      summary: 给设备生成birdAI事件
+      description: 给设备生成birdAI事件
+      operationId: startAi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestBirdAiBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
   /mqtt/VirtualDeviceTest/sendShadowCommand:
     post:
       tags:
@@ -285,6 +305,48 @@ components:
           description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
         data:
           type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TestBirdAiBo:
+      required:
+      - devId
+      - picurl
+      type: object
+      properties:
+        devId:
+          type: string
+        picurl:
+          type: string
+        picHDurl:
+          type: string
+        birdAiName:
+          type: string
+        scorce:
+          type: number
+          format: float
+      description: ''
+    RBoolean:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: boolean
           description: 数据对象
         paramMsg:
           type: object

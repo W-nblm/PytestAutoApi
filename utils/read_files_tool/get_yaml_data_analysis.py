@@ -53,16 +53,16 @@ class CaseData:
                     "teardown_sql": self.teardown_sql(values),
                     "sleep": self.time_sleep(values),
                 }
-                INFO.logger.info(f"测试用例数据=========={case_date}")
+                # INFO.logger.info(f"测试用例数据=========={case_date}")
                 if case_id_switch is True:
                     case_lists.append({key: TestCase(**case_date).model_dump()})
                     INFO.logger.info(f"测试用例列表(SWITCH)=========={case_lists}")
                 else:
                     # 正则处理，如果用例中有需要读取缓存中的数据，则优先读取缓存
                     case_lists.append(TestCase(**case_date).model_dump())
-        INFO.logger.info(
-            f"测试用例列表====================================={case_lists}"
-        )
+        # INFO.logger.info(
+        #     f"测试用例列表====================================={case_lists}"
+        # )
         return case_lists
 
     def get_case_host(self, case_id: Text, case_data: Dict) -> Text:

@@ -19,7 +19,8 @@ re_data = regular(str(TestData))
 @allure.feature("banner")
 class TestUploadImg:
 
-    @allure.story("banner") @pytest.mark.parametrize('in_data', eval(re_data), ids=[i['detail'] for i in TestData])
+    @allure.story("banner") 
+    @pytest.mark.parametrize('in_data', eval(re_data), ids=[i['detail'] for i in TestData])
     def test_upload_img(self, in_data,case_skip):
         INFO.logger.info("data: %s", in_data)
         res = RequestControl(in_data).http_request()

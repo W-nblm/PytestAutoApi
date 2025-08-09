@@ -1,3 +1,89 @@
+# import requests
+# import time
+
+
+# def get_public_ip(retries=50, delay=5):
+#     for attempt in range(1, retries + 1):
+#         try:
+#             ip = requests.get("https://ipinfo.io/ip", timeout=5).text.strip()
+#             print(f"[{attempt}] Got public IP: {ip}")
+#             return ip
+#         except requests.RequestException as e:
+#             print(f"[{attempt}] Failed to get public IP: {e}")
+#             if attempt < retries:
+#                 time.sleep(delay)
+#     print("Exceeded maximum retry attempts to fetch public IP.")
+#     return None
+
+
+# def get_record_id(dns_name, zone_id, token):
+#     resp = requests.get(
+#         "https://api.cloudflare.com/client/v4/zones/" + zone_id + "/dns_records",
+#         headers={
+#             "Authorization": "Bearer " + token,
+#             "Content-Type": "application/json",
+#         },
+#     )
+#     print(resp.json())
+#     if not resp.json()["success"]:
+#         return None
+
+#     domains = resp.json()["result"]
+#     for domain in domains:
+#         if dns_name == domain["name"]:
+#             return domain["id"]
+#     return None
+
+
+# def update_record(dns_name, zone_id, token, dns_id, ip, proxied=False):
+#     resp = requests.put(
+#         "https://api.cloudflare.com/client/v4/zones/{}/dns_records/{}".format(
+#             zone_id, dns_id
+#         ),
+#         json={"type": "A", "name": dns_name, "content": ip, "proxied": proxied},
+#         headers={
+#             "Authorization": "Bearer " + token,
+#             "Content-Type": "application/json",
+#         },
+#     )
+#     if not resp.json()["success"]:
+#         return False
+#     return True
+
+
+# if __name__ == "__main__":
+#     token = "QURYiz77jmDV8NoMcBqBQCVCFFDNk18LMPsM__Xd"
+#     zone_id = "2d2bcfe7a92e97da138f5d83b350b8f6"
+#     dns_name = "66532523.xyz"
+#     dns_id = get_record_id(dns_name, zone_id, token)
+
+#     ip = get_public_ip()
+#     print(ip)
+#     # if not ip:
+#     #     exit(1)
+#     # sdfsd
+#     # update_record(dns_name, zone_id, token, dns_id, ip)
+# import base64
+
+# auth_key = "1+kerOsP0wPDscT3CFVs1+GirhJxuK5SfqxxB08HdtxWcZ6zYRfTXeO5pTqhOPFL"
+# try:
+#     decoded = base64.b64decode(auth_key)
+#     print(decoded)
+# except Exception as e:
+#     print(f"解码失败：{e}")
+
+# from Crypto.Cipher import DES
+# import base64
+
+# authKey = "1+kerOsP0wPDscT3CFVs1+GirhJxuK5SfqxxB08HdtxWcZ6zYRfTXeO5pTqhOPFL"
+# ciphertext = base64.b64decode(authKey)
+
+# key = b"Property"  # 必须是 8 字节 DES 密钥
+# cipher = DES.new(key, DES.MODE_ECB)
+# plaintext = cipher.decrypt(ciphertext)
+# print(plaintext)
+import re
+from shutil import copyfile
 import os
 import requests
 import yaml
@@ -71,19 +157,13 @@ from pathlib import Path
 
 class OpenAPITestcaseGenerator:
     def __init__(self, input_file: str, output_dir: str):
+
         self.input_file = Path(input_file)
-        self.output_dir = Path(output_dir)
+        self.output_dir = Path(ensure_path_sep(output_dir))
         self.output_dir.mkdir(exist_ok=True)
+
         with open(self.input_file, "r", encoding="utf-8") as f:
             self.openapi_data = yaml.safe_load(f)
-
-        self.case_common = {
-            "case_common": {
-                "allureEpic": "IoT",
-                "allureFeature": "虚拟设备测试",
-                "allureStory": "接口自动生成",
-            }
-        }
 
         self.method_map = {
             "get": "GET",
@@ -92,82 +172,193 @@ class OpenAPITestcaseGenerator:
             "delete": "DELETE",
         }
 
-    def format_case_id(self, path: str, method: str) -> str:
+    def get_allure_epic(self):
+        """获取 allure epic 名称"""
+        _allure_epic = self.openapi_data["info"]["title"]
+        return _allure_epic
+
+    def get_allure_feature(self):
+        """获取 allure feature 名称"""
+        _allure_feature = self.openapi_data["info"]["description"]
+        return _allure_feature
+
+    # def get_allure_story(self):
+    #     """获取 allure story 名称"""
+    #     _allure_story = self.openapi_data["summary"]
+    #     return _allure_story
+
+    def format_case_id(self, path: str) -> str:
         parts = [p for p in path.split("/") if p and not p.startswith("{")]
-        return "_".join(parts + [method.lower()])
+        parts.append("01")
+        return "_".join(parts)
 
-    def generate_case(self, path: str, method: str, content: dict) -> tuple:
+    def format_request_data(self, case, type, data: dict) -> dict:
+        """格式化请求参数"""
+        schemas = self.openapi_data.get("components", {}).get("schemas", {})
+        for name, schema in schemas.items():
+            pass
+
+    def generate_case(
+        self, path: str, method: str, content: dict, schema_data: dict
+    ) -> tuple:
         method = method.lower()
-        case_id = self.format_case_id(path, method)
+        case_id = self.format_case_id(path)
         method_data = content[method]
-
+        if method_data.get("summary", "") == "HeartBeat":
+            return None
         case = {
-            "host": "${{host()}}",
-            "url": path,
-            "method": self.method_map[method],
-            "detail": f"{method_data.get('tags', ['未知模块'])[0]} - {method_data.get('summary', '')}",
-            "headers": {
-                "Authorization": "$cache{app_token}",
-                "Content-Language": "zh_CN",
+            "case_common": {
+                "allureEpic": self.get_allure_epic(),
+                "allureFeature": method_data.get("tags", ["未知模块"])[0],
+                "allureStory": method_data.get("summary", ""),
             },
-            "requestType": "params",
-            "is_run": "",
-            "data": {},
-            "dependence_case": "",
-            "dependence_case_data": "",
-            "assert": {
-                "code": {
-                    "jsonpath": "$.code",
-                    "type": "==",
-                    "value": 200,
-                    "AssertType": "",
-                    "message": "接口状态码不为200",
+            case_id: {
+                "host": "${{host()}}",
+                "url": path,
+                "method": self.method_map[method],
+                "detail": f"{method_data.get('tags', ['未知模块'])[0]} - {method_data.get('summary', '')}",
+                "headers": {
+                    "Authorization": "$cache{app_token}",
+                    "Content-Language": "zh_CN",
                 },
-                "msg": {
-                    "jsonpath": "$.msg",
-                    "type": "contains",
-                    "value": "成功",
-                    "AssertType": "",
+                "requestType": "params",
+                "is_run": None,
+                "data": {},
+                "dependence_case": False,
+                "dependence_case_data": None,
+                "assert": {
+                    "code": {
+                        "jsonpath": "$.code",
+                        "type": "==",
+                        "value": 200,
+                        "AssertType": None,
+                        "message": "接口状态码不为200",
+                    },
+                    "msg": {
+                        "jsonpath": "$.msg",
+                        "type": "contains",
+                        "value": "成功",
+                        "AssertType": None,
+                    },
                 },
+                "sql": None,
+                "setup_sql": None,
             },
-            "sql": "",
-            "setup_sql": "",
         }
-
+        # 判断请求参数类型
         if "parameters" in method_data:
             for param in method_data["parameters"]:
-                pname = param["name"]
-                case["data"][pname] = f"$cache{{{pname}}}"
+                if param["in"] == "path":
+                    case[case_id]["requestType"] = None
+                    path = path.replace("{", "$cache{")
+
+                if param["in"] == "query":
+                    case[case_id]["requestType"] = "params"
+                    path = re.sub(r"/\{.*?\}", "", path)
+                    pname = param["name"]
+                    case[case_id]["data"][pname] = f"$cache{{{pname}}}"
+
+            case[case_id]["url"] = path
+
+        def get_schema_data(schema_name: str) -> dict:
+            """获取 schema 数据"""
+            data = {}
+            if schema_name in schema_data:
+                schema = schema_data[schema_name]
+                # 遍历 schema 所有属性
+                for prop_name, prop_schema in schema.get("properties", {}).items():
+                    if (
+                        "$ref" in prop_schema
+                        and prop_schema["$ref"].split("/")[-1] != schema_name
+                    ):
+                        ref_name = prop_schema["$ref"].split("/")[-1]
+                        re = get_schema_data(ref_name)
+                        data[prop_name] = {}
+                        data[prop_name].update(re)
+                    else:
+                        if prop_schema.get("type", "") == "string":
+                            data[prop_name] = ""
+                        elif prop_schema.get("type", "") == "integer":
+                            data[prop_name] = 0
+                        elif prop_schema.get("type", "") == "array":
+                            data[prop_name] = ["test"]
+                        elif prop_schema.get("type", "") == "boolean":
+                            data[prop_name] = True
+                        else:
+                            data[prop_name] = {}
+            return data
 
         if "requestBody" in method_data:
             content_type = list(method_data["requestBody"]["content"].keys())[0]
-            case["requestType"] = "json" if "json" in content_type else "data"
+            case[case_id]["requestType"] = "json" if "json" in content_type else "data"
+            try:
+                refs = method_data["requestBody"]["content"][content_type]["schema"][
+                    "$ref"
+                ].split("/")
 
-        return case_id, case
+                ref_name = refs[-1]
+                f = get_schema_data(ref_name)
+                case[case_id]["data"].update(f)
+            except KeyError:
+                pass
+
+        return case
 
     def generate_all_cases(self):
         generated_files = []
-        for path, methods in self.openapi_data.get("paths", {}).items():
-            for method in methods:
-                case_id, case = self.generate_case(path, method, methods)
-                single_case_yaml = dict(self.case_common)
-                single_case_yaml[case_id] = case
+        # 生成测试用例文件
+        schema_data = self.openapi_data.get("components", {}).get("schemas", {})
 
-                file_path = self.output_dir / f"{case_id}.yaml"
+        for path, methods in self.openapi_data.get("paths", {}).items():
+            file_name = "_".join(path.split("/")[1::])
+            if "{" in file_name:
+                file_name = file_name.replace("{", "").replace("}", "")
+            for method in methods:
+                case = self.generate_case(path, method, methods, schema_data)
+                if case is None:
+                    continue
+                file_path = self.output_dir / f"{file_name}.yaml"
                 with open(file_path, "w", encoding="utf-8") as f:
                     yaml.dump(
-                        single_case_yaml,
+                        case,
                         f,
                         allow_unicode=True,
                         sort_keys=False,
                         default_flow_style=False,
                     )
-
                 generated_files.append(str(file_path))
-
         return generated_files
 
 
 if __name__ == "__main__":
-    sw = SwaggerExporter()
-    sw.export_swagger()
+    # sw = SwaggerExporter()
+    # sw.export_swagger()
+    generator = OpenAPITestcaseGenerator(
+        input_file=r"D:\PytestAutoApi\Files\Swagger\appdevice-ali.yaml",
+        output_dir="/Files/Testcase/",
+    )
+    generated_files = generator.generate_all_cases()
+    print(f"✅ 共生成 {len(generated_files)} 个测试用例文件：{generated_files}")
+    # import os
+
+    # for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
+    #     for file in files:
+    #         if file.endswith(".yaml"):
+    #             print(file)
+    # # 通过swagger 生成测试用例
+    # for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
+    #     for file in files:
+    #         if file.endswith(".yaml"):
+    #             generator = OpenAPITestcaseGenerator(
+    #                 input_file=os.path.join(root, file),
+    #                 output_dir="/Files/Testcase/",
+    #             )
+    #             generator.generate_all_cases()
+
+    for root, dirs, files in os.walk(ensure_path_sep("/Files/Testcase/")):
+        for file in files:
+            if "feedback" in file:
+                copyfile(
+                    os.path.join(root, file),
+                    os.path.join(ensure_path_sep(r"\data\Wobirdy\Feedback"), file),
+                )

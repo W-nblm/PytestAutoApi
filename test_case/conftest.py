@@ -1,4 +1,5 @@
 import base64
+import os
 import pytest
 import time
 import allure
@@ -6,6 +7,7 @@ import requests
 import ast
 from io import BytesIO
 from PIL import Image
+import yaml
 from common.setting import ensure_path_sep
 from utils.request_tool.request_control import cache_regular
 from utils.logging_tool.log_control import INFO, ERROR, WARNING
@@ -130,35 +132,93 @@ def work_login_init():
         raise e
 
 
+# def pytest_collection_modifyitems(items):
+#     """测试用例收集完成后,将item的name和node_id显示到控制台"""
+#     for item in items:
+#         item.name = item.name.encode("utf-8").decode("unicode_escape")
+#         item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
+
+#     # 期望用例顺序
+#     appoint_items = [
+#         "test_appdevice_info_feedback_userIssue_addFeedback",
+#         "test_appdevice_info_feedback_userIssue_queryIssueList",
+#         "test_appdevice_info_feedback_userIssue_queryIssueListPage",
+#         "test_appdevice_info_feedback_userIssue_queryDetailList_feedbackId",
+#         "test_appdevice_info_feedback_userIssue_checkMessageHint",
+#         "test_appdevice_info_feedback_userIssue_continueFeedback",
+#         "test_appdevice_info_feedback_userIssue_completeFeedback_feedbackId",
+#     ]
+
+#     # 指定运行顺序
+#     run_items = []
+#     for i in appoint_items:
+#         for item in items:
+#             module_item = item.name.split("[")[0]
+#             if i == module_item:
+#                 run_items.append(item)
+#     INFO.logger.info(f"指定运行顺序: {run_items}")
+#     for i in run_items:
+#         run_index = run_items.index(i)
+#         items_index = items.index(i)
+
+#         if run_index != items_index:
+#             n_data = items[run_index]
+#             run_index = items.index(n_data)
+#             items[items_index], items[run_index] = items[run_index], items[items_index]
+#     INFO.logger.info(f"运行顺序: {items}")
+
+
 def pytest_collection_modifyitems(items):
-    """测试用例收集完成后,将item的name和node_id显示到控制台"""
+    """根据 case_order.yaml 对模块和用例进行排序"""
+
+    # 1. 读取排序配置
+    order_config_path = ensure_path_sep("common/case_order.yaml")
+    with open(order_config_path, encoding="utf-8") as f:
+        order_config = yaml.safe_load(f) or {}
+
+    module_order = order_config.get("__module_order__", [])
+
+    # 2. 模块分组
+    module_map = {}
     for item in items:
-        item.name = item.name.encode("utf-8").decode("unicode_escape")
-        item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
+        module_path = os.path.normpath(item.fspath.relto(os.getcwd()))
+        module_dir = os.path.dirname(module_path).replace("test_case" + os.sep, "")
+        module_name = module_dir.replace(os.sep, "/")
+        module_map.setdefault(module_name, []).append(item)
 
-    # 期望用例顺序
+    # 3. 模块内排序
+    for module_name, module_items in module_map.items():
+        appoint_items = order_config.get(module_name, [])
+        if not appoint_items:
+            INFO.logger.warning(
+                f"[排序提示] 模块 {module_name} 没有配置用例顺序，保持默认顺序"
+            )
+            continue
 
-    appoint_items = [
-        "test_upload_img",
-    ]
+        order_map = {name: idx for idx, name in enumerate(appoint_items)}
+        module_items.sort(key=lambda x: order_map.get(x.name.split("[")[0], 9999))
 
-    # 指定运行顺序
-    run_items = []
-    for i in appoint_items:
-        for item in items:
-            module_item = item.name.split("[")[0]
-            if i == module_item:
-                run_items.append(item)
-    INFO.logger.info(f"指定运行顺序: {run_items}")
-    for i in run_items:
-        run_index = run_items.index(i)
-        items_index = items.index(i)
+        # 检查配置缺失
+        collected_names = [x.name.split("[")[0] for x in module_items]
+        missing_cases = [c for c in appoint_items if c not in collected_names]
+        if missing_cases:
+            INFO.logger.warning(
+                f"[排序警告] 模块 {module_name} 配置但未收集到的用例: {missing_cases}"
+            )
 
-        if run_index != items_index:
-            n_data = items[run_index]
-            run_index = items.index(n_data)
-            items[items_index], items[run_index] = items[run_index], items[items_index]
-    INFO.logger.info(f"运行顺序: {items}")
+    # 4. 按模块顺序合并
+    sorted_items = []
+    # 先处理配置中有的模块
+    for mod_name in module_order:
+        if mod_name in module_map:
+            sorted_items.extend(module_map.pop(mod_name))
+
+    # # 再处理没在配置中的模块（保持原有顺序）
+    # for mod_name in list(module_map.keys()):
+    #     sorted_items.extend(module_map[mod_name])
+
+    items[:] = sorted_items
+    INFO.logger.info(f"[执行顺序] 模块顺序: {module_order}")
 
 
 @pytest.fixture(scope="function", autouse=True)

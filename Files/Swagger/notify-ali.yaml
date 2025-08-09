@@ -22,73 +22,13 @@ tags:
 - name: 消息推送测试
   description: 消息推送测试
 paths:
-  /notify/info/simCard/querySimCardStatusList:
-    post:
-      tags:
-      - 物联网卡
-      summary: 查询sim卡列表
-      description: 查询sim卡列表
-      operationId: querySimCardStatusList
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MessageAllTypeReadVo'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RListDeviceTelCardStatusVo'
   /notify/info/sim/querySimCardStatusList:
     post:
       tags:
       - 物联网卡
       summary: 查询sim卡列表
       description: 查询sim卡列表
-      operationId: querySimCardStatusList_1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MessageAllTypeReadVo'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RListDeviceTelCardStatusVo'
-  /notify/info/sim/getSimStateList:
-    post:
-      tags:
-      - 物联网卡
-      summary: 查询sim卡列表
-      description: 查询sim卡列表
-      operationId: querySimCardStatusList_2
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MessageAllTypeReadVo'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RListDeviceTelCardStatusVo'
-  /notify/info/simCard/getSimStateList:
-    post:
-      tags:
-      - 物联网卡
-      summary: 查询sim卡列表
-      description: 查询sim卡列表
-      operationId: querySimCardStatusList_3
+      operationId: querySimCardStatusList
       requestBody:
         content:
           application/json:
@@ -1437,6 +1377,9 @@ components:
         ownerId:
           type: string
           description: 拥有者id  当shareFlag为1时，userId 取 ownerId字段
+        notifyType:
+          type: string
+          description: 推送具体类型
       description: 设备列表类
     RListMessageDeviceList:
       type: object

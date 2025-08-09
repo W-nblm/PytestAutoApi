@@ -1050,6 +1050,11 @@ components:
         fromUserName:
           type: string
           description: 分享者用户名称；当设备是被分享时有值
+        devProps:
+          type: array
+          description: 设备物模型属性值：跟列表以前显示，例如wifi型号清单
+          items:
+            $ref: '#/components/schemas/DevicePropVo'
         ownerId:
           type: string
       description: ''
@@ -1111,6 +1116,22 @@ components:
         redisTm:
           type: integer
           format: int64
+      description: ''
+    DevicePropVo:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        modelCode:
+          type: string
+          description: 设备id
+        type:
+          type: string
+          description: 指令类型Boolean, Enum, Integer,Float ,String,Json, Raw
+        value:
+          type: object
+          description: 具体指令值
       description: ''
     RListAppDeviceInfoVo:
       type: object

@@ -61,10 +61,14 @@ class Test{class_title}:
 if __name__ == '__main__':
     pytest.main(['{file_name}', '-s', '-W', 'ignore:Module already imported:pytest.PytestWarning'])
 """
+    print(file_name,case_path)
     if real_time_update_test_cases:
         write_case(case_path=case_path, page=page)
     elif real_time_update_test_cases is False:
         if not os.path.exists(case_path):
+            
             write_case(case_path=case_path, page=page)
     else:
         raise ValueNotFoundError("real_time_update_test_cases must be True or False")
+
+    # path, filename = os.path.split(case_path)

@@ -1,0 +1,23 @@
+# 模块执行顺序（模块名要与 test_case 下的相对路径一致）
+__module_order__:
+  - Wobirdy/Login
+  - Wobirdy/Feedback
+
+# 每个模块内部的用例顺序
+Wobirdy/Login:
+  - test_upload_img
+
+Wobirdy/Feedback:
+  - test_appdevice_info_feedback_userIssue_addFeedback
+  - test_appdevice_info_feedback_userIssue_queryIssueList
+  - test_appdevice_info_feedback_userIssue_queryIssueListPage
+  - test_appdevice_info_feedback_userIssue_queryDetailList_feedbackId
+  - test_appdevice_info_feedback_userIssue_checkMessageHint
+  - test_appdevice_info_feedback_userIssue_continueFeedback
+  - test_appdevice_info_feedback_userIssue_completeFeedback_feedbackId
+
+Wobirdy/collect:
+  - test_bird_ai_album_by_image
+
+Wobirdy/Capture:
+  - bird_ai_by_image_and_save_capture

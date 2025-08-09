@@ -10,6 +10,7 @@ from common.setting import ensure_path_sep
 from io import BytesIO
 from PIL import Image
 import base64
+from time import time
 
 
 class Context:
@@ -58,6 +59,13 @@ class Context:
         :return:
         """
         return self.faker.address()
+
+    def timestamp(self):
+        """
+        时间戳
+        :return:
+        """
+        return int(time() * 1000)
 
     @classmethod
     def now_time(cls):

@@ -82,6 +82,8 @@
 # cipher = DES.new(key, DES.MODE_ECB)
 # plaintext = cipher.decrypt(ciphertext)
 # print(plaintext)
+import re
+from shutil import copyfile
 import os
 import requests
 import yaml
@@ -177,7 +179,7 @@ class OpenAPITestcaseGenerator:
 
     def get_allure_feature(self):
         """获取 allure feature 名称"""
-        _allure_feature = self.openapi_data["tags"]
+        _allure_feature = self.openapi_data["info"]["description"]
         return _allure_feature
 
     # def get_allure_story(self):
@@ -202,11 +204,12 @@ class OpenAPITestcaseGenerator:
         method = method.lower()
         case_id = self.format_case_id(path)
         method_data = content[method]
-
+        if method_data.get("summary", "") == "HeartBeat":
+            return None
         case = {
-            "common": {
+            "case_common": {
                 "allureEpic": self.get_allure_epic(),
-                "allureFeature": self.get_allure_feature(),
+                "allureFeature": method_data.get("tags", ["未知模块"])[0],
                 "allureStory": method_data.get("summary", ""),
             },
             case_id: {
@@ -217,36 +220,74 @@ class OpenAPITestcaseGenerator:
                 "headers": {
                     "Authorization": "$cache{app_token}",
                     "Content-Language": "zh_CN",
+                    "App-Source": "WObird",
                 },
                 "requestType": "params",
-                "is_run": "",
+                "is_run": None,
                 "data": {},
-                "dependence_case": "",
-                "dependence_case_data": "",
+                "dependence_case": False,
+                "dependence_case_data": None,
                 "assert": {
                     "code": {
                         "jsonpath": "$.code",
                         "type": "==",
                         "value": 200,
-                        "AssertType": "",
+                        "AssertType": None,
                         "message": "接口状态码不为200",
                     },
                     "msg": {
                         "jsonpath": "$.msg",
                         "type": "contains",
                         "value": "成功",
-                        "AssertType": "",
+                        "AssertType": None,
                     },
                 },
-                "sql": "",
-                "setup_sql": "",
+                "sql": None,
+                "setup_sql": None,
             },
         }
         # 判断请求参数类型
         if "parameters" in method_data:
             for param in method_data["parameters"]:
-                pname = param["name"]
-                case[case_id]["data"][pname] = f"$cache{{{pname}}}"
+                if param["in"] == "path":
+                    case[case_id]["requestType"] = None
+                    path = path.replace("{", "$cache{")
+
+                if param["in"] == "query":
+                    case[case_id]["requestType"] = "params"
+                    path = re.sub(r"/\{.*?\}", "", path)
+                    pname = param["name"]
+                    case[case_id]["data"][pname] = f"$cache{{{pname}}}"
+
+            case[case_id]["url"] = path
+
+        def get_schema_data(schema_name: str) -> dict:
+            """获取 schema 数据"""
+            data = {}
+            if schema_name in schema_data:
+                schema = schema_data[schema_name]
+                # 遍历 schema 所有属性
+                for prop_name, prop_schema in schema.get("properties", {}).items():
+                    if (
+                        "$ref" in prop_schema
+                        and prop_schema["$ref"].split("/")[-1] != schema_name
+                    ):
+                        ref_name = prop_schema["$ref"].split("/")[-1]
+                        re = get_schema_data(ref_name)
+                        data[prop_name] = {}
+                        data[prop_name].update(re)
+                    else:
+                        if prop_schema.get("type", "") == "string":
+                            data[prop_name] = ""
+                        elif prop_schema.get("type", "") == "integer":
+                            data[prop_name] = 0
+                        elif prop_schema.get("type", "") == "array":
+                            data[prop_name] = []
+                        elif prop_schema.get("type", "") == "boolean":
+                            data[prop_name] = True
+                        else:
+                            data[prop_name] = {}
+            return data
 
         if "requestBody" in method_data:
             content_type = list(method_data["requestBody"]["content"].keys())[0]
@@ -257,66 +298,11 @@ class OpenAPITestcaseGenerator:
                 ].split("/")
 
                 ref_name = refs[-1]
-                if ref_name in schema_data:
-                    schema = schema_data[ref_name]
-                    for prop_name, prop_schema in schema.get("properties", {}).items():
-                        if "type" in prop_schema:
-                            if prop_schema["type"] == "string":
-                                case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
-                            elif prop_schema["type"] == "integer":
-                                case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
-                            elif prop_schema["type"] == "number":
-                                case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
-                            elif prop_schema["type"] == "boolean":
-                                case[case_id]["data"][prop_name] = f"${{{prop_name}}}"
-                        if prop_name == "data":
-                            case[case_id]["data"][prop_name] = {}
-                            if "$ref" in prop_schema:
-                                temp_ref_name = prop_schema["$ref"].split("/")[-1]
-                                if temp_ref_name in schema_data:
-                                    temp_schema = schema_data[temp_ref_name]
-                                    for (
-                                        temp_prop_name,
-                                        temp_prop_schema,
-                                    ) in temp_schema.get("properties", {}).items():
-                                        if "type" in temp_prop_schema:
-                                            if temp_prop_schema["type"] == "string":
-                                                case[case_id]["data"]["data"][
-                                                    temp_prop_name
-                                                ] = f"${{{temp_prop_name}}}"
-                                            elif temp_prop_schema["type"] == "integer":
-                                                case[case_id]["data"]["data"][
-                                                    temp_prop_name
-                                                ] = f"${{{temp_prop_name}}}"
-                                            elif temp_prop_schema["type"] == "number":
-                                                case[case_id]["data"]["data"][
-                                                    temp_prop_name
-                                                ] = f"${{{temp_prop_name}}}"
-                                            elif temp_prop_schema["type"] == "boolean":
-                                                case[case_id]["data"]["data"][
-                                                    temp_prop_name
-                                                ] = f"${{{temp_prop_name}}}"
-                            else:
-                                if "type" in prop_schema:
-                                    if prop_schema["type"] == "string":
-                                        case[case_id]["data"][
-                                            prop_name
-                                        ] = f"${{{prop_name}}}"
-                                    elif prop_schema["type"] == "integer":
-                                        case[case_id]["data"][
-                                            prop_name
-                                        ] = f"${{{prop_name}}}"
-                                    elif prop_schema["type"] == "number":
-                                        case[case_id]["data"][
-                                            prop_name
-                                        ] = f"${{{prop_name}}}"
-                                    elif prop_schema["type"] == "boolean":
-                                        case[case_id]["data"][
-                                            prop_name
-                                        ] = f"${{{prop_name}}}"
+                f = get_schema_data(ref_name)
+                case[case_id]["data"].update(f)
             except KeyError:
                 pass
-        # 获取请求的参数
+
         return case
 
     def generate_all_cases(self):
@@ -326,8 +312,12 @@ class OpenAPITestcaseGenerator:
 
         for path, methods in self.openapi_data.get("paths", {}).items():
             file_name = "_".join(path.split("/")[1::])
+            if "{" in file_name:
+                file_name = file_name.replace("{", "").replace("}", "")
             for method in methods:
                 case = self.generate_case(path, method, methods, schema_data)
+                if case is None:
+                    continue
                 file_path = self.output_dir / f"{file_name}.yaml"
                 with open(file_path, "w", encoding="utf-8") as f:
                     yaml.dump(
@@ -344,22 +334,32 @@ class OpenAPITestcaseGenerator:
 if __name__ == "__main__":
     # sw = SwaggerExporter()
     # sw.export_swagger()
-    # generator = OpenAPITestcaseGenerator(
-    #     input_file="/Files/Swagger/mqtt-ali.yaml", output_dir="/Files/Testcase/"
-    # )
-    # generated_files = generator.generate_all_cases()
-    # print(f"✅ 共生成 {len(generated_files)} 个测试用例文件：{generated_files}")
-    import os
+    generator = OpenAPITestcaseGenerator(
+        input_file=r"D:\PytestAutoApi\Files\Swagger\appdevice-ali.yaml",
+        output_dir="/Files/Testcase/",
+    )
+    generated_files = generator.generate_all_cases()
+    print(f"✅ 共生成 {len(generated_files)} 个测试用例文件：{generated_files}")
+    # import os
 
     # for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
     #     for file in files:
     #         if file.endswith(".yaml"):
     #             print(file)
-    for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
+    # # 通过swagger 生成测试用例
+    # for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
+    #     for file in files:
+    #         if file.endswith(".yaml"):
+    #             generator = OpenAPITestcaseGenerator(
+    #                 input_file=os.path.join(root, file),
+    #                 output_dir="/Files/Testcase/",
+    #             )
+    #             generator.generate_all_cases()
+
+    for root, dirs, files in os.walk(ensure_path_sep("/Files/Testcase/")):
         for file in files:
-            if file.endswith(".yaml"):
-                generator = OpenAPITestcaseGenerator(
-                    input_file=os.path.join(root, file),
-                    output_dir="/Files/Testcase/",
+            if "feedback" in file:
+                copyfile(
+                    os.path.join(root, file),
+                    os.path.join(ensure_path_sep(r"\data\Wobirdy\Feedback"), file),
                 )
-                generator.generate_all_cases()

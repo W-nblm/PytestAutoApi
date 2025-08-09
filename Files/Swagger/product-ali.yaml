@@ -9813,6 +9813,7 @@ components:
           - FEEDBACK_APP
           - FEEDBACK_FUNC_SUGGESTION
           - FEEDBACK_OTHER
+          - FEEDBACK_CONFIG_NETWORK
       description: 问题反馈详情视图对象 feedback_detail
     FeedbackStatisticsResp:
       type: object
@@ -9907,6 +9908,7 @@ components:
           - FEEDBACK_APP
           - FEEDBACK_FUNC_SUGGESTION
           - FEEDBACK_OTHER
+          - FEEDBACK_CONFIG_NETWORK
         feedbackStatus:
           type: integer
           description: 反馈状态:1:待处理,2:处理中,3:待用户反馈,4:已结单

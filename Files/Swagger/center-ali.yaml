@@ -1255,6 +1255,26 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/RApiVo'
+  /network/getDevUserNeworkShip:
+    post:
+      tags:
+      - app扫描配网 接口
+      summary: 查询关系
+      description: 查询关系
+      operationId: getDevUserNeworkShip
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
   /network/deleteNetWorkData:
     post:
       tags:
@@ -1262,6 +1282,46 @@ paths:
       summary: 删除配网数据
       description: 删除配网数据
       operationId: deleteNetWorkData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /network/delDevUserNeworkShip:
+    post:
+      tags:
+      - app扫描配网 接口
+      summary: 删除关系
+      description: 删除关系
+      operationId: deletetDevUserNeworkShip
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /network/addDevUserNeworkShip:
+    post:
+      tags:
+      - app扫描配网 接口
+      summary: 添加
+      description: 添加
+      operationId: addDevUserNeworkShip
       requestBody:
         content:
           application/json:
@@ -1481,34 +1541,6 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/RApiVo'
-  /api/hostList:
-    post:
-      tags:
-      - api 接口
-      summary: 服务器地址+地区列表
-      description: 服务器地址+地区列表
-      operationId: hostList
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RCenterVo'
-  /api/serverAndCountryCodeList:
-    post:
-      tags:
-      - api 接口
-      summary: 服务器地址+地区列表
-      description: 服务器地址+地区列表
-      operationId: hostList_1
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RCenterVo'
   /api/queryInfo:
     post:
       tags:
@@ -1529,6 +1561,20 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/RApiVo'
+  /api/hostList:
+    post:
+      tags:
+      - api 接口
+      summary: 服务器地址+地区列表
+      description: 服务器地址+地区列表
+      operationId: hostList
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCenterVo'
   /api/hostItem:
     post:
       tags:
@@ -4468,9 +4514,9 @@ components:
         parentMenuName:
           type: string
           description: 上级菜单名称字段
-        tree:
-          type: boolean
         sub:
+          type: boolean
+        tree:
           type: boolean
         crud:
           type: boolean
@@ -4558,9 +4604,9 @@ components:
           format: int32
         list:
           type: boolean
-        required:
-          type: boolean
         pk:
+          type: boolean
+        required:
           type: boolean
         insert:
           type: boolean
@@ -5915,10 +5961,10 @@ components:
           $ref: '#/components/schemas/TreeNodeConfig'
         weight:
           type: object
-        parentId:
+        id:
           type: integer
           format: int64
-        id:
+        parentId:
           type: integer
           format: int64
         name:

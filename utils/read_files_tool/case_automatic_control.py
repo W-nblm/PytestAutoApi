@@ -1,3 +1,5 @@
+from collections import defaultdict
+import datetime
 import os
 from typing import Text, Dict
 from common.setting import ensure_path_sep
@@ -74,12 +76,13 @@ class TestCaseAutomaticGeneration:
         :return:
         """
         try:
-            return case_data['case_common']['allureEpic']
+            return case_data["case_common"]["allureEpic"]
         except KeyError as exc:
-            raise ValueNotFoundError(TestCaseAutomaticGeneration.error_message(
-                param_name="allureEpic",
-                file_path=file_path
-            )) from exc
+            raise ValueNotFoundError(
+                TestCaseAutomaticGeneration.error_message(
+                    param_name="allureEpic", file_path=file_path
+                )
+            ) from exc
 
     @staticmethod
     def allure_feature(case_data: Dict, file_path) -> Text:
@@ -90,12 +93,13 @@ class TestCaseAutomaticGeneration:
         :return:
         """
         try:
-            return case_data['case_common']['allureFeature']
+            return case_data["case_common"]["allureFeature"]
         except KeyError as exc:
-            raise ValueNotFoundError(TestCaseAutomaticGeneration.error_message(
-                param_name="allureFeature",
-                file_path=file_path
-            )) from exc
+            raise ValueNotFoundError(
+                TestCaseAutomaticGeneration.error_message(
+                    param_name="allureFeature", file_path=file_path
+                )
+            ) from exc
 
     @staticmethod
     def allure_story(case_data: Dict, file_path) -> Text:
@@ -106,15 +110,16 @@ class TestCaseAutomaticGeneration:
         :return:
         """
         try:
-            return case_data['case_common']['allureStory']
+            return case_data["case_common"]["allureStory"].replace("\n", "")
         except KeyError as exc:
-            raise ValueNotFoundError(TestCaseAutomaticGeneration.error_message(
-                param_name="allureStory",
-                file_path=file_path
-            )) from exc
+            raise ValueNotFoundError(
+                TestCaseAutomaticGeneration.error_message(
+                    param_name="allureStory", file_path=file_path
+                )
+            ) from exc
 
     def mk_dir(self, file_path: Text) -> None:
-        """ 判断生成自动化代码的文件夹路径是否存在，如果不存在，则自动创建 """
+        """判断生成自动化代码的文件夹路径是否存在，如果不存在，则自动创建"""
         # _LibDirPath = os.path.split(self.libPagePath(filePath))[0]
 
         _case_dir_path = os.path.split(self.get_case_path(file_path)[0])[0]
@@ -145,28 +150,130 @@ class TestCaseAutomaticGeneration:
         yaml_path = file_path[i:].replace("\\", "/")
         return yaml_path
 
+    # def get_case_automatic(self) -> None:
+    #     """自动生成 测试代码"""
+    #     file_path = get_all_files(
+    #         file_path=ensure_path_sep("\\data"), yaml_data_switch=True
+    #     )
+    #     for file in file_path:
+    #         # 判断代理拦截的yaml文件，不生成test_case代码
+    #         if "proxy_data.yaml" not in file:
+    #             # 判断用例需要用的文件夹路径是否存在，不存在则创建
+    #             self.mk_dir(file)
+    #             yaml_case_process = GetYamlData(file).get_yaml_data()
+    #             self.case_ids(yaml_case_process)
+    #             write_testcase_file(
+    #                 allure_epic=self.allure_epic(
+    #                     case_data=yaml_case_process, file_path=file
+    #                 ),
+    #                 allure_feature=self.allure_feature(
+    #                     yaml_case_process, file_path=file
+    #                 ),
+    #                 class_title=self.get_test_class_title(file),
+    #                 func_title=self.func_title(file),
+    #                 case_path=self.get_case_path(file)[0],
+    #                 case_ids=self.case_ids(yaml_case_process),
+    #                 file_name=self.get_case_path(file)[1],
+    #                 allure_story=self.allure_story(
+    #                     case_data=yaml_case_process, file_path=file
+    #                 ),
+    #             )
+
+    def write_case(self, case_path, page):
+        """写入测试用例"""
+        with open(case_path, "w", encoding="utf-8") as file:
+            file.write(page)
+        print(f"生成用例文件: {case_path}")
+
+    def replace_data_dir(self, path: str, old="data", new="test_case") -> str:
+        parts = os.path.normpath(path).split(os.sep)
+        parts = [new if part.lower() == old.lower() else part for part in parts]
+        return os.sep.join(parts)
+
     def get_case_automatic(self) -> None:
-        """ 自动生成 测试代码"""
-        file_path = get_all_files(file_path=ensure_path_sep("\\data"), yaml_data_switch=True)
-
-        for file in file_path:
-            # 判断代理拦截的yaml文件，不生成test_case代码
-            if 'proxy_data.yaml' not in file:
+        """自动生成 测试代码"""
+        # 读取所有的yaml文件
+        file_paths = get_all_files(
+            file_path=ensure_path_sep("\\data"), yaml_data_switch=True
+        )
+        # 按目录进行分类
+        dir_groups = defaultdict(list)
+        for file in file_paths:
+            if "proxy_data.yaml" not in file:
                 # 判断用例需要用的文件夹路径是否存在，不存在则创建
-                self.mk_dir(file)
-                yaml_case_process = GetYamlData(file).get_yaml_data()
-                self.case_ids(yaml_case_process)
-                write_testcase_file(
-                    allure_epic=self.allure_epic(case_data=yaml_case_process, file_path=file),
-                    allure_feature=self.allure_feature(yaml_case_process, file_path=file),
-                    class_title=self.get_test_class_title(file),
-                    func_title=self.func_title(file),
-                    case_path=self.get_case_path(file)[0],
-                    case_ids=self.case_ids(yaml_case_process),
-                    file_name=self.get_case_path(file)[1],
-                    allure_story=self.allure_story(case_data=yaml_case_process, file_path=file)
-                    )
+                dir_groups[os.path.dirname(file)].append(file)
 
+        for dir_path, yaml_files in dir_groups.items():
+            # 创建测试用例输出目录
+            self.mk_dir(yaml_files[0])
+            dir_name = os.path.basename(dir_path)
+            # 生成测试用例类名
+            class_title = "Test_" + dir_path.split(os.sep)[-1].capitalize()
+            # 生成测试用例文件
+            case_path = os.path.join(dir_path, "test_" + dir_name.lower() + ".py")
+            case_path = self.replace_data_dir(case_path)
+
+            # 存放所有方法
+            methods_code = ""
+            n=0
+            for yf in yaml_files:
+                # 读取yaml文件内容
+                yaml_case_process = GetYamlData(yf).get_yaml_data()
+                # 生成测试用例方法名
+                case_ids = self.case_ids(yaml_case_process)
+                func_title = self.func_title(yf)  # 用例标题
+                allure_story = self.allure_story(yaml_case_process, yf)  # 用例描述
+                re_data = f"regular(str(GetTestCase.case_data({case_ids})))"
+                n+=1
+                method = f"""
+    @allure.story("{allure_story}")
+    @pytest.mark.order({n})
+    @pytest.mark.parametrize('in_data', eval({re_data}), ids=[i['detail'] for i in GetTestCase.case_data({case_ids})])
+    def test_{func_title}(self, in_data, case_skip):
+        INFO.logger.info("data: %s", in_data)
+        res = RequestControl(in_data).http_request()
+        TearDownHandler(res).teardown_handle()
+        Assert(in_data["assert_data"]).assert_equality(
+            response_data=res.response_data,
+            sql_data=res.sql_data,
+            status_code=res.status_code,
+        )
+"""
+                methods_code += method
+            # print(methods_code)
+            # 组装整个pytest文件
+            page = f"""
+# -*- coding: utf-8 -*-
+# @Time    : {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+
+import allure
+import pytest
+from utils.read_files_tool.get_yaml_data_analysis import GetTestCase
+from utils.assertion.assert_control import Assert
+from utils.request_tool.request_control import RequestControl
+from utils.read_files_tool.regular_control import regular
+from utils.request_tool.teardown_control import TearDownHandler
+from utils.logging_tool.log_control import ERROR, INFO
+
+@allure.epic("{dir_name}")
+@allure.feature("{dir_name}")
+class {class_title}:
+{methods_code}
 
 if __name__ == '__main__':
-    TestCaseAutomaticGeneration().get_case_automatic()
+    pytest.main(['{case_path}', '-s', '-W', 'ignore:Module already imported:pytest.PytestWarning'])
+"""
+            # 判断是否实时更新
+            conf_data = GetYamlData(
+                ensure_path_sep("\\common\\config.yaml")
+            ).get_yaml_data()
+            real_time_update_test_cases = conf_data.get("real_time_update_test_cases")
+            if real_time_update_test_cases:
+                self.write_case(case_path=case_path, page=page)
+            elif real_time_update_test_cases is False:
+                if not os.path.exists(case_path):
+                    self.write_case(case_path=case_path, page=page)
+            else:
+                raise ValueNotFoundError(
+                    "real_time_update_test_cases must be True or False"
+                )
