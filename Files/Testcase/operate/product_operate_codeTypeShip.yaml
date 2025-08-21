@@ -1,0 +1,37 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 消息code与模板类型关系
+  allureStory: 新增消息code与类型关系
+d:\PytestAutoApi\Files\Testcase\operate_01:
+  host: ${{host()}}
+  url: d:\PytestAutoApi\Files\Testcase\operate
+  method: POST
+  detail: 消息code与模板类型关系 - 新增消息code与类型关系
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  is_run: null
+  data:
+    msgCode: ''
+    type: ''
+    name: ''
+    sort: 0
+    appSource: ''
+  dependence_case: false
+  dependence_case_data: null
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: null
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: null
+  sql: null
+  setup_sql: null

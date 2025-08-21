@@ -1,7 +1,7 @@
 import asyncio
 import sys
 from app_mqtt_manager import AppMqttManager
-from mqtt_client import AsyncMqttClient
+from utils.mqtt_tool.mqtt_client import AsyncMqttClient
 
 
 async def listen_for_messages(manager: AppMqttManager):

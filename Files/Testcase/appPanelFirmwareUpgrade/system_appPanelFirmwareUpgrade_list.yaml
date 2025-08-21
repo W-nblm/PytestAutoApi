@@ -1,0 +1,40 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 面板固件升级
+  allureStory: 查询面板固件升级列表
+system_appPanelFirmwareUpgrade_list_01:
+  host: ${{host()}}
+  url: /system/appPanelFirmwareUpgrade/list
+  method: POST
+  detail: 面板固件升级 - 查询面板固件升级列表
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  is_run: null
+  data:
+    pageQuery:
+      pageSize: 0
+      pageNum: 0
+      orderByColumn: ''
+      isAsc: ''
+    paramData:
+      publish: 0
+      appPanelBundleInfoId: 0
+  dependence_case: false
+  dependence_case_data: null
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: null
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: null
+  sql: null
+  setup_sql: null

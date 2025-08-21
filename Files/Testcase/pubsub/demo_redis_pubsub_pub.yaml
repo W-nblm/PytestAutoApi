@@ -1,0 +1,34 @@
+case_common:
+  allureEpic: 标题：iot-data-center后台管理系统_接口文档
+  allureFeature: Redis 发布订阅 演示案例
+  allureStory: 发布消息
+demo_redis_pubsub_pub_01:
+  host: ${{host()}}
+  url: /demo/redis/pubsub/pub
+  method: GET
+  detail: Redis 发布订阅 演示案例 - 发布消息
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: params
+  is_run: null
+  data:
+    key: $cache{key}
+    value: $cache{value}
+  dependence_case: false
+  dependence_case_data: null
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: null
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: null
+  sql: null
+  setup_sql: null

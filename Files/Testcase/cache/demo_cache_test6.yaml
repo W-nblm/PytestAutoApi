@@ -1,0 +1,34 @@
+case_common:
+  allureEpic: 标题：iot-data-center后台管理系统_接口文档
+  allureFeature: spring-cache 演示案例
+  allureStory: "测试设置过期时间\n 手动设置过期时间10秒\n 11秒后获取 判断是否相等"
+demo_cache_test6_01:
+  host: ${{host()}}
+  url: /demo/cache/test6
+  method: GET
+  detail: "spring-cache 演示案例 - 测试设置过期时间\n 手动设置过期时间10秒\n 11秒后获取 判断是否相等"
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: params
+  is_run: null
+  data:
+    key: $cache{key}
+    value: $cache{value}
+  dependence_case: false
+  dependence_case_data: null
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: null
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: null
+  sql: null
+  setup_sql: null

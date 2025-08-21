@@ -1,0 +1,33 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 接收数据同步
+  allureStory: 测试同步
+product_syncreceive_testsync_01:
+  host: ${{host()}}
+  url: /product/syncreceive/testsync
+  method: GET
+  detail: 接收数据同步 - 测试同步
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: params
+  is_run: null
+  data:
+    parm: $cache{parm}
+  dependence_case: false
+  dependence_case_data: null
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: null
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: null
+  sql: null
+  setup_sql: null

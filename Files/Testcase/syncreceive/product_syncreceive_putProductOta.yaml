@@ -1,0 +1,37 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 接收数据同步
+  allureStory: 同步OTA数据
+product_syncreceive_putProductOta_01:
+  host: ${{host()}}
+  url: /product/syncreceive/putProductOta
+  method: POST
+  detail: 接收数据同步 - 同步OTA数据
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  is_run: null
+  data:
+    productId: ''
+    infolist: []
+    otalist: []
+    versionlist: []
+    verFunclist: []
+  dependence_case: false
+  dependence_case_data: null
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: null
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: null
+  sql: null
+  setup_sql: null

@@ -1,8 +1,12 @@
 from collections import defaultdict
 import datetime
 import os
+import shutil
 from typing import Text, Dict
+
+import yaml
 from common.setting import ensure_path_sep
+from utils.logging_tool.log_control import INFO
 from utils.read_files_tool.testcase_template import write_testcase_file
 from utils.read_files_tool.yaml_control import GetYamlData
 from utils.read_files_tool.get_all_files_path import get_all_files
@@ -125,6 +129,7 @@ class TestCaseAutomaticGeneration:
         _case_dir_path = os.path.split(self.get_case_path(file_path)[0])[0]
         if not os.path.exists(_case_dir_path):
             os.makedirs(_case_dir_path)
+            INFO.logger.info(f"创建用例文件夹: {_case_dir_path}")
 
     @staticmethod
     def case_ids(test_case):
@@ -196,6 +201,7 @@ class TestCaseAutomaticGeneration:
         file_paths = get_all_files(
             file_path=ensure_path_sep("\\data"), yaml_data_switch=True
         )
+
         # 按目录进行分类
         dir_groups = defaultdict(list)
         for file in file_paths:
@@ -203,10 +209,18 @@ class TestCaseAutomaticGeneration:
                 # 判断用例需要用的文件夹路径是否存在，不存在则创建
                 dir_groups[os.path.dirname(file)].append(file)
 
+        case_order_data = {"strict": True, "modules": []}
+
         for dir_path, yaml_files in dir_groups.items():
             # 创建测试用例输出目录
             self.mk_dir(yaml_files[0])
             dir_name = os.path.basename(dir_path)
+
+            # 生成模块名称
+            module_name = os.path.relpath(
+                self.replace_data_dir(dir_path), ensure_path_sep("\\test_case")
+            ).replace(os.sep, "/")
+
             # 生成测试用例类名
             class_title = "Test_" + dir_path.split(os.sep)[-1].capitalize()
             # 生成测试用例文件
@@ -215,7 +229,8 @@ class TestCaseAutomaticGeneration:
 
             # 存放所有方法
             methods_code = ""
-            n=0
+            case_list = []
+
             for yf in yaml_files:
                 # 读取yaml文件内容
                 yaml_case_process = GetYamlData(yf).get_yaml_data()
@@ -224,10 +239,8 @@ class TestCaseAutomaticGeneration:
                 func_title = self.func_title(yf)  # 用例标题
                 allure_story = self.allure_story(yaml_case_process, yf)  # 用例描述
                 re_data = f"regular(str(GetTestCase.case_data({case_ids})))"
-                n+=1
                 method = f"""
     @allure.story("{allure_story}")
-    @pytest.mark.order({n})
     @pytest.mark.parametrize('in_data', eval({re_data}), ids=[i['detail'] for i in GetTestCase.case_data({case_ids})])
     def test_{func_title}(self, in_data, case_skip):
         INFO.logger.info("data: %s", in_data)
@@ -240,7 +253,12 @@ class TestCaseAutomaticGeneration:
         )
 """
                 methods_code += method
+                case_list.append(f"test_{func_title}")
             # print(methods_code)
+            # 写入case_order.yaml模块配置
+            case_order_data["modules"].append(
+                {"name": module_name, "enabled": True, "cases": case_list}
+            )
             # 组装整个pytest文件
             page = f"""
 # -*- coding: utf-8 -*-
@@ -277,3 +295,15 @@ if __name__ == '__main__':
                 raise ValueNotFoundError(
                     "real_time_update_test_cases must be True or False"
                 )
+        # 最后一次性生成 case_order.yaml
+        order_file_path = ensure_path_sep("\\common\\case_order.yaml")
+
+        if os.path.exists(order_file_path):
+            order_file_path = ensure_path_sep("\\common\\case_order_back.yaml")
+            with open(order_file_path, "w", encoding="utf-8") as f:
+                yaml.safe_dump(case_order_data, f, allow_unicode=True, sort_keys=False)
+            INFO.logger.info(f"case_order.yaml 已生成到: {order_file_path}")
+        else:
+            with open(order_file_path, "w", encoding="utf-8") as f:
+                yaml.safe_dump(case_order_data, f, allow_unicode=True, sort_keys=False)
+            INFO.logger.info(f"case_order.yaml 已生成到: {order_file_path}")

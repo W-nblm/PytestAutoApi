@@ -1,0 +1,32 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 多语言字典控制器
+  allureStory: 获取多语言字典详细信息
+system_dictType_01:
+  host: ${{host()}}
+  url: /system/dictType/$cache{id}
+  method: GET
+  detail: 多语言字典控制器 - 获取多语言字典详细信息
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: null
+  is_run: null
+  data: {}
+  dependence_case: false
+  dependence_case_data: null
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: null
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: null
+  sql: null
+  setup_sql: null

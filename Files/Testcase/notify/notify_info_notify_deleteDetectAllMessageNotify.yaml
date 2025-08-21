@@ -1,0 +1,34 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 消息推送接口
+  allureStory: 二级页面-告警消息单个设备删除全部接口  WOcam WObirdy适用
+notify_info_notify_deleteDetectAllMessageNotify_01:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectAllMessageNotify
+  method: POST
+  detail: 消息推送接口 - 二级页面-告警消息单个设备删除全部接口  WOcam WObirdy适用
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  is_run: null
+  data:
+    userId: ''
+    devId: ''
+  dependence_case: false
+  dependence_case_data: null
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: null
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: null
+  sql: null
+  setup_sql: null

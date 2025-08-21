@@ -1,16 +1,10 @@
-from utils.mqtt_tool.devices import DeviceModel
-from utils.mqtt_tool.mqtt import Mqtt
 import sys
-from utils.redis_tool.redis_helper import RedisHelper
-from utils.mysql_tool.mysql_tool import MysqlTool
 from utils.logging_tool.log_control import INFO, ERROR, WARNING
-
-sys.path.append("d:/PytestAutoApi/protobuf/protobuf_py")
 import asyncio
 import sys
-from mqtt_client import AsyncMqttClient
-from device import Device
-from device_manager import DeviceManager
+from utils.mqtt_tool.device_manager import DeviceManager
+
+sys.path.append("d:/PytestAutoApi/protobuf/protobuf_py")
 
 if sys.platform.startswith("win"):
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
@@ -19,15 +13,15 @@ if sys.platform.startswith("win"):
 async def main():
     manager = DeviceManager()
     devices = [
+        # {
+        #     "device_id": "d-8d8b4768-ns6aoiho",
+        #     "product_id": "p-0c947c67-8ghjjvw3",
+        #     "uid": "uub197c66706beq0qc",
+        #     "activate": False,
+        #     "start_tasks": False,
+        # },
         {
-            "device_id": "d-8d8b4768-ns6aoiho",
-            "product_id": "p-0c947c67-8ghjjvw3",
-            "uid": "uub197c66706beq0qc",
-            "activate": False,
-            "start_tasks": True,
-        },
-        {
-            "device_id": "wyk123456",
+            "device_id": "d-8d8b4768-ns6aoi66",
             "product_id": "p-0c947c67-8ghjjvw3",
             "uid": "uub197c66706beq0qc",
             "activate": False,

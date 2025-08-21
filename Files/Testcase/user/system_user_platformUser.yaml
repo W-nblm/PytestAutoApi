@@ -1,0 +1,80 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 用户信息-平台管理
+  allureStory: 新增用户平台用户, 只有超级管理员
+d:\PytestAutoApi\Files\Testcase\user_01:
+  host: ${{host()}}
+  url: d:\PytestAutoApi\Files\Testcase\user
+  method: POST
+  detail: 用户信息-平台管理 - 新增用户平台用户, 只有超级管理员
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  is_run: null
+  data:
+    createBy: ''
+    createTime: 0
+    updateBy: ''
+    updateTime: 0
+    params: {}
+    userId: 0
+    deptId: 0
+    userName: ''
+    nickName: ''
+    userType: ''
+    email: ''
+    phonenumber: ''
+    sex: ''
+    avatar: ''
+    password: ''
+    status: ''
+    delFlag: ''
+    loginIp: ''
+    loginDate: 0
+    remark: ''
+    dept:
+      createBy: ''
+      createTime: 0
+      updateBy: ''
+      updateTime: 0
+      params: {}
+      parentName: ''
+      parentId: 0
+      children: []
+      deptId: 0
+      deptName: ''
+      orderNum: 0
+      leader: ''
+      phone: ''
+      email: ''
+      status: ''
+      delFlag: ''
+      ancestors: ''
+    roles: []
+    roleIds: []
+    postIds: []
+    roleId: 0
+    accountType: ''
+    parentUserId: 0
+    permProductIdList: []
+    permCompanyUserIdList: []
+    companyName: ''
+    admin: true
+  dependence_case: false
+  dependence_case_data: null
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: null
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: null
+  sql: null
+  setup_sql: null

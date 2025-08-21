@@ -182,10 +182,6 @@ class OpenAPITestcaseGenerator:
         _allure_feature = self.openapi_data["info"]["description"]
         return _allure_feature
 
-    # def get_allure_story(self):
-    #     """获取 allure story 名称"""
-    #     _allure_story = self.openapi_data["summary"]
-    #     return _allure_story
 
     def format_case_id(self, path: str) -> str:
         parts = [p for p in path.split("/") if p and not p.startswith("{")]
@@ -318,48 +314,53 @@ class OpenAPITestcaseGenerator:
                 case = self.generate_case(path, method, methods, schema_data)
                 if case is None:
                     continue
-                file_path = self.output_dir / f"{file_name}.yaml"
-                with open(file_path, "w", encoding="utf-8") as f:
-                    yaml.dump(
-                        case,
-                        f,
-                        allow_unicode=True,
-                        sort_keys=False,
-                        default_flow_style=False,
-                    )
-                generated_files.append(str(file_path))
+
+                try:
+                    path = file_name.split("_")[-2]
+                    path = os.path.join(self.output_dir, path)
+                    if not os.path.exists(path):
+                        os.makedirs(path)
+
+                    with open(
+                        file=os.path.join(path, f"{file_name}.yaml"),
+                        mode="w",
+                        encoding="utf-8",
+                    ) as f:
+                        yaml.dump(
+                            case,
+                            f,
+                            allow_unicode=True,
+                            sort_keys=False,
+                            default_flow_style=False,
+                        )
+                except IndexError:
+                    pass
+                except FileNotFoundError:
+                    pass
+                generated_files.append(os.path.join(path, f"{file_name}.yaml"))
         return generated_files
 
 
 if __name__ == "__main__":
     # sw = SwaggerExporter()
     # sw.export_swagger()
-    generator = OpenAPITestcaseGenerator(
-        input_file=r"D:\PytestAutoApi\Files\Swagger\appdevice-ali.yaml",
-        output_dir="/Files/Testcase/",
-    )
-    generated_files = generator.generate_all_cases()
-    print(f"✅ 共生成 {len(generated_files)} 个测试用例文件：{generated_files}")
+    # generator = OpenAPITestcaseGenerator(
+    #     input_file=r"D:\PytestAutoApi\Files\Swagger\appdevice-ali.yaml",
+    #     output_dir="/Files/Testcase/",
+    # )
+    # generated_files = generator.generate_all_cases()
+    # print(f"✅ 共生成 {len(generated_files)} 个测试用例文件：{generated_files}")
     # import os
 
-    # for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
-    #     for file in files:
-    #         if file.endswith(".yaml"):
-    #             print(file)
     # # 通过swagger 生成测试用例
-    # for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
-    #     for file in files:
-    #         if file.endswith(".yaml"):
-    #             generator = OpenAPITestcaseGenerator(
-    #                 input_file=os.path.join(root, file),
-    #                 output_dir="/Files/Testcase/",
-    #             )
-    #             generator.generate_all_cases()
-
-    for root, dirs, files in os.walk(ensure_path_sep("/Files/Testcase/")):
+    for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
         for file in files:
-            if "feedback" in file:
-                copyfile(
-                    os.path.join(root, file),
-                    os.path.join(ensure_path_sep(r"\data\Wobirdy\Feedback"), file),
+            if file.endswith(".yaml"):
+                generator = OpenAPITestcaseGenerator(
+                    input_file=os.path.join(root, file),
+                    output_dir="/Files/Testcase/",
+                )
+                generated_files = generator.generate_all_cases()
+                print(
+                    f"✅ 共生成 {len(generated_files)} 个测试用例文件：{generated_files}"
                 )

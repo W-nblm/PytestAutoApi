@@ -1,0 +1,51 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 产品与指令模型关系
+  allureStory: 添加产品自定义Int类型指令模型功能点
+product_productModel_addIntFunc_01:
+  host: ${{host()}}
+  url: /product/productModel/addIntFunc
+  method: POST
+  detail: 产品与指令模型关系 - 添加产品自定义Int类型指令模型功能点
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  is_run: null
+  data:
+    id: 0
+    productId: ''
+    modelCode: ''
+    upStatus: true
+    downStatus: true
+    cnName: ''
+    egName: ''
+    saveLog: true
+    isCustom: true
+    isPublish: true
+    type: ''
+    remark: ''
+    dataFunc:
+      uint: ''
+      min: 0
+      max: 0
+      step: 0
+      remark: ''
+    dmsType: 0
+  dependence_case: false
+  dependence_case_data: null
+  assert:
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType: null
+      message: 接口状态码不为200
+    msg:
+      jsonpath: $.msg
+      type: contains
+      value: 成功
+      AssertType: null
+  sql: null
+  setup_sql: null
