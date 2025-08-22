@@ -26,13 +26,19 @@ def root_path() -> Text:
 def ensure_path_sep(path: Text) -> Text:
     """
     兼容 Windows 和 Linux 的路径分隔符，并返回绝对路径
-    - 自动识别 / 和 \ 分隔符
-    - 自动拼接到项目根路径
-    - 自动规范化路径
     """
+    # 将所有分隔符统一替换为当前系统的分隔符
+    path = path.replace("\\", os.sep).replace("/", os.sep)
+
     # 去掉开头多余的分隔符，避免 join 出错
-    path = path.lstrip("/\\")
+    path = path.lstrip(os.sep)
+
     # 拼接路径
     full_path = os.path.join(root_path(), path)
+
     # 规范化路径分隔符
     return os.path.normpath(full_path)
+
+
+if __name__ == "__main__":
+    print(ensure_path_sep("\\common\\config.yaml"))
