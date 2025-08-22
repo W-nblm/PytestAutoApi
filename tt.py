@@ -147,7 +147,7 @@ class SwaggerExporter:
             os.makedirs(file_path)
         for name, header in api_headers.items():
             self.headers["knfie4j-gateway-request"] = header
-            self.export_swagger_yaml(name, self.headers, f"{file_path}{name}.yaml")
+            self.export_swagger_yaml(name, self.headers, f"{file_path}\{name}.yaml")
         return "✅ 导出成功"
 
 
@@ -181,7 +181,6 @@ class OpenAPITestcaseGenerator:
         """获取 allure feature 名称"""
         _allure_feature = self.openapi_data["info"]["description"]
         return _allure_feature
-
 
     def format_case_id(self, path: str) -> str:
         parts = [p for p in path.split("/") if p and not p.startswith("{")]
@@ -316,13 +315,8 @@ class OpenAPITestcaseGenerator:
                     continue
 
                 try:
-                    path = file_name.split("_")[-2]
-                    path = os.path.join(self.output_dir, path)
-                    if not os.path.exists(path):
-                        os.makedirs(path)
-
                     with open(
-                        file=os.path.join(path, f"{file_name}.yaml"),
+                        file=os.path.join(self.output_dir, f"{file_name}.yaml"),
                         mode="w",
                         encoding="utf-8",
                     ) as f:
@@ -342,8 +336,8 @@ class OpenAPITestcaseGenerator:
 
 
 if __name__ == "__main__":
-    # sw = SwaggerExporter()
-    # sw.export_swagger()
+    sw = SwaggerExporter()
+    sw.export_swagger()
     # generator = OpenAPITestcaseGenerator(
     #     input_file=r"D:\PytestAutoApi\Files\Swagger\appdevice-ali.yaml",
     #     output_dir="/Files/Testcase/",
@@ -356,11 +350,17 @@ if __name__ == "__main__":
     for root, dirs, files in os.walk(ensure_path_sep("/Files/Swagger/")):
         for file in files:
             if file.endswith(".yaml"):
+                output_dir = os.path.join(
+                    ensure_path_sep("/Files/Testcase/"), file.replace(".yaml", "")
+                )
+                if not os.path.exists(output_dir):
+                    os.makedirs(output_dir)
+
                 generator = OpenAPITestcaseGenerator(
                     input_file=os.path.join(root, file),
-                    output_dir="/Files/Testcase/",
+                    output_dir=output_dir,
                 )
                 generated_files = generator.generate_all_cases()
-                print(
-                    f"✅ 共生成 {len(generated_files)} 个测试用例文件：{generated_files}"
-                )
+                # print(
+                #     f"✅ 共生成 {len(generated_files)} 个测试用例文件：{generated_files}"
+                # )

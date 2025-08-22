@@ -1,0 +1,59 @@
+case_common:
+  allureEpic: 开发平台接口
+  allureFeature: banner
+  allureStory: banner
+
+wobirdy_upload_img_01:
+  host: ${{host()}}
+  url: /product/upload/common/uploadPublic
+  method: POST
+  detail: 正常登录
+  headers:
+    Content-Language: "zh_CN"
+    Authorization: $cache{token}
+
+  #      Content-Type: multipart/form-data;
+  # 请求的数据，是 params 还是 json、或者file、data
+  requestType: file
+  # 是否执行，空或者 true 都会执行
+  is_run: True
+  data:
+    file:
+      multipartFile: gifpic.gif
+    data:
+      fileBusType: bannerImage
+      fileMd5Str: d41d8cd98f00b204e9800998ecf8427e
+    # 是否有依赖业务，为空或者false则表示没有
+  dependence_case:
+    False
+    # 依赖的数据
+  dependence_case_data:
+    - case_id: code_01
+      dependent_data:
+        - dependent_type: response
+          jsonpath: $.data.uuid
+          set_cache: code_01_uuid
+
+        - dependent_type: response
+          jsonpath: $.data.img
+          set_cache: code_01_code
+  # 将当前请求的响应结果，设置到缓存中
+  current_request_set_cache:
+    - type: response
+      jsonpath: $.data.url
+      name: upload_img_01_url
+  assert:
+    # 断言接口状态码
+    code:
+      jsonpath: $.code
+      type: ==
+      value: 200
+      AssertType:
+      message: "上传图片成功"
+    # 断言接口返回的username
+    # username:
+    #   jsonpath: $.data.username
+    #   type: ==
+    #   value: "18800000001"
+    #   AssertType:
+  sql:

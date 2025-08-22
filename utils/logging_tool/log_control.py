@@ -1,5 +1,6 @@
 import logging
 from logging import handlers
+import os
 from typing import Text
 import time
 import colorlog
@@ -25,6 +26,9 @@ class LogHandler:
         when: Text = "D",
         fmt: Text = "%(levelname)-8s%(asctime)s%(name)s:%(filename)s:%(lineno)d %(message)s",
     ):
+        # 判断日志目录是否存在，不存在则创建
+        if not os.path.exists(os.path.dirname(filename)):
+            os.makedirs(os.path.dirname(filename))
         self.logger = logging.getLogger(filename)
         formatter = self.log_color()
         # 设置日志格式

@@ -190,9 +190,9 @@ def pytest_collection_modifyitems(items):
         sorted_items.extend(module_cases)
         collected_modules.discard(name)
 
-    # # 5. 剩余未配置的模块（保持原有顺序）
-    # for mod_name in list(collected_modules):
-    #     sorted_items.extend(module_map[mod_name])
+    # 5. 剩余未配置的模块（保持原有顺序）
+    for mod_name in list(collected_modules):
+        sorted_items.extend(module_map[mod_name])
 
     # 6. 更新 pytest 的执行顺序
     items[:] = sorted_items

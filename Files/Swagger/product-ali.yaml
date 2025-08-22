@@ -9802,7 +9802,7 @@ components:
       type: object
       properties:
         appSource:
-          pattern: ^(WOpet|WOcam)$
+          pattern: ^(WOpet|WOcam|WObird)$
           type: string
           description: 业务线
         feedbackType:
@@ -9913,6 +9913,9 @@ components:
           type: integer
           description: 反馈状态:1:待处理,2:处理中,3:待用户反馈,4:已结单
           format: int32
+        appSource:
+          type: string
+          description: 业务线
       description: 反馈列表查询入参
     PageQueryParamFeedbackListReq:
       type: object
