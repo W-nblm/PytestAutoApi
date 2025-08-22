@@ -160,80 +160,36 @@ class Device:
         msg = generalBuffData_pb2.GeneralBuffData()
         msg.ParseFromString(payload)
         INFO.logger.info(
-            f"[{self.device_id}] Received message on topic: {topic} \n{msg}"
+            f"[{self.device_id}] Received from plat message on topic: {topic} \n{msg}"
         )
 
-        if msg.type == "CheckModel":
-            buff = base64.b64decode(msg.buff)
-            check_model_msg = checkModel_pb2.CheckModelRequest()
-            check_model_msg.ParseFromString(buff)
-            INFO.logger.info(
-                f"[{self.device_id}] 收到平台下发检查模型请求: \n{check_model_msg}"
-            )
+        type_handler_map = {
+            "CheckModel": (checkModel_pb2.CheckModelRequest, "检查模型请求"),
+            "UpgradeFirm": (upgradeFirmware_pb2.UpgradeRequest, "固件升级请求"),
+            "FirmwareGet": (firmwareVersion_pb2.VersionRequest, "固件版本请求"),
+            "AppUnbind": (unbindUser_pb2.unbindRequest, "解绑请求"),
+            "Reboot": (reboot_pb2.rebootRequest, "重启请求"),
+            "CloudPackage": (devEventUp_pb2.EventVo, "云端下发数据"),
+            "StartPlay": (checkModel_pb2.CheckModelRequest, "开始播放指令"),
+            "StoreBucket": (devEventUp_pb2.EventVo, "StoreBucket"),
+            # "StopCloudPackage": None  # 不需要处理的可不写
+        }
 
-        if msg.type == "UpgradeFirm":
+        handler = type_handler_map.get(msg.type)
+        if handler:
+            proto_cls, desc = handler
             buff = base64.b64decode(msg.buff)
-            INFO.logger.info(f"[{self.device_id}] 收到平台下发固件请求: {buff}")
-            buff_data = upgradeFirmware_pb2.UpgradeRequest()
-            buff_data.ParseFromString(buff)
-            INFO.logger.info(
-                f"[{self.device_id}] Received message on topic: {topic} \n{buff_data}"
-            )
-
-        if msg.type == "FirmwareGet":
-            buff = base64.b64decode(msg.buff)
-            INFO.logger.info(f"[{self.device_id}] 收到平台下发固件版本请求: {buff}")
-            buff_data = firmwareVersion_pb2.VersionRequest()
-            buff_data.ParseFromString(buff)
-            INFO.logger.info(
-                f"[{self.device_id}] Received message on topic: {topic} \n{buff_data}"
-            )
-
-        if msg.type == "AppUnbind":
-            buff = base64.b64decode(msg.buff)
-            INFO.logger.info(f"[{self.device_id}] 收到平台下发解绑请求: {buff}")
-            buff_data = unbindUser_pb2.unbindRequest()
-            buff_data.ParseFromString(buff)
-            INFO.logger.info(
-                f"[{self.device_id}] Received message on topic: {topic} \n{buff_data}"
-            )
-
-        if msg.type == "Reboot":
-            buff = base64.b64decode(msg.buff)
-            INFO.logger.info(f"[{self.device_id}] 收到平台下发重启请求: {buff}")
-            buff_data = reboot_pb2.RebootRequest()
-            buff_data.ParseFromString(buff)
-            INFO.logger.info(
-                f"[{self.device_id}] Received message on topic: {topic} \n{buff_data}"
-            )
-
-        if msg.type == "CloudPackage":
-            buff = base64.b64decode(msg.buff)
-            INFO.logger.info(f"[{self.device_id}] 收到云端下发数据: {buff}")
-            buff_data = devEventUp_pb2.EventVo()
-            buff_data.ParseFromString(buff)
-            INFO.logger.info(
-                f"[{self.device_id}] Received message on topic: {topic} \n{buff_data}"
-            )
-
-        if msg.type == "StopCloudPackage":
-            pass
-        if msg.type == "StartPlay":
-            buff = base64.b64decode(msg.buff)
-            INFO.logger.info(f"[{self.device_id}] 收到平台下发开始播放指令: {buff}")
-            buff_data = checkModel_pb2.CheckModelRequest()
-            buff_data.ParseFromString(buff)
-            INFO.logger.info(
-                f"[{self.device_id}] Received message on topic: {topic} \n{buff_data}"
-            )
-        if msg.type == "StoreBucket":
-            buff = base64.b64decode(msg.buff)
-            INFO.logger.info(f"[{self.device_id}] 收到平台下发StoreBucket: {buff}")
-            buff_data = devEventUp_pb2.EventVo()
-            buff_data.ParseFromString(buff)
-            INFO.logger.info(
-                f"[{self.device_id}] Received message on topic: {topic} \n{buff_data}"
-            )
+            INFO.logger.info(f"[{self.device_id}] 收到平台下发{desc}: {buff}")
+            try:
+                buff_data = proto_cls()
+                buff_data.ParseFromString(buff)
+                INFO.logger.info(f"[{self.device_id}] 解析结果: \n{buff_data}")
+            except Exception as e:
+                ERROR.logger.error(f"[{self.device_id}] 解析{msg.type}失败: {e}")
+        elif msg.type == "StopCloudPackage":
+            INFO.logger.info(f"[{self.device_id}] 收到平台下发停止云端下发数据指令")
+        else:
+            INFO.logger.warning(f"[{self.device_id}] 未知消息类型: {msg.type}")
 
     def handle_plat_commands_response(self, topic: str, payload: bytes):
         """自定义处理平台命令响应"""
@@ -462,7 +418,7 @@ class Device:
         while True:
             # for event_type in buff_type_list:
             try:
-                event_type = "OssEventUp"
+                event_type = "BirdEvent"
                 event_obj = EventFactory.create_event(event_type, self.device_id)
                 protobuf_data = event_obj.generate()
 
