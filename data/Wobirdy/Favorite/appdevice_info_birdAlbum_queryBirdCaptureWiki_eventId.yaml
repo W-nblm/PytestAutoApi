@@ -5,7 +5,7 @@ case_common:
 
 wobirdy_query_bird_album_capture_wiki_01:
   host: ${{host()}}
-  url: /appdevice/info/birdAlbum/queryBirdCaptureWiki/$url_params{eventId}
+  url: /appdevice/info/birdAlbum/queryBirdCaptureWiki/$cache{home_event_id}
   method: GET
   detail: 我的收藏-云相册-单图片百科
   headers:

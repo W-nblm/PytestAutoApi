@@ -20,16 +20,13 @@ wobirdy_query_bird_capture_page_01:
   is_run:
   data:
     pageQuery:
-      pageSize: 5
+      pageSize: 20
       pageNum: 1
       orderByColumn: ""
       isAsc: ""
     paramData:
-      isMark: true
       etypes:
-        - penson
         - bird
-        - pet
     # 是否有依赖业务，为空或者false则表示没有
   dependence_case:
     False
@@ -46,7 +43,19 @@ wobirdy_query_bird_capture_page_01:
           jsonpath: $.banner_id
           replace_key: $.data.paramData.bannerName
           # set_cache: code_01_uuid
-
+  current_request_set_cache:
+    - type: response
+      jsonpath: $.data.rows[0].deviceBirdMomentEventVercollapVo.eventId
+      name: home_event_id
+    - type: response
+      jsonpath: $.data.rows[0].deviceBirdMomentEventVercollapVo.devId
+      name: home_devId
+    - type: response
+      jsonpath: $.data.rows[0].deviceBirdMomentEventVercollapVo.userId
+      name: home_userId
+    - type: response
+      jsonpath: $.data.rows[0].deviceBirdMomentEventVercollapVo.picUrl
+      name: home_picUrl
   assert:
     # 断言接口状态码,AssertType=SQL时与sql查询结果进行断言
     code:

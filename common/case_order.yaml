@@ -1,32 +1,33 @@
 strict: true
 modules:
-- name: Wobirdy/Favorite
-  enabled: true
-  cases:
-  - test_appdevice_info_birdAlbum_birdAiAlbumByImage
-  - test_appdevice_info_birdAlbum_deleteBirdAlbumImage
-  - test_appdevice_info_birdAlbum_queryBirdAlbumPage
-  - test_appdevice_info_birdAlbum_queryBirdCaptureWiki_eventId
-  - test_appdevice_info_birdMoment_birdAiByImageAndSaveCapture
-  - test_appdevice_info_birdMoment_birdAiCaptureByImage
-  - test_appdevice_info_birdMoment_captureFavorites
-  - test_appdevice_info_birdMoment_captureFavorites_eventId
-  - test_appdevice_info_birdMoment_countBydata
-  - test_appdevice_info_birdMoment_deleteBirdCaptureImage
-  - test_appdevice_info_birdMoment_queryBirdCapturePage
-  - test_appdevice_info_birdMoment_queryBirdCaptureWiki_eventId
-- name: Wobirdy/Login
-  enabled: true
-  cases:
-  - test_login
-  - test_upload_img
-- name: Wobirdy/My/Feedback
-  enabled: true
-  cases:
-  - test_appdevice_info_feedback_userIssue_addFeedback
-  - test_appdevice_info_feedback_userIssue_checkMessageHint
-  - test_appdevice_info_feedback_userIssue_completeFeedback_feedbackId
-  - test_appdevice_info_feedback_userIssue_continueFeedback
-  - test_appdevice_info_feedback_userIssue_queryDetailList_feedbackId
-  - test_appdevice_info_feedback_userIssue_queryIssueList
-  - test_appdevice_info_feedback_userIssue_queryIssueListPage
+  - name: Wobirdy/Favorite
+    enabled: true
+    cases:
+      - test_appdevice_info_birdAlbum_queryBirdAlbumPage
+      - test_appdevice_info_birdAlbum_birdAiAlbumByImage
+      - test_appdevice_info_birdAlbum_deleteBirdAlbumImage
+      - test_appdevice_info_birdAlbum_queryBirdCaptureWiki_eventId
+      - test_appdevice_info_birdMoment_queryBirdCapturePage
+      - test_appdevice_info_birdMoment_birdAiByImageAndSaveCapture
+      - test_appdevice_info_birdMoment_birdAiCaptureByImage
+      - test_appdevice_info_birdMoment_captureFavorites
+      - test_appdevice_info_birdMoment_captureFavorites_eventId
+      - test_appdevice_info_birdMoment_countBydata
+      - test_appdevice_info_birdMoment_deleteBirdCaptureImage
+      - test_appdevice_info_birdMoment_queryBirdCaptureWiki_eventId
+  - name: Wobirdy/Login
+    enabled: true
+    cases:
+      - test_login
+      - test_upload_img
+  - name: Wobirdy/My/Feedback
+    enabled: true
+    cases:
+      - test_appdevice_info_feedback_userIssue_addFeedback
+      - test_appdevice_info_feedback_userIssue_queryIssueList
+      - test_appdevice_info_feedback_userIssue_queryIssueListPage
+      - test_appdevice_info_feedback_userIssue_checkMessageHint
+      - test_appdevice_info_feedback_userIssue_continueFeedback
+      - test_appdevice_info_feedback_userIssue_queryDetailList_feedbackId
+      - test_appdevice_info_feedback_userIssue_completeFeedback_feedbackId
+

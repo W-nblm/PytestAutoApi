@@ -1,6 +1,6 @@
 case_common:
   allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
-  allureFeature: 喂鸟器抓拍相关
+  allureFeature: 鸟类首页
   allureStory: 鸟类 云录像, 统计
 appdevice_info_birdMoment_countBydata_01:
   host: ${{host()}}
@@ -14,10 +14,10 @@ appdevice_info_birdMoment_countBydata_01:
   requestType: json
   is_run: null
   data:
-    timeArea: ''
-    startTime: 0
-    endTime: 0
-    devId: ''
+    timeArea: 'US'
+    startTime: ${{get_prev_week_zero_ts_ms()}}
+    endTime: ${{timestamp()}}
+    devId: $cache{home_devId}
   dependence_case: false
   dependence_case_data: null
   assert:

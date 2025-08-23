@@ -2,6 +2,7 @@ import re
 import datetime
 import random
 from datetime import date, timedelta, datetime
+from zoneinfo import ZoneInfo
 from jsonpath import jsonpath
 from faker import Faker
 from utils.logging_tool.log_control import ERROR, INFO
@@ -88,13 +89,20 @@ class Context:
         )
 
     @classmethod
-    def before_week_time(cls):
-        """
-        一周后的0点时间
-        :param days:
-        :return:
-        """
-        return (date.today() + timedelta(days=+6)).strftime("%Y-%m-%d 00:00:00")
+    def get_prev_week_zero_ts_ms(cls, tz_name: str = "Asia/Shanghai") -> int:
+        """获取一周前零点的时间戳（毫秒，int）"""
+        tz = ZoneInfo(tz_name)
+        today_zero = datetime.now(tz).replace(hour=0, minute=0, second=0, microsecond=0)
+        prev_week_zero = today_zero - timedelta(days=7)
+        return int(prev_week_zero.timestamp() * 1000)
+
+    @classmethod
+    def get_next_week_zero_ts_ms(cls, tz_name: str = "Asia/Shanghai") -> int:
+        """获取一周后零点的时间戳（毫秒，int）"""
+        tz = ZoneInfo(tz_name)
+        today_zero = datetime.now(tz).replace(hour=0, minute=0, second=0, microsecond=0)
+        next_week_zero = today_zero + timedelta(days=7)
+        return int(next_week_zero.timestamp() * 1000)
 
     @classmethod
     def host(cls) -> str:

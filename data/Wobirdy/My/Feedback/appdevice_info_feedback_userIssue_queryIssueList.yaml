@@ -16,6 +16,7 @@ appdevice_info_feedback_userIssue_queryIssueList_01:
   data: {}
   dependence_case: false
   dependence_case_data: null
+
   assert:
     code:
       jsonpath: $.code

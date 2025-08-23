@@ -41,6 +41,12 @@ wobirdy_query_bird_album_page_01:
     - type: response
       jsonpath: $.data.birdAlbumAndWikiInfoPage.rows[0].deviceBirdAlbumSaveVercollapVo.eventId
       name: collect_event_id
+    - type: response
+      jsonpath: $.data.birdAlbumAndWikiInfoPage.rows[0].deviceBirdAlbumSaveVercollapVo.devId
+      name: collect_event_devId
+    - type: response
+      jsonpath: $.data.birdAlbumAndWikiInfoPage.rows[0].deviceBirdAlbumSaveVercollapVo.picUrl
+      name: collect_event_picUrl
   assert:
     code:
       jsonpath: $.code

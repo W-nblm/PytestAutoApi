@@ -15,13 +15,17 @@ appdevice_info_feedback_userIssue_queryIssueListPage_01:
   is_run: null
   data:
     pageQuery:
-      pageSize: 0
-      pageNum: 0
+      pageSize: 20
+      pageNum: 1
       orderByColumn: ''
       isAsc: ''
     paramData: {}
   dependence_case: false
   dependence_case_data: null
+  current_request_set_cache:
+    - type: response
+      jsonpath: $.data.rows[0].feedbackId
+      name: feedbackId
   assert:
     code:
       jsonpath: $.code

@@ -237,12 +237,15 @@ class TestCaseAutomaticGeneration:
                 # 生成测试用例方法名
                 case_ids = self.case_ids(yaml_case_process)
                 func_title = self.func_title(yf)  # 用例标题
+                allure_feature = self.allure_feature(yaml_case_process, yf)  # 用例模块
                 allure_story = self.allure_story(yaml_case_process, yf)  # 用例描述
                 re_data = f"regular(str(GetTestCase.case_data({case_ids})))"
                 method = f"""
+    @allure.feature("{allure_feature}")
     @allure.story("{allure_story}")
     @pytest.mark.parametrize('in_data', eval({re_data}), ids=[i['detail'] for i in GetTestCase.case_data({case_ids})])
     def test_{func_title}(self, in_data, case_skip):
+        allure.dynamic.title(f"{func_title}"+"_"+in_data["detail"])
         INFO.logger.info("data: %s", in_data)
         res = RequestControl(in_data).http_request()
         TearDownHandler(res).teardown_handle()
@@ -274,7 +277,6 @@ from utils.request_tool.teardown_control import TearDownHandler
 from utils.logging_tool.log_control import ERROR, INFO
 
 @allure.epic("{dir_name}")
-@allure.feature("{dir_name}")
 class {class_title}:
 {methods_code}
 

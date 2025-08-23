@@ -15,13 +15,13 @@ wobirdy_delete_bird_capture_image_01:
     Platform: "apple"
   # Content-Type: multipart/form-data;
   # 请求的数据，是 params 还是 json、或者file、data
-  requestType: None
+  requestType: json
   # 是否执行，空或者 true 都会执行
   is_run:
   data:
-    userId: $cache{userId}
-    eventId: ""
-    zeroTime: 0
+    userId: $cache{home_userId}
+    eventId: $cache{home_event_id}
+    zeroTime: ${{timestamp()}}
     # 是否有依赖业务，为空或者false则表示没有
   dependence_case:
     False

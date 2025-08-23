@@ -5,7 +5,7 @@ case_common:
 
 wobirdy_query_bird_capture_wiki_01:
   host: ${{host()}}
-  url: /appdevice/info/birdMoment/queryBirdCaptureWiki/$url_params{eventId}
+  url: /appdevice/info/birdMoment/queryBirdCaptureWiki/$url_params{home_event_id}
   method: GET
   detail: 鸟类首页-单图片百科
   headers:

@@ -22,6 +22,7 @@ wobirdy_delete_bird_album_image_01:
     paramList:
       - userId: $cache{userId}
         eventId: $cache{collect_event_id}
+        zeroTime: ${{timestamp()}}
     # 是否有依赖业务，为空或者false则表示没有
   dependence_case:
     true

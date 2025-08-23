@@ -14,10 +14,10 @@ appdevice_info_feedback_userIssue_continueFeedback_01:
   requestType: json
   is_run: null
   data:
-    feedbackId: ''
+    feedbackId: $cache{feedbackId}
     imageUrlList: []
     videoUrlList: []
-    feedbackContent: ''
+    feedbackContent: "test"
   dependence_case: false
   dependence_case_data: null
   assert:

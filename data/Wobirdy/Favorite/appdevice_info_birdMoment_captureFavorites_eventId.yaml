@@ -1,10 +1,10 @@
 case_common:
   allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
-  allureFeature: 喂鸟器抓拍相关
+  allureFeature: 鸟类首页
   allureStory: 鸟类首页 收藏
 appdevice_info_birdMoment_captureFavorites_01:
   host: ${{host()}}
-  url: /appdevice/info/birdMoment/captureFavorites/$cache{eventId}
+  url: /appdevice/info/birdMoment/captureFavorites/$cache{home_event_id}
   method: PUT
   detail: 喂鸟器抓拍相关 - 鸟类首页 收藏
   headers:

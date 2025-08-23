@@ -5,7 +5,7 @@ case_common:
 
 wobirdy_capture_favorites_01:
   host: ${{host()}}
-  url: /appdevice/info/birdMoment/captureFavorites/$url_params{eventId}
+  url: /appdevice/info/birdMoment/captureFavorites/$url_params{home_event_id}
   method: PUT
   detail: 鸟类首页-收藏
   headers:
