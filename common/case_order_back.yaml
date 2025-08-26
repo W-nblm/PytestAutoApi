@@ -1,5 +1,9 @@
 strict: true
 modules:
+- name: Wobirdy/Common
+  enabled: true
+  cases:
+  - test_common_upload_img
 - name: Wobirdy/Favorite
   enabled: true
   cases:
@@ -19,7 +23,6 @@ modules:
   enabled: true
   cases:
   - test_login
-  - test_upload_img
 - name: Wobirdy/My/Feedback
   enabled: true
   cases:

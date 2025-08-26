@@ -28,7 +28,6 @@ def run():
                 "--alluredir",
                 "./report/tmp",
                 "--clean-alluredir",
-                # "--collect-only",
             ]
         )
         os.system(r"allure generate ./report/tmp -o ./report/html --clean")

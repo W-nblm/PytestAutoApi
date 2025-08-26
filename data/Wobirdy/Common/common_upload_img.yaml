@@ -1,7 +1,7 @@
 case_common:
   allureEpic: 开发平台接口
-  allureFeature: banner
-  allureStory: banner
+  allureFeature: 上传图片
+  allureStory: 长传图片接口
 
 wobirdy_upload_img_01:
   host: ${{host()}}
