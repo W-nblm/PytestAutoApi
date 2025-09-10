@@ -1,0 +1,26 @@
+devices_info:
+  - device_description: "Samsung Galaxy note10"
+    desired_caps:
+      deviceName: "R38M807ZVXB"
+      platformName: "Android"
+      platformVersion: "13"
+      appPackage: "com.lzy.wobirdy"
+      appActivity: "com.lzy.wobirdy.ui.activity.SplashActivity"
+      automationName: "UiAutomator2"
+      fullReset: false
+      noReset: false
+    server_url: "http://127.0.0.1"
+    server_port: "4723"
+    server_path: "/wd/hub"
+  - device_description: "Samsung Galaxy S21 Ultra"
+    desired_caps:
+      deviceName: "R38M807ZVXB"
+      platformName: "Android"
+      platformVersion: "13"
+      appPackage: "com.lzy.wobirdy"
+      appActivity: "com.lzy.wobirdy.ui.activity.SplashActivity"
+      automationName: "UiAutomator2"
+      fullReset: false
+    server_url: "http://127.0.0.1"
+    server_port: "4723"
+    server_path: "/wd/hub"

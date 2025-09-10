@@ -51,9 +51,9 @@ class DeviceManager:
             try:
                 INFO.logger.info(f"[{device.device_id}] 启动心跳/上报任务")
                 t1 = asyncio.create_task(device.run_keeplive_loop())
-                t2 = asyncio.create_task(device.property_report_loop())
+                t2 = asyncio.create_task(device.run_single_property_report_loop("battery_quantity"))
                 t3 = asyncio.create_task(device.device_to_plat_loop())
-                self.tasks[device.device_id].extend([t1, t2, t3])
+                self.tasks[device.device_id].extend([ t2])
                 INFO.logger.info(f"[{device.device_id}] 后台任务已启动")
             except Exception as e:
                 ERROR.logger.error(f"[{device.device_id}] 启动任务失败: {e}")

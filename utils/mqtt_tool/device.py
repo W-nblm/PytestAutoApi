@@ -308,7 +308,7 @@ class Device:
             },
             "battery_quantity": {
                 "type": "INTEGER",
-                "value": "74",
+                "value": "4",
                 "time": "1755155348664",
             },
             "anti_flicker": {"type": "ENUM", "value": "0", "time": "1755155339413"},
@@ -332,7 +332,7 @@ class Device:
             :param default_type: 如果 data 中没有 type 字段,使用的默认值
             :return: list[proto_cls]
             """
-            proto_objects = []
+            proto_objects = {}
             for code, detail in data_list.items():
                 # 深拷贝模板,避免相互影响
                 data_dict = deepcopy(template_data)
@@ -345,7 +345,7 @@ class Device:
                     proto_obj = cmdPro_pb2.CmdProResponse()
                     ParseDict(data_dict, proto_obj)
                     proto_obj_serialize = proto_obj.SerializeToString()
-                    proto_objects.append(proto_obj_serialize)
+                    proto_objects[code] = proto_obj_serialize
                     INFO.logger.info(
                         f"[{self.device_id}] 构造 protobuf 对象: {proto_obj}"
                     )
@@ -357,7 +357,10 @@ class Device:
             return proto_objects
 
         proto_list = build_protobuf_list(template_data, data_list)
+
         INFO.logger.info(proto_list)
+
+        return topic, proto_list
         # request_protobuf = cmdPro_pb2.CmdProResponse()
         # request_protobuf.result = 1
         # request_protobuf.objDevId = self.device_id
@@ -370,16 +373,33 @@ class Device:
         # request_protobuf.requestId = self.device_id
 
         # request_protobuf_serialize = request_protobuf.SerializeToString()
+
+    async def run_property_report_loop(self):
+        """
+        循环上报设备属性
+        """
+        topic, proto_list = await self.property_report_loop()
         while True:
-            for proto_obj_serialize in proto_list:
+            for proto_obj_serialize in proto_list.values():
                 await self.mqtt.publish(topic, proto_obj_serialize)
                 INFO.logger.info(f"[{self.device_id}] 上报属性")
                 await asyncio.sleep(1)
             await asyncio.sleep(300)
 
+    async def run_single_property_report_loop(self, code):
+        """
+        上传单个属性
+        """
+        topic, proto_list = await self.property_report_loop()
+        proto_obj_serialize = proto_list[code]
+        while True:
+            await self.mqtt.publish(topic, proto_obj_serialize)
+            INFO.logger.info(f"[{self.device_id}] 上报属性")
+            await asyncio.sleep(1)
+
     async def device_to_plat_loop(self):
         """ "
-        设备主动向
+        设备主动向平台发送消息循环
         命令类型:
         FirmwareUp:设备上传固件版本;
         ShadowGet:设备主动获取一需要更新的影子设备属性;

@@ -4,6 +4,7 @@
     "aiomqtt",
     "alluredir",
     "appdevice",
+    "appium",
     "autouse",
     "datas",
     "ddddocr",
@@ -16,6 +17,7 @@
     "nodeid",
     "numcollected",
     "optype",
+    "paddleocr",
     "paho",
     "protoc",
     "publickey",
@@ -34,6 +36,5 @@
     "wobirdy",
     "worbirdy",
     "wykhome"
-  ],
-  
+  ]
 }

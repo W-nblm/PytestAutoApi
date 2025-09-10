@@ -19,3 +19,11 @@ if __name__ == "__main__":
         data[json.loads(k)] = MessageToDict(msg)
     print("================================================")
     print(data)
+
+    from google.protobuf.json_format import ParseDict   
+
+    battery = {'type': 'INTEGER', 'value': '4', 'time': '1756699138775'}
+    msg = deviceProp_pb2.PropDataVo()
+    ParseDict(battery, msg)
+    s_data = base64.b64encode(msg.SerializeToString())
+    print(s_data)
