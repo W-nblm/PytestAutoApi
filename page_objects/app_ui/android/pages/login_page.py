@@ -1,15 +1,17 @@
 from time import sleep
 from typing import Literal
 from selenium.common.exceptions import TimeoutException
-from basepage.base import BasePages
+from common.appium.appOperator import AppOperator
 from page_objects.app_ui.android.elements.login_wobird import LoginWobirdElements as le
 from page_objects.app_ui.android.elements.login_wobird import HomeWobirdElements as he
 from page_objects.app_ui.android.elements.login_wobird import UserInfoElements as ue
 from page_objects.app_ui.android.elements.login_wobird import AreaSelectElements as ae
-from page_objects.app_ui.android.elements.login_wobird import ForgotPasswordElements as fe
+from page_objects.app_ui.android.elements.login_wobird import (
+    ForgotPasswordElements as fe,
+)
 
 
-class LoginPage(BasePages):
+class LoginPage(AppOperator):
     """
     登录界面
     """
@@ -84,7 +86,9 @@ class LoginPage(BasePages):
             self.input(*ae.SEARCH_INPUT, value=area)
             self.click(name, text)
 
-    def change_forget_password_area(self, area, method: Literal["swipe", "search"] = "swipe"):
+    def change_forget_password_area(
+        self, area, method: Literal["swipe", "search"] = "swipe"
+    ):
         # 切换忘记密码区域
         self.click(*fe.AREA_SELECT_BUTTON)
         # 选择区域
@@ -95,7 +99,7 @@ class LoginPage(BasePages):
         elif method == "search":
             self.input(*ae.SEARCH_INPUT, value=area)
             self.click(name, text)
-    
+
     def input_forget_password_account(self, account):
         # 输入忘记密码账号
         self.input(*fe.ACCOUNT_INPUT, value=account)

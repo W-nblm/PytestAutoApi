@@ -1,0 +1,1 @@
+[33mWARNING [0m easyocr.easyocr:easyocr.py:71 Using CPU. Note: This module is much faster with a GPU.

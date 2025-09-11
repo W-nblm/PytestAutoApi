@@ -1,0 +1,11 @@
+[33mWARNING [0m easyocr.easyocr:easyocr.py:71 Using CPU. Note: This module is much faster with a GPU.
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-11.log:test_login.py:62 {'username': '834532523@qq.com', 'password': 'w12345678', 'expected': '请阅读并同意用户协议', 'description': '未同意协议'}
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-11.log:appOperator.py:41 name xpath, text //*[@class="android.widget.EditText"][1]
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-11.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="ab478356-1908-4930-857b-39de8ae350f7", element="00000000-0000-02c6-ffff-ffff00000015")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-11.log:appOperator.py:41 name xpath, text //*[@class="android.widget.EditText"][1]
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-11.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="ab478356-1908-4930-857b-39de8ae350f7", element="00000000-0000-02c6-ffff-ffff00000015")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-11.log:appOperator.py:41 name xpath, text //*[@class="android.widget.EditText"][2]
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-11.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="ab478356-1908-4930-857b-39de8ae350f7", element="00000000-0000-02c6-ffff-ffff00000016")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-11.log:appOperator.py:41 name xpath, text //*[@class="android.widget.EditText"][2]
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-11.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="ab478356-1908-4930-857b-39de8ae350f7", element="00000000-0000-02c6-ffff-ffff00000016")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-11.log:appOperator.py:41 name id, text com.lzy.wobird:id/btn_sign_in

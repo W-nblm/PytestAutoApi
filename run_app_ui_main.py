@@ -38,15 +38,17 @@ def start_app_device(device_info):
     # 缓存设备信息
     device_desired_caps = device_info["desired_caps"]
     CacheHandler.update_cache(
-        cache_name="device" + str(os.getpid()), value=device_desired_caps
+        cache_name="device" + str(os.getpid()), value=device_info
     )
     INFO.logger.info(
-        f"{TimeControl.get_current_time()} 缓存设备信息成功\n{device_desired_caps}"
+        f"{TimeControl.get_current_time()} 缓存设备信息成功\n{device_info}"
     )
     INFO.logger.info(f"{TimeControl.get_current_time()} 开始启动app")
 
     pytest_execute_params = [
         "-v",
+        "-s",
+        "./cases/app_ui/android",
         "--alluredir",
         "output/app_ui/%s/report_data/" % (device_desired_caps["deviceName"]),
     ]

@@ -5,12 +5,12 @@ from utils.read_files_tool.yaml_control import GetYamlData
 from utils.logging_tool.log_control import INFO, ERROR, WARNING
 from appium import webdriver
 import os
-from common.appium import appOperator
+from common.appium.appOperator import AppOperator
 
 
 class Android_UI_Client(object):
     __instance = None
-    __inited = False
+    __inited = None
 
     def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
@@ -24,9 +24,7 @@ class Android_UI_Client(object):
 
             # 获取设备信息
             self.device_info = self.get_device_info()
-            self.current_desired_caps = self.device_info.get(
-                "current_desired_capabilities"
-            )
+            self.current_desired_caps = self.device_info.get("desired_caps")
             self.fullReset = self.device_info.get("fullReset", False)
             self.noReset = self.device_info.get("noReset", False)
             self.appium_hub = (
@@ -45,11 +43,11 @@ class Android_UI_Client(object):
                 self.current_desired_caps,
             )
 
-            # 判断是否需要重置app
-            if is_reset_app:
-                self.driver.reset()
+        # 判断是否需要重置app
+        if is_reset_app:
+            self.driver.reset()
 
-            self.appOperator = appOperator(self.driver, self.appium_hub)
+        self.appOperator = AppOperator(self.driver, self.appium_hub)
 
     def get_device_info(self) -> dict:
         # 获取设备配置信息

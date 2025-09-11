@@ -1,23 +1,16 @@
 import time
 import cv2
 from PIL import Image
-from paddleocr import PaddleOCR
-
+import easyocr
 from utils.logging_tool.log_control import INFO, ERROR, WARNING
 
 
 class OCRProcessor:
     def __init__(self):
         """
-        初始化 PaddleOCR，使用优化参数
+        初始化 PaddleOCR使用优化参数
         """
-        self.ocr = PaddleOCR(
-            use_angle_cls=True,
-            lang="ch",
-            det_db_box_thresh=0.5,
-            use_mp=True,
-            rec_algorithm="CRNN",
-        )
+        self.ocr = easyocr.Reader(["ch_sim", "en"], gpu=False)
 
     def recognize_text(self, image_path=None, roi=None):
         """
@@ -65,16 +58,13 @@ class OCRProcessor:
 
         # OCR 识别
 
-        result = self.ocr.ocr(cropped_image, cls=True)
+        result = self.ocr.readtext(cropped_image, detail=0)
         # 检查 OCR 返回结果是否有效
         if result == [None]:
             WARNING.logger.warning("OCR 识别未返回任何结果。")
             # print("OCR 识别未返回任何结果。")
             return []
-        result_text = [
-            word[1][0] for line in result for word in line if word and word[1]
-        ]
-
+        result_text = ",".join(result)
         # 日志记录
         INFO.logger.info(f"⏳ OCR 识别耗时: {time.perf_counter() - start_time:.2f}秒")
         INFO.logger.info(f"📝 识别区域: {roi} | 结果: {result_text}")

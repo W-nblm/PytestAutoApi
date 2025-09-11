@@ -1,23 +1,26 @@
 from time import sleep
 import allure
 import pytest
+from common.setting import ensure_path_sep
 from page_objects.app_ui.android.pages.login_page import LoginPage
 from utils.logging_tool.log_control import INFO, ERROR, WARNING
 from utils.other_tools.ocr import OCRProcessor
+from utils.read_files_tool.yaml_control import GetYamlData
 
 
 class TestLogin:
-    @pytest.fixture(scope="function", autouse=True)
-    def setup(self, driver):
-        self.ocr = OCRProcessor()
-        self.lg = LoginPage(driver=driver)
+    case_data = GetYamlData(
+        ensure_path_sep("/data/app_ui/login_page.yaml")
+    ).get_yaml_data()
 
-    @pytest.mark.skip(reason="跳过测试")
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, app):
+        self.ocr = OCRProcessor()
+        self.lg = LoginPage(app.driver, app.appium_hub)
+
     @allure.feature("登录模块")
     @allure.title("登录测试用例")
-    @pytest.mark.parametrize(
-        "case", load_yaml("./wobird/wobird_data/login_page.yaml")["login_cases"]
-    )
+    @pytest.mark.parametrize("case", case_data["login_cases"])
     def test_login(self, case):
         """
         登录测试用例,
@@ -46,12 +49,11 @@ class TestLogin:
             )
             assert case["expected"] in result_text, "测试失败"
 
-    @pytest.mark.skip(reason="跳过测试")
     @allure.feature("登录模块")
     @allure.title("未勾选隐私协议")
     @pytest.mark.parametrize(
         "case",
-        load_yaml("./wobird/wobird_data/login_page.yaml")["login_without_agreement"],
+        case_data["login_without_agreement"],
     )
     def test_login_without_agreement(self, case):
         """
@@ -74,12 +76,11 @@ class TestLogin:
         )
         assert case["expected"] in result_text, "测试失败"
 
-    @pytest.mark.skip(reason="跳过测试")
     @allure.feature("登录模块")
     @allure.title("选择不同区域登录")
     @pytest.mark.parametrize(
         "case",
-        load_yaml("./wobird/wobird_data/login_page.yaml")["login_area_cases"],
+        case_data["login_area_cases"],
     )
     def test_login_with_area(self, case):
         """
@@ -108,7 +109,7 @@ class TestLogin:
     @allure.title("忘记密码")
     @pytest.mark.parametrize(
         "case",
-        load_yaml("./wobird/wobird_data/login_page.yaml")["login_area_cases"],
+        case_data["login_area_cases"],
     )
     def test_forget_password(self, case):
         """

@@ -1,11 +1,11 @@
 devices_info:
   - device_description: "Samsung Galaxy note10"
     desired_caps:
-      deviceName: "R38M807ZVXB"
+      deviceName: "R3CM801F1BY"
       platformName: "Android"
-      platformVersion: "13"
+      platformVersion: "12"
       appPackage: "com.lzy.wobirdy"
-      appActivity: "com.lzy.wobirdy.ui.activity.SplashActivity"
+      appActivity: "com.lzy.wobirdy.ui.SplashActivity"
       automationName: "UiAutomator2"
       fullReset: false
       noReset: false
@@ -14,11 +14,11 @@ devices_info:
     server_path: "/wd/hub"
   - device_description: "Samsung Galaxy S21 Ultra"
     desired_caps:
-      deviceName: "R38M807ZVXB"
+      deviceName: "R3CM801F1BY"
       platformName: "Android"
       platformVersion: "13"
       appPackage: "com.lzy.wobirdy"
-      appActivity: "com.lzy.wobirdy.ui.activity.SplashActivity"
+      appActivity: "com.lzy.wobirdy.ui.SplashActivity"
       automationName: "UiAutomator2"
       fullReset: false
     server_url: "http://127.0.0.1"
