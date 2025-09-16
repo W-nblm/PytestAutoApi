@@ -5,8 +5,8 @@ from utils.ble.packet_utils import json_to_binary_packets, parse_packet
 from utils.ble.ble_client import BLEClient
 
 SERVICE_UUID = "0000181c-0000-1000-8000-00805f9b34fb"
-WRITE_CHAR_UUID = "00002A8A-0000-1000-8000-00805f9b34fb"
-NOTIFY_CHAR_UUID = "00002A90-0000-1000-8000-00805f9b34fb"
+WRITE_CHAR_UUID = "00002a8a-0000-1000-8000-00805f9b34fb"
+NOTIFY_CHAR_UUID = "00002a90-0000-1000-8000-00805f9b34fb"
 
 
 def notification_handler(sender, data):
@@ -18,7 +18,7 @@ async def main():
     ble_client = BLEClient(SERVICE_UUID, WRITE_CHAR_UUID, NOTIFY_CHAR_UUID)
 
     print("🔍 正在扫描设备...")
-    devices = await ble_client.scan_devices(name_prefix="S24")
+    devices = await ble_client.scan_devices(name_prefix="wobirdy")
     if not devices:
         print("❌ 未找到设备")
         return
@@ -51,12 +51,15 @@ async def main():
         "userId": "uub197c66706beq0qc",
         "ssid": "test",
         "pwd": "w12345678",
-        "taskid": "0798b7d3e7934c8",
+        "taskid": "21ff2308bc914eb",
     }
+
     command = 0x01
     packets = json_to_binary_packets(str(json_str), command)
     for packet in packets:
         await ble_client.write_data(packet, response=True)
+
+    print("发送数据成功")
 
     await asyncio.sleep(10)
     await ble_client.stop_notify()

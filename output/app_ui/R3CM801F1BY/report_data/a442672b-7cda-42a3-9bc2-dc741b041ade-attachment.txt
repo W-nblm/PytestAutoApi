@@ -1,0 +1,21 @@
+[33mWARNING [0m easyocr.easyocr:easyocr.py:71 Using CPU. Note: This module is much faster with a GPU.
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:test_login.py:28 {'username': '000000000@qq.com', 'password': 'w123456789', 'expected': '密码输入错误', 'description': '账号错误'}
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:41 name id, text com.lzy.wobirdy:id/cb_agree
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="f254e4f0-3cdf-42b7-a378-e5026b1da0b8", element="00000000-0000-0484-ffff-ffff0000001a")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:167 元素是否被勾选checked属性：false
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:41 name id, text com.lzy.wobirdy:id/cb_agree
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="f254e4f0-3cdf-42b7-a378-e5026b1da0b8", element="00000000-0000-0484-ffff-ffff0000001a")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:148 点击元素：id,com.lzy.wobirdy:id/cb_agree
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:41 name xpath, text //*[@class="android.widget.EditText"][1]
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="f254e4f0-3cdf-42b7-a378-e5026b1da0b8", element="00000000-0000-0484-ffff-ffff00000015")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:41 name xpath, text //*[@class="android.widget.EditText"][1]
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="f254e4f0-3cdf-42b7-a378-e5026b1da0b8", element="00000000-0000-0484-ffff-ffff00000015")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:41 name xpath, text //*[@class="android.widget.EditText"][2]
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="f254e4f0-3cdf-42b7-a378-e5026b1da0b8", element="00000000-0000-0484-ffff-ffff00000016")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:41 name xpath, text //*[@class="android.widget.EditText"][2]
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="f254e4f0-3cdf-42b7-a378-e5026b1da0b8", element="00000000-0000-0484-ffff-ffff00000016")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:41 name id, text com.lzy.wobirdy:id/btn_sign_in
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:60 查到的元素：<appium.webdriver.webelement.WebElement (session="f254e4f0-3cdf-42b7-a378-e5026b1da0b8", element="00000000-0000-0484-ffff-ffff00000017")>
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:148 点击元素：id,com.lzy.wobirdy:id/btn_sign_in
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:ocr.py:69 ⏳ OCR 识别耗时: 0.50秒
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:ocr.py:70 📝 识别区域: (500, 1300, 950, 1700) | 结果: 密码输入错误

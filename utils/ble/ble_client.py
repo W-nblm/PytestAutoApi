@@ -31,7 +31,6 @@ class BLEClient:
         if self.client:
             print("🔍 正在发现服务和特征...")
             services = self.client.services
-            
             for service in services:
                 print(f"服务: {service.uuid}")
                 for char in service.characteristics:
@@ -47,6 +46,7 @@ class BLEClient:
             await self.client.write_gatt_char(
                 self.write_char_uuid, data, response=response
             )
+            print(f"已发送数据: {data}")
 
     async def start_notify(self, callback: Callable):
         if self.client:

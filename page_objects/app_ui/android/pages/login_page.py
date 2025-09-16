@@ -2,11 +2,11 @@ from time import sleep
 from typing import Literal
 from selenium.common.exceptions import TimeoutException
 from common.appium.appOperator import AppOperator
-from page_objects.app_ui.android.elements.login_wobird import LoginWobirdElements as le
-from page_objects.app_ui.android.elements.login_wobird import HomeWobirdElements as he
-from page_objects.app_ui.android.elements.login_wobird import UserInfoElements as ue
-from page_objects.app_ui.android.elements.login_wobird import AreaSelectElements as ae
-from page_objects.app_ui.android.elements.login_wobird import (
+from page_objects.app_ui.android.elements.login_wobirdy import LoginWobirdElements as le
+from page_objects.app_ui.android.elements.login_wobirdy import HomeWobirdElements as he
+from page_objects.app_ui.android.elements.login_wobirdy import UserInfoElements as ue
+from page_objects.app_ui.android.elements.login_wobirdy import AreaSelectElements as ae
+from page_objects.app_ui.android.elements.login_wobirdy import (
     ForgotPasswordElements as fe,
 )
 

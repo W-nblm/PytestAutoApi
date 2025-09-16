@@ -1,0 +1,3 @@
+[33mWARNING [0m easyocr.easyocr:easyocr.py:71 Using CPU. Note: This module is much faster with a GPU.
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:test_login.py:118 {'username': '834532523@qq.com', 'password': 'w12345678', 'expected': '登录成功', 'description': '搜索区域并选择选择不同的区域登录', 'area': '日本', 'method': 'search'}
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:41 name id, text com.lzy.wobirdy:id/tv_forgot

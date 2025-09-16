@@ -1,0 +1,5 @@
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:android_ui_client.py:58 初始化设备的基础数据
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:android_ui_client.py:60 初始化设备的基础数据完成
+[33mWARNING [0m easyocr.easyocr:easyocr.py:71 Using CPU. Note: This module is much faster with a GPU.
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:test_login.py:28 {'username': '834532523@qq.com', 'password': 'w12345678', 'expected': '登录成功', 'description': '正常登录'}
+[32mINFO    [0m d:\PytestAutoApi\logs\info-2025-09-12.log:appOperator.py:41 name id, text com.lzy.wobird:id/cb_agree

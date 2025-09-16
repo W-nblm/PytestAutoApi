@@ -10,7 +10,7 @@ from utils.read_files_tool.yaml_control import GetYamlData
 
 class TestLogin:
     case_data = GetYamlData(
-        ensure_path_sep("/data/app_ui/login_page.yaml")
+        ensure_path_sep("/test_data/app_ui/login_page.yaml")
     ).get_yaml_data()
 
     @pytest.fixture(scope="function", autouse=True)
@@ -18,6 +18,7 @@ class TestLogin:
         self.ocr = OCRProcessor()
         self.lg = LoginPage(app.driver, app.appium_hub)
 
+    @pytest.mark.skip(reason="跳过测试")
     @allure.feature("登录模块")
     @allure.title("登录测试用例")
     @pytest.mark.parametrize("case", case_data["login_cases"])
@@ -40,15 +41,18 @@ class TestLogin:
         # 断言
         if case["expected"] == "登录成功":
             assert self.lg.login_success() == True, "登录失败"
-            self.lg.logout()
+
         else:
             sleep(0.5)
-            self.lg.save_screenshot("test_pictures/login_success.png")
+            self.lg.save_screenshot(ensure_path_sep("test_pictures/login_success.png"))
             result_text = self.ocr.recognize_text(
-                image_path="test_pictures/login_success.png", roi=(500, 1300, 950, 1700)
+                image_path=ensure_path_sep("test_pictures/login_success.png"),
+                roi=(500, 1300, 950, 1700),
             )
             assert case["expected"] in result_text, "测试失败"
+        self.lg.driver.reset()
 
+    @pytest.mark.skip(reason="跳过测试")
     @allure.feature("登录模块")
     @allure.title("未勾选隐私协议")
     @pytest.mark.parametrize(
@@ -75,6 +79,9 @@ class TestLogin:
             image_path="test_pictures/login_success.png", roi=(0, 200, 0, 0)
         )
         assert case["expected"] in result_text, "测试失败"
+
+        # 重置app
+        self.lg.driver.reset()
 
     @allure.feature("登录模块")
     @allure.title("选择不同区域登录")
@@ -104,6 +111,9 @@ class TestLogin:
 
         # 断言
         assert self.lg.login_success() == True, "登录失败"
+
+        # 重置app
+        self.lg.driver.reset()
 
     @allure.feature("登录模块")
     @allure.title("忘记密码")

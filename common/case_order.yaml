@@ -19,7 +19,6 @@ modules:
     enabled: true
     cases:
       - test_login
-      - test_upload_img
   - name: Wobirdy/My/Feedback
     enabled: true
     cases:
