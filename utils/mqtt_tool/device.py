@@ -308,7 +308,7 @@ class Device:
             },
             "battery_quantity": {
                 "type": "INTEGER",
-                "value": "4",
+                "value": "10",
                 "time": "1755155348664",
             },
             "anti_flicker": {"type": "ENUM", "value": "0", "time": "1755155339413"},
@@ -395,7 +395,7 @@ class Device:
         while True:
             await self.mqtt.publish(topic, proto_obj_serialize)
             INFO.logger.info(f"[{self.device_id}] 上报属性")
-            await asyncio.sleep(1)
+            await asyncio.sleep(10)
 
     async def device_to_plat_loop(self):
         """ "

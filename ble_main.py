@@ -10,6 +10,7 @@ NOTIFY_CHAR_UUID = "00002a90-0000-1000-8000-00805f9b34fb"
 
 
 def notification_handler(sender, data):
+    print(f"收到通知: {data}")
     parsed = parse_packet(data)
     print(f"接收到数据: {parsed}")
 
@@ -56,11 +57,18 @@ async def main():
 
     command = 0x01
     packets = json_to_binary_packets(str(json_str), command)
-    for packet in packets:
-        await ble_client.write_data(packet, response=True)
+    print(f"分包长度{len(packets[0])}")
 
-    print("发送数据成功")
+    await ble_client.read_data()
+    n = 1000
+    while n > 0:
+        for packet in packets:
+            await ble_client.write_data(packet, response=True)
 
+            print("发送数据成功")
+            await asyncio.sleep(0.1)
+        await asyncio.sleep(1)
+        n -= 1
     await asyncio.sleep(10)
     await ble_client.stop_notify()
     await ble_client.disconnect()

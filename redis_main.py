@@ -10,7 +10,7 @@ if __name__ == "__main__":
     import json
 
     redis_helper = RedisHelper(db=5)
-    res = redis_helper.get_cached_messages("dev:op:shadowProp:d-8d8b4768-ns6aoiho")
+    res = redis_helper.get_cached_messages("dev:op:shadowProp:d-8d8b4768-ns6aoi66")
     print(res)
     msg = deviceProp_pb2.PropDataVo()
     data = {}

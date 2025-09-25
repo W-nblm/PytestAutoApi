@@ -16,7 +16,7 @@ def json_to_binary_packets(json_string: str, command: int) -> List[bytes]:
         chunk = json_bytes[offset : offset + MAX_DATA_LENGTH]
         data_length = len(chunk)
 
-        # 构建数据包头部
+        # 构建数据包头部,长度为8字节
         frame_header = 0xAA55  # 示例帧头
         version = 1
         package_number = i + 1
