@@ -1,12 +1,10 @@
-import easyocr
-
-reader = easyocr.Reader(["ch_sim", "en"], download_enabled=True)
-
-# result = reader.readtext(r"d:\PytestAutoApi\test.jpg")
-
-# print(result)
-# print(result[0][1])
-
-result2 = reader.readtext(r"d:\PytestAutoApi\login_success.png", detail=0)
-print(result2)
-print(",".join(result2))
+from utils.email_tool.temp_email import TempEmail
+from utils.logging_tool.log_control import INFO
+if __name__ == "__main__":
+    obj = TempEmail()
+    msg = obj.get_email_message()
+    if msg:
+        INFO.logger.info("最新邮件：", msg)
+    code = obj.get_email_messages()
+    if code:
+        INFO.logger.info("验证码：", code)
