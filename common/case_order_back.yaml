@@ -33,3 +33,8 @@ modules:
   - test_appdevice_info_feedback_userIssue_queryDetailList_feedbackId
   - test_appdevice_info_feedback_userIssue_queryIssueList
   - test_appdevice_info_feedback_userIssue_queryIssueListPage
+- name: Wobirdy/Register
+  enabled: true
+  cases:
+  - test_app_info_agent_registerMailCodeTest
+  - test_app_info_appUser_registerCheckCodeTest

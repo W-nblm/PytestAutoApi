@@ -61,8 +61,11 @@ class TempEmail:
     def random_email(self):
         url = "https://inboxes-com.p.rapidapi.com/inboxes"
         data = self._request("POST", url, json={})
-        INFO.logger.info(f"生成的临时邮箱地址为：{data.get('inbox')}")
-        return data.get("inbox") if data else None
+        if data is None:
+            ERROR.logger.error("生成临时邮箱失败！")
+            return None
+        INFO.logger.info(f"请求结果：{data}")
+        return data.get("inbox")
 
     def activate_email(self, email):
         url = f"https://inboxes-com.p.rapidapi.com/inboxes/{email}"
@@ -79,6 +82,7 @@ class TempEmail:
 
     # ---------------- 邮件管理 ----------------
     def get_email_message(self, email=None):
+        # 获取最新一封邮件
         email = email or self.temp_email
         url = f"https://inboxes-com.p.rapidapi.com/inboxes/{email}"
         data = self._request("GET", url)

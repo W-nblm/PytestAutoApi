@@ -78,7 +78,7 @@ def work_login_init():
     """
     登录初始化
     """
-    INFO.logger.info("登录初始化")
+    INFO.logger.info("iot登录初始化")
     code_url = "http://47.107.113.31:18090/prod-api/code"
 
     def get_code():
@@ -191,8 +191,8 @@ def pytest_collection_modifyitems(items):
         collected_modules.discard(name)
 
     # 5. 剩余未配置的模块（保持原有顺序）
-    for mod_name in list(collected_modules):
-        sorted_items.extend(module_map[mod_name])
+    # for mod_name in list(collected_modules):
+    #     sorted_items.extend(module_map[mod_name])
 
     # 6. 更新 pytest 的执行顺序
     items[:] = sorted_items

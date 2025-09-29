@@ -155,6 +155,46 @@ class Context:
             ERROR.logger.error(f"验证码识别失败, {e}")
             raise
 
+    def random_email(self):
+        """
+        随机邮箱
+        :return: 随机生成的邮箱地址
+        """
+        from utils.email_tool.temp_email import TempEmail
+
+        try:
+            email = TempEmail(new_email=True).random_email()
+        except Exception as e:
+            ERROR.logger.error("随机生成邮箱时出错: %s", e)
+            raise
+
+        INFO.logger.info(f"随机生成的邮箱为{email}")
+        return email
+
+    def get_random_email_code(self, email):
+        """
+        获取邮箱验证码
+        :param email: 邮箱地址
+        :return: 验证码
+        """
+        try:
+            from utils.email_tool.temp_email import TempEmail
+
+            temp_email = TempEmail()
+            message_id = temp_email.get_email_message(email)
+            for i in range(3):
+                code = temp_email.get_email_messages(message_id)
+                if code:
+                    break
+                else:
+                    time.sleep(1)
+            INFO.logger.info(f"获取到的邮箱验证码为{code}")
+
+            return code
+        except Exception as e:
+            ERROR.logger.error(f"获取邮箱验证码失败: {e}")
+            raise ValueError(f"获取邮箱验证码失败: {e}")
+
 
 def extract_json_data(js_path, res):
     """
