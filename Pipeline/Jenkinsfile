@@ -73,15 +73,16 @@ pipeline {
                 """
             }
         }
-    }
-        stage('生成excel报告'){
-            steps{
+                stage('生成excel报告'){
+            steps {
                 echo "🚀 生成excel报告"
                 sh """
                 python generate_report_main.py
                 """
             }
         }
+    }
+
         
     post {
         failure {
