@@ -6,12 +6,30 @@ from common.setting import ensure_path_sep
 from utils.logging_tool.log_control import INFO, ERROR
 
 
-class TempEmail:
+class TempEmailManager:
     api_key = "1d2ac0d9b7msh553160860d35f17p15bddbjsn421dbc8f3b4f"
 
-    def __init__(self, api_host="inboxes-com.p.rapidapi.com", new_email=False):
+    # 服务商映射表（简写 -> host）
+    HOST_MAP = {
+        "inboxes": "inboxes-com.p.rapidapi.com",
+        "temp-email": "temp-email-api-disposable-temporary-email-service.p.rapidapi.com",
+    }
+
+    def __init__(self, provider="inboxes", new_email=False):
+        """
+        :param provider: 邮箱服务商，支持:
+                    - "inboxes"
+                    - "temp-email"
+        """
+        if provider not in self.HOST_MAP:
+            raise ValueError(
+                f"不支持的邮箱服务商: {provider}, 可选值: {list(self.HOST_MAP.keys())}"
+            )
+
+        self.provider = provider
+        self.api_host = self.HOST_MAP[provider]
+
         self.random_email_file_path = ensure_path_sep("config/temp_email.yaml")
-        self.api_host = api_host
         self.base_headers = {
             "x-rapidapi-key": self.api_key,
             "x-rapidapi-host": self.api_host,
@@ -20,14 +38,15 @@ class TempEmail:
 
         self.temp_email = self._load_or_create_email()
 
-        # 如果需要新邮箱，则生成新邮箱，否则激活已保存的邮箱
         if new_email:
             self.temp_email = self.random_email()
+            self._save_email(self.temp_email)
         else:
             self.activate_email(self.temp_email)
+
         self.message_id = None
 
-    # ---------------- YAML 相关 ----------------
+    # ---------------- YAML ----------------
     def _load_or_create_email(self):
         if os.path.exists(self.random_email_file_path):
             with open(self.random_email_file_path, "r", encoding="utf-8") as f:
@@ -45,7 +64,7 @@ class TempEmail:
         with open(self.random_email_file_path, "w", encoding="utf-8") as f:
             yaml.safe_dump({"temp_email": email}, f)
 
-    # ---------------- 请求封装 ----------------
+    # ---------------- 请求 ----------------
     def _request(self, method, url, **kwargs):
         try:
             response = requests.request(
@@ -54,48 +73,75 @@ class TempEmail:
             response.raise_for_status()
             return response.json()
         except requests.RequestException as e:
-            INFO.logger.info(f"Request error: {e}")
+            ERROR.logger.error(f"Request error: {e}")
             return None
 
     # ---------------- 邮箱管理 ----------------
     def random_email(self):
-        url = "https://inboxes-com.p.rapidapi.com/inboxes"
-        data = self._request("POST", url, json={})
-        if data is None:
-            ERROR.logger.error("生成临时邮箱失败！")
-            return None
-        INFO.logger.info(f"请求结果：{data}")
-        return data.get("inbox")
+        if self.provider == "inboxes":
+            url = "https://inboxes-com.p.rapidapi.com/inboxes"
+            data = self._request("POST", url, json={})
+            if not data:
+                ERROR.logger.error("生成临时邮箱失败！")
+                return None
+            INFO.logger.info(f"生成邮箱inboxes：{data}")
+            return data.get("inbox")
+
+        elif self.provider == "temp-email":
+            url = f"https://{self.api_host}/api/rapidapi/temp-email/new-email"
+            data = self._request("POST", url, json={})
+            if not data:
+                ERROR.logger.error("生成临时邮箱失败！")
+                return None
+            INFO.logger.info(f"生成邮箱temp-email：{data.get('data').get('email')}")
+            return data.get("data").get("email")
 
     def activate_email(self, email):
-        url = f"https://inboxes-com.p.rapidapi.com/inboxes/{email}"
-        return self._request("POST", url, json={})
+        if self.provider == "inboxes":
+            url = f"https://inboxes-com.p.rapidapi.com/inboxes/{email}"
+            return self._request("POST", url, json={})
+        return {"msg": "此 API 不支持激活邮箱"}
 
-    def delete_email(self, email=None):
+    def delete_email(self, email=None, token=None):
         email = email or self.temp_email
-        url = f"https://inboxes-com.p.rapidapi.com/inboxes/{email}"
-        return self._request("DELETE", url, json={})
+        if self.provider == "inboxes":
+            url = f"https://inboxes-com.p.rapidapi.com/inboxes/{email}"
+            return self._request("DELETE", url, json={})
+        elif self.provider == "temp-email":
+            url = f"https://{self.api_host}/api/rapidapi/temp-email/delete-mail"
+            params = {"email": email, "token": token or ""}
+            return self._request("DELETE", url, params=params, json={})
 
     def get_all_domains(self):
-        url = "https://inboxes-com.p.rapidapi.com/domains"
-        return self._request("GET", url)
+        if self.provider == "inboxes":
+            url = "https://inboxes-com.p.rapidapi.com/domains"
+            return self._request("GET", url)
+        return {"msg": "此 API 不支持获取域名"}
 
     # ---------------- 邮件管理 ----------------
-    def get_email_message(self, email=None):
-        # 获取最新一封邮件
+    def get_email_list(self, email=None):
         email = email or self.temp_email
-        url = f"https://inboxes-com.p.rapidapi.com/inboxes/{email}"
-        data = self._request("GET", url)
-        if data:
-            message = data[0]
-            self.message_id = message.get("uid")
-            return message
-        return None
+        if self.provider == "inboxes":
+            url = f"https://inboxes-com.p.rapidapi.com/inboxes/{email}"
+            data = self._request("GET", url)
+            if data:
+                message = data[0]
+                self.message_id = message.get("uid")
+                return message
+            return None
+
+        elif self.provider == "temp-email":
+            return {"msg": "此 API 不支持获取最件列表"}
 
     def get_email_messages(self, message_id=None):
         message_id = message_id or self.message_id
-        url = f"https://inboxes-com.p.rapidapi.com/messages/{message_id}"
-        data = self._request("GET", url)
+        if self.provider == "inboxes":
+            url = f"https://inboxes-com.p.rapidapi.com/messages/{message_id}"
+            data = self._request("GET", url)
+        else:
+            url = f"https://{self.api_host}/api/rapidapi/temp-email/show-mails"
+            data = self._request("GET", url, params={"email": self.temp_email})
+
         if not data:
             return None
         match = regex.search(r"(?<!\d)(\d{6})(?!\d)", str(data))
@@ -103,19 +149,30 @@ class TempEmail:
 
     def delete_email_message(self, message_id=None):
         message_id = message_id or self.message_id
-        url = f"https://inboxes-com.p.rapidapi.com/messages/{message_id}"
-        return self._request("DELETE", url, json={})
+        if self.provider == "inboxes":
+            url = f"https://inboxes-com.p.rapidapi.com/messages/{message_id}"
+            return self._request("DELETE", url, json={})
+        return {"msg": "此 API 不支持删除单封邮件"}
 
     def get_email_attachment(self, message_id, attachment_id):
-        url = f"https://inboxes-com.p.rapidapi.com/attachments/{message_id}/{attachment_id}"
-        return self._request("GET", url)
+        if self.provider == "inboxes":
+            url = f"https://inboxes-com.p.rapidapi.com/attachments/{message_id}/{attachment_id}"
+            return self._request("GET", url)
+        return {"msg": "此 API 不支持附件下载"}
+
+    def send_email(self, payload: dict):
+        if self.provider == "temp-email":
+            url = f"https://{self.api_host}/api/rapidapi/temp-email/send-email"
+            return self._request("POST", url, json=payload or {})
+        return {"msg": "此 API 不支持发送邮件"}
 
 
 if __name__ == "__main__":
-    obj = TempEmail()
+    # ✅ 用简写方式
+    obj = TempEmailManager(provider="inboxes", new_email=True)
     msg = obj.get_email_message()
     if msg:
-        INFO.logger.info("最新邮件：", msg)
+        INFO.logger.info(f"最新邮件: {msg}")
     code = obj.get_email_messages()
     if code:
-        INFO.logger.info("验证码：", code)
+        INFO.logger.info(f"验证码: {code}")

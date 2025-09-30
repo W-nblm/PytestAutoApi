@@ -11,7 +11,7 @@ from common.setting import ensure_path_sep
 from io import BytesIO
 from PIL import Image
 import base64
-from time import time
+from time import sleep, time
 
 
 class Context:
@@ -160,16 +160,16 @@ class Context:
         随机邮箱
         :return: 随机生成的邮箱地址
         """
-        from utils.email_tool.temp_email import TempEmail
+        from utils.email_tool.temp_email import TempEmailManager
 
         try:
-            email = TempEmail(new_email=True).random_email()
+            email = TempEmailManager(provider="temp-email", new_email=True)
         except Exception as e:
             ERROR.logger.error("随机生成邮箱时出错: %s", e)
             raise
 
-        INFO.logger.info(f"随机生成的邮箱为{email}")
-        return email
+        INFO.logger.info(f"随机生成的邮箱为{email.temp_email}")
+        return email.temp_email
 
     def get_random_email_code(self, email):
         """
@@ -177,17 +177,18 @@ class Context:
         :param email: 邮箱地址
         :return: 验证码
         """
+        # 邮箱服务商，支持: - "inboxes" - "temp-email",如果选择"temp-email"则直接调用get_email_messages获取code，使用inboxes则需要先获取邮件列表中的邮件uid，再调用get_email_messages获取code
         try:
-            from utils.email_tool.temp_email import TempEmail
+            from utils.email_tool.temp_email import TempEmailManager
 
-            temp_email = TempEmail()
-            message_id = temp_email.get_email_message(email)
+            temp_email = TempEmailManager(provider="temp-email")
+            # message_id = temp_email.get_email_list(email)
             for i in range(3):
-                code = temp_email.get_email_messages(message_id)
+                code = temp_email.get_email_messages()
                 if code:
                     break
                 else:
-                    time.sleep(1)
+                    sleep(1)
             INFO.logger.info(f"获取到的邮箱验证码为{code}")
 
             return code
