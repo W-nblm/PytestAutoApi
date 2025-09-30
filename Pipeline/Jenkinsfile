@@ -24,7 +24,7 @@ pipeline {
             }
         }
 
-        stage('安装 uv（若未安装）') {
+        stage('安装 uv(若未安装)') {
             steps {
                 script {
                     echo '📦 检查并安装 uv'
@@ -46,10 +46,10 @@ pipeline {
                 sh '''
                     export PATH="$HOME/.local/bin:$PATH"
                     if [ ! -d ".venv" ]; then
-                        echo "🔧 未检测到 .venv，正在创建..."
+                        echo "🔧 未检测到 .venv,正在创建..."
                         uv venv
                     else
-                        echo "✅ 已存在 .venv，跳过创建"
+                        echo "✅ 已存在 .venv,跳过创建"
                     fi
                 '''
             }
@@ -90,7 +90,7 @@ pipeline {
 
     post {
         failure {
-            echo '❌ 构建失败，请检查日志。'
+            echo '❌ 构建失败,请检查日志。'
         }
         success {
             echo '✅ 构建成功。'
