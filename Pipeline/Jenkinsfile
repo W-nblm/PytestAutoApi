@@ -33,12 +33,25 @@ pipeline {
                             echo "🔧 安装 uv..."
                             curl -LsSf https://astral.sh/uv/install.sh | sh
                             export PATH="$HOME/.local/bin:$PATH"
-                        else
-                            echo "✅ uv 已安装"
                         fi
                         uv --version
                     '''
                 }
+            }
+        }
+
+        stage('准备虚拟环境') {
+            steps {
+                echo "📦 检查 uv 虚拟环境"
+                sh '''
+                    export PATH="$HOME/.local/bin:$PATH"
+                    if [ ! -d ".venv" ]; then
+                        echo "🔧 未检测到 .venv，正在创建..."
+                        uv venv
+                    else
+                        echo "✅ 已存在 .venv，跳过创建"
+                    fi
+                '''
             }
         }
 
