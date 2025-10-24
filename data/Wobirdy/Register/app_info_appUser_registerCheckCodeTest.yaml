@@ -16,7 +16,7 @@ app_info_appUser_registerCheckCodeTest_01:
   data:
     customId: $cache{customId}
     email: $cache{random_email}
-    mailCode: ${{get_random_email_code($cache{random_email})}}
+    mailCode: $cache{random_email_code}
     password: "w12345678"
     timezoneId: ""
     countryCode: "US"
@@ -27,8 +27,13 @@ app_info_appUser_registerCheckCodeTest_01:
       headPic: ""
       sex: ""
       nickName: ""
-  dependence_case: false
-  dependence_case_data: null
+  dependence_case: False
+  dependence_case_data:
+    - case_id: code_01
+      dependent_data:
+        - dependent_type: request
+          jsonpath: $.data.uuid
+          set_cache: code_01_uuid
   assert:
     code:
       jsonpath: $.code

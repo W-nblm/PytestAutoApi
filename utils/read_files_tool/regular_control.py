@@ -5,6 +5,8 @@ from datetime import date, timedelta, datetime
 from zoneinfo import ZoneInfo
 from jsonpath import jsonpath
 from faker import Faker
+import regex
+import requests
 from utils.logging_tool.log_control import ERROR, INFO
 from utils.captcha.vcode import fix_img, cut_img, train_model, rek_img
 from common.setting import ensure_path_sep
@@ -12,6 +14,7 @@ from io import BytesIO
 from PIL import Image
 import base64
 from time import sleep, time
+from utils.cache_process.cache_control import CacheHandler
 
 
 class Context:
@@ -156,45 +159,108 @@ class Context:
             raise
 
     def random_email(self):
-        """
-        随机邮箱
-        :return: 随机生成的邮箱地址
-        """
-        from utils.email_tool.temp_email import TempEmailManager
-
+        """生成随机邮箱"""
         try:
-            email = TempEmailManager(provider="temp-email", new_email=True)
-        except Exception as e:
-            ERROR.logger.error("随机生成邮箱时出错: %s", e)
-            raise
+            mail = f"{random.randint(100000, 999999)}@nimail.cn"
+            response = requests.post(
+                "https://www.nimail.cn/api/applymail", data={"mail": mail}
+            )
+            response.raise_for_status()  # 检查请求是否成功，如果不是200系列状态码则抛出异常
 
-        INFO.logger.info(f"随机生成的邮箱为{email.temp_email}")
-        return email.temp_email
+            INFO.logger.info(f"申请邮箱成功: {response.text.strip()}")
+            CacheHandler.update_cache(cache_name="random_email", value=mail)
+
+            # 获取验证码
+            return mail
+
+        except requests.exceptions.HTTPError as http_err:
+            ERROR.logger.error(f"HTTP 错误: {http_err}")
+        except requests.exceptions.RequestException as req_err:
+            ERROR.logger.error(f"请求错误: {req_err}")
+        except Exception as e:
+            ERROR.logger.error(f"未知错误: {e}")
 
     def get_random_email_code(self, email):
-        """
-        获取邮箱验证码
-        :param email: 邮箱地址
-        :return: 验证码
-        """
-        # 邮箱服务商，支持: - "inboxes" - "temp-email",如果选择"temp-email"则直接调用get_email_messages获取code，使用inboxes则需要先获取邮件列表中的邮件uid，再调用get_email_messages获取code
-        try:
-            from utils.email_tool.temp_email import TempEmailManager
 
-            temp_email = TempEmailManager(provider="temp-email")
-            # message_id = temp_email.get_email_list(email)
-            for i in range(3):
-                code = temp_email.get_email_messages()
-                if code:
-                    break
+        import time
+
+        for i in range(10):
+            try:
+                # 计算一次时间戳，避免重复计算
+                current_time = int(time.time())
+                response = requests.post(
+                    "https://www.nimail.cn/api/getmails",
+                    data={
+                        "mail": email,
+                        "time": current_time,
+                        "_": current_time * 1000,
+                    },
+                )
+                INFO.logger.info(f"email: {email}, time: {current_time}")
+                INFO.logger.info(
+                    f"第{i+1}次获取到的邮箱验证码为{response.text.strip()}"
+                )
+                response.raise_for_status()  # 检查请求是否成功，如果不是200系列状态码则抛出异常
+
+                res = response.json()
+                # 判断是否收取到邮件
+                if not res.get("mail"):
+                    INFO.logger.info("暂未收取到邮件", res)
+                    sleep(3)
                 else:
-                    sleep(1)
-            INFO.logger.info(f"获取到的邮箱验证码为{code}")
+                    match = regex.search(r"(?<!\d)(\d{6})(?!\d)", str(res))
+                    CacheHandler.update_cache(
+                        cache_name="random_email_code", value=match.group(1)
+                    )
 
-            return code
-        except Exception as e:
-            ERROR.logger.error(f"获取邮箱验证码失败: {e}")
-            raise ValueError(f"获取邮箱验证码失败: {e}")
+            except requests.exceptions.HTTPError as http_err:
+                ERROR.logger.error(f"HTTP 错误: {http_err}")
+            except requests.exceptions.RequestException as req_err:
+                ERROR.logger.error(f"请求错误: {req_err}")
+            except Exception as e:
+                ERROR.logger.error(f"未知错误: {e}")
+
+    # def random_email(self):
+    #     """
+    #     随机邮箱
+    #     :return: 随机生成的邮箱地址
+    #     """
+    #     from utils.email_tool.temp_email import TempEmailManager
+
+    #     try:
+    #         email = TempEmailManager(provider="temp-email", new_email=True)
+    #     except Exception as e:
+    #         ERROR.logger.error("随机生成邮箱时出错: %s", e)
+    #         raise
+
+    #     INFO.logger.info(f"随机生成的邮箱为{email.temp_email}")
+    #     return email.temp_email
+
+    # def get_random_email_code(self, email):
+    #     """
+    #     获取邮箱验证码
+    #     :param email: 邮箱地址
+    #     :return: 验证码
+    #     """
+    #     # 邮箱服务商，支持: - "inboxes" - "temp-email",如果选择"temp-email"则直接调用get_email_messages获取code，使用inboxes则需要先获取邮件列表中的邮件uid，再调用get_email_messages获取code
+    #     try:
+    #         from utils.email_tool.temp_email import TempEmailManager
+
+    #         temp_email = TempEmailManager(provider="temp-email")
+    #         # message_id = temp_email.get_email_list(email)
+    #         for i in range(5):
+    #             code = temp_email.get_email_messages()
+    #             INFO.logger.info(f"第{i+1}次获取到的邮箱验证码为{code}")
+    #             if code:
+    #                 break
+    #             else:
+    #                 sleep(5)
+    #         INFO.logger.info(f"获取到的邮箱验证码为{code}")
+
+    #         return code
+    #     except Exception as e:
+    #         ERROR.logger.error(f"获取邮箱验证码失败: {e}")
+    #         raise ValueError(f"获取邮箱验证码失败: {e}")
 
 
 def extract_json_data(js_path, res):
@@ -238,6 +304,7 @@ def cache_regular(value):
     """
     from utils.cache_process.cache_control import CacheHandler
 
+    INFO.logger.info(f"正则替换缓存数据: {value}")
     # 获取$cache{login_token}中的login_token
     regular_data = re.findall(r"\$cache\{(.*?)\}", value)
     for data in regular_data:
@@ -269,6 +336,7 @@ def regular(target: str):
     使用正则替换请求数据
     :return:
     """
+    INFO.logger.info(f"正则替换请求数据: {target}")
     try:
         regular_pattern = r"\${{(.*?)}}"
         while re.findall(regular_pattern, target):

@@ -34,6 +34,13 @@ class Test_Register:
     def test_app_info_appUser_registerCheckCodeTest(self, in_data, case_skip):
         allure.dynamic.title(f"app_info_appUser_registerCheckCodeTest"+"_"+in_data["detail"])
         INFO.logger.info("data: %s", in_data)
+        from utils.email_tool.temp_email import TempEmailManager
+        from utils.cache_process.cache_control import CacheHandler
+
+        te = TempEmailManager()
+        email = CacheHandler.get_cache("random_email")
+        code = te.get_random_email_code(email)
+
         res = RequestControl(in_data).http_request()
         TearDownHandler(res).teardown_handle()
         Assert(in_data["assert_data"]).assert_equality(

@@ -1,8 +1,11 @@
 import os
+import random
+from time import sleep
 import yaml
 import requests
 import regex
 from common.setting import ensure_path_sep
+from utils.cache_process.cache_control import CacheHandler
 from utils.logging_tool.log_control import INFO, ERROR
 
 
@@ -67,13 +70,14 @@ class TempEmailManager:
     # ---------------- 请求 ----------------
     def _request(self, method, url, **kwargs):
         try:
+            INFO.logger.info(f"邮件管理请求: {method} {url} {kwargs}")
             response = requests.request(
                 method, url, headers=self.base_headers, timeout=10, **kwargs
             )
             response.raise_for_status()
             return response.json()
         except requests.RequestException as e:
-            ERROR.logger.error(f"Request error: {e}")
+            ERROR.logger.error(f"邮件管理请求错误: {e}")
             return None
 
     # ---------------- 邮箱管理 ----------------
@@ -165,6 +169,74 @@ class TempEmailManager:
             url = f"https://{self.api_host}/api/rapidapi/temp-email/send-email"
             return self._request("POST", url, json=payload or {})
         return {"msg": "此 API 不支持发送邮件"}
+
+    def random_email_code(self):
+        """生成随机邮箱"""
+        try:
+            mail = f"{random.randint(100000, 999999)}@nimail.cn"
+            response = requests.post(
+                "https://www.nimail.cn/api/applymail", data={"mail": mail}
+            )
+            response.raise_for_status()  # 检查请求是否成功，如果不是200系列状态码则抛出异常
+
+            INFO.logger.info(f"申请邮箱成功: {response.text.strip()}")
+            CacheHandler.update_cache(cache_name="random_email", value=mail)
+
+            # 获取验证码
+            return mail
+
+        except requests.exceptions.HTTPError as http_err:
+            ERROR.logger.error(f"HTTP 错误: {http_err}")
+        except requests.exceptions.RequestException as req_err:
+            ERROR.logger.error(f"请求错误: {req_err}")
+        except Exception as e:
+            ERROR.logger.error(f"未知错误: {e}")
+
+    def get_random_email_code(self, email):
+
+        import time
+
+        for i in range(10):
+            try:
+                # 计算一次时间戳，避免重复计算
+                current_time = int(time.time())
+                response = requests.post(
+                    "https://www.nimail.cn/api/getmails",
+                    data={
+                        "mail": email,
+                        "time": current_time,
+                        "_": current_time * 1000,
+                    },
+                )
+                INFO.logger.info(f"email: {email}, time: {current_time}")
+                INFO.logger.info(
+                    f"第{i+1}次获取到的邮箱验证码为{response.text.strip()}"
+                )
+                response.raise_for_status()  # 检查请求是否成功，如果不是200系列状态码则抛出异常
+
+                res = response.json()
+                # 判断是否收取到邮件
+                if not res.get("mail"):
+                    INFO.logger.info("暂未收取到邮件", res)
+                    sleep(3)
+                else:
+
+                    mail = res.get("mail")
+                    mail_id = mail[0].get("id")
+                    url = f"https://www.nimail.cn/api/raw-html/{email}/{mail_id}"
+                    response = requests.get(url)
+                    match = regex.search(r"(?<!\d)(\d{6})(?!\d)", response.text)
+                    CacheHandler.update_cache(
+                        cache_name="random_email_code", value=match.group(1)
+                    )
+                    return match.group(1) if match else None
+
+            except requests.exceptions.HTTPError as http_err:
+                ERROR.logger.error(f"HTTP 错误: {http_err}")
+            except requests.exceptions.RequestException as req_err:
+                ERROR.logger.error(f"请求错误: {req_err}")
+            except Exception as e:
+                ERROR.logger.error(f"未知错误: {e}")
 
 
 if __name__ == "__main__":
