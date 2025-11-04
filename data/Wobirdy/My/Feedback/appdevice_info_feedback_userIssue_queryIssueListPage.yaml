@@ -29,7 +29,7 @@ appdevice_info_feedback_userIssue_queryIssueListPage_01:
   assert:
     code:
       jsonpath: $.code
-      type: ==
+      type: eq
       value: 200
       AssertType: null
       message: 接口状态码不为200

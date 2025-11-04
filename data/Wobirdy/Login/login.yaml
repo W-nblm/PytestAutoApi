@@ -48,7 +48,7 @@ wobirdy_login_01:
     # 断言接口状态码
     code:
       jsonpath: $.code
-      type: ==
+      type: eq
       value: 200
       AssertType:
       message: "登录失败"

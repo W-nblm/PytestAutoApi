@@ -122,14 +122,12 @@ class TestCaseAutomaticGeneration:
                 )
             ) from exc
 
-    def mk_dir(self, file_path: Text) -> None:
+    def mk_dir(self, dir_path: Text) -> None:
         """判断生成自动化代码的文件夹路径是否存在，如果不存在，则自动创建"""
-        # _LibDirPath = os.path.split(self.libPagePath(filePath))[0]
-
-        _case_dir_path = os.path.split(self.get_case_path(file_path)[0])[0]
-        if not os.path.exists(_case_dir_path):
-            os.makedirs(_case_dir_path)
-            INFO.logger.info(f"创建用例文件夹: {_case_dir_path}")
+        print(f"用例文件夹路径: {os.path.exists(dir_path)}")
+        if not os.path.exists(dir_path):
+            os.makedirs(dir_path)
+            INFO.logger.info(f"创建用例文件夹: {dir_path}")
 
     @staticmethod
     def case_ids(test_case):
@@ -195,11 +193,16 @@ class TestCaseAutomaticGeneration:
         parts = [new if part.lower() == old.lower() else part for part in parts]
         return os.sep.join(parts)
 
-    def get_case_automatic(self) -> None:
-        """自动生成 测试代码"""
+    def get_case_automatic(self, yaml_files_dir="data", cases_dir="test_case") -> None:
+        """
+        自动生成 测试代码
+        :param yaml_files_dir: yaml用例文件目录
+        :param cases_dir: 生成测试用例文件目录
+        :return:
+        """
         # 读取所有的yaml文件
         file_paths = get_all_files(
-            file_path=ensure_path_sep("\\data"), yaml_data_switch=True
+            file_path=ensure_path_sep(yaml_files_dir), yaml_data_switch=True
         )
 
         # 按目录进行分类
@@ -208,25 +211,32 @@ class TestCaseAutomaticGeneration:
             if "proxy_data.yaml" not in file:
                 # 判断用例需要用的文件夹路径是否存在，不存在则创建
                 dir_groups[os.path.dirname(file)].append(file)
-
         case_order_data = {"strict": True, "modules": []}
 
         for dir_path, yaml_files in dir_groups.items():
             # 创建测试用例输出目录
-            self.mk_dir(yaml_files[0])
+            self.mk_dir(
+                self.replace_data_dir(dir_path, old=yaml_files_dir, new=cases_dir)
+            )
             dir_name = os.path.basename(dir_path)
-
+            print("目录名称:", dir_path)
+            print("用例文件:", yaml_files)
             # 生成模块名称
             module_name = os.path.relpath(
-                self.replace_data_dir(dir_path), ensure_path_sep("\\test_case")
+                self.replace_data_dir(dir_path, old=yaml_files_dir, new=cases_dir),
+                ensure_path_sep("\\test_case"),
             ).replace(os.sep, "/")
-
+            print("模块名称:", module_name)
             # 生成测试用例类名
             class_title = "Test_" + dir_path.split(os.sep)[-1].capitalize()
-            # 生成测试用例文件
+            # 合成测试用例文件路径
             case_path = os.path.join(dir_path, "test_" + dir_name.lower() + ".py")
-            case_path = self.replace_data_dir(case_path)
-
+            # 转换为 test_case 目录下的路径
+            case_path = self.replace_data_dir(
+                case_path, old=yaml_files_dir, new=cases_dir
+            )
+            print("用例文件路径:", case_path)
+            print("*" * 60)
             # 存放所有方法
             methods_code = ""
             case_list = []

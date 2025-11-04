@@ -43,7 +43,7 @@ wobirdy_delete_bird_capture_image_01:
     # 断言接口状态码,AssertType=SQL时与sql查询结果进行断言
     code:
       jsonpath: $.code
-      type: ==
+      type: eq
       value: 200
       AssertType:
       message: "登录失败"

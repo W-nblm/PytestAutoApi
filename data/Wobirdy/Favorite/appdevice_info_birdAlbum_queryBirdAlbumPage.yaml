@@ -50,7 +50,7 @@ wobirdy_query_bird_album_page_01:
   assert:
     code:
       jsonpath: $.code
-      type: ==
+      type: eq
       value: 200
       AssertType:
       message: "登录失败"
@@ -97,7 +97,7 @@ wobirdy_query_bird_album_page_02:
   assert:
     code:
       jsonpath: $.code
-      type: ==
+      type: eq
       value: 200
       AssertType:
       message: "登录失败"
@@ -144,7 +144,7 @@ wobirdy_query_bird_album_page_03:
   assert:
     code:
       jsonpath: $.code
-      type: ==
+      type: eq
       value: 500
       AssertType:
       message: "登录失败"
@@ -190,7 +190,7 @@ wobirdy_query_bird_album_page_04:
   assert:
     code:
       jsonpath: $.code
-      type: ==
+      type: eq
       value: 200
       AssertType:
       message: "登录失败"
@@ -236,7 +236,7 @@ wobirdy_query_bird_album_page_05:
   assert:
     code:
       jsonpath: $.code
-      type: ==
+      type: eq
       value: 200
       AssertType:
       message: "登录失败"

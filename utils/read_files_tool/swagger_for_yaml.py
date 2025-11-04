@@ -141,7 +141,7 @@ class OpenAPITestcaseGenerator:
                 "assert": {
                     "code": {
                         "jsonpath": "$.code",
-                        "type": "==",
+                        "type": "eq",
                         "value": 200,
                         "AssertType": None,
                         "message": "接口状态码不为200",

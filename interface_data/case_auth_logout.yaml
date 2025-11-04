@@ -1,0 +1,72 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 认证鉴权
+  allureStory: 登出方法
+case_auth_logout_01:
+  host: ${{host()}}
+  url: /auth/logout
+  method: DELETE
+  detail: 登出方法 - 正常登出
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: {}
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息不包含“成功”
+case_auth_logout_02:
+  host: ${{host()}}
+  url: /auth/logout
+  method: DELETE
+  detail: 登出方法 - 未携带Authorization头
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: {}
+  dependence_case: []
+  assert:
+  - name: 校验业务错误码
+    jsonpath: $.code
+    type: eq
+    value: 401
+    message: 未携带Authorization头时业务错误码不为401
+  - name: 校验错误消息
+    jsonpath: $.msg
+    type: contains
+    value: 未授权
+    message: 未携带Authorization头时响应消息不包含“未授权”
+case_auth_logout_03:
+  host: ${{host()}}
+  url: /auth/logout
+  method: DELETE
+  detail: 登出方法 - Authorization头携带无效Token
+  headers:
+    Authorization: invalid_dummy_token
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: {}
+  dependence_case: []
+  assert:
+  - name: 校验业务错误码
+    jsonpath: $.code
+    type: eq
+    value: 401
+    message: 无效Token时业务错误码不为401
+  - name: 校验错误消息
+    jsonpath: $.msg
+    type: contains
+    value: 无效凭证
+    message: 无效Token时响应消息不包含“无效凭证”

@@ -1,0 +1,263 @@
+openapi: 3.0.1
+info:
+  title: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  description: 描述：微服务权限管理系统, 具体包括XXX,XXX模块...
+  contact:
+    name: lzyiot
+    url: https://szlongzy.com
+    email: lzyiot@szlongzy.com
+  version: 版本号：系统版本...
+servers:
+- url: http://172.10.21.7:9210
+  description: Generated server url
+security:
+- apiKey: []
+tags:
+- name: token 控制
+  description: token 控制
+paths:
+  /auth/xcxLogin:
+    post:
+      tags:
+      - token 控制
+      summary: 小程序登录(示例)
+      description: 小程序登录(示例)
+      operationId: xcxLogin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: 结果
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /auth/smsLogin:
+    post:
+      tags:
+      - token 控制
+      summary: 短信登录
+      description: 短信登录
+      operationId: smsLogin
+      requestBody:
+        description: 登录信息
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmsLoginBody'
+        required: true
+      responses:
+        '200':
+          description: 结果
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /auth/register:
+    post:
+      tags:
+      - token 控制
+      summary: 用户注册
+      description: 用户注册
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /auth/login:
+    post:
+      tags:
+      - token 控制
+      summary: 登录方法
+      description: 登录方法
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /auth/innerLogin:
+    post:
+      tags:
+      - token 控制
+      summary: 登录方法-内部接口,无验证码
+      description: 登录方法-内部接口,无验证码
+      operationId: innerLogin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /auth/emailLogin:
+    post:
+      tags:
+      - token 控制
+      summary: 邮件登录
+      description: 邮件登录
+      operationId: emailLogin
+      requestBody:
+        description: 登录信息
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailLoginBody'
+        required: true
+      responses:
+        '200':
+          description: 结果
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringObject'
+  /auth/logout:
+    delete:
+      tags:
+      - token 控制
+      summary: 登出方法
+      description: 登出方法
+      operationId: logout
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+components:
+  schemas:
+    RMapStringObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+        data:
+          type: object
+          additionalProperties:
+            type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\": \"用户名已存在,请重新输入\"\
+            }"
+        errCode:
+          type: integer
+          format: int32
+      description: 响应信息主体
+    SmsLoginBody:
+      required:
+      - phonenumber
+      - smsCode
+      type: object
+      properties:
+        phonenumber:
+          type: string
+          description: 手机号
+        smsCode:
+          type: string
+          description: 短信code
+      description: 短信登录对象
+    RegisterBody:
+      required:
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+          description: 用户名
+        password:
+          type: string
+          description: 用户密码
+        userType:
+          type: string
+      description: 用户注册对象
+    RVoid:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+        data:
+          type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\": \"用户名已存在,请重新输入\"\
+            }"
+        errCode:
+          type: integer
+          format: int32
+      description: 响应信息主体
+    LoginBody:
+      required:
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+          description: 用户名
+        password:
+          type: string
+          description: 用户密码
+      description: 用户登录对象
+    EmailLoginBody:
+      required:
+      - email
+      - emailCode
+      type: object
+      properties:
+        email:
+          type: string
+          description: 邮箱
+        emailCode:
+          type: string
+          description: 邮箱code
+      description: 邮箱登录对象
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header

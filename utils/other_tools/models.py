@@ -210,7 +210,7 @@ class Config(BaseModel):
     lark: "Webhook"
     real_time_update_test_cases: bool = False
     host: Text
-    host_list:Text
+    host_list: Text
     customId: Text
     app_host: Union[Text, None]
 
@@ -250,7 +250,7 @@ class AllureAttachmentType(Enum):
 class AssertMethod(Enum):
     """断言类型"""
 
-    equals = "=="
+    equals = "eq"
     less_than = "lt"
     less_than_or_equals = "le"
     greater_than = "gt"

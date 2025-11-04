@@ -37,7 +37,7 @@ app_info_appUser_registerCheckCodeTest_01:
   assert:
     code:
       jsonpath: $.code
-      type: ==
+      type: eq
       value: 200
       AssertType: null
       message: 接口状态码不为200

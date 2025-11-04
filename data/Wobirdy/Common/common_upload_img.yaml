@@ -46,14 +46,14 @@ wobirdy_upload_img_01:
     # 断言接口状态码
     code:
       jsonpath: $.code
-      type: ==
+      type: eq
       value: 200
       AssertType:
       message: "上传图片成功"
     # 断言接口返回的username
     # username:
     #   jsonpath: $.data.username
-    #   type: ==
+    #   type: eq
     #   value: "18800000001"
     #   AssertType:
   sql:
