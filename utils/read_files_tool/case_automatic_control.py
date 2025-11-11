@@ -1,13 +1,10 @@
 from collections import defaultdict
 import datetime
 import os
-import shutil
 from typing import Text, Dict
-
 import yaml
 from common.setting import ensure_path_sep
 from utils.logging_tool.log_control import INFO
-from utils.read_files_tool.testcase_template import write_testcase_file
 from utils.read_files_tool.yaml_control import GetYamlData
 from utils.read_files_tool.get_all_files_path import get_all_files
 from utils.other_tools.exceptions import ValueNotFoundError
@@ -204,7 +201,7 @@ class TestCaseAutomaticGeneration:
         file_paths = get_all_files(
             file_path=ensure_path_sep(yaml_files_dir), yaml_data_switch=True
         )
-
+        print("所有用例文件:", file_paths)
         # 按目录进行分类
         dir_groups = defaultdict(list)
         for file in file_paths:

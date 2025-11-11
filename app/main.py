@@ -1,23 +1,19 @@
-from fastapi import FastAPI
-from app.routers import spec, case, run
-from fastapi.middleware.cors import CORSMiddleware
+from flask import Flask
 
-app = FastAPI(title="AI 自动化测试平台")
+app = Flask(__name__)
 
+# 导入蓝图
+from api.routes import api_bp
+from function.routes import function_bp
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # 或指定 ["http://localhost:8501"]
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+# 注册蓝图
+app.register_blueprint(
+    api_bp, url_prefix="/api", static_folder="static", template_folder="templates"
+)
+app.register_blueprint(
+    function_bp, url_prefix="/function", static_folder="static", template_folder="templates"
 )
 
-app.include_router(spec.router)
-app.include_router(case.router)
-app.include_router(run.router)
 
-
-@app.get("/")
-async def root():
-    return {"message": "欢迎使用 AI 自动化测试平台"}
+if __name__ == "__main__":
+    app.run(debug=True, port=8000)

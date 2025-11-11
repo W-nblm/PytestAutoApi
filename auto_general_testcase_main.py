@@ -34,4 +34,4 @@ if __name__ == "__main__":
     # generate_test_cases()
 
     # 根据用例文件生成测试用例文件
-    TestCaseAutomaticGeneration().get_case_automatic(yaml_files_dir="interface_data",cases_dir="interface_case")
+    TestCaseAutomaticGeneration().get_case_automatic(yaml_files_dir="app/interface_data",cases_dir="app/interface_case")

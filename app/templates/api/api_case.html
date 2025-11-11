@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Test Platform</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { padding: 2rem; }
+        .card { margin-top: 1rem; }
+        pre { background: #f8f9fa; padding: 1rem; border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mb-4">🤖 AI 自动化测试平台</h2>
+
+    <!-- 上传区域 -->
+    <div class="card">
+        <div class="card-header">上传 OpenAPI 文件</div>
+        <div class="card-body">
+            <input type="file" id="fileInput" class="form-control mb-2">
+            <button class="btn btn-primary" onclick="uploadFile()">上传并解析</button>
+            <pre id="uploadResult"></pre>
+        </div>
+    </div>
+
+    <!-- 用例生成 -->
+    <div class="card">
+        <div class="card-header">用例生成</div>
+        <div class="card-body">
+            <button class="btn btn-success" onclick="generateCases()">生成测试用例</button>
+            <pre id="caseResult"></pre>
+        </div>
+    </div>
+
+    <!-- 测试执行 -->
+    <div class="card">
+        <div class="card-header">执行测试</div>
+        <div class="card-body">
+            <button class="btn btn-danger" onclick="runTests()">执行测试用例</button>
+            <pre id="runResult"></pre>
+        </div>
+    </div>
+
+</div>
+
+<script>
+async function uploadFile() {
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files[0];
+    if (!file) { alert("请选择一个文件"); return; }
+
+    const formData = new FormData();
+    formData.append("file", file);
+    const res = await fetch("/api/upload", { method: "POST", body: formData });
+    const data = await res.json();
+    document.getElementById("uploadResult").textContent = JSON.stringify(data, null, 2);
+}
+
+async function generateCases() {
+    const res = await fetch("/api/generate", { method: "POST" });
+    const data = await res.json();
+    document.getElementById("caseResult").textContent = JSON.stringify(data, null, 2);
+}
+
+async function runTests() {
+    const res = await fetch("/api/execute", { method: "POST" });
+    const data = await res.json();
+    document.getElementById("runResult").textContent = JSON.stringify(data, null, 2);
+}
+</script>
+
+</body>
+</html>

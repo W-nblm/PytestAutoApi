@@ -1,12 +1,14 @@
 strict: true
 modules:
-- name: ../interface_case
+- name: ../app/interface_data
   enabled: true
   cases:
-  - test_case_auth_emailLogin
-  - test_case_auth_innerLogin
-  - test_case_auth_login
-  - test_case_auth_logout
-  - test_case_auth_register
-  - test_case_auth_smsLogin
   - test_case_auth_xcxLogin
+- name: ../app/interface_data/test1
+  enabled: true
+  cases:
+  - test_case_auth_register
+- name: ../app/interface_data/test2
+  enabled: true
+  cases:
+  - test_case_auth_smsLogin

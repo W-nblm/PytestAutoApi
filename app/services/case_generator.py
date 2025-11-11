@@ -4,7 +4,7 @@ import yaml
 from faker import Faker
 from pathlib import Path
 from google import genai
-from app.services.case_schema import CASE_SCHEMA_EXAMPLE
+from services.case_schema import CASE_SCHEMA_EXAMPLE
 
 client = genai.Client(api_key="AIzaSyCmAo52ridCff1Ix6AvdHpzDenC5mW2nys")
 
@@ -63,7 +63,7 @@ def generate_basic_cases(
           data:
             # 请根据接口参数类型填写示例字段
           dependence_case: []
-          # 断言部分:name: 断言名称;jsonpath: 响应内容的 JSONPath 表达式;type: 断言类型(==、lt、le、gt、ge、not_eq、str_eq、contains 等）;value: 预期值;message: 断言失败时的提示信息
+          # 断言部分:name: 断言名称;jsonpath: 响应内容的 JSONPath 表达式;type: 断言类型(eq、lt、le、gt、ge、not_eq、str_eq、contains 等）;value: 预期值;message: 断言失败时的提示信息
           assert:
             - name: 校验接口状态码
               jsonpath: $.code
