@@ -1,0 +1,2515 @@
+openapi: 3.0.1
+info:
+  title: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  description: 描述：微服务权限管理系统, 具体包括XXX,XXX模块...
+  contact:
+    name: lzyiot
+    url: https://szlongzy.com
+    email: lzyiot@szlongzy.com
+  version: 版本号：系统版本...
+servers:
+- url: http://172.10.21.4:9514
+  description: Generated server url
+security:
+- apiKey: []
+tags:
+- name: 模拟测试
+  description: "模拟测试\n 前端访问路由地址为:/oplogs/testMGR"
+- name: 模拟bird测试
+  description: "模拟bird测试\n 前端访问路由地址为:/oplogs/testMGR"
+- name: 设备影子信息
+  description: "设备影子信息\n 前端访问路由地址为:/oplogs/shadowProp"
+- name: 命令请求操作日志控制器
+  description: "命令请求操作日志控制器\n 前端访问路由地址为:/oplogs/oplogCommand"
+- name: app日志
+  description: app日志
+paths:
+  /oplogs/testMGR/updateAlbumMarkerPetIds:
+    post:
+      tags:
+      - 模拟测试
+      summary: 更新相册宠物标记
+      description: 更新相册宠物标记
+      operationId: updateAlbumMarkerPetIds
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: eventId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: petIds
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testMGR/queryMoments:
+    post:
+      tags:
+      - 模拟测试
+      summary: 查询时刻列表
+      description: 查询时刻列表
+      operationId: queryMoments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamPetMonentEventReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoDevicePetMomentEventVercollapVo'
+  /oplogs/testMGR/queryGalleryAlbums:
+    post:
+      tags:
+      - 模拟测试
+      summary: 查询图库相册列表
+      description: 查询图库相册列表
+      operationId: queryGalleryAlbums
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamPetGalleryAlbumEventReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoDevicePetGalleryAlbumVercollapVo'
+  /oplogs/testMGR/doBatchMarksPet:
+    post:
+      tags:
+      - 模拟测试
+      summary: 标记时刻数据
+      description: 标记时刻数据
+      operationId: doBatchMarksPet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestBatchMarkPet'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testMGR/deleteMomentBeach:
+    post:
+      tags:
+      - 模拟测试
+      summary: 批量删除时刻数据
+      description: 批量删除时刻数据
+      operationId: deleteMomentBeach
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventDeleteRqBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testMGR/deleteMomentAll:
+    post:
+      tags:
+      - 模拟测试
+      summary: 删除用户所有时刻数据
+      description: 删除用户所有时刻数据
+      operationId: deleteMomentAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventDeleteSystemRqBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testMGR/deleteBeachAlbum:
+    post:
+      tags:
+      - 模拟测试
+      summary: 批量删除图库相册数据
+      description: 批量删除图库相册数据
+      operationId: deleteBeachAlbum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventDeleteRqBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testMGR/addVideoMoments:
+    post:
+      tags:
+      - 模拟测试
+      summary: 添加视频到时刻
+      description: 添加视频到时刻
+      operationId: addVideoMoments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DevicePetMomentVideoBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testMGR/addPicMoments:
+    post:
+      tags:
+      - 模拟测试
+      summary: 添加图片到时刻
+      description: 添加图片到时刻
+      operationId: addPicMoments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DevicePetMomentPicBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testMGR/addAlbumVercollap:
+    post:
+      tags:
+      - 模拟测试
+      summary: 添加图库相册数据
+      description: 添加图库相册数据
+      operationId: addAlbumVercollap
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DevicePetGalleryAlbumVercollapBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testBirdGR/queryMoments:
+    post:
+      tags:
+      - 模拟bird测试
+      summary: 查询时刻列表
+      description: 查询时刻列表
+      operationId: queryMoments_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamPetMonentEventReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoDeviceBirdMomentEventVercollapVo'
+  /oplogs/testBirdGR/queryGalleryAlbums:
+    post:
+      tags:
+      - 模拟bird测试
+      summary: 查询图库相册列表
+      description: 查询图库相册列表
+      operationId: queryGalleryAlbums_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamPetGalleryAlbumEventReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoDeviceBirdAlbumSaveVercollapVo'
+  /oplogs/testBirdGR/doBatchMarksPet:
+    post:
+      tags:
+      - 模拟bird测试
+      summary: 标记时刻数据
+      description: 标记时刻数据
+      operationId: doBatchMarksPet_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestBatchMarkPet'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testBirdGR/deleteMomentBeach:
+    post:
+      tags:
+      - 模拟bird测试
+      summary: 批量删除时刻数据
+      description: 批量删除时刻数据
+      operationId: deleteMomentBeach_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventDeleteRqBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testBirdGR/deleteMomentAll:
+    post:
+      tags:
+      - 模拟bird测试
+      summary: 删除用户所有时刻数据
+      description: 删除用户所有时刻数据
+      operationId: deleteMomentAll_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventDeleteSystemRqBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testBirdGR/addVideoMoments:
+    post:
+      tags:
+      - 模拟bird测试
+      summary: 添加视频到时刻
+      description: 添加视频到时刻
+      operationId: addVideoMoments_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DeviceBirdMomentVideoBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testBirdGR/addPicMoments:
+    post:
+      tags:
+      - 模拟bird测试
+      summary: 添加图片到时刻
+      description: 添加图片到时刻
+      operationId: addPicMoments_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DeviceBirdMomentPicBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/testBirdGR/addAiMoments:
+    post:
+      tags:
+      - 模拟bird测试
+      summary: 添加AI设备信息
+      description: 添加AI设备信息
+      operationId: addAiMoments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DeviceBirdPicAIDetectBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /oplogs/shadowProp/get:
+    post:
+      tags:
+      - 设备影子信息
+      summary: 新增设备影子信息
+      description: 新增设备影子信息
+      operationId: get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceShadowPropBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /oplogs/shadowProp/export:
+    post:
+      tags:
+      - 设备影子信息
+      summary: 导出设备影子信息列表
+      description: 导出设备影子信息列表
+      operationId: export
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/DeviceShadowPropBo'
+      responses:
+        '200':
+          description: OK
+  /oplogs/shadowProp/add:
+    post:
+      tags:
+      - 设备影子信息
+      summary: 新增设备影子信息
+      description: 新增设备影子信息
+      operationId: add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceShadowPropBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /oplogs/oplogCommand:
+    post:
+      tags:
+      - 命令请求操作日志控制器
+      summary: 新增命令请求操作日志
+      description: 新增命令请求操作日志
+      operationId: add_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OplogCommandBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /oplogs/oplogCommand/updateResultByReqId:
+    post:
+      tags:
+      - 命令请求操作日志控制器
+      summary: 测试删除
+      description: 测试删除
+      operationId: updateResultByReqId
+      parameters:
+      - name: requestId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: result
+        in: query
+        required: true
+        schema:
+          type: boolean
+      - name: resultMsg
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /oplogs/getlog/getDevlog:
+    post:
+      tags:
+      - app日志
+      summary: 查询app日志列表
+      description: 查询app日志列表
+      operationId: getDevlog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamIotDeviceLogReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoIotDeviceLogVo'
+  /oplogs/getlog/getApplog:
+    post:
+      tags:
+      - app日志
+      summary: 查询app日志列表
+      description: 查询app日志列表
+      operationId: getApplog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageQueryParamIotAppLogReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoIotAppLogVo'
+  /oplogs/addlog/addDevicelog:
+    post:
+      tags:
+      - app日志
+      summary: 新增设备日志
+      description: 新增设备日志
+      operationId: addDevicelog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IotDeviceLogBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /oplogs/addlog/addApplog:
+    post:
+      tags:
+      - app日志
+      summary: 新增app日志
+      description: 新增app日志
+      operationId: addApplog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IotAppLogBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /oplogs/testMGR/getUserCapacity:
+    get:
+      tags:
+      - 模拟测试
+      summary: 获取用户云存储容量
+      description: 获取用户云存储容量
+      operationId: getUserCapacity
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GalleryAlbumVeCapacityVo'
+  /oplogs/shadowProp/list:
+    get:
+      tags:
+      - 设备影子信息
+      summary: 查询设备影子信息列表
+      description: 查询设备影子信息列表
+      operationId: list
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/DeviceShadowPropBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoDeviceShadowPropVo'
+  /oplogs/oplogCommand/{requestId}:
+    get:
+      tags:
+      - 命令请求操作日志控制器
+      summary: 获取命令请求操作日志详细信息
+      description: 获取命令请求操作日志详细信息
+      operationId: getInfo
+      parameters:
+      - name: requestId
+        in: path
+        description: 主键
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ROplogCommandView'
+  /oplogs/oplogCommand/list:
+    get:
+      tags:
+      - 命令请求操作日志控制器
+      summary: 查询命令请求操作日志列表
+      description: 查询命令请求操作日志列表
+      operationId: list_1
+      parameters:
+      - name: bo
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/OplogCommandBo'
+      - name: pageQuery
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PageQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TableDataInfoOplogCommandView'
+  /oplogs/oplogCommand/{requestIds}:
+    delete:
+      tags:
+      - 命令请求操作日志控制器
+      summary: 删除命令请求操作日志
+      description: 删除命令请求操作日志
+      operationId: remove
+      parameters:
+      - name: requestIds
+        in: path
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+components:
+  schemas:
+    PageQuery:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int32
+        pageNum:
+          minimum: 1
+          type: integer
+          description: 当前页数
+          format: int32
+        orderByColumn:
+          type: string
+          description: 排序列
+        isAsc:
+          type: string
+          description: "排序的方向desc或者asc\n 支持的用法如下:\n {isAsc:\"asc\",orderByColumn:\"\
+            id\"} order by id asc\n {isAsc:\"asc\",orderByColumn:\"id,createTime\"\
+            } order by id asc,create_time asc\n {isAsc:\"desc\",orderByColumn:\"id,createTime\"\
+            } order by id desc,create_time desc\n {isAsc:\"asc,desc\",orderByColumn:\"\
+            id,createTime\"} order by id asc,create_time desc"
+      description: 分页查询实体类
+    PageQueryParamPetMonentEventReq:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/PetMonentEventReq'
+      description: 带参数的分页查询对象
+    PetEventDevicesShareUserParm:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 分享者的的用户id
+        devIds:
+          type: array
+          description: 被分享的设备id
+          items:
+            type: string
+      description: ''
+    PetMonentEventReq:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        devIds:
+          type: array
+          description: 设备id
+          items:
+            type: string
+        startTime:
+          type: integer
+          description: 开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 结束时间
+          format: int64
+        shareUserDevsList:
+          type: array
+          description: 设备分享的用户设备列表
+          items:
+            $ref: '#/components/schemas/PetEventDevicesShareUserParm'
+        etypes:
+          type: array
+          description: '类型列表: 人，宠物检测'
+          items:
+            type: string
+        isMark:
+          type: boolean
+          description: 是否标记
+        isCloudVideo:
+          type: string
+          description: 是否只查询云视频
+      description: ''
+    DevicePetMomentEventVercollapVo:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        etype:
+          type: string
+          description: 事件类型
+        ossType:
+          type: integer
+          description: pet套餐类型：
+          format: int64
+        petType:
+          type: integer
+          description: 0:未知 1:dog, 2：cat,3:dog和cat
+          format: int64
+        msgTemplateId:
+          type: string
+          description: 消息模板id
+        picPetrate:
+          type: string
+          description: 图片宠物占比
+        picQuality:
+          type: string
+          description: 图片质量
+        picExposure:
+          type: string
+          description: 图片曝光
+        labelArray:
+          type: array
+          description: 标签数组
+          items:
+            type: string
+        localName:
+          type: string
+          description: 本地文件名称
+        picUrl:
+          type: string
+          description: pic url
+        picLen:
+          type: integer
+          description: pic文件长度
+          format: int64
+        videoUrl:
+          type: string
+          description: 视频url
+        videoLen:
+          type: integer
+          description: 云产测文件长度
+          format: int64
+        duration:
+          type: integer
+          description: 时长
+          format: int64
+        isEncrypt:
+          type: integer
+          description: 是否自定义加密访问
+          format: int64
+        base64Key:
+          type: string
+          description: 访问加密key(base64)
+        md5key:
+          type: string
+          description: 访问加密key的md值(base64)
+        zeroTime:
+          type: integer
+          description: 设备0时区时间
+          format: int64
+        timeZone:
+          type: string
+          description: 时区
+        devCreateTime:
+          type: string
+          description: 设备创建时间
+          format: date-time
+        ttlTime:
+          type: string
+          format: date-time
+        ttlDel:
+          type: boolean
+        isDel:
+          type: boolean
+        isMark:
+          type: boolean
+        sign:
+          type: integer
+          format: int64
+      description: 【请填写功能名称】视图对象 device_pet_moment_event_vercollap
+    TableDataInfoDevicePetMomentEventVercollapVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/DevicePetMomentEventVercollapVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    PageQueryParamPetGalleryAlbumEventReq:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/PetGalleryAlbumEventReq'
+      description: 带参数的分页查询对象
+    PetGalleryAlbumEventReq:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        devIds:
+          type: array
+          description: 设备id
+          items:
+            type: string
+        startTime:
+          type: integer
+          description: 开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 结束时间
+          format: int64
+        shareUserDevsList:
+          type: array
+          description: 设备分享的用户设备列表
+          items:
+            $ref: '#/components/schemas/PetEventDevicesShareUserParm'
+        etypes:
+          type: array
+          description: '类型列表: 人，宠物检测'
+          items:
+            type: string
+        isMark:
+          type: boolean
+          description: 是否标记
+        petId:
+          type: array
+          description: 宠物id
+          items:
+            type: string
+        isGallery:
+          type: boolean
+          description: 是否是图库,
+        isAlbum:
+          type: boolean
+          description: 是否是相册,
+        birdDiscern:
+          type: boolean
+          description: 是否识别鸟,null,所有 true.已知类型, false,未知类型,
+      description: ''
+    DevicePetGalleryAlbumVercollapVo:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        etype:
+          type: string
+        comeFrom:
+          type: integer
+          description: 0:未知，1：来源时刻库，2：来源app上传，3来源AI剪辑，4.宠物AI剪辑
+          format: int32
+        fileType:
+          type: integer
+          description: 0:未知，1：图片，2：视频
+          format: int32
+        msgTemplateId:
+          type: string
+          description: 消息模板id
+        cycleType:
+          type: integer
+          description: 0:未知，1：天，2：3天，3周，4.月，5：年，6：生日
+          format: int64
+        petType:
+          type: integer
+          description: 0:未知 1:dog, 2：cat，3：dog和cat
+          format: int32
+        score:
+          type: integer
+          description: AI分析后分数
+          format: int64
+        picPetrate:
+          type: string
+          description: 图片宠物占比
+        picQuality:
+          type: string
+          description: 图片质量
+        picExposure:
+          type: string
+          description: 图片曝光
+        videoPetrate:
+          type: string
+          description: 视频宠物数量比
+        videoQuality:
+          type: string
+          description: 视频质量
+        videoExposure:
+          type: string
+          description: 视频曝光
+        videoDynam:
+          type: string
+          description: 视频动物动态
+        petArray:
+          type: array
+          description: 标记宠物数组
+          items:
+            type: string
+        labelArray:
+          type: array
+          description: 标签数组
+          items:
+            type: string
+        ossName:
+          type: string
+          description: 对象名称存储：例如aws
+        picUrl:
+          type: string
+          description: pic url
+        picLen:
+          type: integer
+          description: pic文件长度
+          format: int64
+        picIcon:
+          type: string
+          description: pic图片缩略图
+        videoUrl:
+          type: string
+          description: 视频url
+        videoLen:
+          type: integer
+          description: video文件长度
+          format: int64
+        duration:
+          type: integer
+          description: 时长
+          format: int64
+        isEncrypt:
+          type: boolean
+          description: 是否自定义加密访问
+        base64Key:
+          type: string
+          description: 访问加密key(base64)
+        md5key:
+          type: string
+          description: 访问加密key的md值(base64)
+        zeroTime:
+          type: integer
+          description: 设备0时区时间
+          format: int64
+        timeZone:
+          type: string
+          description: 时区
+        devCreateTime:
+          type: string
+          description: 设备创建时间
+          format: date-time
+        isDel:
+          type: boolean
+        isMark:
+          type: boolean
+          description: 是否标记
+        sign:
+          type: integer
+          format: int64
+      description: 【请填写功能名称】视图对象 device_pet_gallery_album_vercollap
+    TableDataInfoDevicePetGalleryAlbumVercollapVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/DevicePetGalleryAlbumVercollapVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    TestBatchMarkPet:
+      type: object
+      properties:
+        userId:
+          type: string
+        eventIds:
+          type: array
+          items:
+            type: string
+        petIds:
+          type: array
+          items:
+            type: string
+      description: ''
+    EventDeleteRqBo:
+      required:
+      - eventId
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        eventId:
+          type: string
+          description: 事件id
+        zeroTime:
+          type: integer
+          description: 文件时间毫秒，数据是以时间分区表，提升性能，如果有时间可以传一下文件时间
+          format: int64
+      description: ''
+    EventDeleteSystemRqBo:
+      required:
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        devId:
+          type: string
+          description: 设备id
+        shareUserDevList:
+          type: array
+          description: 设备分享的用户设备列表
+          items:
+            $ref: '#/components/schemas/EventDeviceShareUserParm'
+        type:
+          type: integer
+          description: '1: 设备相关，2：用户相关'
+          format: int32
+      description: ''
+    EventDeviceShareUserParm:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 分享者的的用户id
+        devId:
+          type: string
+          description: 被分享的设备id
+      description: ''
+    DevicePetMomentVideoBo:
+      required:
+      - devId
+      - duration
+      - etype
+      - eventId
+      - isEncrypt
+      - ossType
+      - petType
+      - userId
+      - videoLen
+      - videoUrl
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        etype:
+          type: string
+          description: 事件类型
+        ossType:
+          type: integer
+          description: pet套餐类型：
+          format: int64
+        petType:
+          type: integer
+          description: 0:未知 1:dog, 2：cat,3:dog和cat
+          format: int64
+        msgtemplateId:
+          type: string
+          description: 消息模板id
+        labelJson:
+          type: string
+          description: 标签数组
+        ossName:
+          type: string
+          description: 对象名称存储：例如aws
+        videoUrl:
+          type: string
+          description: 视频url
+        videoLen:
+          type: integer
+          description: 云产测文件长度
+          format: int64
+        duration:
+          type: integer
+          description: 时长
+          format: int64
+        isEncrypt:
+          type: boolean
+          description: 是否自定义加密访问
+        encryptKey:
+          type: string
+          description: 访问加密key
+        zeroTime:
+          type: integer
+          description: 设备0时区时间
+          format: int64
+        timeZone:
+          type: string
+          description: 时区
+      description: ''
+    DevicePetMomentPicBo:
+      required:
+      - etype
+      - eventId
+      - isEncrypt
+      - ossType
+      - picLen
+      - picUrl
+      - timeZone
+      - userId
+      - zeroTime
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        etype:
+          type: string
+          description: 事件类型
+        ossType:
+          type: integer
+          description: pet套餐类型：
+          format: int64
+        petType:
+          type: integer
+          description: 0:未知 1:dog, 2：cat,3:dog和cat
+          format: int64
+        msgtemplateId:
+          type: string
+          description: 消息模板id
+        picPetrate:
+          type: string
+          description: 图片宠物占比
+        picQuality:
+          type: string
+          description: 图片质量
+        picExposure:
+          type: string
+          description: 图片曝光
+        labelJson:
+          type: string
+          description: 标签数组
+        localName:
+          type: string
+          description: 本地文件名称
+        picUrl:
+          type: string
+          description: pic url
+        picLen:
+          type: integer
+          description: pic文件长度
+          format: int64
+        isEncrypt:
+          type: boolean
+          description: 是否自定义加密访问
+        encryptKey:
+          type: string
+          description: 访问加密key
+        zeroTime:
+          type: integer
+          description: 设备0时区时间
+          format: int64
+        timeZone:
+          type: string
+          description: 时区
+      description: ''
+    DevicePetGalleryAlbumVercollapBo:
+      required:
+      - eventId
+      - picLen
+      - picUrl
+      - userId
+      - zeroTime
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        etype:
+          type: string
+        comeFrom:
+          type: integer
+          description: 0:未知，1：来源时刻库，2：来源app上传，3来源AI剪辑，4.宠物AI剪辑
+          format: int32
+        fileType:
+          type: integer
+          description: 0:未知，1：图片，2：视频
+          format: int32
+        msgTemplateId:
+          type: string
+          description: 消息模板id
+        cycleType:
+          type: integer
+          description: 0:未知，1：天，2：3天，3周，4.月，5：年，6：生日
+          format: int64
+        petType:
+          type: integer
+          description: 0:未知 1:dog, 2：cat，3：dog和cat
+          format: int32
+        score:
+          type: integer
+          description: AI分析后分数
+          format: int64
+        picPetrate:
+          type: string
+          description: 图片宠物占比
+        picQuality:
+          type: string
+          description: 图片质量
+        picExposure:
+          type: string
+          description: 图片曝光
+        videoPetrate:
+          type: string
+          description: 视频宠物数量比
+        videoQuality:
+          type: string
+          description: 视频质量
+        videoExposure:
+          type: string
+          description: 视频曝光
+        videoDynam:
+          type: string
+          description: 视频动物动态
+        labelArray:
+          type: array
+          description: 标签数组
+          items:
+            type: string
+        picUrl:
+          type: string
+          description: pic url
+        picLen:
+          type: integer
+          description: pic文件长度
+          format: int64
+        picIcon:
+          type: string
+          description: pic图片缩略图
+        videoUrl:
+          type: string
+          description: 视频url
+        videoLen:
+          type: integer
+          description: video文件长度
+          format: int64
+        duration:
+          type: integer
+          description: 时长
+          format: int64
+        isEncrypt:
+          type: boolean
+          description: 是否自定义加密访问
+        encryptKey:
+          type: string
+          description: 访问加密key
+        zeroTime:
+          type: integer
+          description: 设备0时区时间
+          format: int64
+        timeZone:
+          type: string
+          description: '时区  示例: UTC+8'
+        petIds:
+          type: array
+          items:
+            type: string
+      description: 【请填写功能名称】业务对象 device_pet_gallery_album_vercollap
+    DeviceBirdMomentEventVercollapVo:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        etype:
+          type: string
+          description: '事件类型: move ：移动 ；penson ：人检测；car: 车检测 : bird：鸟类；cat;'
+        comeFrom:
+          type: integer
+          description: 0:来源设备，1：来源时刻库，2：来源app上传，3来源AI剪辑，4.宠物AI剪辑
+          format: int32
+        ossType:
+          type: integer
+          description: pet套餐类型：
+          format: int32
+        msgTemplateId:
+          type: string
+          description: 消息模板id
+        aiBirdNames:
+          type: string
+          description: ai检测具体鸟类名称按，分割
+        aiNameJson:
+          type: string
+          description: ai检测具体鸟类名称按，分割
+        renameJson:
+          type: string
+          description: ai检测具体鸟类名称按，分割
+        labelArray:
+          type: array
+          description: 标签数组
+          items:
+            type: string
+        localName:
+          type: string
+          description: 本地文件名称
+        picUrl:
+          type: string
+          description: 缩略图pic url
+        picLen:
+          type: integer
+          description: 缩略图pic文件长度
+          format: int64
+        picHdUrl:
+          type: string
+          description: 高清图 url
+        picHdLen:
+          type: integer
+          description: 高清pic文件长度
+          format: int64
+        videoUrl:
+          type: string
+          description: 视频url
+        videoLen:
+          type: integer
+          description: 云产测文件长度
+          format: int64
+        duration:
+          type: integer
+          description: 时长
+          format: int64
+        isEncrypt:
+          type: boolean
+          description: 是否自定义加密访问
+        base64Key:
+          type: string
+          description: 访问加密key(base64)
+        md5key:
+          type: string
+          description: 访问加密key的md值(base64)
+        zeroTime:
+          type: integer
+          description: 设备0时区时间
+          format: int64
+        timeZone:
+          type: string
+          description: 时区
+        devCreateTime:
+          type: string
+          description: 设备创建时间
+          format: date-time
+        devCreateTimestamp:
+          type: integer
+          format: int64
+        ttlTime:
+          type: string
+          format: date-time
+        ttlDel:
+          type: boolean
+        isDel:
+          type: boolean
+        isMark:
+          type: boolean
+        sign:
+          type: integer
+          format: int64
+      description: ''
+    TableDataInfoDeviceBirdMomentEventVercollapVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/DeviceBirdMomentEventVercollapVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    DeviceBirdAlbumSaveVercollapVo:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        etype:
+          type: string
+        comeFrom:
+          type: integer
+          description: 0:未知，1：来源时刻库，2：来源app上传，3来源AI剪辑，4.宠物AI剪辑
+          format: int32
+        fileType:
+          type: integer
+          description: 0:未知，1：图片，2：视频
+          format: int32
+        msgTemplateId:
+          type: string
+          description: 消息模板id
+        aiBirdNames:
+          type: string
+          description: ai检测具体鸟类名称按，分割
+        aiNameJson:
+          type: string
+          description: ai检测具体鸟类名称按，分割
+        renameJson:
+          type: string
+          description: ai检测具体鸟类名称按，分割
+        cycleType:
+          type: integer
+          description: 0:未知，1：天，2：3天，3周，4.月，5：年，6：生日
+          format: int64
+        score:
+          type: integer
+          description: AI分析后分数
+          format: int64
+        petArray:
+          type: array
+          description: 标记宠物数组
+          items:
+            type: string
+        labelArray:
+          type: array
+          description: 标签数组
+          items:
+            type: string
+        ossName:
+          type: string
+          description: 对象名称存储：例如aws
+        picUrl:
+          type: string
+          description: 缩略图pic url
+        picLen:
+          type: integer
+          description: 缩略图pic文件长度
+          format: int64
+        picHdUrl:
+          type: string
+          description: 高清图 url
+        picHdLen:
+          type: integer
+          description: 高清pic文件长度
+          format: int64
+        videoUrl:
+          type: string
+          description: 视频url
+        videoLen:
+          type: integer
+          description: video文件长度
+          format: int64
+        duration:
+          type: integer
+          description: 时长
+          format: int64
+        isEncrypt:
+          type: boolean
+          description: 是否自定义加密访问
+        base64Key:
+          type: string
+          description: 访问加密key(base64)
+        md5key:
+          type: string
+          description: 访问加密key的md值(base64)
+        zeroTime:
+          type: integer
+          description: 设备0时区时间
+          format: int64
+        timeZone:
+          type: string
+          description: 时区
+        devCreateTime:
+          type: string
+          description: 设备创建时间
+          format: date-time
+        devCreateTimestamp:
+          type: integer
+          format: int64
+        isDel:
+          type: boolean
+        isMark:
+          type: boolean
+          description: 是否标记
+        sign:
+          type: integer
+          format: int64
+      description: 喂鸟器云相册收藏
+    TableDataInfoDeviceBirdAlbumSaveVercollapVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/DeviceBirdAlbumSaveVercollapVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    DeviceBirdMomentVideoBo:
+      required:
+      - devId
+      - duration
+      - etype
+      - eventId
+      - isEncrypt
+      - msgTemplateId
+      - ossType
+      - userId
+      - videoLen
+      - videoUrl
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        etype:
+          type: string
+          description: '事件类型: move ：移动 ；penson ：人检测；car: 车检测 : bird：鸟类；cat;'
+        ossType:
+          type: integer
+          description: pet套餐类型：
+          format: int32
+        msgTemplateId:
+          type: string
+          description: 消息模板id
+        aiBirdName:
+          type: string
+          description: ai检测具体鸟类名称
+        labelJson:
+          type: string
+          description: 标签数组
+        ossName:
+          type: string
+          description: 对象名称存储：例如aws
+        videoUrl:
+          type: string
+          description: 视频url
+        videoLen:
+          type: integer
+          description: 云产测文件长度
+          format: int64
+        duration:
+          type: integer
+          description: 时长
+          format: int64
+        isEncrypt:
+          type: boolean
+          description: 是否自定义加密访问
+        encryptKey:
+          type: string
+          description: 访问加密key
+        zeroTime:
+          type: integer
+          description: 设备0时区时间
+          format: int64
+        timeZone:
+          type: string
+          description: 时区
+      description: ''
+    DeviceBirdMomentPicBo:
+      required:
+      - etype
+      - eventId
+      - isEncrypt
+      - msgTemplateId
+      - ossType
+      - timeZone
+      - userId
+      - zeroTime
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        etype:
+          type: string
+          description: '事件类型: move ：移动 ；penson ：人检测；car: 车检测 : bird：鸟类；cat;'
+        ossType:
+          type: integer
+          description: pet套餐类型：
+          format: int32
+        msgTemplateId:
+          type: string
+          description: 消息模板id
+        aiBirdNames:
+          type: string
+          description: ai检测具体鸟类名称按，分割
+        aiNameJson:
+          type: string
+          description: ai检测具体鸟类名称按，分割
+        comeFrom:
+          type: integer
+          description: 0:来源设备，1：来源时刻库，2：来源app上传，3来源AI剪辑，4.宠物AI剪辑
+          format: int32
+        labelJson:
+          type: string
+          description: 标签数组
+        localName:
+          type: string
+          description: 本地文件名称
+        picUrl:
+          type: string
+          description: 缩略图pic url
+        picLen:
+          type: integer
+          description: 缩略图pic文件长度
+          format: int64
+        picHdUrl:
+          type: string
+          description: 高清图 url
+        picHdLen:
+          type: integer
+          description: 高清pic文件长度
+          format: int64
+        isEncrypt:
+          type: boolean
+          description: 是否自定义加密访问
+        encryptKey:
+          type: string
+          description: 访问加密key
+        zeroTime:
+          type: integer
+          description: 设备0时区时间
+          format: int64
+        timeZone:
+          type: string
+          description: 时区
+      description: ''
+    BirdDetectKindPicVo:
+      type: object
+      properties:
+        picType:
+          type: integer
+          description: AI识别使用图片url类型：0:缩略图；1：高清图片
+          format: int32
+        etype:
+          type: string
+        from:
+          type: integer
+          description: 来源：0代表ai来源设备，1：来源平台，2：来源宠智灵
+          format: int32
+        kindVoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/BirdDetectKindVo'
+      description: ''
+    BirdDetectKindVo:
+      type: object
+      properties:
+        index:
+          type: string
+          description: 编号
+        names:
+          type: array
+          description: 检测类别和相似度
+          items:
+            $ref: '#/components/schemas/DetectNameScoreVo'
+        box:
+          $ref: '#/components/schemas/DetectBoxVo'
+      description: ''
+    DetectBoxVo:
+      type: object
+      properties:
+        x1:
+          type: integer
+          description: 边框值x1,y1,x2,y2
+          format: int32
+        x2:
+          type: integer
+          format: int32
+        y1:
+          type: integer
+          format: int32
+        y2:
+          type: integer
+          format: int32
+      description: ''
+    DetectNameScoreVo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 检测名称
+        score:
+          type: number
+          description: 相似度
+          format: float
+      description: ''
+    DeviceBirdPicAIDetectBo:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: 事件id
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 用户id
+        birdDind:
+          $ref: '#/components/schemas/BirdDetectKindPicVo'
+      description: ''
+    DeviceShadowPropBo:
+      required:
+      - code
+      - devId
+      - productId
+      - tm
+      - value
+      type: object
+      properties:
+        productId:
+          type: string
+          description: 产品id
+        devId:
+          type: string
+          description: 指令编码
+        code:
+          type: string
+          description: 指令编码
+        codes:
+          uniqueItems: true
+          type: array
+          description: 查询指定指令
+          items:
+            type: string
+        value:
+          type: string
+          description: 实际产品指令值,默认是instruct表指令值，可以针对默认指令值修改后保存的值
+        tm:
+          type: integer
+          description: 时间
+          format: int64
+      description: 设备影子信息业务对象
+    RVoid:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    OplogCommandBo:
+      required:
+      - devId
+      - modelCode
+      - productId
+      - requestId
+      - result
+      - resultTime
+      - uid
+      - value
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: 请求id
+        uid:
+          type: string
+          description: 用户id
+        homeId:
+          type: string
+          description: home
+        productId:
+          type: string
+          description: 产品id
+        devId:
+          type: string
+          description: 设备id
+        modelCode:
+          type: string
+          description: 请求指令编码
+        value:
+          type: string
+          description: 命令类型
+        type:
+          type: string
+          description: 命令类型
+        result:
+          type: integer
+          description: 执行结果
+          format: int32
+        resultTime:
+          type: integer
+          description: 执行结果
+          format: int64
+        resultMsg:
+          type: string
+          description: 执行消息
+        createTime:
+          type: string
+          description: 创建时间
+          format: date-time
+        updateTime:
+          type: string
+          description: 更新时间
+          format: date-time
+        startTime:
+          type: string
+          description: 开始时间，用于查询
+          format: date-time
+        endTime:
+          type: string
+          description: 结束时间，用于查询
+          format: date-time
+      description: 命令请求操作日志业务对象
+    IotDeviceLogReq:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        logType:
+          type: string
+          description: '日志类型: 等'
+        keywords:
+          type: string
+          description: 检索关键字,模糊查询
+        startTime:
+          type: integer
+          description: 开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 结束时间
+          format: int64
+      description: ''
+    PageQueryParamIotDeviceLogReq:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/IotDeviceLogReq'
+      description: 带参数的分页查询对象
+    IotDeviceLogVo:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        ver:
+          type: string
+          description: 设备版本
+        txtType:
+          type: integer
+          description: '1: 文本，2：文件url'
+          format: int64
+        logType:
+          type: string
+          description: '日志类型: mcu, soc, 4g,other等'
+        keywords:
+          type: string
+          description: 检索关键字
+        url:
+          type: string
+          description: 大文件url
+        text:
+          type: string
+          description: text
+        zeroTime:
+          type: integer
+          description: 毫秒数
+          format: int64
+        devCreateTime:
+          type: string
+          description: 设备创建时间
+          format: date-time
+        createTime:
+          type: string
+          description: 创建时间
+          format: date-time
+      description: 设备日志视图对象 device_log
+    TableDataInfoIotDeviceLogVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/IotDeviceLogVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    IotAppLogReq:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        logType:
+          type: string
+          description: '日志类型: 等'
+        keywords:
+          type: string
+          description: 检索关键字
+        startTime:
+          type: integer
+          description: 开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 结束时间
+          format: int64
+      description: ''
+    PageQueryParamIotAppLogReq:
+      type: object
+      properties:
+        pageQuery:
+          $ref: '#/components/schemas/PageQuery'
+        paramData:
+          $ref: '#/components/schemas/IotAppLogReq'
+      description: 带参数的分页查询对象
+    IotAppLogVo:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        name:
+          type: string
+          description: app名称
+        ver:
+          type: string
+          description: app版本
+        txtType:
+          type: integer
+          description: '1: 文本，2：文件url'
+          format: int64
+        logType:
+          type: string
+          description: '日志类型: 等'
+        keywords:
+          type: string
+          description: 检索关键字
+        url:
+          type: string
+          description: 大文件url
+        text:
+          type: string
+          description: text
+        zeroTime:
+          type: integer
+          description: 毫秒数
+          format: int64
+        devCreateTime:
+          type: string
+          description: 设备创建时间
+          format: date-time
+        createTime:
+          type: string
+          description: 创建时间
+          format: date-time
+      description: app日志视图对象 app_log
+    TableDataInfoIotAppLogVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/IotAppLogVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    Data:
+      type: object
+    IotDeviceLogBo:
+      required:
+      - devId
+      - ver
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        ver:
+          type: string
+          description: 设备版本
+        txtType:
+          type: integer
+          description: '1: 文本，2：文件url'
+          format: int64
+        logType:
+          type: string
+          description: '日志类型: mcu, soc, 4g,other等'
+        keywords:
+          type: string
+          description: 检索关键字
+        file:
+          type: string
+          description: 大文件 :如果日志文件比较大，可以传此参数，利润大于20kb文件可以传此参数
+          format: binary
+        text:
+          type: string
+          description: text：日志文件比较小是可以传此自动
+        zeroTime:
+          type: integer
+          description: 毫秒数
+          format: int64
+        devCreateTime:
+          $ref: '#/components/schemas/Data'
+      description: 设备日志业务对象 device_log
+    IotAppLogBo:
+      required:
+      - name
+      - userId
+      - ver
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 用户id
+        name:
+          type: string
+          description: app名称
+        ver:
+          type: string
+          description: app版本
+        txtType:
+          type: integer
+          description: '1: 文本，2：文件url'
+          format: int64
+        logType:
+          type: string
+          description: '日志类型: mcu, soc, 4g,other等'
+        keywords:
+          type: string
+          description: 检索关键字
+        file:
+          type: string
+          description: 大文件 :如果日志文件比较大，可以传此参数，利润大于20kb文件可以传此参数
+          format: binary
+        text:
+          type: string
+          description: text：日志文件比较小是可以传此自动
+        zeroTime:
+          type: integer
+          description: 毫秒数
+          format: int64
+        devCreateTime:
+          $ref: '#/components/schemas/Data'
+      description: app日志业务对象 app_log
+    GalleryAlbumVeCapacityVo:
+      type: object
+      properties:
+        picCp:
+          type: integer
+          description: 图片容量
+          format: int64
+        videoCp:
+          type: integer
+          description: 视频容量
+          format: int64
+      description: ''
+    DeviceShadowPropVo:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: 产品id
+        devId:
+          type: string
+          description: 指令编码
+        code:
+          type: string
+          description: 指令编码
+        value:
+          type: string
+          description: 实际产品指令值,默认是instruct表指令值，可以针对默认指令值修改后保存的值
+        tm:
+          type: integer
+          description: 说明
+          format: int64
+      description: 设备影子信息视图对象
+    TableDataInfoDeviceShadowPropVo:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/DeviceShadowPropVo'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+    OplogCommandView:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: 请求id
+        uid:
+          type: string
+          description: 用户id
+        homeId:
+          type: string
+          description: home
+        productId:
+          type: string
+          description: 产品id
+        devId:
+          type: string
+          description: 设备id
+        modelCode:
+          type: string
+          description: 请求指令编码
+        type:
+          type: string
+          description: 命令类型
+        value:
+          type: string
+          description: value
+        result:
+          type: integer
+          description: 执行结果
+          format: int32
+        resultMsg:
+          type: string
+          description: 执行消息
+        createTime:
+          type: string
+          description: 创建时间
+          format: date-time
+        updateTime:
+          type: string
+          description: 更新时间
+          format: date-time
+      description: ''
+    ROplogCommandView:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/OplogCommandView'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TableDataInfoOplogCommandView:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: 分页大小
+          format: int64
+        pageNum:
+          type: integer
+          description: 当前页数
+          format: int64
+        totalPage:
+          type: integer
+          description: 总页数
+          format: int64
+        total:
+          type: integer
+          description: 总记录数
+          format: int64
+        rows:
+          type: array
+          description: 列表数据
+          items:
+            $ref: '#/components/schemas/OplogCommandView'
+        code:
+          type: integer
+          description: 消息状态码
+          format: int32
+        msg:
+          type: string
+          description: 消息内容
+      description: 表格分页数据对象
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header

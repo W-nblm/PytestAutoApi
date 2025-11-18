@@ -8,6 +8,12 @@ customId: "uqWpSNdirt7wYZUOLwkI/I6O4A3fAH1bTThuLXlIrHxi3D6yvTXKBOIO0aNgkH8rvczDc
 real_time_update_test_cases: False
 notification_type: 0
 excel_report: False
+
+# 用例文件目录
+case_file_path: data
+# 测试用例目录
+test_case_path: test_cases
+
 ding_talk:
   webhook:
   secret:

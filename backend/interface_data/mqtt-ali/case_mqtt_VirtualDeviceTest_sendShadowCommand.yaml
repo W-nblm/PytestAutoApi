@@ -1,0 +1,136 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 向影子设备发送请求
+case_mqtt_VirtualDeviceTest_sendShadowCommand_01_positive:
+  host: ${{host()}}
+  url: /mqtt/VirtualDeviceTest/sendShadowCommand
+  method: POST
+  detail: 未分类 - 向影子设备发送请求 - 正向场景
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: device_shadow_001
+    productId: product_shadow_A
+    homeId: home_shadow_X
+    data:
+      userId: user_test_abc
+      code: SET_DEVICE_STATUS
+      value:
+        status: 'on'
+        brightness: 100
+        color: '#FF0000'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含"成功"
+case_mqtt_VirtualDeviceTest_sendShadowCommand_02_missing_devId:
+  host: ${{host()}}
+  url: /mqtt/VirtualDeviceTest/sendShadowCommand
+  method: POST
+  detail: 未分类 - 向影子设备发送请求 - 异常场景：缺少必填参数devId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    productId: product_shadow_A
+    data:
+      userId: user_test_abc
+      code: SET_DEVICE_STATUS
+      value:
+        status: 'on'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数校验失败
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期是参数校验失败
+  - name: 校验响应消息包含devId错误提示
+    jsonpath: $.msg
+    type: contains
+    value: devId
+    message: 响应消息未提示devId参数缺失
+  - name: 校验paramMsg包含devId错误详细
+    jsonpath: $.paramMsg.devId
+    type: contains
+    value: 必填
+    message: paramMsg未提示devId参数为必填项
+case_mqtt_VirtualDeviceTest_sendShadowCommand_03_invalid_productId_type:
+  host: ${{host()}}
+  url: /mqtt/VirtualDeviceTest/sendShadowCommand
+  method: POST
+  detail: 未分类 - 向影子设备发送请求 - 异常场景：productId参数类型错误
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: device_shadow_001
+    productId: 12345
+    data:
+      userId: user_test_abc
+      code: SET_DEVICE_STATUS
+      value:
+        status: 'on'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数校验失败
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期是参数类型校验失败
+  - name: 校验响应消息包含productId类型错误提示
+    jsonpath: $.msg
+    type: contains
+    value: productId
+    message: 响应消息未提示productId类型错误
+  - name: 校验paramMsg包含productId类型错误详细
+    jsonpath: $.paramMsg.productId
+    type: contains
+    value: string
+    message: paramMsg未提示productId类型错误
+case_mqtt_VirtualDeviceTest_sendShadowCommand_04_missing_data_object:
+  host: ${{host()}}
+  url: /mqtt/VirtualDeviceTest/sendShadowCommand
+  method: POST
+  detail: 未分类 - 向影子设备发送请求 - 异常场景：缺少必填参数data对象
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: device_shadow_001
+    productId: product_shadow_A
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数校验失败
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期是参数校验失败
+  - name: 校验响应消息包含data对象错误提示
+    jsonpath: $.msg
+    type: contains
+    value: data
+    message: 响应消息未提示data参数缺失
+  - name: 校验paramMsg包含data对象错误详细
+    jsonpath: $.paramMsg.data
+    type: contains
+    value: 必填
+    message: paramMsg未提示data参数为必填项

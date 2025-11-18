@@ -1,0 +1,96 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 小程序登录(示例)
+case_auth_xcxLogin_01_success:
+  host: ${{host()}}
+  url: /auth/xcxLogin
+  method: POST
+  detail: 小程序登录(示例) - 成功场景
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: mock_xcx_code_abcdefg123456
+  dependence_case: []
+  assert:
+  - name: 校验接口业务状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 业务状态码不为200，表示登录失败
+  - name: 校验响应消息包含"成功"
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含"成功"字样
+case_auth_xcxLogin_02_empty_param:
+  host: ${{host()}}
+  url: /auth/xcxLogin
+  method: POST
+  detail: 小程序登录(示例) - 参数为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: ''
+  dependence_case: []
+  assert:
+  - name: 校验接口业务状态码不为200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 业务状态码为200，但预期是错误响应
+  - name: 校验响应消息包含"为空"或"无效"
+    jsonpath: $.msg
+    type: contains
+    value: 无效或为空
+    message: 响应消息未包含预期的参数为空或无效错误信息
+case_auth_xcxLogin_03_invalid_type_param:
+  host: ${{host()}}
+  url: /auth/xcxLogin
+  method: POST
+  detail: 小程序登录(示例) - 参数类型错误 (发送JSON对象)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    invalid_key: invalid_value
+  dependence_case: []
+  assert:
+  - name: 校验接口业务状态码不为200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 业务状态码为200，但预期是错误响应
+  - name: 校验响应消息包含"类型不匹配"或"解析失败"
+    jsonpath: $.msg
+    type: contains
+    value: 类型不匹配或解析失败
+    message: 响应消息未包含预期的参数类型错误信息
+case_auth_xcxLogin_04_no_auth_header:
+  host: ${{host()}}
+  url: /auth/xcxLogin
+  method: POST
+  detail: 小程序登录(示例) - 缺少Authorization头
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: mock_xcx_code_abcdefg123456
+  dependence_case: []
+  assert:
+  - name: 校验接口HTTP状态码为非2xx
+    jsonpath: $statusCode
+    type: not_eq
+    value: 200
+    message: HTTP状态码为200，但预期是鉴权失败
+  - name: 校验响应消息包含"未授权"或"鉴权失败"
+    jsonpath: $.msg
+    type: contains
+    value: 未授权或鉴权失败
+    message: 响应消息未包含预期的鉴权失败信息

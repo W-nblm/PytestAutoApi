@@ -1,0 +1,625 @@
+openapi: 3.0.1
+info:
+  title: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  description: 描述：微服务权限管理系统, 具体包括XXX,XXX模块...
+  contact:
+    name: lzyiot
+    url: https://szlongzy.com
+    email: lzyiot@szlongzy.com
+  version: 版本号：系统版本...
+servers:
+- url: http://172.10.21.8:9508
+  description: Generated server url
+security:
+- apiKey: []
+tags:
+- name: 虚拟设备
+  description: 虚拟设备
+- name: HeartBeat
+  description: HeartBeat
+paths:
+  /mqtt/VirtualDeviceTest/unbind:
+    post:
+      tags:
+      - 虚拟设备
+      summary: 解绑设备同时
+      description: 解绑设备同时
+      operationId: unbind
+      parameters:
+      - name: devId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RObject'
+  /mqtt/VirtualDeviceTest/startAi:
+    post:
+      tags:
+      - 虚拟设备
+      summary: 给设备生成birdAI事件
+      description: 给设备生成birdAI事件
+      operationId: startAi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestBirdAiBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /mqtt/VirtualDeviceTest/sendShadowCommand:
+    post:
+      tags:
+      - 虚拟设备
+      summary: 向影子设备发送请求
+      description: 向影子设备发送请求
+      operationId: sendShadowCommand
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComPropRequstCommandParm'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RObject'
+  /mqtt/VirtualDeviceTest/sendRealTimeProperty:
+    post:
+      tags:
+      - 虚拟设备
+      summary: 向设备下发获取属性
+      description: 向设备下发获取属性
+      operationId: sendRealTimeProperty
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComPropRequstPropertyParm'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ROpreqVo'
+  /mqtt/VirtualDeviceTest/sendRealTimeCommand:
+    post:
+      tags:
+      - 虚拟设备
+      summary: 向设备下发实时命令
+      description: 向设备下发实时命令
+      operationId: sendRealTimeCommand
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComPropRequstCommandParm'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ROpreqVo'
+  /mqtt/VirtualDeviceTest/reboot:
+    post:
+      tags:
+      - 虚拟设备
+      summary: 重启设备
+      description: 重启设备
+      operationId: reboot
+      parameters:
+      - name: devId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RObject'
+  /mqtt/VirtualDeviceTest/queryVirtualDevList:
+    post:
+      tags:
+      - 虚拟设备
+      summary: 查询虚拟设备列表
+      description: 查询虚拟设备列表
+      operationId: queryVirtualDevList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceUserVirtualShipBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListDeviceUserVirtualShipVo'
+  /mqtt/heartBeat:
+    get:
+      tags:
+      - HeartBeat
+      summary: HeartBeat
+      description: HeartBeat
+      operationId: heartBeat
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /mqtt/VirtualDeviceTest/testSendNtp:
+    get:
+      tags:
+      - 虚拟设备
+      summary: 模拟设备发送Ntp对时
+      description: 模拟设备发送Ntp对时
+      operationId: testSendNtp
+      parameters:
+      - name: devId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RObject'
+  /mqtt/VirtualDeviceTest/testSendNetwork:
+    get:
+      tags:
+      - 虚拟设备
+      summary: 添加设备同时模拟设备发送配网
+      description: 添加设备同时模拟设备发送配网
+      operationId: testSendNetwork
+      parameters:
+      - name: devId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: productId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RObject'
+  /mqtt/VirtualDeviceTest/testGetDevProps:
+    get:
+      tags:
+      - 虚拟设备
+      summary: 获取设备所有影子属性
+      description: 获取设备所有影子属性
+      operationId: getDevShadowProps
+      parameters:
+      - name: productId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: devId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListDevicePropVo'
+  /mqtt/VirtualDeviceTest/setDevActive:
+    get:
+      tags:
+      - 虚拟设备
+      summary: 设置某个设备状态为运行
+      description: 设置某个设备状态为运行
+      operationId: setDevActive
+      parameters:
+      - name: devId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RObject'
+  /mqtt/VirtualDeviceTest/getExeValue:
+    get:
+      tags:
+      - 虚拟设备
+      summary: 获取命令执行异步结果
+      description: 获取命令执行异步结果
+      operationId: getExeValue
+      parameters:
+      - name: requestId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: operateEnum
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - command
+          - property
+          - event
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ROperationRespObject'
+components:
+  schemas:
+    RObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TestBirdAiBo:
+      required:
+      - devId
+      - picurl
+      type: object
+      properties:
+        devId:
+          type: string
+        picurl:
+          type: string
+        picHDurl:
+          type: string
+        birdAiName:
+          type: string
+        scorce:
+          type: number
+          format: float
+      description: ''
+    RBoolean:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: boolean
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    ComPropRequstCommandParm:
+      required:
+      - data
+      - devId
+      - productId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 目标设备id
+        productId:
+          type: string
+          description: 产品id
+        homeId:
+          type: string
+        data:
+          $ref: '#/components/schemas/CommandParm'
+      description: "user: xiehui\n date: 2023/3/25"
+    CommandParm:
+      type: object
+      properties:
+        userId:
+          type: string
+        code:
+          type: string
+        value:
+          type: object
+          description: 具体指令值
+      description: "user: xiehui\n date: 2023/2/20"
+    ComPropRequstPropertyParm:
+      required:
+      - data
+      - devId
+      - productId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 目标设备id
+        productId:
+          type: string
+          description: 产品id
+        homeId:
+          type: string
+        data:
+          $ref: '#/components/schemas/PropertyParm'
+      description: "user: xiehui\n date: 2023/3/25"
+    PropertyParm:
+      type: object
+      properties:
+        userId:
+          type: string
+        code:
+          type: string
+      description: "user: xiehui\n date: 2023/3/25"
+    OpreqVo:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: 请求id
+        isLink:
+          type: boolean
+        msg:
+          type: string
+        succ:
+          type: boolean
+      description: "user: xiehui\n date: 2023/3/25"
+    ROpreqVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/OpreqVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    DeviceUserVirtualShipBo:
+      required:
+      - devId
+      - productId
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        productId:
+          type: string
+          description: 产品id
+      description: 系统用户创建虚拟设备的关系业务对象 device_user_virtual_ship
+    DeviceUserVirtualShipVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        devId:
+          type: string
+          description: 设备id
+        userId:
+          type: string
+          description: 系统用户id
+        productId:
+          type: string
+          description: 产品id
+      description: 系统用户创建虚拟设备的关系视图对象 device_user_virtual_ship
+    RListDeviceUserVirtualShipVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/DeviceUserVirtualShipVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RVoid:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    DevicePropVo:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        modelCode:
+          type: string
+          description: 设备id
+        type:
+          type: string
+          description: 指令类型Boolean, Enum, Integer,Float ,String,Json, Raw
+        value:
+          type: object
+          description: 具体指令值
+      description: ''
+    RListDevicePropVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/DevicePropVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    OperationRespObject:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        time:
+          type: integer
+          description: 时间戳
+          format: int64
+        succ:
+          type: boolean
+          description: 是否成功
+        status:
+          type: integer
+          description: 0：代表命令发送不成功，1，代表命令发送成功，设备处理中，2:代表设备处理完成
+          format: int32
+        msg:
+          type: string
+          description: 失败后消息提示
+        data:
+          type: object
+          description: 命令执行成功后返回的数据对象
+      description: "user: xiehui\n date: 2023/2/11"
+    ROperationRespObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/OperationRespObject'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header

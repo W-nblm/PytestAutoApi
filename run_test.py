@@ -2,6 +2,10 @@ import os
 import subprocess
 from datetime import datetime
 from pathlib import Path
+import sys
+
+project_root = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, project_root)
 
 
 def run_tests():
@@ -14,7 +18,7 @@ def run_tests():
     print("🚀 开始执行测试用例...")
     cmd = [
         "pytest",
-        "tests",
+        "backend/interface_case",
         "--maxfail=3",
         "--disable-warnings",
         "-q",

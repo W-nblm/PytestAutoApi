@@ -1,0 +1,197 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 认证授权模块
+  allureStory: 邮件登录
+case_auth_emailLogin_01_success:
+  host: ${{host()}}
+  url: /auth/emailLogin
+  method: POST
+  detail: 邮件登录 - 成功场景
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    email: test_user@example.com
+    emailCode: 123456
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息不包含"成功"
+  - name: 校验返回数据不为空
+    jsonpath: $.data
+    type: not_eq
+    value: null
+    message: 登录成功后返回数据为空
+case_auth_emailLogin_02_missing_email:
+  host: ${{host()}}
+  url: /auth/emailLogin
+  method: POST
+  detail: 邮件登录 - 缺少必填参数email
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    emailCode: 123456
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 缺少email参数时状态码不应为200
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 参数缺失
+    message: 响应消息不包含"参数缺失"
+  - name: 校验paramMsg包含email错误信息
+    jsonpath: $.paramMsg.email
+    type: contains
+    value: 不能为空
+    message: paramMsg中email字段未提示不能为空
+case_auth_emailLogin_03_missing_emailCode:
+  host: ${{host()}}
+  url: /auth/emailLogin
+  method: POST
+  detail: 邮件登录 - 缺少必填参数emailCode
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    email: test_user@example.com
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 缺少emailCode参数时状态码不应为200
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 参数缺失
+    message: 响应消息不包含"参数缺失"
+  - name: 校验paramMsg包含emailCode错误信息
+    jsonpath: $.paramMsg.emailCode
+    type: contains
+    value: 不能为空
+    message: paramMsg中emailCode字段未提示不能为空
+case_auth_emailLogin_04_invalid_email_format:
+  host: ${{host()}}
+  url: /auth/emailLogin
+  method: POST
+  detail: 邮件登录 - email格式不正确
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    email: invalid-email-format
+    emailCode: 123456
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: email格式不正确时状态码不应为200
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 格式不正确
+    message: 响应消息不包含"格式不正确"
+  - name: 校验paramMsg包含email格式错误信息
+    jsonpath: $.paramMsg.email
+    type: contains
+    value: 格式不正确
+    message: paramMsg中email字段未提示格式不正确
+case_auth_emailLogin_05_incorrect_emailCode:
+  host: ${{host()}}
+  url: /auth/emailLogin
+  method: POST
+  detail: 邮件登录 - 邮箱验证码不正确
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    email: test_user@example.com
+    emailCode: 999999
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 验证码不正确时状态码不应为200
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 验证码错误
+    message: 响应消息不包含"验证码错误"
+case_auth_emailLogin_06_email_not_registered:
+  host: ${{host()}}
+  url: /auth/emailLogin
+  method: POST
+  detail: 邮件登录 - 邮箱未注册
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    email: non_existent@example.com
+    emailCode: 123456
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 邮箱未注册时状态码不应为200
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 用户不存在
+    message: 响应消息不包含"用户不存在"或"邮箱未注册"
+case_auth_emailLogin_07_emailCode_expired:
+  host: ${{host()}}
+  url: /auth/emailLogin
+  method: POST
+  detail: 邮件登录 - 邮箱验证码已过期
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    email: test_user@example.com
+    emailCode: 789012
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 验证码过期时状态码不应为200
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 验证码已失效
+    message: 响应消息不包含"验证码已失效"

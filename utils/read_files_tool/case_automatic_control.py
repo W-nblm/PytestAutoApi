@@ -197,6 +197,8 @@ class TestCaseAutomaticGeneration:
         :param cases_dir: 生成测试用例文件目录
         :return:
         """
+        print("开始生成测试用例文件...")
+        print(ensure_path_sep(yaml_files_dir))
         # 读取所有的yaml文件
         file_paths = get_all_files(
             file_path=ensure_path_sep(yaml_files_dir), yaml_data_switch=True
@@ -228,10 +230,7 @@ class TestCaseAutomaticGeneration:
             class_title = "Test_" + dir_path.split(os.sep)[-1].capitalize()
             # 合成测试用例文件路径
             case_path = os.path.join(dir_path, "test_" + dir_name.lower() + ".py")
-            # 转换为 test_case 目录下的路径
-            case_path = self.replace_data_dir(
-                case_path, old=yaml_files_dir, new=cases_dir
-            )
+
             print("用例文件路径:", case_path)
             print("*" * 60)
             # 存放所有方法

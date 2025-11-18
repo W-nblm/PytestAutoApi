@@ -1,14 +1,2 @@
 strict: true
-modules:
-- name: ../app/interface_data
-  enabled: true
-  cases:
-  - test_case_auth_xcxLogin
-- name: ../app/interface_data/test1
-  enabled: true
-  cases:
-  - test_case_auth_register
-- name: ../app/interface_data/test2
-  enabled: true
-  cases:
-  - test_case_auth_smsLogin
+modules: []
