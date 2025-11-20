@@ -1,3 +1,4 @@
+import json
 import os
 import time
 import subprocess
@@ -78,7 +79,7 @@ def execute_cases():
     """执行 AI 生成的测试用例"""
     try:
         print(os.getcwd())
-        case_dir = "data\interface_case"
+        case_dir = "test_case\interface_case"
 
         if not os.path.exists(case_dir):
             return jsonify(fail(f"Case directory not found: {case_dir}")), 404
@@ -94,17 +95,12 @@ def execute_cases():
         report_path = report_dir / f"report_{timestamp}.json"
         latest_path = report_dir / "latest_report.json"
 
-        print("🚀 开始执行测试用例...")
-        cmd = [
-            "pytest",
-            "backend/interface_case",
-            "--maxfail=3",
-            "--disable-warnings",
-            "-q",
-            f"--json-report",
-            f"--json-report-file={report_path}",
-        ]
-        subprocess.run(cmd, check=False)
+
+        # 设置环境变量
+        os.environ["PYTHONPATH"] = "D:\\PytestAutoApi"
+
+        # 执行Python脚本
+        subprocess.run(["python", ".\\run_test.py"])
 
         # 更新 latest_report.json
         if report_path.exists():
@@ -119,15 +115,21 @@ def execute_cases():
         test_files = []
         for root, dirs, files in os.walk(case_dir):
             for f in files:
-                test_files.append(
-                    {
-                        "name": os.path.join(root, f),
-                        "status": "成功",
-                        "duration": elapsed,
-                        "message": "成功",
-                    }
-                )
-                print(os.path.join(root, f))
+                if f.endswith(".py"):
+                    test_files.append(
+                        {
+                            "name": os.path.join(root, f),
+                            "status": "成功",
+                            "duration": elapsed,
+                            "message": "成功",
+                        }
+                    )
+                    print(os.path.join(root, f))
+        # 解析测试报告
+        report_json = json.loads(latest_path.read_text(encoding='utf-8'))
+
+        summary = report_json.get("summary", {})
+
 
         return jsonify(
             success(
@@ -135,6 +137,8 @@ def execute_cases():
                     "case_name": "AI生成测试用例执行结果",
                     "total_files": len(reports),
                     "test_files": test_files,
+                    "summary": summary,
+
                 }
             )
         )
@@ -311,7 +315,7 @@ def generate_case():
     try:
         print("开始生成测试用例...")
         TestCaseAutomaticGeneration().get_case_automatic(
-            yaml_files_dir='data\interface_data', cases_dir='test_case\interface_case'
+            yaml_files_dir="data\interface_data", cases_dir="test_case\interface_case"
         )
         print("生成测试用例成功")
         return jsonify(success("生成测试用例成功"))

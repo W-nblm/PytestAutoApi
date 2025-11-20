@@ -39,7 +39,7 @@ async function runTests() {
   const res = await fetch("http://127.0.0.1:5000/api/execute", { method: "POST" });
   const data = await res.json();
   results.value = data?.data.test_files || [];
-  summaryText.value = data?.data.total_files || "暂无统计信息";
+  summaryText.value = data?.data.summary || "暂无统计信息";
   ElMessage.success("测试执行完毕！");
 }
 </script>

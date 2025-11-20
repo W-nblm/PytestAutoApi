@@ -18,7 +18,7 @@ def run_tests():
     print("🚀 开始执行测试用例...")
     cmd = [
         "pytest",
-        "backend/interface_case",
+        "test_case",
         "--maxfail=3",
         "--disable-warnings",
         "-q",

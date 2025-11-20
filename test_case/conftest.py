@@ -132,76 +132,76 @@ def work_login_init():
         raise e
 
 
-def pytest_collection_modifyitems(items):
-    """根据 case_order.yaml 对模块和用例进行排序"""
+# def pytest_collection_modifyitems(items):
+#     """根据 case_order.yaml 对模块和用例进行排序"""
 
-    # 1. 读取配置
-    order_config_path = ensure_path_sep("common/case_order.yaml")
-    with open(order_config_path, encoding="utf-8") as f:
-        config = yaml.safe_load(f) or {}
+#     # 1. 读取配置
+#     order_config_path = ensure_path_sep("common/case_order.yaml")
+#     with open(order_config_path, encoding="utf-8") as f:
+#         config = yaml.safe_load(f) or {}
 
-    strict_mode = config.get("strict", False)
-    modules_config = config.get("modules", [])
+#     strict_mode = config.get("strict", False)
+#     modules_config = config.get("modules", [])
 
-    # 2. 收集测试用例 -> 按模块分组
-    module_map = {}
-    for item in items:
-        module_path = os.path.normpath(item.fspath.relto(os.getcwd()))
-        module_dir = os.path.dirname(module_path).replace("test_case" + os.sep, "")
-        module_name = module_dir.replace(os.sep, "/")
-        module_map.setdefault(module_name, []).append(item)
+#     # 2. 收集测试用例 -> 按模块分组
+#     module_map = {}
+#     for item in items:
+#         module_path = os.path.normpath(item.fspath.relto(os.getcwd()))
+#         module_dir = os.path.dirname(module_path).replace("test_case" + os.sep, "")
+#         module_name = module_dir.replace(os.sep, "/")
+#         module_map.setdefault(module_name, []).append(item)
 
-    sorted_items = []
-    collected_modules = set(module_map.keys())
-    print(collected_modules)
-    # 3. 按配置顺序排序模块
-    for module in modules_config:
-        name = module["name"]
-        enabled = module.get("enabled", True)
-        appoint_items = module.get("cases", [])
+#     sorted_items = []
+#     collected_modules = set(module_map.keys())
+#     print(collected_modules)
+#     # 3. 按配置顺序排序模块
+#     for module in modules_config:
+#         name = module["name"]
+#         enabled = module.get("enabled", True)
+#         appoint_items = module.get("cases", [])
 
-        if name not in module_map:
-            msg = f"[排序警告] 配置中的模块 {name} 未找到"
-            if strict_mode:
-                pytest.exit(msg)
-            else:
-                INFO.logger.warning(msg)
-                continue
+#         if name not in module_map:
+#             msg = f"[排序警告] 配置中的模块 {name} 未找到"
+#             if strict_mode:
+#                 pytest.exit(msg)
+#             else:
+#                 INFO.logger.warning(msg)
+#                 continue
 
-        if not enabled:
-            INFO.logger.info(f"[跳过模块] {name}")
-            continue
+#         if not enabled:
+#             INFO.logger.info(f"[跳过模块] {name}")
+#             continue
 
-        # 4. 模块内排序
-        order_map = {case: idx for idx, case in enumerate(appoint_items)}
-        module_cases = module_map[name]
-        module_cases.sort(key=lambda x: order_map.get(x.name.split("[")[0], 9999))
+#         # 4. 模块内排序
+#         order_map = {case: idx for idx, case in enumerate(appoint_items)}
+#         module_cases = module_map[name]
+#         module_cases.sort(key=lambda x: order_map.get(x.name.split("[")[0], 9999))
 
-        # 检查配置缺失
-        collected_names = [x.name.split("[")[0] for x in module_cases]
-        missing_cases = [c for c in appoint_items if c not in collected_names]
-        if missing_cases:
-            msg = f"[排序警告] 模块 {name} 配置的用例未收集到: {missing_cases}"
-            if strict_mode:
-                pytest.exit(msg)
-            else:
-                INFO.logger.warning(msg)
+#         # 检查配置缺失
+#         collected_names = [x.name.split("[")[0] for x in module_cases]
+#         missing_cases = [c for c in appoint_items if c not in collected_names]
+#         if missing_cases:
+#             msg = f"[排序警告] 模块 {name} 配置的用例未收集到: {missing_cases}"
+#             if strict_mode:
+#                 pytest.exit(msg)
+#             else:
+#                 INFO.logger.warning(msg)
 
-        sorted_items.extend(module_cases)
-        collected_modules.discard(name)
+#         sorted_items.extend(module_cases)
+#         collected_modules.discard(name)
 
-    # 5. 剩余未配置的模块（保持原有顺序）
-    # for mod_name in list(collected_modules):
-    #     sorted_items.extend(module_map[mod_name])
+#     # 5. 剩余未配置的模块（保持原有顺序）
+#     # for mod_name in list(collected_modules):
+#     #     sorted_items.extend(module_map[mod_name])
 
-    # 6. 更新 pytest 的执行顺序
-    items[:] = sorted_items
+#     # 6. 更新 pytest 的执行顺序
+#     items[:] = sorted_items
 
-    # 7. 输出最终顺序
-    INFO.logger.info("\n[执行顺序]")
-    for idx, item in enumerate(items, 1):
-        item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
-        INFO.logger.info(f"{idx}. {item.nodeid}")
+#     # 7. 输出最终顺序
+#     INFO.logger.info("\n[执行顺序]")
+#     for idx, item in enumerate(items, 1):
+#         item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
+#         INFO.logger.info(f"{idx}. {item.nodeid}")
 
 
 @pytest.fixture(scope="function", autouse=True)
@@ -237,16 +237,19 @@ def pytest_terminal_summary(terminalreporter):
         [i for i in terminalreporter.stats.get("skipped", []) if i.when != "teardown"]
     )
     _TOTAL = terminalreporter._numcollected
-    _TIMES = time.time() - terminalreporter._sessionstarttime
 
     INFO.logger.error(f"用例总数: {_TOTAL}")
+    INFO.logger.error(f"通过用例数: {_PASSED}")
     INFO.logger.error(f"异常用例数: {_ERROR}")
     ERROR.logger.error(f"失败用例数: {_FAILED}")
     WARNING.logger.warning(f"跳过用例数: {_SKIPPED}")
-    INFO.logger.info("用例执行时长: %.2f" % _TIMES + " s")
+    INFO.logger.info(
+        "成功率：%.2f"
+        % (
+            len(terminalreporter.stats.get("passed", []))
+            / terminalreporter._numcollected
+            * 100
+        )
+        + "%"
+    )
 
-    try:
-        _RATE = _PASSED / _TOTAL * 100
-        INFO.logger.info("用例成功率: %.2f" % _RATE + " %")
-    except ZeroDivisionError:
-        INFO.logger.info("用例成功率: 0.00 %")

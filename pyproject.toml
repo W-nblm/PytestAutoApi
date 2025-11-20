@@ -2,7 +2,13 @@
 name = "pytestautoapi"
 version = "0.1.0"
 description = "Add your description here"
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "uvicorn>=0.38.0",
+    "flask-cors>=6.0.1",
+    "google>=3.0.0",
+    "google-genai>=1.51.0",
+    "openapi-spec-validator>=0.7.2",
+    "prance>=25.4.8.0",
+    "pytest-json-report>=1.5.0",
 ]
