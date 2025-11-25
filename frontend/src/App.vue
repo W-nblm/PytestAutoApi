@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { el } from 'element-plus/es/locale/index.mjs';
+
+</script>
+
 <template>
   <el-container style="height:100vh">
     <el-aside width="200px" class="sidebar">
@@ -13,6 +18,7 @@
         <el-menu-item index="/docs">📘 接口文档</el-menu-item>
         <el-menu-item index="/cases">🧩 测试用例</el-menu-item>
         <el-menu-item index="/run">🚀 执行测试</el-menu-item>
+        <el-menu-item index="/generate">🔨 生成代码</el-menu-item>
       </el-menu>
     </el-aside>
 

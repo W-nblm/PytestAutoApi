@@ -3,12 +3,16 @@ from datetime import datetime
 import os, json, re
 
 from docx import Document
-from backend.services.function_generator_cases import generate_test_cases, export_to_excel
+from backend.services.function_generator_cases import (
+    generate_test_cases,
+    export_to_excel,
+)
+from backend.utils.response_util import success
 
 function_bp = Blueprint("function", __name__)
 
 
-DATA_DIR = "backend/data"
+DATA_DIR = "backend\data"
 CASE_DIR = os.path.join(DATA_DIR, "cases")
 INDEX_FILE = os.path.join(DATA_DIR, "index.json")
 os.makedirs(CASE_DIR, exist_ok=True)
@@ -37,6 +41,16 @@ def index():
     return render_template("function/index.html", cases=index)
 
 
+@function_bp.route("/cases")
+def cases():
+    """主页：上传、查看历史"""
+    index = []
+    if os.path.exists(INDEX_FILE):
+        with open(INDEX_FILE, "r", encoding="utf-8") as f:
+            index = json.load(f)
+    return jsonify(success(data=index))
+
+
 @function_bp.route("/generate", methods=["POST"])
 def generate():
     """AI 生成测试用例"""
@@ -50,6 +64,7 @@ def generate():
 
     print("start generate...")
     cases = generate_test_cases(document_text)
+    print("cases:", cases)
     print("generate finished.")
 
     if not cases:
@@ -100,6 +115,21 @@ def delete(timestamp):
     )
     return jsonify({"success": True})
 
+@function_bp.route("/case_detail/<timestamp>")
+def case_detail(timestamp):
+    """查看单个用例详情"""
+    if not os.path.exists(INDEX_FILE):
+        return "No records found", 404
+
+    index = json.load(open(INDEX_FILE, "r", encoding="utf-8"))
+    item = next((i for i in index if i["timestamp"] == timestamp), None)
+    if not item:
+        return "Case not found", 404
+    print(item)
+    with open(item["path"], "r", encoding="utf-8") as f:
+        cases = json.load(f)
+
+    return success(data=cases)
 
 @function_bp.route("/view/<timestamp>")
 def view_case(timestamp):

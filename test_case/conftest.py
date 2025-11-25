@@ -48,6 +48,12 @@ def app_login_init():
         "Platform": "apple",
     }
     response = requests.post(url=host_url, headers=headers)
+    print("===============================")
+    print("响应状态码测试", response.status_code)
+    print("响应头测试", response.headers)
+    print("响应内容测试", response.text)
+    print("===============================")
+
     AL_HOST = response.json()["data"]["hostListVoList"][0]["host"]
     DEV_HOST = response.json()["data"]["hostListVoList"][1]["host"]
     CacheHandler.update_cache(cache_name="AL_HOST", value=AL_HOST)
@@ -252,4 +258,3 @@ def pytest_terminal_summary(terminalreporter):
         )
         + "%"
     )
-
