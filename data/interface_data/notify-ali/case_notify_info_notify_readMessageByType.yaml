@@ -1,0 +1,87 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 根据类型查看消息状态
+case_notify_info_notify_readMessageByType_01:
+  host: ${{host()}}
+  url: /notify/info/notify/readMessageByType
+  method: POST
+  detail: 未分类 - 根据类型查看消息状态 - 正向场景：传入有效用户ID
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: testUser001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验响应数据对象不为空
+    jsonpath: $.data
+    type: not_eq
+    value: null
+    message: 响应data字段不应为null
+case_notify_info_notify_readMessageByType_02:
+  host: ${{host()}}
+  url: /notify/info/notify/readMessageByType
+  method: POST
+  detail: 未分类 - 根据类型查看消息状态 - 异常场景：缺少必填参数userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: null
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数校验失败
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含失败信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+  - name: 校验paramMsg中userId的错误提示
+    jsonpath: $.paramMsg.userId
+    type: contains
+    value: 不能为空
+    message: paramMsg中未找到userId的错误提示或内容不符
+case_notify_info_notify_readMessageByType_03:
+  host: ${{host()}}
+  url: /notify/info/notify/readMessageByType
+  method: POST
+  detail: 未分类 - 根据类型查看消息状态 - 异常场景：userId为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: ''
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数校验失败
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含失败信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+  - name: 校验paramMsg中userId的错误提示
+    jsonpath: $.paramMsg.userId
+    type: contains
+    value: 不能为空
+    message: paramMsg中未找到userId的错误提示或内容不符

@@ -17,7 +17,6 @@ def parse_openapi_spec(file_path: str):
     api_list = []
     for path, methods in paths.items():
         for method, info in methods.items():
-            print(info.get("requestBody", {}))
             api_list.append(
                 {
                     "path": path,

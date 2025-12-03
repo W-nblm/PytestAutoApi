@@ -1,0 +1,251 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 二级页面-查询告警消息列表接口
+case_notify_info_notify_queryDetectMessageNotifyList_01_success_default_query:
+  host: ${{host()}}
+  url: /notify/info/notify/queryDetectMessageNotifyList
+  method: POST
+  detail: 二级页面-查询告警消息列表接口 - 正向场景：查询默认分页告警消息
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: sample_device_001
+    userId: sample_user_001
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验data字段存在且为数组（长度不小于0）
+    jsonpath: $.data.length
+    type: ge
+    value: 0
+    message: data字段不是数组或长度异常
+case_notify_info_notify_queryDetectMessageNotifyList_02_success_time_range_query:
+  host: ${{host()}}
+  url: /notify/info/notify/queryDetectMessageNotifyList
+  method: POST
+  detail: 二级页面-查询告警消息列表接口 - 正向场景：查询特定时间范围内的告警消息
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: sample_device_002
+    userId: sample_user_002
+    startTime: 1672502400000
+    endTime: 1675180800000
+    pageSize: 5
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验data字段存在且为数组（长度不小于0）
+    jsonpath: $.data.length
+    type: ge
+    value: 0
+    message: data字段不是数组或长度异常
+case_notify_info_notify_queryDetectMessageNotifyList_03_error_missing_devId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryDetectMessageNotifyList
+  method: POST
+  detail: 二级页面-查询告警消息列表接口 - 异常场景：缺少必填参数 devId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: sample_user_003
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200或特定错误码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200，因为缺少必填参数
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+case_notify_info_notify_queryDetectMessageNotifyList_04_error_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryDetectMessageNotifyList
+  method: POST
+  detail: 二级页面-查询告警消息列表接口 - 异常场景：缺少必填参数 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: sample_device_004
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200或特定错误码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200，因为缺少必填参数
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+case_notify_info_notify_queryDetectMessageNotifyList_05_error_empty_devId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryDetectMessageNotifyList
+  method: POST
+  detail: 二级页面-查询告警消息列表接口 - 异常场景：必填参数 devId 为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: ''
+    userId: sample_user_005
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200或特定错误码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200，因为必填参数为空字符串
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+case_notify_info_notify_queryDetectMessageNotifyList_06_error_invalid_pageSize:
+  host: ${{host()}}
+  url: /notify/info/notify/queryDetectMessageNotifyList
+  method: POST
+  detail: 二级页面-查询告警消息列表接口 - 异常场景：分页大小 pageSize 为负数
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: sample_device_006
+    userId: sample_user_006
+    pageSize: -1
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200或特定错误码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200，因为pageSize为负数
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+case_notify_info_notify_queryDetectMessageNotifyList_07_error_invalid_pageNum:
+  host: ${{host()}}
+  url: /notify/info/notify/queryDetectMessageNotifyList
+  method: POST
+  detail: 二级页面-查询告警消息列表接口 - 异常场景：当前页数 pageNum 为 0
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: sample_device_007
+    userId: sample_user_007
+    pageSize: 10
+    pageNum: 0
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200或特定错误码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200，因为pageNum为0
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+case_notify_info_notify_queryDetectMessageNotifyList_08_error_invalid_time_range:
+  host: ${{host()}}
+  url: /notify/info/notify/queryDetectMessageNotifyList
+  method: POST
+  detail: 二级页面-查询告警消息列表接口 - 异常场景：结束时间 endTime 小于开始时间 startTime
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: sample_device_008
+    userId: sample_user_008
+    startTime: 1675180800000
+    endTime: 1672502400000
+    pageSize: 5
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200或特定错误码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200，因为结束时间小于开始时间
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+case_notify_info_notify_queryDetectMessageNotifyList_09_error_invalid_shareFlag:
+  host: ${{host()}}
+  url: /notify/info/notify/queryDetectMessageNotifyList
+  method: POST
+  detail: 二级页面-查询告警消息列表接口 - 异常场景：可选参数 shareFlag 提供非法值
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: sample_device_009
+    userId: sample_user_009
+    shareFlag: '2'
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200或特定错误码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200，因为shareFlag值非法
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败

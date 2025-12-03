@@ -1,0 +1,124 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: FW90消息开关查询 Wopet适用
+case_notify_info_notify_queryNotifyEnableByType_01_success:
+  host: ${{host()}}
+  url: /notify/info/notify/queryNotifyEnableByType
+  method: POST
+  detail: FW90消息开关查询 Wopet适用 - 正向成功场景
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: test_device_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含“成功”
+  - name: 校验响应数据中包含devId
+    jsonpath: $.data.devId
+    type: eq
+    value: test_device_001
+    message: 响应数据中devId不正确
+  - name: 校验响应数据中包含开关类型字段
+    jsonpath: $.data.offlineEnable
+    type: not_eq
+    value: null
+    message: 响应数据中offlineEnable字段缺失或为空
+case_notify_info_notify_queryNotifyEnableByType_02_missing_devId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryNotifyEnableByType
+  method: POST
+  detail: FW90消息开关查询 Wopet适用 - 异常场景：缺少devId参数
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: null
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数校验失败码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 缺少devId时状态码不为470
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 缺少devId时响应消息未包含错误提示
+  - name: 校验paramMsg中包含devId的错误信息
+    jsonpath: $.paramMsg.devId
+    type: contains
+    value: 设备id不能为空
+    message: paramMsg中未包含devId的错误提示
+case_notify_info_notify_queryNotifyEnableByType_03_empty_devId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryNotifyEnableByType
+  method: POST
+  detail: FW90消息开关查询 Wopet适用 - 异常场景：devId参数为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: ''
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数校验失败码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: devId为空字符串时状态码不为470
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: devId为空字符串时响应消息未包含错误提示
+  - name: 校验paramMsg中包含devId的错误信息
+    jsonpath: $.paramMsg.devId
+    type: contains
+    value: 设备id不能为空
+    message: paramMsg中未包含devId的错误提示
+case_notify_info_notify_queryNotifyEnableByType_04_invalid_devId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryNotifyEnableByType
+  method: POST
+  detail: FW90消息开关查询 Wopet适用 - 异常场景：devId参数为无效ID
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: non_existent_device_id
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为业务逻辑失败码
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 无效devId时状态码为200
+  - name: 校验响应消息包含业务错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 设备不存在
+    message: 无效devId时响应消息未包含预期的业务错误提示
+  - name: 校验data字段为空或null
+    jsonpath: $.data
+    type: eq
+    value: null
+    message: 无效devId时data字段不为空

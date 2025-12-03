@@ -1,0 +1,136 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 消息推送测试接口
+case_notify_info_notify_notifyMessage_01_success:
+  host: ${{host()}}
+  url: /notify/info/notify/notifyMessage
+  method: POST
+  detail: 未分类 - 消息推送测试接口 - 正向场景
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: user_test_001
+    appType: '1'
+    msgBody: 这是一条来自测试环境的通知消息，请注意查收。
+    msgTitle: 系统通知：测试消息
+    alarmType: move
+    messageId: MSG_202310260001
+    badge: 1
+    topic: general_notifications
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息不包含“成功”
+case_notify_info_notify_notifyMessage_02_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/notifyMessage
+  method: POST
+  detail: 未分类 - 消息推送测试接口 - 异常场景：缺少必填参数 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    appType: '1'
+    msgBody: 这是一条缺少用户ID的测试消息。
+    msgTitle: 系统通知：缺少用户ID
+    alarmType: lowBattery
+    messageId: MSG_202310260002
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应不为200
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息未包含预期错误信息
+  - name: 校验paramMsg中userId错误提示存在
+    jsonpath: $.paramMsg.userId
+    type: exists
+    value: true
+    message: userId的错误提示不存在于paramMsg中
+case_notify_info_notify_notifyMessage_03_invalid_appType:
+  host: ${{host()}}
+  url: /notify/info/notify/notifyMessage
+  method: POST
+  detail: 未分类 - 消息推送测试接口 - 异常场景：appType 参数值非法
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: user_test_003
+    appType: '3'
+    msgBody: 这是一条appType非法的测试消息。
+    msgTitle: 系统通知：appType非法
+    alarmType: network
+    messageId: MSG_202310260003
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应不为200
+  - name: 校验响应消息包含非法值提示
+    jsonpath: $.msg
+    type: contains
+    value: 非法
+    message: 响应消息未包含预期非法值错误信息
+  - name: 校验paramMsg中appType错误提示存在
+    jsonpath: $.paramMsg.appType
+    type: exists
+    value: true
+    message: appType的错误提示不存在于paramMsg中
+case_notify_info_notify_notifyMessage_04_empty_msgTitle:
+  host: ${{host()}}
+  url: /notify/info/notify/notifyMessage
+  method: POST
+  detail: 未分类 - 消息推送测试接口 - 异常场景：必填参数 msgTitle 为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: user_test_004
+    appType: '2'
+    msgBody: 这是一条消息标题为空的测试消息。
+    msgTitle: ''
+    alarmType: upFirmware
+    messageId: MSG_202310260004
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应不为200
+  - name: 校验响应消息包含空值提示
+    jsonpath: $.msg
+    type: contains
+    value: 不能为空
+    message: 响应消息未包含预期空值错误信息
+  - name: 校验paramMsg中msgTitle错误提示存在
+    jsonpath: $.paramMsg.msgTitle
+    type: exists
+    value: true
+    message: msgTitle的错误提示不存在于paramMsg中

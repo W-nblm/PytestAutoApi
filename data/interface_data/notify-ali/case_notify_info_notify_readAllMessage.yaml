@@ -1,0 +1,245 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 一级页面-消息已读接口全部  WOcam wobirdy适用
+case_notify_info_notify_readAllMessage_01_success:
+  host: ${{host()}}
+  url: /notify/info/notify/readAllMessage
+  method: POST
+  detail: 正向场景 - 成功将指定用户的所有消息标记为已读
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: '1'
+    userId: user_test_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息不包含"成功"
+  - name: 校验数据对象为true
+    jsonpath: $.data
+    type: eq
+    value: true
+    message: 响应数据对象不为true，表示操作可能未成功
+case_notify_info_notify_readAllMessage_02_missing_isRead:
+  host: ${{host()}}
+  url: /notify/info/notify/readAllMessage
+  method: POST
+  detail: 异常场景 - 缺少必填参数 isRead
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: user_test_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数错误
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含"失败"
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息不包含"失败"
+  - name: 校验paramMsg中包含isRead相关错误信息
+    jsonpath: $.paramMsg.isRead
+    type: str_eq
+    value: isRead不能为空
+    message: paramMsg中isRead错误信息不符预期 (此处的value需根据实际接口返回调整)
+  - name: 校验errCode存在
+    jsonpath: $.errCode
+    type: eq
+    value: 10001
+    message: errCode不符合预期
+case_notify_info_notify_readAllMessage_03_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/readAllMessage
+  method: POST
+  detail: 异常场景 - 缺少必填参数 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: '1'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数错误
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含"失败"
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息不包含"失败"
+  - name: 校验paramMsg中包含userId相关错误信息
+    jsonpath: $.paramMsg.userId
+    type: str_eq
+    value: userId不能为空
+    message: paramMsg中userId错误信息不符预期 (此处的value需根据实际接口返回调整)
+  - name: 校验errCode存在
+    jsonpath: $.errCode
+    type: eq
+    value: 10001
+    message: errCode不符合预期
+case_notify_info_notify_readAllMessage_04_invalid_isRead_value:
+  host: ${{host()}}
+  url: /notify/info/notify/readAllMessage
+  method: POST
+  detail: 异常场景 - isRead 参数值非法 (例如：空字符串)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: ''
+    userId: user_test_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数错误
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含"失败"
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息不包含"失败"
+  - name: 校验paramMsg中包含isRead值错误信息
+    jsonpath: $.paramMsg.isRead
+    type: str_eq
+    value: isRead值不合法
+    message: paramMsg中isRead错误信息不符预期
+  - name: 校验errCode存在
+    jsonpath: $.errCode
+    type: eq
+    value: 10002
+    message: errCode不符合预期
+case_notify_info_notify_readAllMessage_05_invalid_userId_value:
+  host: ${{host()}}
+  url: /notify/info/notify/readAllMessage
+  method: POST
+  detail: 异常场景 - userId 参数值非法 (例如：空字符串)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: '1'
+    userId: ''
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数错误
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含"失败"
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息不包含"失败"
+  - name: 校验paramMsg中包含userId值错误信息
+    jsonpath: $.paramMsg.userId
+    type: str_eq
+    value: userId不能为空
+    message: paramMsg中userId错误信息不符预期 (此处的value需根据实际接口返回调整)
+  - name: 校验errCode存在
+    jsonpath: $.errCode
+    type: eq
+    value: 10002
+    message: errCode不符合预期
+case_notify_info_notify_readAllMessage_06_empty_body:
+  host: ${{host()}}
+  url: /notify/info/notify/readAllMessage
+  method: POST
+  detail: 异常场景 - 请求体为空
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: {}
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数错误
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含"失败"
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息不包含"失败"
+  - name: 校验paramMsg中包含isRead相关错误信息
+    jsonpath: $.paramMsg.isRead
+    type: str_eq
+    value: isRead不能为空
+    message: paramMsg中isRead错误信息不符预期
+  - name: 校验paramMsg中包含userId相关错误信息
+    jsonpath: $.paramMsg.userId
+    type: str_eq
+    value: userId不能为空
+    message: paramMsg中userId错误信息不符预期
+  - name: 校验errCode存在
+    jsonpath: $.errCode
+    type: eq
+    value: 10001
+    message: errCode不符合预期
+case_notify_info_notify_readAllMessage_07_invalid_isRead_type:
+  host: ${{host()}}
+  url: /notify/info/notify/readAllMessage
+  method: POST
+  detail: 异常场景 - isRead 参数类型非法 (整数而不是字符串)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: 1
+    userId: user_test_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数错误
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含"失败"或"类型错误"
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息不包含"失败"或"类型错误"
+  - name: 校验paramMsg中包含isRead类型错误信息
+    jsonpath: $.paramMsg.isRead
+    type: str_eq
+    value: isRead类型不正确
+    message: paramMsg中isRead错误信息不符预期
+  - name: 校验errCode存在
+    jsonpath: $.errCode
+    type: eq
+    value: 10002
+    message: errCode不符合预期

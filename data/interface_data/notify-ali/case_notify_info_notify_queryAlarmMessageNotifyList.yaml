@@ -1,0 +1,235 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 二级页面-查询系统消息列表接口
+case_notify_info_notify_queryAlarmMessageNotifyList_01_success_full_params:
+  host: ${{host()}}
+  url: /notify/info/notify/queryAlarmMessageNotifyList
+  method: POST
+  detail: 正向场景 - 正常查询系统消息列表 (带分页和全部参数)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    type: '1'
+    userId: test_user_id_001
+    devId: test_dev_id_001
+    startTime: 1672531200000
+    endTime: 1704067199000
+    alertType: SYSTEM_ALERT
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含"成功"
+  - name: 校验响应数据类型为列表
+    jsonpath: $.data
+    type: type
+    value: list
+    message: 响应数据data不是列表类型
+  - name: 校验列表元素至少包含必填字段
+    jsonpath: $.data[0].messageId
+    type: not_eq
+    value: null
+    message: 响应数据data中消息ID为空 (如果期望有数据)
+case_notify_info_notify_queryAlarmMessageNotifyList_02_success_min_params:
+  host: ${{host()}}
+  url: /notify/info/notify/queryAlarmMessageNotifyList
+  method: POST
+  detail: 正向场景 - 仅传入必填参数查询
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    type: '2'
+    userId: test_user_id_002
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含"成功"
+  - name: 校验响应数据类型为列表
+    jsonpath: $.data
+    type: type
+    value: list
+    message: 响应数据data不是列表类型
+case_notify_info_notify_queryAlarmMessageNotifyList_03_missing_type:
+  host: ${{host()}}
+  url: /notify/info/notify/queryAlarmMessageNotifyList
+  method: POST
+  detail: 异常场景 - 缺少必填参数 'type'
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: test_user_id_001
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200
+  - name: 校验响应消息包含错误提示 (参数缺失)
+    jsonpath: $.msg
+    type: contains
+    value: 参数不能为空
+    message: 响应消息未提示 'type' 参数缺失或错误
+case_notify_info_notify_queryAlarmMessageNotifyList_04_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryAlarmMessageNotifyList
+  method: POST
+  detail: 异常场景 - 缺少必填参数 'userId'
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    type: '1'
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200
+  - name: 校验响应消息包含错误提示 (参数缺失)
+    jsonpath: $.msg
+    type: contains
+    value: 参数不能为空
+    message: 响应消息未提示 'userId' 参数缺失或错误
+case_notify_info_notify_queryAlarmMessageNotifyList_05_invalid_type_value:
+  host: ${{host()}}
+  url: /notify/info/notify/queryAlarmMessageNotifyList
+  method: POST
+  detail: 异常场景 - 'type' 参数值非法
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    type: '0'
+    userId: test_user_id_001
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200
+  - name: 校验响应消息包含错误提示 (参数非法)
+    jsonpath: $.msg
+    type: contains
+    value: 参数非法
+    message: 响应消息未提示 'type' 参数非法
+case_notify_info_notify_queryAlarmMessageNotifyList_06_empty_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryAlarmMessageNotifyList
+  method: POST
+  detail: 异常场景 - 'userId' 参数为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    type: '1'
+    userId: ''
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200
+  - name: 校验响应消息包含错误提示 (参数非法或空)
+    jsonpath: $.msg
+    type: contains
+    value: 参数非法
+    message: 响应消息未提示 'userId' 参数为空或非法
+case_notify_info_notify_queryAlarmMessageNotifyList_07_invalid_pageSize:
+  host: ${{host()}}
+  url: /notify/info/notify/queryAlarmMessageNotifyList
+  method: POST
+  detail: 异常场景 - 'pageSize' 参数为负数
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    type: '1'
+    userId: test_user_id_001
+    pageSize: -1
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200
+  - name: 校验响应消息包含错误提示 (参数非法)
+    jsonpath: $.msg
+    type: contains
+    value: 参数非法
+    message: 响应消息未提示 'pageSize' 参数非法
+case_notify_info_notify_queryAlarmMessageNotifyList_08_invalid_pageNum:
+  host: ${{host()}}
+  url: /notify/info/notify/queryAlarmMessageNotifyList
+  method: POST
+  detail: 异常场景 - 'pageNum' 参数为0
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    type: '1'
+    userId: test_user_id_001
+    pageSize: 10
+    pageNum: 0
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码应非200
+  - name: 校验响应消息包含错误提示 (参数非法)
+    jsonpath: $.msg
+    type: contains
+    value: 参数非法
+    message: 响应消息未提示 'pageNum' 参数非法

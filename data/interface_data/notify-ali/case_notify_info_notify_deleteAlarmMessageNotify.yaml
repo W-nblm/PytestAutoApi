@@ -1,0 +1,144 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 二级页面-系统消息删除接口单个多个删除  包含wocam与wopet系统消息单个多个删除 wocam wobirdy 传 123 wopet
+    传 45
+case_notify_info_notify_deleteAlarmMessageNotify_01_success_wobird_single:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteAlarmMessageNotify
+  method: POST
+  detail: 正向场景：成功删除单个WObird设备相关系统消息 (type=1)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    nowDate: 1678886400000
+    userId: test_user_wobird_001
+    type: '1'
+    messageDeleteVoList:
+    - userId: test_user_wobird_001
+      messageId: msg_id_wobird_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验数据对象为true
+    jsonpath: $.data
+    type: eq
+    value: true
+case_notify_info_notify_deleteAlarmMessageNotify_02_success_wopet_multiple:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteAlarmMessageNotify
+  method: POST
+  detail: 正向场景：成功删除多个Wopet告警系统消息 (type=4)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WOpet
+  requestType: json
+  data:
+    nowDate: 1678886400000
+    userId: test_user_wopet_001
+    type: '4'
+    messageDeleteVoList:
+    - userId: test_user_wopet_001
+      messageId: msg_id_wopet_001
+    - userId: test_user_wopet_001
+      messageId: msg_id_wopet_002
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验数据对象为true
+    jsonpath: $.data
+    type: eq
+    value: true
+case_notify_info_notify_deleteAlarmMessageNotify_03_error_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteAlarmMessageNotify
+  method: POST
+  detail: 异常场景：缺少必填参数 userId，验证接口的参数校验机制
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    nowDate: 1678886400000
+    type: '1'
+    messageDeleteVoList:
+    - userId: test_user_wobird_001
+      messageId: msg_id_wobird_003
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为470 (业务错误码)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码预期为470 (业务错误)
+  - name: 校验错误消息包含 'userId' 或 '必填' 等提示
+    jsonpath: $.msg
+    type: contains
+    value: userId
+  - name: 校验数据对象为false
+    jsonpath: $.data
+    type: eq
+    value: false
+  - name: 校验返回errCode存在
+    jsonpath: $.errCode
+    type: not_eq
+    value: null
+    message: 错误码errCode不应为空
+case_notify_info_notify_deleteAlarmMessageNotify_04_error_invalid_type:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteAlarmMessageNotify
+  method: POST
+  detail: 异常场景：type参数值非法 (例如：6，期望 1-5)，验证参数值的合法性校验
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    nowDate: 1678886400000
+    userId: test_user_wobird_004
+    type: '6'
+    messageDeleteVoList:
+    - userId: test_user_wobird_004
+      messageId: msg_id_wobird_004
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为470 (业务错误码)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码预期为470 (业务错误)
+  - name: 校验错误消息包含 'type' 或 '非法' 等提示
+    jsonpath: $.msg
+    type: contains
+    value: type
+  - name: 校验数据对象为false
+    jsonpath: $.data
+    type: eq
+    value: false
+  - name: 校验返回errCode存在
+    jsonpath: $.errCode
+    type: not_eq
+    value: null
+    message: 错误码errCode不应为空

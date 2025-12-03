@@ -4,6 +4,8 @@ import time
 import subprocess
 from pathlib import Path
 from datetime import datetime
+
+import yaml
 from backend.utils.response_util import success, fail
 from backend.services.spec_parser import parse_openapi_spec
 from flask import Blueprint, request, jsonify, render_template
@@ -37,13 +39,6 @@ def upload_api():
             return jsonify(fail("仅支持 YAML 或 JSON 文件"))
 
         file_path = UPLOAD_DIR / file.filename
-
-        # # ✅ 可选：清空旧文件
-        # for f in UPLOAD_DIR.iterdir():
-        #     try:
-        #         f.unlink()
-        #     except Exception as e:
-        #         print(f"⚠️ 删除旧文件失败：{f}, 错误: {e}")
 
         # ✅ 保存文件
         file.save(file_path)
@@ -95,7 +90,6 @@ def execute_cases():
         report_path = report_dir / f"report_{timestamp}.json"
         latest_path = report_dir / "latest_report.json"
 
-
         # 设置环境变量
         os.environ["PYTHONPATH"] = "D:\\PytestAutoApi"
 
@@ -126,10 +120,9 @@ def execute_cases():
                     )
                     print(os.path.join(root, f))
         # 解析测试报告
-        report_json = json.loads(latest_path.read_text(encoding='utf-8'))
+        report_json = json.loads(latest_path.read_text(encoding="utf-8"))
 
         summary = report_json.get("summary", {})
-
 
         return jsonify(
             success(
@@ -138,7 +131,6 @@ def execute_cases():
                     "total_files": len(reports),
                     "test_files": test_files,
                     "summary": summary,
-
                 }
             )
         )
@@ -231,7 +223,7 @@ def get_cases():
     """
 
     try:
-        case_dir = "data/interface_data"
+        case_dir = "data\interface_data"
         if not os.path.exists(case_dir):
             return jsonify(fail(f"Case directory not found: {case_dir}")), 404
 
@@ -245,33 +237,42 @@ def get_cases():
         cases = []
 
         # ----- 遍历所有 YAML 文件 -----
-        for root, _, files in os.walk(case_dir):
+        for root, dirs, files in os.walk(case_dir):
+
             for f in files:
                 if not f.endswith(".yaml"):
                     continue
 
                 full_path = os.path.join(root, f)
                 stat = os.stat(full_path)
+                data = open(full_path, "r", encoding="utf-8").read()
+                case_yaml = yaml.load(data, Loader=yaml.FullLoader)
+                # 一次性提取所有用例的三个参数
+                pattern = r"'url':\s*'([^']+)'.*?'method':\s*'([^']+)'.*?'detail':\s*'([^']+)'"
+                import re
 
+                # 将字典转换为字符串进行正则匹配
+                data_str = str(case_yaml)
+                matches = re.findall(pattern, data_str, re.DOTALL)
+
+                json_str = json.dumps(case_yaml, ensure_ascii=False, indent=2)
+                # 构造用例信息
                 case_info = {
                     "file_name": f,
                     "file_path": full_path.replace("\\", "/"),
+                    "method": matches[0][1],
+                    "url": matches[0][0],
+                    "case_num": len(case_yaml) - 1,  # 减去 case_common
                     "update_time": stat.st_mtime,
                     "update_time_str": datetime.fromtimestamp(stat.st_mtime).strftime(
                         "%Y-%m-%d %H:%M:%S"
                     ),
+                    "source_file": os.path.basename(root) + ".yaml",
                 }
 
-                # 解析来源文档：如 xxx_auth-ali.yaml → auth-ali.yaml
-                if "_" in f:
-                    case_info["source_file"] = f.split("_")[0] + ".yaml"
-                else:
-                    case_info["source_file"] = None
-
                 # 如果前端筛选来源文档
-                if source_file and case_info["source_file"] != source_file:
+                if source_file and source_file.split(".")[0] not in full_path:
                     continue
-
                 cases.append(case_info)
 
         # ----- 排序 -----

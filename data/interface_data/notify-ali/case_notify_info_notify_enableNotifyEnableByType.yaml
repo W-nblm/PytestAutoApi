@@ -1,0 +1,88 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: FW90消息开关上报 Wopet适用
+case_notify_info_notify_enableNotifyEnableByType_01_positive_all_on_off:
+  host: ${{host()}}
+  url: /notify/info/notify/enableNotifyEnableByType
+  method: POST
+  detail: FW90消息开关上报 Wopet适用 - 正向场景：所有开关设置有效值（部分开启，部分关闭）
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: device_id_001
+    offlineEnable: '1'
+    autoFeedEnable: '0'
+    manualFeedEnable: '1'
+    quickFeedEnable: '0'
+  dependence_case: []
+  assert:
+  - name: 校验接口返回的内部状态码为200
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 接口状态码不为200
+  - name: 校验响应消息包含“成功”
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含“成功”
+  - name: 校验data字段为true
+    jsonpath: $.data
+    type: eq
+    value: true
+    message: data字段不为true，表示操作未成功
+case_notify_info_notify_enableNotifyEnableByType_02_negative_missing_devId:
+  host: ${{host()}}
+  url: /notify/info/notify/enableNotifyEnableByType
+  method: POST
+  detail: FW90消息开关上报 Wopet适用 - 异常场景：缺少必要参数devId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    offlineEnable: '1'
+    autoFeedEnable: '0'
+  dependence_case: []
+  assert:
+  - name: 校验接口返回的内部状态码为470
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 接口状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含"devId"或相关错误提示
+    jsonpath: $.msg
+    type: contains
+    value: devId
+    message: 响应消息未提示缺少devId参数
+case_notify_info_notify_enableNotifyEnableByType_03_negative_invalid_offlineEnable_value:
+  host: ${{host()}}
+  url: /notify/info/notify/enableNotifyEnableByType
+  method: POST
+  detail: FW90消息开关上报 Wopet适用 - 异常场景：参数offlineEnable值非法（非0或1）
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: device_id_002
+    offlineEnable: '2'
+    autoFeedEnable: '1'
+  dependence_case: []
+  assert:
+  - name: 校验接口返回的内部状态码为470
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 接口状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含"offlineEnable"或相关错误提示
+    jsonpath: $.msg
+    type: contains
+    value: offlineEnable
+    message: 响应消息未提示offlineEnable参数值非法

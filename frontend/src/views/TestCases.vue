@@ -1,14 +1,67 @@
 <template>
   <div class="page-container">
+    <div class="page-header">
+      <h3>📘 接口文档管理</h3>
+
+      <div class="action-group">
+        <el-upload
+          action="http://127.0.0.1:5000/api/upload"
+          :on-success="handleUploadSuccess"
+          :show-file-list="false"
+          accept=".yaml,.yml"
+        >
+          <el-button type="primary">上传 OpenAPI 文件</el-button>
+        </el-upload>
+      </div>
+    </div>
+
+    <el-card shadow="hover" class="mt-4">
+      <el-table :data="docs" border stripe style="width: 100%">
+        <el-table-column type="index" label="#" width="50" />
+        <el-table-column prop="file_name" label="文件名" />
+        <el-table-column
+          prop="upload_time"
+          label="上传时间"
+          width="180"
+          :formatter="formatTime"
+        />
+
+        <!-- 操作栏 -->
+        <el-table-column label="操作" width="250" align="center">
+          <template #default="{ row }">
+            <el-button size="small" type="success" @click="viewCase(row)"
+              >查看</el-button
+            >
+
+            <!-- 新增：生成测试用例 -->
+            <el-button size="small" type="primary" @click="generateCases(row)">
+              生成用例
+            </el-button>
+
+            <!-- 删除按钮 -->
+            <el-button
+              size="small"
+              type="danger"
+              @click="deleteDoc(row.file_name)"
+            >
+              删除
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
     <!-- 页面标题 -->
     <div class="page-header">
       <h3>🧩 测试用例管理</h3>
-      <div class="action-group">
-        <el-button type="primary" @click="generate">生成测试用例</el-button>
-      </div>
       <div class="filter-group">
+        <el-button type="primary" @click="generate">生成测试用例</el-button>
         <!-- 文档筛选 -->
-        <el-select v-model="sourceFile" placeholder="选择接口文档" clearable @change="refreshCases">
+        <el-select
+          v-model="sourceFile"
+          placeholder="选择接口文档"
+          clearable
+          @change="refreshCases"
+        >
           <el-option
             v-for="item in docFiles"
             :key="item.file_name"
@@ -18,12 +71,22 @@
         </el-select>
 
         <!-- 排序选择 -->
-        <el-select v-model="sortBy" placeholder="排序字段" style="width: 250px" @change="refreshCases">
+        <el-select
+          v-model="sortBy"
+          placeholder="排序字段"
+          style="width: 250px"
+          @change="refreshCases"
+        >
           <el-option label="文件名" value="file_name" />
           <el-option label="更新时间" value="update_time" />
         </el-select>
 
-        <el-select v-model="order" placeholder="顺序" style="width: 200px" @change="refreshCases">
+        <el-select
+          v-model="order"
+          placeholder="顺序"
+          style="width: 200px"
+          @change="refreshCases"
+        >
           <el-option label="升序" value="asc" />
           <el-option label="降序" value="desc" />
         </el-select>
@@ -37,14 +100,23 @@
       <el-table :data="cases" border stripe>
         <el-table-column type="index" label="#" width="50" />
 
-        <el-table-column prop="file_name" label="用例名称" min-width="180" />
+        <el-table-column prop="file_name" label="接口名称" min-width="180" />
+        <el-table-column prop="method" label="请求方法" min-width="100" />
+        <el-table-column prop="url" label="请求地址" min-width="200" />
+        <!-- <el-table-column prop="status" label="状态" min-width="100" /> -->
+        <el-table-column prop="case_num" label="用例数" min-width="100" />
+        <el-table-column prop="is_depend" label="是否依赖" min-width="100" />
         <el-table-column prop="source_file" label="来源文档" min-width="180" />
         <el-table-column prop="update_time_str" label="更新时间" width="180" />
 
         <el-table-column label="操作" width="200" align="center">
           <template #default="{ row }">
-            <el-button size="small" type="primary" @click="viewCase(row)">查看</el-button>
-            <el-button size="small" type="warning" @click="editCase(row)">编辑</el-button>
+            <el-button size="small" type="primary" @click="viewCase(row)"
+              >查看</el-button
+            >
+            <el-button size="small" type="warning" @click="editCase(row)"
+              >编辑</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -66,7 +138,7 @@
     <el-dialog v-model="viewDialogVisible" title="查看 YAML 内容" width="60%">
       <pre class="yaml-view">{{ currentContent }}</pre>
       <template #footer>
-        <el-button @click="viewDialogVisible=false">关闭</el-button>
+        <el-button @click="viewDialogVisible = false">关闭</el-button>
       </template>
     </el-dialog>
 
@@ -79,7 +151,7 @@
         resize="vertical"
       />
       <template #footer>
-        <el-button @click="editDialogVisible=false">取消</el-button>
+        <el-button @click="editDialogVisible = false">取消</el-button>
         <el-button type="primary" @click="saveCase">保存</el-button>
       </template>
     </el-dialog>
@@ -93,6 +165,7 @@ import { ElMessage } from "element-plus";
 // 数据
 const docFiles = ref([]);
 const cases = ref([]);
+const docs = ref([]);
 
 const page = ref(1);
 const size = ref(10);
@@ -108,7 +181,73 @@ const editDialogVisible = ref(false);
 const currentFilePath = ref("");
 const currentContent = ref("");
 const editContent = ref("");
+// 初始化加载文件列表
+onMounted(fetchDocs);
 
+async function fetchDocs() {
+  const res = await fetch("http://127.0.0.1:5000/api/files");
+  const data = await res.json();
+  docs.value = data?.data.files || [];
+}
+
+function handleUploadSuccess(res) {
+  ElMessage.success("上传成功！");
+  fetchDocs();
+}
+
+function viewDetail(row) {
+  ElMessage.info(`查看文档: ${row.file_name}`);
+}
+
+// ⭐ 新增生成测试用例
+async function generateCases(row) {
+  ElMessage.info(`正在生成测试用例...`);
+
+  const res = await fetch(
+    `http://127.0.0.1:5000/api/generate/${row.file_name}`,
+    {
+      method: "GET",
+    }
+  );
+  const data = await res.json();
+
+  if (data?.message) {
+    ElMessage.success("测试用例生成成功！");
+  } else {
+    ElMessage.error("生成失败");
+  }
+}
+// 删除文档
+async function deleteDoc(file_name) {
+  const res = await fetch(
+    `http://127.0.0.1:5000/api/delete_file/${file_name}`,
+    {
+      method: "DELETE",
+    }
+  );
+  const data = await res.json();
+  if (data?.message) {
+    ElMessage.success("删除成功！");
+    fetchDocs();
+  } else {
+    ElMessage.error("删除失败");
+  }
+}
+
+// 格式化时间
+function formatTime(row, column, cellValue) {
+  if (!cellValue) return "-";
+  const date = new Date(cellValue * 1000);
+  return date.toLocaleString("zh-CN", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+}
 // 生命周期
 onMounted(() => {
   loadDocFiles();
@@ -156,7 +295,9 @@ async function viewCase(row) {
   currentFilePath.value = row.file_path;
 
   const res = await fetch(
-    `http://127.0.0.1:5000/api/case_content?file_path=${encodeURIComponent(row.file_path)}`
+    `http://127.0.0.1:5000/api/case_content?file_path=${encodeURIComponent(
+      row.file_path
+    )}`
   );
 
   const data = await res.json();
@@ -170,7 +311,9 @@ async function editCase(row) {
   currentFilePath.value = row.file_path;
 
   const res = await fetch(
-    `http://127.0.0.1:5000/api/case_content?file_path=${encodeURIComponent(row.file_path)}`
+    `http://127.0.0.1:5000/api/case_content?file_path=${encodeURIComponent(
+      row.file_path
+    )}`
   );
 
   const data = await res.json();

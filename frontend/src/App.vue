@@ -1,31 +1,38 @@
-<script setup lang="ts">
-import { el } from 'element-plus/es/locale/index.mjs';
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <el-container style="height:100vh">
+  <el-container style="height: 100vh">
+    <!-- ===================== 左侧菜单 ===================== -->
     <el-aside width="200px" class="sidebar">
       <div class="logo">AI 测试平台</div>
+
       <el-menu
         router
-        default-active="/"
+        :default-active="$route.path"
         background-color="#1f2937"
         text-color="#fff"
         active-text-color="#42b883"
       >
+        <!-- 单菜单 -->
         <el-menu-item index="/">🏠 仪表盘</el-menu-item>
         <el-menu-item index="/docs">📘 接口文档</el-menu-item>
-        <el-menu-item index="/cases">🧩 测试用例</el-menu-item>
         <el-menu-item index="/run">🚀 执行测试</el-menu-item>
-        <el-menu-item index="/generate">🔨 生成代码</el-menu-item>
+
+        <!-- 用例管理（含二级菜单） -->
+        <el-sub-menu index="/case">
+          <template #title>🧩 用例管理</template>
+          <el-menu-item index="/case/func"> 🧪 功能测试用例 </el-menu-item>
+          <el-menu-item index="/case/api"> 🔗 接口测试用例 </el-menu-item>
+        </el-sub-menu>
       </el-menu>
     </el-aside>
 
+    <!-- ===================== 右侧内容区 ===================== -->
     <el-container>
       <el-header class="header">
-        <h2>AI 自动化测试平台</h2>
+        <h3>AI 自动化测试平台</h3>
       </el-header>
+
       <el-main class="main">
         <router-view />
       </el-main>

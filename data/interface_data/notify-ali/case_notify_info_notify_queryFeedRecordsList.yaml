@@ -1,0 +1,133 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: FW90喂食记录列表查询 Wopet适用
+case_notify_info_notify_queryFeedRecordsList_01_success:
+  host: ${{host()}}
+  url: /notify/info/notify/queryFeedRecordsList
+  method: POST
+  detail: 正向场景 - 成功查询喂食记录，包含必填和部分可选参数
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: test_user_id_${{random_string(8)}}
+    devId: test_dev_id_${{random_string(8)}}
+    alarmTypeList:
+    - FEED_FAIL
+    - FEED_SUCCESS
+    startTime: ${{timestamp_minus_days(7)}}
+    endTime: ${{timestamp()}}
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200，接口请求失败
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含"成功"字样
+  - name: 校验返回数据不为空
+    jsonpath: $.data
+    type: not_eq
+    value: null
+    message: 返回数据为空，未查询到喂食记录
+case_notify_info_notify_queryFeedRecordsList_02_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryFeedRecordsList
+  method: POST
+  detail: 异常场景 - 缺少必填参数 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: test_dev_id_${{random_string(8)}}
+    startTime: ${{timestamp_minus_days(7)}}
+    endTime: ${{timestamp()}}
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为470 (参数校验失败)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含失败信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息未包含失败或错误信息
+  - name: 校验paramMsg中包含userId的错误提示
+    jsonpath: $.paramMsg.userId
+    type: not_eq
+    value: null
+    message: paramMsg中未找到userId的错误提示，或userId未被校验
+case_notify_info_notify_queryFeedRecordsList_03_missing_devId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryFeedRecordsList
+  method: POST
+  detail: 异常场景 - 缺少必填参数 devId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: test_user_id_${{random_string(8)}}
+    startTime: ${{timestamp_minus_days(7)}}
+    endTime: ${{timestamp()}}
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为470 (参数校验失败)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含失败信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息未包含失败或错误信息
+  - name: 校验paramMsg中包含devId的错误提示
+    jsonpath: $.paramMsg.devId
+    type: not_eq
+    value: null
+    message: paramMsg中未找到devId的错误提示，或devId未被校验
+case_notify_info_notify_queryFeedRecordsList_04_invalid_param_types:
+  host: ${{host()}}
+  url: /notify/info/notify/queryFeedRecordsList
+  method: POST
+  detail: 异常场景 - 参数类型不匹配或不合法 (userId为数字，devId为空字符串)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: 12345
+    devId: ''
+    alarmTypeList:
+    - invalid_type
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为470 (参数校验失败)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数类型错误或不合法
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息未包含失败信息
+  - name: 校验paramMsg中包含参数相关的错误提示
+    jsonpath: $.paramMsg
+    type: not_eq
+    value: null
+    message: paramMsg中未找到任何参数错误提示

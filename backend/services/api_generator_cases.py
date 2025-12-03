@@ -95,7 +95,7 @@ def generate_basic_cases(
             for doc in yaml_docs:
                 if isinstance(doc, dict):
                     all_cases.update(doc)
-
+            sleep(2)
         except Exception as e:
             print(f"⚠️ 生成失败: {e}")
             continue

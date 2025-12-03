@@ -1,0 +1,120 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 二级页面-告警消息单个设备删除全部接口  WOcam WObirdy适用
+case_notify_info_notify_deleteDetectAllMessageNotify_01:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectAllMessageNotify
+  method: POST
+  detail: 正向场景 - 二级页面-告警消息单个设备删除全部接口 - 成功删除
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: user_test_001
+    devId: dev_test_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为200
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息包含"成功"
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验data字段为true
+    jsonpath: $.data
+    type: eq
+    value: true
+case_notify_info_notify_deleteDetectAllMessageNotify_02:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectAllMessageNotify
+  method: POST
+  detail: 异常场景 - 缺少必填参数 devId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: user_test_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码不为200 (预期为470)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 缺少devId时状态码不是470
+  - name: 校验响应消息不为空
+    jsonpath: $.msg
+    type: not_eq
+    value: null
+    message: 响应消息为空
+  - name: 校验paramMsg中包含devId的错误信息
+    jsonpath: $.paramMsg.devId
+    type: not_eq
+    value: null
+    message: paramMsg中未包含devId的错误信息
+case_notify_info_notify_deleteDetectAllMessageNotify_03:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectAllMessageNotify
+  method: POST
+  detail: 异常场景 - 缺少必填参数 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: dev_test_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码不为200 (预期为470)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 缺少userId时状态码不是470
+  - name: 校验响应消息不为空
+    jsonpath: $.msg
+    type: not_eq
+    value: null
+    message: 响应消息为空
+  - name: 校验paramMsg中包含userId的错误信息
+    jsonpath: $.paramMsg.userId
+    type: not_eq
+    value: null
+    message: paramMsg中未包含userId的错误信息
+case_notify_info_notify_deleteDetectAllMessageNotify_04:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectAllMessageNotify
+  method: POST
+  detail: 异常场景 - devId 参数类型错误
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: user_test_001
+    devId: 12345
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码不为200 (预期为470)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: devId类型错误时状态码不是470
+  - name: 校验响应消息不为空
+    jsonpath: $.msg
+    type: not_eq
+    value: null
+    message: 响应消息为空
+  - name: 校验paramMsg中包含devId的类型错误信息
+    jsonpath: $.paramMsg.devId
+    type: not_eq
+    value: null
+    message: paramMsg中未包含devId的类型错误信息

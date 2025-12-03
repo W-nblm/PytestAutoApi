@@ -64,7 +64,6 @@ def generate():
 
     print("start generate...")
     cases = generate_test_cases(document_text)
-    print("cases:", cases)
     print("generate finished.")
 
     if not cases:
@@ -125,7 +124,6 @@ def case_detail(timestamp):
     item = next((i for i in index if i["timestamp"] == timestamp), None)
     if not item:
         return "Case not found", 404
-    print(item)
     with open(item["path"], "r", encoding="utf-8") as f:
         cases = json.load(f)
 

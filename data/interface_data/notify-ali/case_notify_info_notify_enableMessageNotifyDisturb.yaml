@@ -1,0 +1,229 @@
+case_common:
+  allureEpic: 平台微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 勿扰配置上报 Wopet适用
+case_notify_info_notify_enableMessageNotifyDisturb_01_success_all_everyday:
+  host: ${{host()}}
+  url: /notify/info/notify/enableMessageNotifyDisturb
+  method: POST
+  detail: 未分类 - 勿扰配置上报 Wopet适用 - 正向场景：所有设备，每天生效，当天结束
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    disturbEnable: '1'
+    endTime: '23:00'
+    id: 1678901234567890
+    isAllDevice: 1
+    isEveryDay: 1
+    isNextDay: 0
+    startTime: 08:00
+    userId: test_user_001
+    timeZone: Asia/Shanghai
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+case_notify_info_notify_enableMessageNotifyDisturb_02_success_specific_devices_periods_nextday:
+  host: ${{host()}}
+  url: /notify/info/notify/enableMessageNotifyDisturb
+  method: POST
+  detail: 未分类 - 勿扰配置上报 Wopet适用 - 正向场景：指定设备，指定周期，跨天结束
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    disturbEnable: '1'
+    endTime: 07:00
+    id: 1678901234567891
+    isAllDevice: 0
+    isEveryDay: 0
+    isNextDay: 1
+    startTime: '22:00'
+    userId: test_user_002
+    deviceList:
+    - device_abc_001
+    - device_xyz_002
+    periodList:
+    - MONDAY
+    - WEDNESDAY
+    - FRIDAY
+    timeZone: America/New_York
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+case_notify_info_notify_enableMessageNotifyDisturb_03_missing_userid:
+  host: ${{host()}}
+  url: /notify/info/notify/enableMessageNotifyDisturb
+  method: POST
+  detail: 未分类 - 勿扰配置上报 Wopet适用 - 异常场景：缺少必要参数 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    disturbEnable: '1'
+    endTime: '23:00'
+    id: 1678901234567890
+    isAllDevice: 1
+    isEveryDay: 1
+    isNextDay: 0
+    startTime: 08:00
+    timeZone: Asia/Shanghai
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 缺少userId时状态码应非200
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+case_notify_info_notify_enableMessageNotifyDisturb_04_invalid_id_type:
+  host: ${{host()}}
+  url: /notify/info/notify/enableMessageNotifyDisturb
+  method: POST
+  detail: 未分类 - 勿扰配置上报 Wopet适用 - 异常场景：参数类型错误 - id 为字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    disturbEnable: '1'
+    endTime: '23:00'
+    id: invalid_id_string
+    isAllDevice: 1
+    isEveryDay: 1
+    isNextDay: 0
+    startTime: 08:00
+    userId: test_user_001
+    timeZone: Asia/Shanghai
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: id类型错误时状态码应非200
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+case_notify_info_notify_enableMessageNotifyDisturb_05_invalid_disturbEnable_value:
+  host: ${{host()}}
+  url: /notify/info/notify/enableMessageNotifyDisturb
+  method: POST
+  detail: 未分类 - 勿扰配置上报 Wopet适用 - 异常场景：disturbEnable 字段为非法值
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    disturbEnable: 'TRUE'
+    endTime: '23:00'
+    id: 1678901234567890
+    isAllDevice: 1
+    isEveryDay: 1
+    isNextDay: 0
+    startTime: 08:00
+    userId: test_user_001
+    timeZone: Asia/Shanghai
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: disturbEnable非法值时状态码应非200
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+case_notify_info_notify_enableMessageNotifyDisturb_06_isAllDevice_0_empty_deviceList:
+  host: ${{host()}}
+  url: /notify/info/notify/enableMessageNotifyDisturb
+  method: POST
+  detail: 未分类 - 勿扰配置上报 Wopet适用 - 异常场景：isAllDevice为0但deviceList为空
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    disturbEnable: '1'
+    endTime: '23:00'
+    id: 1678901234567892
+    isAllDevice: 0
+    isEveryDay: 1
+    isNextDay: 0
+    startTime: 08:00
+    userId: test_user_003
+    deviceList: []
+    timeZone: Asia/Shanghai
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: isAllDevice为0且deviceList为空时状态码应非200
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+case_notify_info_notify_enableMessageNotifyDisturb_07_isEveryDay_0_empty_periodList:
+  host: ${{host()}}
+  url: /notify/info/notify/enableMessageNotifyDisturb
+  method: POST
+  detail: 未分类 - 勿扰配置上报 Wopet适用 - 异常场景：isEveryDay为0但periodList为空
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    disturbEnable: '1'
+    endTime: '23:00'
+    id: 1678901234567893
+    isAllDevice: 1
+    isEveryDay: 0
+    isNextDay: 0
+    startTime: 08:00
+    userId: test_user_004
+    periodList: []
+    timeZone: Asia/Shanghai
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: isEveryDay为0且periodList为空时状态码应非200
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败

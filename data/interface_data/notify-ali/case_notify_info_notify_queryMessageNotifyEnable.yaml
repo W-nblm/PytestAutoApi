@@ -1,0 +1,143 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 消息管理
+  allureStory: 消息开关查询接口
+case_notify_info_notify_queryMessageNotifyEnable_01_success:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageNotifyEnable
+  method: POST
+  detail: 消息开关查询接口 - 正向成功场景
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: test_user_001
+    appType: '1'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验返回数据不为空
+    jsonpath: $.data
+    type: not_eq
+    value: null
+    message: 返回数据为空
+case_notify_info_notify_queryMessageNotifyEnable_02_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageNotifyEnable
+  method: POST
+  detail: 消息开关查询接口 - 异常场景：缺少 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    appType: '2'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数错误
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息包含参数错误提示
+    jsonpath: $.msg
+    type: contains
+    value: userId
+  - name: 校验响应消息包含错误码
+    jsonpath: $.errCode
+    type: eq
+    value: 10001
+case_notify_info_notify_queryMessageNotifyEnable_03_missing_appType:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageNotifyEnable
+  method: POST
+  detail: 消息开关查询接口 - 异常场景：缺少 appType
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: test_user_002
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数错误
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息包含参数错误提示
+    jsonpath: $.msg
+    type: contains
+    value: appType
+  - name: 校验响应消息包含错误码
+    jsonpath: $.errCode
+    type: eq
+    value: 10001
+case_notify_info_notify_queryMessageNotifyEnable_04_invalid_appType:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageNotifyEnable
+  method: POST
+  detail: 消息开关查询接口 - 异常场景：appType 参数值非法
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: test_user_003
+    appType: '0'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数错误
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息包含appType非法提示
+    jsonpath: $.msg
+    type: contains
+    value: appType
+  - name: 校验响应消息包含错误码
+    jsonpath: $.errCode
+    type: eq
+    value: 10002
+case_notify_info_notify_queryMessageNotifyEnable_05_empty_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageNotifyEnable
+  method: POST
+  detail: 消息开关查询接口 - 异常场景：userId 为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: ''
+    appType: '3'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为参数错误
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息包含userId为空提示
+    jsonpath: $.msg
+    type: contains
+    value: userId
+  - name: 校验响应消息包含错误码
+    jsonpath: $.errCode
+    type: eq
+    value: 10003

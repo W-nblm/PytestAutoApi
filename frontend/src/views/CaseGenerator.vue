@@ -3,10 +3,10 @@
     <!-- ======================= 顶部标题 ======================= -->
     <div class="header-box">
       <div>
-        <h2 class="page-title">🤖 AI 测试用例生成平台</h2>
         <p class="text-muted">上传需求文档，自动生成可导出的测试用例集</p>
       </div>
-      <el-button type="primary" @click="dialogVisible = true">
+
+      <el-button type="primary" @click="openDialog">
         ➕ 新建用例集
       </el-button>
     </div>
@@ -16,14 +16,16 @@
       <template #header>
         <div class="card-header">
           <span>📂 测试用例列表</span>
-
-          <el-input
-            v-model="search"
-            placeholder="🔍 搜索用例集标题"
-            clearable
-            class="search-box"
-            size="small"
-          />
+          <div class="header-actions">
+            <el-input
+              v-model="search"
+              placeholder="🔍 搜索用例集标题"
+              clearable
+              size="small"
+              class="search-box"
+            />
+            <el-button size="small" @click="fetchCases">刷新</el-button>
+          </div>
         </div>
       </template>
 
@@ -67,8 +69,8 @@
     <!-- ======================= 新建用例集 弹窗 ======================= -->
     <el-dialog v-model="dialogVisible" title="📄 生成测试用例" width="600px">
       <div class="dialog-body">
-        <!-- 标题 -->
         <el-form label-width="90px">
+          <!-- 标题 -->
           <el-form-item label="标题">
             <el-input v-model="title" placeholder="如：登录功能测试" />
           </el-form-item>
@@ -95,7 +97,7 @@
               v-model="text"
               type="textarea"
               :rows="6"
-              placeholder="可以直接粘贴需求说明文档内容..."
+              placeholder="可直接粘贴需求说明文档内容..."
             />
           </el-form-item>
         </el-form>
@@ -134,14 +136,26 @@ const cases = ref([]);
 const detailText = ref("");
 const search = ref("");
 
-// ------------------ 初始化加载 ------------------
+// ====================== 工具方法：重置表单 ======================
+function resetForm() {
+  title.value = "";
+  text.value = "";
+  file.value = null;
+}
+
+// ====================== 打开弹窗 ======================
+function openDialog() {
+  resetForm(); // ➤ 自动清空上一次内容
+  dialogVisible.value = true;
+}
+
+// ====================== 初始化加载 ======================
 onMounted(fetchCases);
 
 async function fetchCases() {
   loadingCases.value = true;
   try {
     const res = await api.getCaseList();
-    console.log(res);
     cases.value = res.data.data || [];
   } finally {
     loadingCases.value = false;
@@ -156,17 +170,14 @@ const filteredCases = computed(() =>
 
 // ------------------ 上传文件 ------------------
 function handleFileChange(uploadFile) {
-  file.value = uploadFile.raw; // ⚠ 关键修复点！
+  file.value = uploadFile.raw;
 }
 
 // ------------------ 生成测试用例 ------------------
 async function generate() {
-  if (!title.value) {
-    return ElMessage.warning("请输入用例集标题");
-  }
-  if (!file.value && !text.value) {
+  if (!title.value) return ElMessage.warning("请输入用例集标题");
+  if (!file.value && !text.value)
     return ElMessage.warning("请上传文件或输入文本");
-  }
 
   const formData = new FormData();
   formData.append("title", title.value);
@@ -178,7 +189,11 @@ async function generate() {
   try {
     const res = await api.generateCase(formData);
     ElMessage.success(`生成成功：共 ${res.data.count} 条`);
+
+    // ➤ 生成成功后自动关闭 & 清空
     dialogVisible.value = false;
+    resetForm();
+
     fetchCases();
   } catch {
     ElMessage.error("生成失败");
@@ -235,6 +250,11 @@ async function deleteCase(row) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
 }
 
 .search-box {

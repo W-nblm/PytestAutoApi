@@ -1,0 +1,101 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 认证授权模块
+  allureStory: 小程序登录
+case_auth_xcxLogin_01:
+  host: ${{host()}}
+  url: /auth/xcxLogin
+  method: POST
+  detail: 小程序登录 - 正常场景（有效js_code）
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: 011Qx1000e3M3I1z2e100R6s301Qx10j
+  dependence_case: []
+  assert:
+  - name: 校验接口业务状态码为200
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 业务状态码不为200
+  - name: 校验响应消息包含"成功"
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含"成功"
+  - name: 校验响应数据不为空
+    jsonpath: $.data
+    type: not_eq
+    value: null
+    message: 响应数据对象为空
+case_auth_xcxLogin_02:
+  host: ${{host()}}
+  url: /auth/xcxLogin
+  method: POST
+  detail: 小程序登录 - 异常场景（js_code为空）
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: ''
+  dependence_case: []
+  assert:
+  - name: 校验接口业务状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 业务状态码为200，但期望是业务错误码
+  - name: 校验响应消息包含错误提示 (如"不能为空"或"参数错误")
+    jsonpath: $.msg
+    type: contains
+    value: 不能为空
+    message: 响应消息未包含"不能为空"或相关错误提示
+case_auth_xcxLogin_03:
+  host: ${{host()}}
+  url: /auth/xcxLogin
+  method: POST
+  detail: 小程序登录 - 异常场景（js_code无效或过期）
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: invalid_js_code_1234567890abcdef
+  dependence_case: []
+  assert:
+  - name: 校验接口业务状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 业务状态码为200，但期望是业务错误码
+  - name: 校验响应消息包含错误提示 (如"无效"、"过期"或"登录失败")
+    jsonpath: $.msg
+    type: contains
+    value: 无效
+    message: 响应消息未包含"无效"或相关错误提示
+case_auth_xcxLogin_04:
+  host: ${{host()}}
+  url: /auth/xcxLogin
+  method: POST
+  detail: 小程序登录 - 异常场景（未提供js_code，即请求体为空）
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: null
+  dependence_case: []
+  assert:
+  - name: 校验接口业务状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 业务状态码为200，但期望是业务错误码
+  - name: 校验响应消息包含错误提示 (如"必填"或"参数缺失")
+    jsonpath: $.msg
+    type: contains
+    value: 必填
+    message: 响应消息未包含"必填"或相关错误提示

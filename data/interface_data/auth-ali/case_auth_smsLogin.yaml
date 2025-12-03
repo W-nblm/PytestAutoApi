@@ -1,0 +1,187 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 短信登录
+case_auth_smsLogin_01_success:
+  host: ${{host()}}
+  url: /auth/smsLogin
+  method: POST
+  detail: 短信登录 - 成功场景
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    phonenumber: '13812345678'
+    smsCode: '123456'
+  dependence_case: []
+  extract:
+    app_token: $.data.token
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含“成功”
+  - name: 校验响应数据不为空
+    jsonpath: $.data
+    type: not_eq
+    value: null
+    message: 响应数据为空
+  - name: 校验token字段存在且不为空
+    jsonpath: $.data.token
+    type: not_eq
+    value: null
+    message: 响应中未包含token，提取失败
+case_auth_smsLogin_02_missing_phonenumber:
+  host: ${{host()}}
+  url: /auth/smsLogin
+  method: POST
+  detail: 短信登录 - 缺少手机号
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    smsCode: '123456'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码为200，但预期失败
+  - name: 校验响应消息包含手机号缺失提示
+    jsonpath: $.msg
+    type: contains
+    value: 手机号
+    message: 响应消息未提示缺少手机号错误
+case_auth_smsLogin_03_missing_smsCode:
+  host: ${{host()}}
+  url: /auth/smsLogin
+  method: POST
+  detail: 短信登录 - 缺少短信验证码
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    phonenumber: '13812345678'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码为200，但预期失败
+  - name: 校验响应消息包含验证码缺失提示
+    jsonpath: $.msg
+    type: contains
+    value: 短信code
+    message: 响应消息未提示缺少短信验证码错误
+case_auth_smsLogin_04_invalid_phonenumber_format:
+  host: ${{host()}}
+  url: /auth/smsLogin
+  method: POST
+  detail: 短信登录 - 手机号格式不正确
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    phonenumber: '123'
+    smsCode: '123456'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码为200，但预期失败
+  - name: 校验响应消息包含手机号格式错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 手机号
+    message: 响应消息未提示手机号格式错误
+  - name: 校验响应消息包含格式错误提示词
+    jsonpath: $.msg
+    type: contains
+    value: 格式
+    message: 响应消息未包含“格式”错误提示
+case_auth_smsLogin_05_incorrect_smsCode:
+  host: ${{host()}}
+  url: /auth/smsLogin
+  method: POST
+  detail: 短信登录 - 短信验证码不正确
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    phonenumber: '13812345678'
+    smsCode: '000000'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码为200，但预期失败
+  - name: 校验响应消息包含验证码错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 验证码
+    message: 响应消息未提示验证码错误
+case_auth_smsLogin_06_empty_phonenumber:
+  host: ${{host()}}
+  url: /auth/smsLogin
+  method: POST
+  detail: 短信登录 - 手机号为空字符串
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    phonenumber: ''
+    smsCode: '123456'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码为200，但预期失败
+  - name: 校验响应消息包含手机号为空提示
+    jsonpath: $.msg
+    type: contains
+    value: 手机号
+    message: 响应消息未提示手机号为空错误
+case_auth_smsLogin_07_empty_smsCode:
+  host: ${{host()}}
+  url: /auth/smsLogin
+  method: POST
+  detail: 短信登录 - 短信验证码为空字符串
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    phonenumber: '13812345678'
+    smsCode: ''
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码非200
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 状态码为200，但预期失败
+  - name: 校验响应消息包含验证码为空提示
+    jsonpath: $.msg
+    type: contains
+    value: 短信code
+    message: 响应消息未提示短信验证码为空错误

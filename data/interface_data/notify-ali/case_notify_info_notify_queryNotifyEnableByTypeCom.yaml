@@ -1,0 +1,135 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 通知开关通用查询  喂鸟器开关查询接口
+case_notify_info_notify_queryNotifyEnableByTypeCom_01:
+  host: ${{host()}}
+  url: /notify/info/notify/queryNotifyEnableByTypeCom
+  method: POST
+  detail: 正常场景：带devId和woBirdEnable查询喂鸟器开关状态
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: test_dev_001
+    enableType: woBirdEnable
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验返回数据中包含devId
+    jsonpath: $.data.devId
+    type: not_eq
+    value: null
+    message: 返回数据中devId不应为空
+  - name: 校验返回数据中enableType为请求值
+    jsonpath: $.data.enableType
+    type: eq
+    value: woBirdEnable
+    message: 返回数据中enableType与请求值不符
+case_notify_info_notify_queryNotifyEnableByTypeCom_02:
+  host: ${{host()}}
+  url: /notify/info/notify/queryNotifyEnableByTypeCom
+  method: POST
+  detail: 异常场景：缺少必填参数devId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    enableType: ca11Enable
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为业务错误码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验参数错误信息中包含devId错误
+    jsonpath: $.paramMsg.devId
+    type: not_eq
+    value: null
+    message: 缺少devId参数，但paramMsg中未体现错误信息
+case_notify_info_notify_queryNotifyEnableByTypeCom_03:
+  host: ${{host()}}
+  url: /notify/info/notify/queryNotifyEnableByTypeCom
+  method: POST
+  detail: 异常场景：devId为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: ''
+    enableType: d02Enable
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为业务错误码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验参数错误信息中包含devId错误
+    jsonpath: $.paramMsg.devId
+    type: not_eq
+    value: null
+    message: devId为空字符串，但paramMsg中未体现错误信息
+case_notify_info_notify_queryNotifyEnableByTypeCom_04:
+  host: ${{host()}}
+  url: /notify/info/notify/queryNotifyEnableByTypeCom
+  method: POST
+  detail: 异常场景：enableType参数值非法
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    devId: test_dev_002
+    enableType: invalidType
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为业务错误码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验参数错误信息中包含enableType错误
+    jsonpath: $.paramMsg.enableType
+    type: not_eq
+    value: null
+    message: enableType参数值非法，但paramMsg中未体现错误信息
+case_notify_info_notify_queryNotifyEnableByTypeCom_05:
+  host: ${{host()}}
+  url: /notify/info/notify/queryNotifyEnableByTypeCom
+  method: POST
+  detail: 异常场景：请求体为空，缺少所有参数（特别是必填的devId）
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: {}
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为业务错误码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验参数错误信息中包含devId错误
+    jsonpath: $.paramMsg.devId
+    type: not_eq
+    value: null
+    message: 请求体为空（缺少devId），但paramMsg中未体现错误信息

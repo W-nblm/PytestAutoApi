@@ -1,0 +1,214 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 二级页面-告警消息单个多个删除  WOcam WObirdy适用
+case_notify_info_notify_deleteDetectMessageNotify_01_success_single:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectMessageNotify
+  method: POST
+  detail: 正向场景 - 成功删除单条告警消息
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    nowDate: 1678886400000
+    userId: test_user_001
+    devId: test_device_001
+    messageDeleteVoList:
+    - userId: test_user_001
+      messageId: message_id_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含"成功"字样
+  - name: 校验数据对象为true
+    jsonpath: $.data
+    type: eq
+    value: true
+    message: 删除操作成功应返回true
+case_notify_info_notify_deleteDetectMessageNotify_02_success_multiple:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectMessageNotify
+  method: POST
+  detail: 正向场景 - 成功删除多条告警消息
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    nowDate: 1678886400000
+    userId: test_user_001
+    devId: test_device_001
+    messageDeleteVoList:
+    - userId: test_user_001
+      messageId: message_id_002
+    - userId: test_user_001
+      messageId: message_id_003
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息未包含"成功"字样
+  - name: 校验数据对象为true
+    jsonpath: $.data
+    type: eq
+    value: true
+    message: 删除操作成功应返回true
+case_notify_info_notify_deleteDetectMessageNotify_03_missing_devId:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectMessageNotify
+  method: POST
+  detail: 异常场景 - 缺少顶层必填参数 devId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    nowDate: 1678886400000
+    userId: test_user_001
+    messageDeleteVoList:
+    - userId: test_user_001
+      messageId: message_id_004
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息未包含预期的错误提示信息
+case_notify_info_notify_deleteDetectMessageNotify_04_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectMessageNotify
+  method: POST
+  detail: 异常场景 - 缺少顶层必填参数 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    nowDate: 1678886400000
+    devId: test_device_001
+    messageDeleteVoList:
+    - userId: test_user_001
+      messageId: message_id_005
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息未包含预期的错误提示信息
+case_notify_info_notify_deleteDetectMessageNotify_05_missing_messageId_in_list:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectMessageNotify
+  method: POST
+  detail: 异常场景 - messageDeleteVoList中缺少必填参数 messageId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    nowDate: 1678886400000
+    userId: test_user_001
+    devId: test_device_001
+    messageDeleteVoList:
+    - userId: test_user_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息未包含预期的错误提示信息
+case_notify_info_notify_deleteDetectMessageNotify_06_empty_messageDeleteVoList:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectMessageNotify
+  method: POST
+  detail: 异常场景 - messageDeleteVoList 为空数组
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    nowDate: 1678886400000
+    userId: test_user_001
+    devId: test_device_001
+    messageDeleteVoList: []
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败或业务逻辑错误
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息未包含预期的错误提示信息
+case_notify_info_notify_deleteDetectMessageNotify_07_invalid_nowDate_type:
+  host: ${{host()}}
+  url: /notify/info/notify/deleteDetectMessageNotify
+  method: POST
+  detail: 异常场景 - nowDate 参数类型错误
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    nowDate: invalid_timestamp
+    userId: test_user_001
+    devId: test_device_001
+    messageDeleteVoList:
+    - userId: test_user_001
+      messageId: message_id_007
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数类型错误
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+    message: 响应消息未包含预期的错误提示信息

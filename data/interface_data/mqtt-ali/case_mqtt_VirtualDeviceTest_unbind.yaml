@@ -1,0 +1,118 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 解绑设备同时
+case_mqtt_VirtualDeviceTest_unbind_01:
+  host: ${{host()}}
+  url: /mqtt/VirtualDeviceTest/unbind
+  method: POST
+  detail: 解绑设备同时 - 成功解绑一个或多个有效设备
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    deviceIds:
+    - your_test_device_id_001
+    - your_test_device_id_002
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息不包含"成功"
+  - name: 校验data字段不为空
+    jsonpath: $.data
+    type: not_eq
+    value: null
+    message: 成功解绑后data字段不应为空
+case_mqtt_VirtualDeviceTest_unbind_02:
+  host: ${{host()}}
+  url: /mqtt/VirtualDeviceTest/unbind
+  method: POST
+  detail: 解绑设备同时 - 参数校验：设备ID列表为空
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    deviceIds: []
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为参数校验失败
+  - name: 校验错误消息
+    jsonpath: $.msg
+    type: contains
+    value: 设备ID不能为空
+    message: 响应消息不包含预期的错误信息"设备ID不能为空"
+  - name: 校验错误码
+    jsonpath: $.errCode
+    type: eq
+    value: 1001
+    message: 错误码不符合预期1001
+case_mqtt_VirtualDeviceTest_unbind_03:
+  host: ${{host()}}
+  url: /mqtt/VirtualDeviceTest/unbind
+  method: POST
+  detail: 解绑设备同时 - 业务异常：尝试解绑不存在的设备
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    deviceIds:
+    - non_existent_device_id_abc
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470，预期为业务异常
+  - name: 校验错误消息
+    jsonpath: $.msg
+    type: contains
+    value: 设备不存在或已解绑
+    message: 响应消息不包含预期的错误信息"设备不存在或已解绑"
+  - name: 校验错误码
+    jsonpath: $.errCode
+    type: eq
+    value: 1002
+    message: 错误码不符合预期1002
+case_mqtt_VirtualDeviceTest_unbind_04:
+  host: ${{host()}}
+  url: /mqtt/VirtualDeviceTest/unbind
+  method: POST
+  detail: 解绑设备同时 - 未授权访问 (缺少Authorization头)
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    deviceIds:
+    - any_device_id
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 401
+    message: 状态码不为401，预期为未授权
+  - name: 校验错误消息
+    jsonpath: $.msg
+    type: contains
+    value: 未经授权
+    message: 响应消息不包含预期的错误信息"未经授权"

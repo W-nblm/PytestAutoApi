@@ -1,0 +1,258 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 清除设备token
+case_notify_info_removeDeviceToken_01_success:
+  host: ${{host()}}
+  url: /notify/info/removeDeviceToken
+  method: POST
+  detail: 清除设备token - 正常场景
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    appType: '1'
+    userId: test_user_id_001
+    phoneType: '1'
+    id: 123456789012345
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验数据对象
+    jsonpath: $.data
+    type: eq
+    value: true
+case_notify_info_removeDeviceToken_02_missing_appType:
+  host: ${{host()}}
+  url: /notify/info/removeDeviceToken
+  method: POST
+  detail: 清除设备token - 缺少必填参数 appType
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: test_user_id_002
+    phoneType: '1'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 参数校验错误码不为470
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: appType
+  - name: 校验paramMsg包含appType错误
+    jsonpath: $.paramMsg.appType
+    type: contains
+    value: 必填
+case_notify_info_removeDeviceToken_03_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/removeDeviceToken
+  method: POST
+  detail: 清除设备token - 缺少必填参数 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    appType: '2'
+    phoneType: '2'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 参数校验错误码不为470
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: userId
+  - name: 校验paramMsg包含userId错误
+    jsonpath: $.paramMsg.userId
+    type: contains
+    value: 必填
+case_notify_info_removeDeviceToken_04_invalid_appType_pattern:
+  host: ${{host()}}
+  url: /notify/info/removeDeviceToken
+  method: POST
+  detail: 清除设备token - appType 不符合规范
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    appType: '4'
+    userId: test_user_id_003
+    phoneType: '1'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 参数校验错误码不为470
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: appType
+  - name: 校验paramMsg包含appType错误
+    jsonpath: $.paramMsg.appType
+    type: contains
+    value: 无效
+case_notify_info_removeDeviceToken_05_empty_userId:
+  host: ${{host()}}
+  url: /notify/info/removeDeviceToken
+  method: POST
+  detail: 清除设备token - userId 为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    appType: '1'
+    userId: ''
+    phoneType: '1'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 参数校验错误码不为470
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: userId
+  - name: 校验paramMsg包含userId错误
+    jsonpath: $.paramMsg.userId
+    type: contains
+    value: 不能为空
+case_notify_info_removeDeviceToken_06_empty_appType:
+  host: ${{host()}}
+  url: /notify/info/removeDeviceToken
+  method: POST
+  detail: 清除设备token - appType 为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    appType: ''
+    userId: test_user_id_004
+    phoneType: '1'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 参数校验错误码不为470
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: appType
+  - name: 校验paramMsg包含appType错误
+    jsonpath: $.paramMsg.appType
+    type: contains
+    value: 不能为空
+case_notify_info_removeDeviceToken_07_invalid_phoneType:
+  host: ${{host()}}
+  url: /notify/info/removeDeviceToken
+  method: POST
+  detail: 清除设备token - phoneType 为无效值
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    appType: '1'
+    userId: test_user_id_005
+    phoneType: '3'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 参数校验错误码不为470
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: phoneType
+  - name: 校验paramMsg包含phoneType错误
+    jsonpath: $.paramMsg.phoneType
+    type: contains
+    value: 无效
+case_notify_info_removeDeviceToken_08_invalid_id_type:
+  host: ${{host()}}
+  url: /notify/info/removeDeviceToken
+  method: POST
+  detail: 清除设备token - id 字段类型错误
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    appType: '1'
+    userId: test_user_id_006
+    id: invalid_id_string
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 参数校验错误码不为470
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: id
+  - name: 校验paramMsg包含id错误
+    jsonpath: $.paramMsg.id
+    type: contains
+    value: 格式错误
+case_notify_info_removeDeviceToken_09_unauthorized:
+  host: ${{host()}}
+  url: /notify/info/removeDeviceToken
+  method: POST
+  detail: 清除设备token - 未授权访问
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    appType: '1'
+    userId: test_user_id_007
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 401
+    message: 状态码不为401
+  - name: 校验响应消息包含错误信息
+    jsonpath: $.msg
+    type: contains
+    value: 授权

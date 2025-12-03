@@ -1,0 +1,223 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 一级页面-消息已读接口单个 WOcam Wobirdy适用
+case_notify_info_notify_readMessage_01_success_system_message:
+  host: ${{host()}}
+  url: /notify/info/notify/readMessage
+  method: POST
+  detail: 正向场景 - 读取系统消息成功
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: '1'
+    messageType: '1'
+    alarmType: '1'
+    userId: mock_user_id_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验data字段为true
+    jsonpath: $.data
+    type: eq
+    value: true
+    message: data字段应为true表示操作成功
+case_notify_info_notify_readMessage_02_success_alarm_message:
+  host: ${{host()}}
+  url: /notify/info/notify/readMessage
+  method: POST
+  detail: 正向场景 - 读取告警消息成功
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: '1'
+    messageType: '2'
+    devId: mock_device_id_001
+    userId: mock_user_id_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验data字段为true
+    jsonpath: $.data
+    type: eq
+    value: true
+    message: data字段应为true表示操作成功
+case_notify_info_notify_readMessage_03_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/readMessage
+  method: POST
+  detail: 异常场景 - 缺少必填参数 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: '1'
+    messageType: '1'
+    alarmType: '1'
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为470 (参数校验失败)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息不包含成功
+    jsonpath: $.msg
+    type: not_contains
+    value: 成功
+    message: 响应消息不应包含"成功"
+  - name: 校验paramMsg中包含userId字段错误信息
+    jsonpath: $.paramMsg.userId
+    type: not_eq
+    value: null
+    message: paramMsg中未包含userId的错误信息
+case_notify_info_notify_readMessage_04_invalid_messageType:
+  host: ${{host()}}
+  url: /notify/info/notify/readMessage
+  method: POST
+  detail: 异常场景 - messageType 参数值非法
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: '1'
+    messageType: '3'
+    userId: mock_user_id_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为470 (参数校验失败)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息不包含成功
+    jsonpath: $.msg
+    type: not_contains
+    value: 成功
+    message: 响应消息不应包含"成功"
+  - name: 校验paramMsg中包含messageType字段错误信息
+    jsonpath: $.paramMsg.messageType
+    type: not_eq
+    value: null
+    message: paramMsg中未包含messageType的错误信息
+case_notify_info_notify_readMessage_05_alarm_missing_devId:
+  host: ${{host()}}
+  url: /notify/info/notify/readMessage
+  method: POST
+  detail: 异常场景 - messageType=2时缺少devId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: '1'
+    messageType: '2'
+    userId: mock_user_id_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为470 (参数校验失败)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息不包含成功
+    jsonpath: $.msg
+    type: not_contains
+    value: 成功
+    message: 响应消息不应包含"成功"
+  - name: 校验paramMsg中包含devId字段错误信息
+    jsonpath: $.paramMsg.devId
+    type: not_eq
+    value: null
+    message: paramMsg中未包含devId的错误信息
+case_notify_info_notify_readMessage_06_system_invalid_alarmType:
+  host: ${{host()}}
+  url: /notify/info/notify/readMessage
+  method: POST
+  detail: 异常场景 - messageType=1时alarmType 参数值非法
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: '1'
+    messageType: '1'
+    alarmType: '6'
+    userId: mock_user_id_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为470 (参数校验失败)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息不包含成功
+    jsonpath: $.msg
+    type: not_contains
+    value: 成功
+    message: 响应消息不应包含"成功"
+  - name: 校验paramMsg中包含alarmType字段错误信息
+    jsonpath: $.paramMsg.alarmType
+    type: not_eq
+    value: null
+    message: paramMsg中未包含alarmType的错误信息
+case_notify_info_notify_readMessage_07_invalid_isRead:
+  host: ${{host()}}
+  url: /notify/info/notify/readMessage
+  method: POST
+  detail: 异常场景 - isRead 参数值非法
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    isRead: '0'
+    messageType: '1'
+    alarmType: '1'
+    userId: mock_user_id_001
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码为470 (参数校验失败)
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息不包含成功
+    jsonpath: $.msg
+    type: not_contains
+    value: 成功
+    message: 响应消息不应包含"成功"
+  - name: 校验paramMsg中包含isRead字段错误信息 (假设)
+    jsonpath: $.paramMsg.isRead
+    type: not_eq
+    value: null
+    message: paramMsg中未包含isRead的错误信息 (请根据实际接口返回调整)

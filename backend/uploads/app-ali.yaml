@@ -1,0 +1,2760 @@
+openapi: 3.0.1
+info:
+  title: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  description: 描述：微服务权限管理系统, 具体包括XXX,XXX模块...
+  contact:
+    name: lzyiot
+    url: https://szlongzy.com
+    email: lzyiot@szlongzy.com
+  version: 版本号：系统版本...
+servers:
+- url: http://172.10.21.17:9406/info
+  description: Generated server url
+security:
+- apiKey: []
+tags:
+- name: app用户信息相关接口
+  description: app用户信息相关接口
+- name: app升级相关接口
+  description: app升级相关接口
+- name: pet用户信息
+  description: pet用户信息
+- name: pet banner信息
+  description: pet banner信息
+- name: app面板升级相关接口
+  description: app面板升级相关接口
+- name: 订单收集弹窗
+  description: 订单收集弹窗
+- name: 测试类的名称
+  description: 测试类的名称
+- name: app用户控制器
+  description: "app用户控制器\n 无需token"
+- name: app pet用户控制器
+  description: app pet用户控制器
+- name: 对外API信息代理接口
+  description: 对外API信息代理接口
+- name: 账号相关信息代理接口
+  description: 账号相关信息代理接口
+- name: 支付中心调用-api相关接口
+  description: 支付中心调用-api相关接口
+- name: wopet API宠物相关接口
+  description: wopet API宠物相关接口
+- name: 公共api相关接口 --- 独立站调用
+  description: 公共api相关接口 --- 独立站调用
+- name: HeartBeat
+  description: HeartBeat
+paths:
+  /app/info/userInfo/updatePwd:
+    post:
+      tags:
+      - app用户信息相关接口
+      summary: 修改密码
+      description: 修改密码
+      operationId: updatePwd
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/userInfo/updatePwdMailCode:
+    post:
+      tags:
+      - app用户信息相关接口
+      summary: 修改密码发送邮箱验证码
+      description: 修改密码发送邮箱验证码
+      operationId: updatePwdMailCode
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/userInfo/updatePwdCheckMailCode:
+    post:
+      tags:
+      - app用户信息相关接口
+      summary: 修改密码 单独校验验证码  不需要加密
+      description: 修改密码 单独校验验证码  不需要加密
+      operationId: updatePwdCheckMailCode
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/userInfo/updateNickName:
+    post:
+      tags:
+      - app用户信息相关接口
+      summary: 更新用户昵称
+      description: 更新用户昵称
+      operationId: updateNickName
+      requestBody:
+        description: 用户昵称入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNickNameReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/userInfo/updateLanguage:
+    post:
+      tags:
+      - app用户信息相关接口
+      summary: "更新用户app语言\n 只要在header中带上 token App-Source Content-Language"
+      description: "更新用户app语言\n 只要在header中带上 token App-Source Content-Language"
+      operationId: updateLanguage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLanguageReq'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/userInfo/updateHeadPic:
+    post:
+      tags:
+      - app用户信息相关接口
+      summary: 更新用户头像
+      description: 更新用户头像
+      operationId: updateHeadPic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateHeadPicReq'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RAppUserInfo'
+  /app/info/userInfo/deleteAccount:
+    post:
+      tags:
+      - app用户信息相关接口
+      summary: 注销账号
+      description: 注销账号
+      operationId: deleteAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/userInfo/deleteAccountMailCode:
+    post:
+      tags:
+      - app用户信息相关接口
+      summary: 注销账号发送邮箱验证码
+      description: 注销账号发送邮箱验证码
+      operationId: deleteAccountMailCode
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/userInfo/deleteAccountCheckCode:
+    post:
+      tags:
+      - app用户信息相关接口
+      summary: 注销单独校验验证码 不需要加密
+      description: 注销单独校验验证码 不需要加密
+      operationId: deleteAccountCheckCode
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/upgrade:
+    post:
+      tags:
+      - app升级相关接口
+      summary: 校验是否需要升级
+      description: 校验是否需要升级
+      operationId: getVersion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpgradeConfigParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RUpgradeConfigVo'
+  /app/info/petInfo/test:
+    post:
+      tags:
+      - pet用户信息
+      summary: 这是测试用接口3
+      description: 这是测试用接口3
+      operationId: test
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/R'
+  /app/info/petInfo/bindEmail:
+    post:
+      tags:
+      - pet用户信息
+      summary: 绑定邮箱
+      description: 绑定邮箱
+      operationId: bindEmail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BindEmailReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/petInfo/bindEmail/sendMailCode:
+    post:
+      tags:
+      - pet用户信息
+      summary: 发送邮件
+      description: 发送邮件
+      operationId: bindEmailSendMailCode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BindEmailReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/petBanner/banner/bannerWait:
+    post:
+      tags:
+      - pet banner信息
+      summary: banner停留时间
+      description: banner停留时间
+      operationId: bannerWait
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerWaitCountReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/petBanner/banner/bannerTransfer:
+    post:
+      tags:
+      - pet banner信息
+      summary: banner转化记录
+      description: banner转化记录
+      operationId: bannerTransfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerCompleteReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/petBanner/banner/bannerInfoList:
+    post:
+      tags:
+      - pet banner信息
+      summary: 获取banner展示接口
+      description: 获取banner展示接口
+      operationId: bannerInfoList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppBannerInfoParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListAppBannerInfoResp'
+  /app/info/petBanner/banner/bannerEnterCount:
+    post:
+      tags:
+      - pet banner信息
+      summary: banner展示记录
+      description: banner展示记录
+      operationId: bannerEnterCount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerEnterCountReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/petBanner/banner/bannerCount:
+    post:
+      tags:
+      - pet banner信息
+      summary: banner点击记录
+      description: banner点击记录
+      operationId: bannerCount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerCountReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/petBanner/banner/bannerComplete:
+    post:
+      tags:
+      - pet banner信息
+      summary: banner完读记录
+      description: banner完读记录
+      operationId: bannerComplete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BannerCompleteReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/panel/upgrade:
+    post:
+      tags:
+      - app面板升级相关接口
+      summary: 校验是否需要升级
+      description: 校验是否需要升级
+      operationId: getVersion_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppPanelUpgradeParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RAppRelBvListResp'
+  /app/info/orderCollDevicePop/record:
+    post:
+      tags:
+      - 订单收集弹窗
+      summary: 配网后新增设备弹窗记录
+      description: 配网后新增设备弹窗记录
+      operationId: orderCollDevicePopRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCollPopReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/orderCollDevicePop/recordPop:
+    post:
+      tags:
+      - 订单收集弹窗
+      summary: 弹窗后修改弹窗标记
+      description: 弹窗后修改弹窗标记
+      operationId: orderCollDevicePopRecordPop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCollPopUpdateReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/gettest:
+    post:
+      tags:
+      - 测试类的名称
+      summary: 测试类的方法
+      description: 测试类的方法
+      operationId: v
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestDto'
+        required: true
+      responses:
+        '200':
+          description: testDto
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTestDto'
+  /app/info/getSecEmailPassword:
+    post:
+      tags:
+      - 测试类的名称
+      summary: 获取注册接口加密后的邮箱和密码 仅供测试
+      description: 获取注册接口加密后的邮箱和密码 仅供测试
+      operationId: registerTest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RRegisterVo'
+  /app/info/appUser/webLoginTest:
+    post:
+      tags:
+      - app用户控制器
+      summary: web端登录查询用户接口
+      description: web端登录查询用户接口
+      operationId: webLoginTest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebLoginAppUserBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapObjectObject'
+  /app/info/appUser/webDeleteTest:
+    post:
+      tags:
+      - app用户控制器
+      summary: web端删除用户接口
+      description: web端删除用户接口
+      operationId: webDeleteTest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebLoginAppUserBo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RBoolean'
+  /app/info/appUser/register:
+    post:
+      tags:
+      - app用户控制器
+      summary: 注册 email和password需要加密
+      description: 注册 email和password需要加密
+      operationId: register
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTokenDto'
+  /app/info/appUser/registerTest:
+    post:
+      tags:
+      - app用户控制器
+      summary: TEST 注册测试用 不需要加密
+      description: TEST 注册测试用 不需要加密
+      operationId: registerTest_1
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTokenDto'
+  /app/info/appUser/registerCheckCode:
+    post:
+      tags:
+      - app用户控制器
+      summary: 注册 单独校验验证码 需要加密
+      description: 注册 单独校验验证码 需要加密
+      operationId: registerCheckCode
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/appUser/registerCheckCodeTest:
+    post:
+      tags:
+      - app用户控制器
+      summary: TEST 注册 单独校验验证码 不需要加密
+      description: TEST 注册 单独校验验证码 不需要加密
+      operationId: registerCheckCodeTest
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/appUser/pet/thirdParty/login:
+    post:
+      tags:
+      - app pet用户控制器
+      summary: WOpet第三方登录接口
+      description: WOpet第三方登录接口
+      operationId: thirdPartyLogin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThirdPartyLoginReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RThirdPartyTokenDto'
+  /app/info/appUser/pet/thirdParty/checkApple:
+    post:
+      tags:
+      - app pet用户控制器
+      summary: WOpet(苹果id校验)
+      description: WOpet(苹果id校验)
+      operationId: thirdPartyCheckApple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThirdPartyLoginReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCheckAppleResp'
+  /app/info/appUser/pet/thirdParty/checkAppleByUid:
+    post:
+      tags:
+      - app pet用户控制器
+      summary: WOpet(苹果id校验,用户id)
+      description: WOpet(苹果id校验,用户id)
+      operationId: thirdPartyCheckAppleByUid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckTuYaUidParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RCheckAppleResp'
+  /app/info/appUser/pet/register:
+    post:
+      tags:
+      - app pet用户控制器
+      summary: WOpet注册 不需要加密
+      description: WOpet注册 不需要加密
+      operationId: registerTest_2
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTokenDto'
+  /app/info/appUser/pet/registerMailCode:
+    post:
+      tags:
+      - app pet用户控制器
+      summary: WOpet账号注册发送邮箱验证码 不需要加密
+      description: WOpet账号注册发送邮箱验证码 不需要加密
+      operationId: registerMailCodePet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailCodeVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/appUser/pet/login:
+    post:
+      tags:
+      - app pet用户控制器
+      summary: WOpet 登录
+      description: WOpet 登录
+      operationId: registerTest_3
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailLoginVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTokenDto'
+  /app/info/appUser/pet/checkAccountType:
+    post:
+      tags:
+      - app pet用户控制器
+      summary: 检查账号类型(忘记密码前需要调用)
+      description: 检查账号类型(忘记密码前需要调用)
+      operationId: registerTest_4
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailCodeVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RWopetLoginVo'
+  /app/info/appUser/login:
+    post:
+      tags:
+      - app用户控制器
+      summary: 登陆 email和password需要加密
+      description: 登陆 email和password需要加密
+      operationId: login
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailLoginVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTokenDto'
+  /app/info/appUser/loginTest:
+    post:
+      tags:
+      - app用户控制器
+      summary: TEST 登陆 email和password 不需要加密
+      description: TEST 登陆 email和password 不需要加密
+      operationId: loginTest
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailLoginVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RTokenDto'
+  /app/info/appUser/forgetPwd:
+    post:
+      tags:
+      - app用户控制器
+      summary: 忘记密码 email和password需要加密
+      description: 忘记密码 email和password需要加密
+      operationId: forgetPwd
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/appUser/forgetPwdTest:
+    post:
+      tags:
+      - app用户控制器
+      summary: TEST 忘记密码 email和password 不需要加密
+      description: TEST 忘记密码 email和password 不需要加密
+      operationId: forgetPwdTest
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/appUser/forgetPwdCheckMailCode:
+    post:
+      tags:
+      - app用户控制器
+      summary: 忘记密码 单独校验验证码 需要加密
+      description: 忘记密码 单独校验验证码 需要加密
+      operationId: forgetPwdCheckMailCode
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/appUser/forgetPwdCheckMailCodeTest:
+    post:
+      tags:
+      - app用户控制器
+      summary: TEST 忘记密码 单独校验验证码  不需要加密
+      description: TEST 忘记密码 单独校验验证码  不需要加密
+      operationId: forgetPwdCheckMailCodeTest
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/appUser/checkUserRegion/{userUid}:
+    post:
+      tags:
+      - app pet用户控制器
+      summary: 检查账号区域
+      description: 检查账号区域
+      operationId: checkUserRegion
+      parameters:
+      - name: userUid
+        in: path
+        description: 入参
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RWopetLoginVo'
+  /app/info/agent/updateLogout:
+    post:
+      tags:
+      - 对外API信息代理接口
+      summary: NODE修改密码通知其他节点退出
+      description: NODE修改密码通知其他节点退出
+      operationId: updateLogout
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/sendMail:
+    post:
+      tags:
+      - 对外API信息代理接口
+      summary: 发送邮件接口,其他接口也通用
+      description: 发送邮件接口,其他接口也通用
+      operationId: sendMail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/reportToken:
+    post:
+      tags:
+      - 对外API信息代理接口
+      summary: wopet上报token接口
+      description: wopet上报token接口
+      operationId: reportToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/removeToken:
+    post:
+      tags:
+      - 对外API信息代理接口
+      summary: wopet移除token接口
+      description: wopet移除token接口
+      operationId: removeToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/registerMailCode:
+    post:
+      tags:
+      - 账号相关信息代理接口
+      summary: 账号注册发送邮箱验证码 需要加密
+      description: 账号注册发送邮箱验证码 需要加密
+      operationId: registerMailCode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailCodeVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/registerMailCodeTest:
+    post:
+      tags:
+      - 账号相关信息代理接口
+      summary: 账号注册发送邮箱验证码 不需要加密 test
+      description: 账号注册发送邮箱验证码 不需要加密 test
+      operationId: registerMailCodeTest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailCodeVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/receiveNotifyMessage:
+    post:
+      tags:
+      - 对外API信息代理接口
+      summary: wopet消息推送接收接口
+      description: wopet消息推送接收接口
+      operationId: receiveNotifyMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/payCenter/post:
+    post:
+      tags:
+      - 支付中心调用-api相关接口
+      operationId: payCenterApiPost
+      requestBody:
+        description: apiVo
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /app/info/agent/node/syncDevice:
+    post:
+      tags:
+      - 对外API信息代理接口
+      summary: NODE批量同步生成的设备信息
+      description: NODE批量同步生成的设备信息
+      operationId: nodeSyncDevice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/node/syncDeviceDelete:
+    post:
+      tags:
+      - 对外API信息代理接口
+      summary: NODE同步删除设备信息
+      description: NODE同步删除设备信息
+      operationId: nodeSyncDeviceDelete
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/iot/post:
+    post:
+      tags:
+      - wopet API宠物相关接口
+      operationId: wopetApiPost
+      requestBody:
+        description: apiVo
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /app/info/agent/googlePayOrderInfo:
+    post:
+      tags:
+      - 对外API信息代理接口
+      summary: NODE google订单欧洲校验 给国内用
+      description: NODE google订单欧洲校验 给国内用
+      operationId: googlePayOrderInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /app/info/agent/forgetPwdMailCode:
+    post:
+      tags:
+      - 账号相关信息代理接口
+      summary: 忘记发送邮箱验证码 需要加密
+      description: 忘记发送邮箱验证码 需要加密
+      operationId: forgetPwdMailCode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailCodeVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/forgetPwdMailCodeTest:
+    post:
+      tags:
+      - 账号相关信息代理接口
+      summary: 忘记发送邮箱验证码 不需要加密 test
+      description: 忘记发送邮箱验证码 不需要加密 test
+      operationId: forgetPwdMailCodeTest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailCodeVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/dictType/category:
+    post:
+      tags:
+      - 账号相关信息代理接口
+      summary: 根据dictType和category查询多语言信息
+      description: 根据dictType和category查询多语言信息
+      operationId: dictTypeAndCategory
+      requestBody:
+        description: 入参
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DictTypeAndCategoryReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListCommonDictItemVo'
+  /app/info/agent/deleteAccountNode:
+    post:
+      tags:
+      - 对外API信息代理接口
+      summary: NODE删除账号 通知其他节点也删除
+      description: NODE删除账号 通知其他节点也删除
+      operationId: deleteAccountNode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/common/post:
+    post:
+      tags:
+      - 公共api相关接口 --- 独立站调用
+      operationId: thirdPartyApiPost
+      requestBody:
+        description: apiVo
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /app/info/agent/androidNotifyMessage:
+    post:
+      tags:
+      - 对外API信息代理接口
+      summary: 国内android消息转发到国外
+      description: 国内android消息转发到国外
+      operationId: androidNotifyMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/agent/agentGoogleFb:
+    post:
+      tags:
+      - 账号相关信息代理接口
+      operationId: agentGoogleFb
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RApiVo'
+  /app/info/userInfo/queryEmqInfo:
+    get:
+      tags:
+      - app用户信息相关接口
+      summary: 获取用户emq连接信息
+      description: 获取用户emq连接信息
+      operationId: queryEmqInfo
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REmqConnInfo'
+  /app/info/userInfo/logout:
+    get:
+      tags:
+      - app用户信息相关接口
+      summary: 用户退出
+      description: 用户退出
+      operationId: logout
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/petInfo/checkIotToken:
+    get:
+      tags:
+      - pet用户信息
+      summary: checkIotToken
+      description: checkIotToken
+      operationId: checkToken
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/orderCollDevicePop/exportPetInfo:
+    get:
+      tags:
+      - 订单收集弹窗
+      summary: 品牌数据导出
+      description: 品牌数据导出
+      operationId: exportPetInfo
+      parameters:
+      - name: access
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /app/info/orderCollDevicePop/exportOrderInfo:
+    get:
+      tags:
+      - 订单收集弹窗
+      summary: 运营数据导出
+      description: 运营数据导出
+      operationId: exportOrderInfo
+      parameters:
+      - name: access
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /app/info/heartBeat:
+    get:
+      tags:
+      - HeartBeat
+      summary: HeartBeat
+      description: HeartBeat
+      operationId: heartBeat
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RVoid'
+  /app/info/appUser/securityKey:
+    get:
+      tags:
+      - app用户控制器
+      summary: 获取信息加密key
+      description: 获取信息加密key
+      operationId: securityKey
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RString'
+  /app/info/agent/{dictType}:
+    get:
+      tags:
+      - 账号相关信息代理接口
+      summary: 查询多语言字典基础数据
+      description: 查询多语言字典基础数据
+      operationId: list
+      parameters:
+      - name: dictType
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RListCommonDictItemVo'
+  /app/info/agent/category/{dictType}:
+    get:
+      tags:
+      - 账号相关信息代理接口
+      summary: 查询多语言字典基础数据(按category分组)
+      description: 查询多语言字典基础数据(按category分组)
+      operationId: listGroup
+      parameters:
+      - name: dictType
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RMapStringListCommonDictItemVo'
+components:
+  schemas:
+    RegisterVo:
+      required:
+      - countryCode
+      - customId
+      - email
+      - mailCode
+      - password
+      type: object
+      properties:
+        customId:
+          type: string
+          description: 客户id, 由后端提供
+        email:
+          type: string
+          description: 注册邮箱地址
+        mailCode:
+          type: string
+          description: 邮箱验证码
+        password:
+          type: string
+          description: 注册密码
+        timezoneId:
+          type: string
+          description: 时区 例如(Asia/Shanghai)
+        countryCode:
+          type: string
+          description: 国家区域
+        wopetUserInfo:
+          $ref: '#/components/schemas/WopetUserInfo'
+      description: 邮箱注册
+    WopetUserInfo:
+      type: object
+      properties:
+        phoneCode:
+          type: string
+        countryName:
+          type: string
+        nationalNumber:
+          type: string
+        headPic:
+          type: string
+        sex:
+          type: string
+        nickName:
+          type: string
+      description: ''
+    RVoid:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    UpdateNickNameReq:
+      required:
+      - nickName
+      type: object
+      properties:
+        nickName:
+          type: string
+          description: 用户昵称
+      description: 更新用户昵称入参
+    UpdateLanguageReq:
+      required:
+      - timeZone
+      type: object
+      properties:
+        timeZone:
+          type: string
+          description: app时区
+      description: 更新用户昵称入参
+    UpdateHeadPicReq:
+      required:
+      - multipartFile
+      type: object
+      properties:
+        multipartFile:
+          type: string
+          description: 用户头像
+          format: binary
+      description: 更新用户头像入参
+    AppUserInfo:
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          format: int64
+        userUid:
+          type: string
+          description: 用户id
+        username:
+          type: string
+          description: 用户名:手机号或者邮箱
+        type:
+          type: integer
+          description: 0：本公司数据, 1:涂鸦数据
+          format: int32
+        regFrom:
+          type: integer
+          description: 账号注册的类型。取值：0：邮箱 1：手机 2：注册（其它）3：腾讯 QQ 5：Facebook 6：Twitter 7：腾讯微信
+            9：App UID 10：Google
+          format: int32
+        regAppSource:
+          type: string
+          description: 注册来源:WOpet,WOcam
+        parentUserId:
+          type: integer
+          description: 账号所属企业用户id
+          format: int64
+        countryCode:
+          type: string
+          description: '当前账号所在的国家区域: CN,EN,JP,DE等'
+        phoneCode:
+          type: string
+          description: 国家码 86：中国 1：美国
+        mobile:
+          type: string
+          description: 手机号码
+        email:
+          type: string
+          description: 邮箱地址
+        headPic:
+          type: string
+          description: 用户头像链接
+        configKey:
+          type: string
+          description: 图片存放bucket
+        nickName:
+          type: string
+          description: 用户昵称
+        timezoneId:
+          type: string
+          description: 用户时区信息。取值示例：Asia/Shanghai
+        snsNickName:
+          type: string
+          description: 第三方平台账号的昵称
+        tempUnit:
+          type: integer
+          description: 温度单位。取值：1：表示摄氏度（°C） 2：表示华氏度（°F）
+          format: int32
+        loginTime:
+          type: integer
+          description: 最后登入时间
+          format: int64
+        sex:
+          type: integer
+          description: 用户性别（1男 2女 0未知）
+          format: int32
+        appLanguage:
+          type: string
+          description: app语言,CN.US.DE,JP等
+        thirdPartyId:
+          type: string
+          description: 第三方用户id
+      description: app用户信息对象 app_user_info
+    RAppUserInfo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/AppUserInfo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    UpgradeConfigParam:
+      required:
+      - versionId
+      type: object
+      properties:
+        versionId:
+          minimum: 0
+          type: integer
+          description: 版本Id
+          format: int64
+      description: ''
+    RUpgradeConfigVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/UpgradeConfigVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    UpgradeConfigVo:
+      type: object
+      properties:
+        upgradeManner:
+          type: integer
+          description: 升级方式,1.提醒升级,2.建议升级,3.强制升级
+          format: int64
+        versionId:
+          type: integer
+          description: 最新版本Id
+          format: int64
+        versionNumber:
+          type: string
+          description: 版本号
+        versionDesc:
+          type: string
+          description: 版本描述
+      description: UpgradeConfigVo
+    R:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    BindEmailReq:
+      required:
+      - email
+      - mailCode
+      type: object
+      properties:
+        email:
+          type: string
+          description: 邮箱
+        mailCode:
+          type: string
+      description: 绑定邮箱入参
+    BannerWaitCountReq:
+      required:
+      - bannerId
+      - createTimeStr
+      - timeZone
+      - userId
+      - waitTime
+      type: object
+      properties:
+        bannerId:
+          type: string
+          description: banner_id 示例:bidwapfmbwe0nbe5lv3di
+        userId:
+          type: string
+          description: 用户id
+        waitTime:
+          type: integer
+          description: 停留时间 单位秒 示例:60
+          format: int32
+        timeZone:
+          type: string
+          description: 时区 示例:Asia/Shanghai
+        createTimeStr:
+          pattern: \d{4}-\d{2}-\d{2}
+          type: string
+          description: 日期 格式 yyyy-mm-dd 示例:2024-07-24
+      description: ''
+    BannerCompleteReq:
+      required:
+      - bannerId
+      - createTimeStr
+      - timeZone
+      - userId
+      type: object
+      properties:
+        bannerId:
+          type: string
+          description: banner_id 示例:bidwapfmbwe0nbe5lv3di
+        userId:
+          type: string
+          description: 用户id
+        timeZone:
+          type: string
+          description: '时区 示例: Asia/Shanghai'
+        createTimeStr:
+          pattern: \d{4}-\d{2}-\d{2}
+          type: string
+          description: 用户当前时区的日期 格式 yyyy-mm-dd 示例:2024-07-24
+      description: bannser
+    AppBannerInfoParam:
+      type: object
+      properties:
+        appVersionId:
+          type: integer
+          description: app 的versionId
+          format: int32
+      description: ''
+    AppBannerInfoResp:
+      type: object
+      properties:
+        bannerId:
+          type: string
+          description: banner唯一id
+        bannerImageUrl:
+          type: string
+          description: banner图片url
+        startTime:
+          type: integer
+          description: 上架周期开始时间
+          format: int64
+        endTime:
+          type: integer
+          description: 上架周期结束时间
+          format: int64
+        countDownStartTime:
+          type: integer
+          description: 倒计时开始时间
+          format: int64
+        countDownEndTime:
+          type: integer
+          description: 倒计时结束时间
+          format: int64
+        sort:
+          type: integer
+          description: 排序
+          format: int32
+        jumpPageType:
+          type: integer
+          description: 跳转页类型,1:内部链接,2:外部链接,3:无跳转
+          format: int32
+        jumpPagePath:
+          type: string
+          description: 跳转页路径
+        jumpPageShare:
+          type: integer
+          description: 外部链接是否能分享,0:不能分享,1:能分享
+          format: int32
+      description: app 查询banner返回对象
+    RListAppBannerInfoResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/AppBannerInfoResp'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    BannerEnterCountReq:
+      required:
+      - bannerId
+      - bannerPosition
+      - createTimeStr
+      - timeZone
+      - userId
+      type: object
+      properties:
+        bannerId:
+          type: string
+          description: banner_id 示例:bidwapfmbwe0nbe5lv3di, 展示次数接口传:default
+        userId:
+          type: string
+          description: 用户id
+        bannerPosition:
+          type: string
+          description: banner位置,值:ad01
+          enum:
+          - ad01
+        timeZone:
+          type: string
+          description: '时区, 示例: Asia/Shanghai'
+        createTimeStr:
+          pattern: \d{4}-\d{2}-\d{2}
+          type: string
+          description: 用户当前时区的日期 格式 yyyy-mm-dd 示例:2024-07-24
+      description: bannser
+    BannerCountReq:
+      required:
+      - bannerId
+      - createTimeStr
+      - timeZone
+      - userId
+      type: object
+      properties:
+        bannerId:
+          type: string
+          description: banner_id 示例:bidwapfmbwe0nbe5lv3di
+        userId:
+          type: string
+          description: 用户id
+        timeZone:
+          type: string
+          description: '时区, 示例: Asia/Shanghai'
+        createTimeStr:
+          pattern: \d{4}-\d{2}-\d{2}
+          type: string
+          description: 用户当前时区的日期 格式 yyyy-mm-dd 示例:2024-07-24
+      description: bannser
+    AppPanelUpgradeParam:
+      required:
+      - devId
+      - firmwareVersion
+      - productId
+      - versionNumber
+      type: object
+      properties:
+        versionNumber:
+          type: string
+          description: app版本Id
+        productId:
+          type: string
+          description: 设备产品id
+        devId:
+          type: string
+          description: 设备id
+        firmwareVersion:
+          type: string
+          description: 设备固件版本 bv字段
+      description: ''
+    AppRelBvListResp:
+      type: object
+      properties:
+        panelId:
+          type: integer
+          description: 面板id
+          format: int64
+        panelType:
+          type: string
+          description: 面板名称
+        panelName:
+          type: string
+          description: 面板名称
+        appSource:
+          type: string
+          description: app来源
+        appPanelBundleVersionId:
+          type: integer
+          description: 最新面板版本id
+          format: int64
+        bundleVersion:
+          type: string
+          description: 最新面板版本号
+        putOnShelves:
+          type: integer
+          description: 最新面板是否上架
+          format: int32
+        bundleVersionNum:
+          type: integer
+          description: 最新面板版本号数字版
+          format: int64
+        bundleUrl:
+          type: string
+          description: 最新面板版本下载地址
+        bundleFileMd5:
+          type: string
+          description: bundle文件md5
+        appVersionId:
+          type: integer
+          description: 当前app版本id
+          format: int64
+        appVersionNumber:
+          type: string
+          description: 当前app版本号
+        upgradeDesc:
+          type: string
+      description: ''
+    RAppRelBvListResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/AppRelBvListResp'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    OrderCollPopReq:
+      type: object
+      properties:
+        orderCollPopList:
+          type: array
+          description: 入参列表
+          items:
+            $ref: '#/components/schemas/OrderCollPopVo'
+      description: 订单收集弹窗标记入参
+    OrderCollPopVo:
+      type: object
+      properties:
+        devId:
+          type: string
+          description: 设备id
+        uuid:
+          type: string
+          description: 设备uuid
+        devType:
+          type: integer
+          description: 对接平台类型 0:龙之源，1：涂鸦
+          format: int32
+      description: ''
+    OrderCollPopUpdateReq:
+      type: object
+      properties:
+        orderCollectionDevicePopList:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderCollectionDevicePop'
+      description: 订单收集修改弹窗标记入参
+    OrderCollectionDevicePop:
+      type: object
+      properties:
+        orderCollectionDevicePkid:
+          type: integer
+          description: 主键
+          format: int64
+        devIdUuid:
+          type: string
+          description: 涂鸦是uuid,wo+是设备id
+        popStatus:
+          type: integer
+          description: 1.已经弹窗, 0.未弹窗
+          format: int32
+        devType:
+          type: integer
+          description: 对接平台类型 0:龙之源，1：涂鸦
+          format: int32
+      description: 订单收集弹窗记录对象 order_collection_device_pop
+    TestDto:
+      required:
+      - name
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+          description: 姓名
+        password:
+          type: string
+          description: 姓名
+      description: 测试用例对象
+    RTestDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/TestDto'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RRegisterVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/RegisterVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    WebLoginAppUserBo:
+      required:
+      - id
+      - password
+      - regAppSource
+      - username
+      type: object
+      properties:
+        createBy:
+          type: string
+          description: 创建者
+        createTime:
+          type: integer
+          description: 创建时间
+          format: int64
+        updateBy:
+          type: string
+          description: 更新者
+        updateTime:
+          type: integer
+          description: 更新时间
+          format: int64
+        params:
+          type: object
+          additionalProperties:
+            type: object
+          description: 请求参数
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+          description: 用户名:手机号或者邮箱
+        password:
+          type: string
+          description: 密码
+        regAppSource:
+          type: string
+          description: 注册来源:WOpet,WOcam
+      description: app用户业务对象
+    RMapObjectObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          additionalProperties:
+            type: object
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RBoolean:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: boolean
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    AppUserInfoVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userUid:
+          type: string
+          description: 用户id
+        username:
+          type: string
+          description: 用户名:手机号或者邮箱
+        type:
+          type: integer
+          description: 0：本公司数据, 1:涂鸦数据
+          format: int32
+        regFrom:
+          type: integer
+          description: 账号注册的类型。取值：0：邮箱 1：手机 2：注册（其它）3：腾讯 QQ 5：Facebook 6：Twitter 7：腾讯微信
+            9：App UID 10：Google
+          format: int32
+        regAppSource:
+          type: string
+          description: 注册来源:WOpet,WOcam
+        parentUserId:
+          type: integer
+          description: 账号所属企业用户id
+          format: int64
+        countryCode:
+          type: string
+          description: '当前账号所在的国家区域: CN,EN,JP,DE等'
+        phoneCode:
+          type: string
+          description: 国家码 86：中国 1：美国
+        mobile:
+          type: string
+          description: 手机号码
+        email:
+          type: string
+          description: 邮箱地址
+        headPic:
+          type: string
+          description: 用户头像链接
+        configKey:
+          type: string
+          description: 图片存放bucket
+        nickName:
+          type: string
+          description: 用户昵称
+        timezoneId:
+          type: string
+          description: 用户时区信息。取值示例：Asia/Shanghai
+        snsNickName:
+          type: string
+          description: 第三方平台账号的昵称
+        tempUnit:
+          type: integer
+          description: 温度单位。取值：1：表示摄氏度（°C） 2：表示华氏度（°F）
+          format: int32
+        loginTime:
+          type: integer
+          description: 最后登入时间
+          format: int64
+        sex:
+          type: integer
+          description: 用户性别（1男 2女 0未知）
+          format: int32
+        appLanguage:
+          type: string
+          description: app语言,CN.US.DE等
+        thirdPartyId:
+          type: string
+          description: 第三方用户id
+      description: app用户信息视图对象
+    EmqConnInfo:
+      type: object
+      properties:
+        protocol:
+          type: string
+          description: '协议 : tcp'
+        ip:
+          type: string
+          description: 'ip地址: 192.168.100.105'
+        port:
+          type: string
+          description: '端口: 11883'
+        jwtToken:
+          type: string
+          description: 正常token
+        userUid:
+          type: string
+          description: 用户uid (emq的userName)
+      description: ''
+    RTokenDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/TokenDto'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    TokenDto:
+      type: object
+      properties:
+        countryCode:
+          type: string
+        token:
+          type: string
+          description: 正常token
+        userInfo:
+          $ref: '#/components/schemas/AppUserInfoVo'
+        emqConnInfo:
+          $ref: '#/components/schemas/EmqConnInfo'
+        wopetLoginType:
+          type: integer
+          description: "wopet登陆状态\n 0或null 无需处理\n 1. iot账号,iot登陆正常,用wopetLoginResp\
+            \ 里uid字段登陆涂鸦\n 2. iot账号, iot登陆失败,账号原始区域为其他区域,用wopetLoginVo 里firstRegRegion切换访问iot/wopet服务器域名后重新登陆\n\
+            \ 3. 涂鸦账号, 返回app,app使用账号密码登陆涂鸦\n 4. 涂鸦账号, 返回app,app使用账号密码登陆涂鸦,并且用wopetLoginVo\
+            \ 里firstRegRegion切换访问iot/wopet服务器域名"
+          format: int32
+        wopetLoginVo:
+          $ref: '#/components/schemas/WopetLoginVo'
+      description: ''
+    WopetLoginVo:
+      type: object
+      properties:
+        wopetLoginType:
+          type: integer
+          format: int32
+        userUid:
+          type: string
+        firstRegRegion:
+          type: string
+      description: ''
+    ThirdPartyLoginReq:
+      required:
+      - countryCode
+      - customId
+      - nationalNumber
+      - thirdPartyLoginToken
+      - thirdPartyType
+      type: object
+      properties:
+        thirdPartyType:
+          type: string
+          description: 第三方登陆类型
+          enum:
+          - google
+          - facebook
+          - apple
+        thirdPartyLoginToken:
+          type: string
+          description: 第三方登陆token
+        customId:
+          type: string
+          description: 客户id, 由后端提供
+        countryCode:
+          type: string
+          description: 国家区域
+        nationalNumber:
+          type: string
+          description: 涂鸦国民编号
+        timezoneId:
+          type: string
+          description: 时区 例如(Asia/Shanghai)
+        wopetUserInfo:
+          $ref: '#/components/schemas/WopetUserInfo'
+      description: 第三方登陆入参
+    RThirdPartyTokenDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/ThirdPartyTokenDto'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    ThirdPartyTokenDto:
+      type: object
+      properties:
+        token:
+          type: string
+          description: 正常token
+        thirdPartyWopetLoginType:
+          type: integer
+          description: "0或null 无需处理\n 1. iot第三方登录账号,iot登陆正常返回token,app用thirdPartyWopetLoginVo\
+            \ 里uid字段登陆涂鸦\n 2. iot第三方登录账号,iot登陆失败,账号原始区域为其他区域,用thirdPartyWopetLoginVo\
+            \ 里firstRegRegion切换访问iot/wopet服务器域名,后重新用第三方登陆iot\n 3. 涂鸦第三方登录账号, 返回app,app使用第三方登录方式登录涂鸦,无需切换域名\n\
+            \ 4. 涂鸦第三方登录账号, 返回app,app使用第三方登录方式登录(iot已有账号),并且用thirdPartyWopetLoginVo\
+            \ 里firstRegRegion切换访问iot/wopet服务器域名\n 5. iot存在该第三方账号对应邮箱,iot登陆正常返回token,app用thirdPartyWopetLoginVo\
+            \ 里uid字段登陆涂鸦\n 6. iot存在该第三方账号对应邮箱,iot登陆失败,账号原始区域为其他区域,用thirdPartyWopetLoginVo\
+            \ 里firstRegRegion切换访问iot/wopet服务器域名,后重新用第三方登陆iot\n 7. 涂鸦存在该第三方账号对应邮箱,返回app,app使用第三方登录方式登录涂鸦,无需切换域名\n\
+            \ 8. 涂鸦存在该第三方账号对应邮箱,返回app,app使用第三方登录方式登录(iot已有账号),并且用thirdPartyWopetLoginVo\
+            \ 里firstRegRegion切换访问iot/wopet服务器域名"
+          format: int32
+        thirdPartyWopetLoginVo:
+          $ref: '#/components/schemas/ThirdPartyWopetLoginVo'
+        emqConnInfo:
+          $ref: '#/components/schemas/EmqConnInfo'
+      description: ''
+    ThirdPartyWopetLoginVo:
+      type: object
+      properties:
+        thirdPartyWopetLoginType:
+          type: integer
+          format: int32
+        userUid:
+          type: string
+        firstRegRegion:
+          type: string
+      description: ''
+    CheckAppleResp:
+      type: object
+      properties:
+        appleType:
+          type: integer
+          description: "1. 新的iot 账号, 调iot第三方登录接口正常登录\n 2. 旧的涂鸦账号, 调iot第三方登录接口正常登录\n\
+            \ 3. 无法判断, app调涂鸦第三方登陆,\n 4. 新的iot账号, 调iot第三方登录接口正常登录,并删除刚才3,创建的涂鸦账号"
+          format: int32
+      description: 判断苹果id是否正常
+    RCheckAppleResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/CheckAppleResp'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    CheckTuYaUidParam:
+      type: object
+      properties:
+        loginReq:
+          $ref: '#/components/schemas/ThirdPartyLoginReq'
+        uid:
+          type: string
+          description: 用户信息id
+      description: ''
+    MailCodeVo:
+      required:
+      - customId
+      - email
+      type: object
+      properties:
+        customId:
+          type: string
+          description: 客户id, 由后端提供
+        email:
+          type: string
+          description: 注册邮箱地址
+      description: 发送邮箱验证码入参
+    MailLoginVo:
+      required:
+      - countryCode
+      - customId
+      - email
+      - loginConfirm
+      - password
+      type: object
+      properties:
+        customId:
+          type: string
+          description: 客户id, 由后端提供
+        email:
+          type: string
+          description: 注册邮箱地址
+        password:
+          type: string
+          description: 客户id, 由后端提供
+        loginConfirm:
+          type: integer
+          description: 多区域确认登陆 1. 第一次登陆, 2,继续登陆
+          format: int32
+        timezoneId:
+          type: string
+          description: 时区 例如(Asia/Shanghai)
+        countryCode:
+          type: string
+          description: 国家区域
+      description: 邮箱登陆入参
+    RWopetLoginVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/WopetLoginVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    ApiVo:
+      type: object
+      properties:
+        data:
+          type: string
+          description: 加密后的数据
+      description: ''
+    CommonApiVo:
+      type: object
+      properties:
+        data:
+          type: string
+          description: 加密后的数据
+        partnerType:
+          type: string
+          description: 调用方类型
+      description: ''
+    RApiVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/ApiVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    DictTypeAndCategoryReq:
+      required:
+      - category
+      - dictType
+      type: object
+      properties:
+        dictType:
+          type: string
+          description: common_dict_type表dictType字段
+        category:
+          type: string
+          description: common_dict_type_category表category字段
+      description: 字典类型和分类
+    CommonDictItemVo:
+      type: object
+      properties:
+        appSource:
+          type: string
+          description: APP来源(WOpet,WOcam)
+        dictType:
+          type: string
+          description: 字典类型
+        category:
+          type: string
+          description: 种类
+        categoryName:
+          type: string
+          description: 种类名称
+        parentCategory:
+          type: string
+          description: 种类父级
+        dictKey:
+          type: string
+          description: 字典键值
+        dictKeyName:
+          type: string
+          description: 字典键值
+        dictDataRemark:
+          type: string
+        imageUrl:
+          type: string
+          description: 字典图片url
+        dictFlag:
+          type: string
+          description: 是否热门,是否常用等标记,
+        sort:
+          type: integer
+          description: 排序
+          format: int32
+        language:
+          type: string
+          description: 语言类型,(EN,CN)等
+        languageValue:
+          type: string
+          description: 语言类型值
+      description: 多语言字典对象O
+    RListCommonDictItemVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: array
+          description: 数据对象
+          items:
+            $ref: '#/components/schemas/CommonDictItemVo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    REmqConnInfo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          $ref: '#/components/schemas/EmqConnInfo'
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RString:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: string
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+    RMapStringListCommonDictItemVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 消息状态码(470,校验errorcode, 提示msg多语言内容, 500:app直接提示服务异常)
+          format: int32
+        msg:
+          type: string
+          description: 消息内容  多语言message 仅状态码470有效, 其他为前端自己多语言
+        data:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/CommonDictItemVo'
+          description: 数据对象
+        paramMsg:
+          type: object
+          additionalProperties:
+            type: object
+          description: "参数校验返回对象(给web使用, app不用)\n 示例: {\"字段名\": \"提示消息\"}\n {\"userName\"\
+            : \"用户名已存在,请重新输入\"}"
+        errCode:
+          type: integer
+          description: 仅状态码470有效校验errorcode
+          format: int32
+      description: 响应信息主体
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header

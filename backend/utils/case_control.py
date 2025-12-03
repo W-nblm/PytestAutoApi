@@ -143,15 +143,12 @@ class TestCaseAutomaticGeneration:
         :param cases_dir: 生成测试用例文件目录
         :return:
         """
-        print("开始生成测试用例文件...")
         print(os.path.abspath(__file__))
         print("yaml用例文件目录:", yaml_files_dir)
-        print(ensure_path_sep(yaml_files_dir))
         # 读取所有的yaml文件
         file_paths = get_all_files(
             file_path=ensure_path_sep(yaml_files_dir), yaml_data_switch=True
         )
-        print("所有用例文件:", file_paths)
         # 按目录进行分类
         dir_groups = defaultdict(list)
         for file in file_paths:
@@ -176,7 +173,6 @@ class TestCaseAutomaticGeneration:
 
             case_path = os.path.join(dir_path, "test_" + dir_name.lower() + ".py")
             case_path = case_path.replace(yaml_files_dir, cases_dir)
-            print("用例文件路径:", case_path)
 
             print("*" * 60)
             # 存放所有方法

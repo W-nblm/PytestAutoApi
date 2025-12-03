@@ -1,0 +1,291 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 未分类
+  allureStory: 一级页面-查询告警设备列表  系统设备列表接口
+case_notify_info_notify_queryMessageDeviceList_01_success:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageDeviceList
+  method: POST
+  detail: 正常场景 - 使用有效参数查询告警设备列表 (messageType=1)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    messageType: '1'
+    userId: test-user-001
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验返回数据为列表类型
+    jsonpath: $.data
+    type: is_list
+    value: true
+    message: 返回数据类型不为列表
+  - name: 校验返回数据不为null
+    jsonpath: $.data
+    type: not_eq
+    value: null
+    message: 返回数据不应为null
+case_notify_info_notify_queryMessageDeviceList_02_success_messageType_2:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageDeviceList
+  method: POST
+  detail: 正常场景 - 使用有效参数查询告警设备列表 (messageType=2)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    messageType: '2'
+    userId: test-user-002
+    pageSize: 5
+    pageNum: 2
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验返回数据为列表类型
+    jsonpath: $.data
+    type: is_list
+    value: true
+    message: 返回数据类型不为列表
+  - name: 校验返回数据不为null
+    jsonpath: $.data
+    type: not_eq
+    value: null
+    message: 返回数据不应为null
+case_notify_info_notify_queryMessageDeviceList_03_empty_result:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageDeviceList
+  method: POST
+  detail: 正常场景 - 查询返回空列表 (模拟无告警数据)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    messageType: '1'
+    userId: non-existent-user-id-xyz
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+  - name: 校验返回数据为空列表
+    jsonpath: $.data
+    type: eq
+    value: []
+    message: 返回数据应为空列表
+case_notify_info_notify_queryMessageDeviceList_04_missing_messageType:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageDeviceList
+  method: POST
+  detail: 异常场景 - 缺少必填参数 messageType
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    userId: test-user-001
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+  - name: 校验paramMsg中包含messageType的错误提示
+    jsonpath: $.paramMsg.messageType
+    type: not_eq
+    value: null
+    message: paramMsg中缺少messageType错误提示
+case_notify_info_notify_queryMessageDeviceList_05_missing_userId:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageDeviceList
+  method: POST
+  detail: 异常场景 - 缺少必填参数 userId
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    messageType: '1'
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+  - name: 校验paramMsg中包含userId的错误提示
+    jsonpath: $.paramMsg.userId
+    type: not_eq
+    value: null
+    message: paramMsg中缺少userId错误提示
+case_notify_info_notify_queryMessageDeviceList_06_invalid_messageType_value:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageDeviceList
+  method: POST
+  detail: 异常场景 - messageType 参数值不符合规范 (非'1'或'2')
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    messageType: '0'
+    userId: test-user-001
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+  - name: 校验paramMsg中包含messageType的错误提示
+    jsonpath: $.paramMsg.messageType
+    type: not_eq
+    value: null
+    message: paramMsg中缺少messageType错误提示
+case_notify_info_notify_queryMessageDeviceList_07_invalid_userId_empty:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageDeviceList
+  method: POST
+  detail: 异常场景 - userId 参数为空字符串
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    messageType: '1'
+    userId: ''
+    pageSize: 10
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+  - name: 校验paramMsg中包含userId的错误提示
+    jsonpath: $.paramMsg.userId
+    type: not_eq
+    value: null
+    message: paramMsg中缺少userId错误提示
+case_notify_info_notify_queryMessageDeviceList_08_invalid_pageSize_negative:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageDeviceList
+  method: POST
+  detail: 异常场景 - pageSize 参数为负数
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    messageType: '1'
+    userId: test-user-001
+    pageSize: -1
+    pageNum: 1
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+  - name: 校验paramMsg中包含pageSize的错误提示
+    jsonpath: $.paramMsg.pageSize
+    type: not_eq
+    value: null
+    message: paramMsg中缺少pageSize错误提示
+case_notify_info_notify_queryMessageDeviceList_09_invalid_pageNum_zero:
+  host: ${{host()}}
+  url: /notify/info/notify/queryMessageDeviceList
+  method: POST
+  detail: 异常场景 - pageNum 参数为0 (通常页码从1开始)
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data:
+    messageType: '1'
+    userId: test-user-001
+    pageSize: 10
+    pageNum: 0
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 470
+    message: 状态码不为470
+  - name: 校验响应消息包含错误提示
+    jsonpath: $.msg
+    type: contains
+    value: 失败
+  - name: 校验paramMsg中包含pageNum的错误提示
+    jsonpath: $.paramMsg.pageNum
+    type: not_eq
+    value: null
+    message: paramMsg中缺少pageNum错误提示

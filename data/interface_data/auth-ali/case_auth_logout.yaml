@@ -1,0 +1,72 @@
+case_common:
+  allureEpic: 标题：platform-Cloud-Plus微服务权限管理系统_接口文档
+  allureFeature: 认证授权
+  allureStory: 登出方法
+case_auth_logout_01:
+  host: ${{host()}}
+  url: /auth/logout
+  method: DELETE
+  detail: 登出方法 - 正常场景：成功登出
+  headers:
+    Authorization: $cache{app_token}
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: {}
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码
+    jsonpath: $.code
+    type: eq
+    value: 200
+    message: 状态码不为200
+  - name: 校验响应消息
+    jsonpath: $.msg
+    type: contains
+    value: 成功
+    message: 响应消息不包含"成功"
+case_auth_logout_02:
+  host: ${{host()}}
+  url: /auth/logout
+  method: DELETE
+  detail: 登出方法 - 异常场景：缺少Authorization头
+  headers:
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: {}
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码 (缺少Authorization头)
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 缺少Authorization头时，响应code仍为200，可能不符合预期
+  - name: 校验响应消息 (缺少Authorization头)
+    jsonpath: $.msg
+    type: contains
+    value: 认证失败
+    message: 缺少Authorization头时，响应消息未包含预期的错误信息 (如"认证失败"或"未登录")
+case_auth_logout_03:
+  host: ${{host()}}
+  url: /auth/logout
+  method: DELETE
+  detail: 登出方法 - 异常场景：Authorization头携带无效token
+  headers:
+    Authorization: Bearer invalid_token_example
+    Content-Language: zh_CN
+    App-Source: WObird
+  requestType: json
+  data: {}
+  dependence_case: []
+  assert:
+  - name: 校验接口状态码 (无效token)
+    jsonpath: $.code
+    type: not_eq
+    value: 200
+    message: 无效token时，响应code仍为200，可能不符合预期
+  - name: 校验响应消息 (无效token)
+    jsonpath: $.msg
+    type: contains
+    value: 无效的token
+    message: 无效token时，响应消息未包含预期的错误信息 (如"无效的token"或"token已失效")
